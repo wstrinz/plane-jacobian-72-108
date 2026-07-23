@@ -1,0 +1,2087 @@
+{
+ "metadata": {
+  "title": "Modular triage of the resistant ideals (reconnaissance, NOT proof)",
+  "primes": [
+   10007,
+   10009,
+   100019
+  ],
+  "bad_primes_avoided": "{2,3,5,13,17} = the only primes dividing disc(q), lc(q)=2048, or 6630",
+  "per_prime_singular_budget_s": 60,
+  "method": "Exact generators built in sympy; coeffs reduced mod p; marked roots specialized to numeric roots of q mod p; ideals saturated (Singular elim.lib sat() for sys1, Rabinowitsch for sys3/4) and std over F_p; verdict UNIT (basis=1, empty over closure) vs PROPER (dim recorded).",
+  "verdict_legend": {
+   "LIKELY-EMPTY": "UNIT for all primes",
+   "LIKELY-SOLVABLE": "PROPER for all primes, consistent dim",
+   "MIXED": "cross-prime disagreement",
+   "INDETERMINATE": "timeout/skip, no verdict"
+  },
+  "caveat": "mod-p GB tests emptiness over the ALGEBRAIC CLOSURE. A system empty only over R (real/positive-definite obstruction) still reads PROPER=LIKELY-SOLVABLE. System 2 is exactly this case.",
+  "overall_prediction_counts": {
+   "LIKELY-EMPTY": 24,
+   "INDETERMINATE": 4,
+   "LIKELY-SOLVABLE": 31
+  },
+  "MIXED_cases": "none (every prime agreed wherever a verdict was returned)"
+ },
+ "system1": [
+  {
+   "name": "R9_z0",
+   "note": "z=0, 7 master coeffs, sat(gamma,g_last,G(r)), r->root",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 17.39,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 12.84,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 21.28,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "R9_z1",
+   "note": "z=1, 7 master coeffs, sat(gamma,g_last,G(r)), r->root",
+   "nvars": 9,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 23.27,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 23.02,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 23.7,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "R9_z2",
+   "note": "z=2, 7 master coeffs, sat(gamma,g_last,G(r)), r->root",
+   "nvars": 10,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 2.62,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 6.23,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 3.91,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "R9_z3",
+   "note": "z=3, 7 master coeffs, sat(gamma,g_last,G(r)), r->root",
+   "nvars": 11,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 4.08,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 4.28,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 6.72,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "R9_z4",
+   "note": "z=4, 7 master coeffs, sat(gamma,g_last,G(r)), r->root",
+   "nvars": 12,
+   "primes": [
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "wall": 60.05,
+     "prime": 10007
+    },
+    {
+     "status": "skip",
+     "verdict": "TIMEOUT",
+     "reason": "skipped after earlier timeout",
+     "unit": null,
+     "dim": null,
+     "prime": 10009
+    },
+    {
+     "status": "skip",
+     "verdict": "TIMEOUT",
+     "reason": "skipped after earlier timeout",
+     "unit": null,
+     "dim": null,
+     "prime": 100019
+    }
+   ],
+   "prediction": "INDETERMINATE"
+  },
+  {
+   "name": "R9_z5",
+   "note": "z=5, 7 master coeffs, sat(gamma,g_last,G(r)), r->root",
+   "nvars": 13,
+   "primes": [
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "wall": 60.02,
+     "prime": 10007
+    },
+    {
+     "status": "skip",
+     "verdict": "TIMEOUT",
+     "reason": "skipped after earlier timeout",
+     "unit": null,
+     "dim": null,
+     "prime": 10009
+    },
+    {
+     "status": "skip",
+     "verdict": "TIMEOUT",
+     "reason": "skipped after earlier timeout",
+     "unit": null,
+     "dim": null,
+     "prime": 100019
+    }
+   ],
+   "prediction": "INDETERMINATE"
+  },
+  {
+   "name": "R9_z6",
+   "note": "z=6, 7 master coeffs, sat(gamma,g_last,G(r)), r->root",
+   "nvars": 14,
+   "primes": [
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "wall": 60.02,
+     "prime": 10007
+    },
+    {
+     "status": "skip",
+     "verdict": "TIMEOUT",
+     "reason": "skipped after earlier timeout",
+     "unit": null,
+     "dim": null,
+     "prime": 10009
+    },
+    {
+     "status": "skip",
+     "verdict": "TIMEOUT",
+     "reason": "skipped after earlier timeout",
+     "unit": null,
+     "dim": null,
+     "prime": 100019
+    }
+   ],
+   "prediction": "INDETERMINATE"
+  }
+ ],
+ "system2": [
+  {
+   "name": "a8_dd2-inf_dd10_dsig5",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.61,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd2-inf_dd11_dsig6",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.61,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.61,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 1.23,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd2-inf_dd12_dsig7",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.67,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.67,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.86,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd2-inf_dd13_dsig8",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.55,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.77,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.73,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd20_dd10_dsig5",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.64,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.47,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd20_dd11_dsig6",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.55,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.41,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd20_dd12_dsig7",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.34,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd20_dd13_dsig8",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.34,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.39,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.53,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd21_dd10_dsig5",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.52,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.73,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd21_dd11_dsig6",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.66,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.34,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd21_dd12_dsig7",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.45,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd21_dd13_dsig8",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.42,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.34,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd22_dd10_dsig5",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.5,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd22_dd11_dsig6",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd22_dd12_dsig7",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.56,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd22_dd13_dsig8",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.52,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd23_dd10_dsig5",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.52,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.58,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd23_dd11_dsig6",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.53,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.75,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.56,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd23_dd12_dsig7",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 1.61,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 1.52,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 1.0,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd23_dd13_dsig8",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.52,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.67,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.7,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd24_dd10_dsig5",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.41,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.58,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd24_dd11_dsig6",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 3,
+     "wall": 0.52,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd24_dd12_dsig7",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.52,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a8_dd24_dd13_dsig8",
+   "note": "3 master coeffs (gauge, gamma sat)",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.55,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  }
+ ],
+ "system3": [
+  {
+   "name": "a11_b0000_T1_sup1",
+   "note": "field=Q, depth=5, 5 tie coeffs",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.41,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 4,
+     "wall": 0.41,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a11_b0000_T1_sup1",
+   "note": "field=Q, depth=5, 5 tie coeffs",
+   "nvars": 9,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 5,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 5,
+     "wall": 0.52,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 5,
+     "wall": 0.5,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a11_b1000_T1_sup1",
+   "note": "field=Q[r]/(q), depth=8, 8 tie coeffs",
+   "nvars": 12,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 5,
+     "wall": 0.94,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 5,
+     "wall": 1.06,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 5,
+     "wall": 0.91,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a11_b1000_T1_sup5",
+   "note": "field=Q[r]/(q), depth=6, 6 tie coeffs",
+   "nvars": 9,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 1,
+     "wall": 0.69,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 1,
+     "wall": 0.39,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 1,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a11_b1100_T1_sup1",
+   "note": "field=Q[r1,r2]/(q,q), r1!=r2, depth=11, 11 tie coeffs",
+   "nvars": 14,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 1,
+     "wall": 2.64,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 1,
+     "wall": 4.03,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 1,
+     "wall": 3.2,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a11_b1110_T1_sup1",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "nvars": 12,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 47.62,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 42.38,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 41.97,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a11_b1111_T1_sup17",
+   "note": "field=Q, depth=12, 12 tie coeffs",
+   "nvars": 11,
+   "primes": [
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "wall": 60.03,
+     "prime": 10007
+    },
+    {
+     "status": "skip",
+     "verdict": "TIMEOUT",
+     "reason": "skipped after earlier timeout",
+     "unit": null,
+     "dim": null,
+     "prime": 10009
+    },
+    {
+     "status": "skip",
+     "verdict": "TIMEOUT",
+     "reason": "skipped after earlier timeout",
+     "unit": null,
+     "dim": null,
+     "prime": 100019
+    }
+   ],
+   "prediction": "INDETERMINATE"
+  },
+  {
+   "name": "a11_b3000_T1_sup5",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "nvars": 11,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.53,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.48,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.44,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a11_b3000_T1_sup9",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "nvars": 12,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 34.67,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 33.22,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 39.53,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a12_b0000_T1_sup5",
+   "note": "field=Q, depth=5, 5 tie coeffs",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a12_b0000_T1_sup9",
+   "note": "field=Q, depth=8, 8 tie coeffs",
+   "nvars": 10,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.41,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.56,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "PROPER",
+     "unit": false,
+     "dim": 2,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-SOLVABLE"
+  },
+  {
+   "name": "a12_b1110_T1_sup13",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "nvars": 12,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.73,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.98,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a12_b3000_T1_sup13",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "nvars": 12,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.38,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.53,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a14_b1000_T1_sup13",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "nvars": 12,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.39,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.48,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.34,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a11_b1111_T2_sup13",
+   "note": "field=Q, depth=12, 12 tie coeffs",
+   "nvars": 10,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.98,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 1.14,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.73,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a11_b3100_T2_sup12",
+   "note": "field=Q[r1,r2]/(q,q), r1!=r2, depth=12, 12 tie coeffs",
+   "nvars": 12,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.45,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.34,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a12_b1110_T2_sup12",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "nvars": 10,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.53,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.45,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.61,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "a13_b1000_T2_sup11",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "nvars": 11,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 2.22,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 1.67,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 1.64,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  }
+ ],
+ "system4": [
+  {
+   "name": "sub2T2_a8_b0000_dd20_dsig3",
+   "note": "6 master coeffs, no root, deg_G=3",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.53,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a8_b0000_dd21_dsig3",
+   "note": "6 master coeffs, no root, deg_G=3",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.73,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.88,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 1.11,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a8_b1000_dd20_dsig5",
+   "note": "6 master coeffs, 1 root, deg_G=3",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.59,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a8_b1000_dd21_dsig5",
+   "note": "6 master coeffs, 1 root, deg_G=3",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.34,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a8_b1000_dd22_dsig5",
+   "note": "6 master coeffs, 1 root, deg_G=3",
+   "nvars": 8,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.56,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.36,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a7_b1000_dd20_dsig3",
+   "note": "6 master coeffs, 1 root, deg_G=1",
+   "nvars": 5,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a7_b1000_dd21_dsig3",
+   "note": "6 master coeffs, 1 root, deg_G=1",
+   "nvars": 5,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a7_b1000_dd22_dsig3",
+   "note": "6 master coeffs, 1 root, deg_G=1",
+   "nvars": 5,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.47,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a7_b3000_dd20_dsig7",
+   "note": "6 master coeffs, 1 root, deg_G=1",
+   "nvars": 6,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  },
+  {
+   "name": "sub2T2_a7_b3000_dd21_dsig7",
+   "note": "6 master coeffs, 1 root, deg_G=1",
+   "nvars": 7,
+   "primes": [
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.3,
+     "stderr": "",
+     "prime": 10007
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.31,
+     "stderr": "",
+     "prime": 10009
+    },
+    {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.33,
+     "stderr": "",
+     "prime": 100019
+    }
+   ],
+   "prediction": "LIKELY-EMPTY"
+  }
+ ]
+}

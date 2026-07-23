@@ -1,0 +1,6 @@
+sub1_sweep*.log
+rl_sweep_*.log
+sub1_batch_run.log
+overnight_*.log
+overnight_*checkpoint*.json
+overnight_pids.txt

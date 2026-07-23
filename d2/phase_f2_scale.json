@@ -1,0 +1,889 @@
+{
+ "alt_states": [
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 5,
+   "tie_depth": 5,
+   "elapsed": 0.9,
+   "j0": "-2560*D6**5*(D6*X - E)**2",
+   "field": "Q",
+   "TD": 52,
+   "capped_depth": 5,
+   "key": "a11_b0000_T1#sup1#idx1",
+   "bid": "a11_b0000_T1",
+   "support": 1,
+   "degs": [
+    6,
+    5,
+    null,
+    11
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 5,
+   "tie_depth": 5,
+   "elapsed": 2.0,
+   "j0": "-2560*D6**5*(D6*X - E)**2",
+   "field": "Q",
+   "TD": 52,
+   "capped_depth": 5,
+   "key": "a11_b0000_T1#sup1#idx2",
+   "bid": "a11_b0000_T1",
+   "support": 1,
+   "degs": [
+    6,
+    5,
+    3,
+    11
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 8,
+   "elapsed": 0.0,
+   "j0": "-2560*D6**7*X**2 + 5120*D6**6*E*X - 2560*D6**5*E**2",
+   "field": "Q[r]/(q)",
+   "TD": 54,
+   "capped_depth": 2,
+   "key": "a11_b1000_T1#sup1#idx409",
+   "bid": "a11_b1000_T1",
+   "support": 1,
+   "degs": [
+    6,
+    6,
+    3,
+    12
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 6,
+   "elapsed": 0.0,
+   "j0": "5832*D4*X**6 - 5832*E*X**5",
+   "field": "Q[r]/(q)",
+   "TD": 52,
+   "capped_depth": 2,
+   "key": "a11_b1000_T1#sup5#idx432",
+   "bid": "a11_b1000_T1",
+   "support": 5,
+   "degs": [
+    4,
+    8,
+    null,
+    12
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 11,
+   "elapsed": 0.1,
+   "j0": "-2560*D6**7*X**2 + 5120*D6**6*E*X - 2560*D6**5*E**2",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 56,
+   "capped_depth": 2,
+   "key": "a11_b1100_T1#sup1#idx709",
+   "bid": "a11_b1100_T1",
+   "support": 1,
+   "degs": [
+    6,
+    7,
+    3,
+    13
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 14,
+   "elapsed": 0.0,
+   "j0": "-2560*D6**7*X**2 + 5120*D6**6*E*X - 2560*D6**5*E**2",
+   "field": "Q[r]/(q)",
+   "TD": 58,
+   "capped_depth": 2,
+   "key": "a11_b1110_T1#sup1#idx911",
+   "bid": "a11_b1110_T1",
+   "support": 1,
+   "degs": [
+    6,
+    8,
+    3,
+    14
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-729*E*(9*E**3 + 8*X**5)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 12,
+   "key": "a11_b1111_T1#sup15#idx1044",
+   "bid": "a11_b1111_T1",
+   "support": 15,
+   "degs": [
+    null,
+    9,
+    3,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-729*E*(9*E**3 + 8*X**5)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 12,
+   "key": "a11_b1111_T1#sup15#idx1054",
+   "bid": "a11_b1111_T1",
+   "support": 15,
+   "degs": [
+    0,
+    9,
+    3,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-729*E*(9*E**3 + 8*X**5)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 12,
+   "key": "a11_b1111_T1#sup15#idx1064",
+   "bid": "a11_b1111_T1",
+   "support": 15,
+   "degs": [
+    1,
+    9,
+    3,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-729*E*(9*E**3 + 8*X**5)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 12,
+   "key": "a11_b1111_T1#sup15#idx1074",
+   "bid": "a11_b1111_T1",
+   "support": 15,
+   "degs": [
+    2,
+    9,
+    3,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-729*E*(9*E**3 + 8*X**5)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 12,
+   "key": "a11_b1111_T1#sup15#idx1084",
+   "bid": "a11_b1111_T1",
+   "support": 15,
+   "degs": [
+    3,
+    9,
+    3,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-729*E*(9*E**3 + 8*X**5)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 12,
+   "key": "a11_b1111_T1#sup15#idx1094",
+   "bid": "a11_b1111_T1",
+   "support": 15,
+   "degs": [
+    4,
+    9,
+    3,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 8,
+   "tie_depth": 17,
+   "elapsed": 0.9,
+   "j0": "-729*E*(9*E**3 + 8*X**5)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 12,
+   "key": "a11_b1111_T1#sup15#idx1104",
+   "bid": "a11_b1111_T1",
+   "support": 15,
+   "degs": [
+    5,
+    9,
+    3,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 17,
+   "elapsed": 1.8,
+   "j0": "-2560*D6**7*X**2 + 5120*D6**6*E*X - 2560*D6**5*E**2 - 34128*D6**4*X**4 + 103680*D6**3*E*X**3 - 109512*D6**2*E**2*X**2 + 46656*D6*E**3*X + 5832*D6*X**6 - 6561*E**4 - 5832*E*X**5",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b1111_T1#sup17#idx1114",
+   "bid": "a11_b1111_T1",
+   "support": 17,
+   "degs": [
+    6,
+    9,
+    3,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 13,
+   "elapsed": 0.0,
+   "j0": "5832*D5*X**6 - 5832*E*X**5",
+   "field": "Q[r]/(q)",
+   "TD": 59,
+   "capped_depth": 2,
+   "key": "a11_b3000_T1#sup5#idx1130",
+   "bid": "a11_b3000_T1",
+   "support": 5,
+   "degs": [
+    5,
+    9,
+    3,
+    14
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 14,
+   "elapsed": 2.0,
+   "j0": "-2560*D6**7*X**2 - 34128*D6**4*X**4 + 5832*D6*X**6",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b3000_T1#sup9#idx1140",
+   "bid": "a11_b3000_T1",
+   "support": 9,
+   "degs": [
+    6,
+    9,
+    3,
+    14
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 5,
+   "tie_depth": 5,
+   "elapsed": 0.0,
+   "j0": "5832*X**5*(D3*X - E)",
+   "field": "Q",
+   "TD": 57,
+   "capped_depth": 5,
+   "key": "a12_b0000_T1#sup5#idx1286",
+   "bid": "a12_b0000_T1",
+   "support": 5,
+   "degs": [
+    3,
+    9,
+    null,
+    12
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 8,
+   "elapsed": 0.0,
+   "j0": "-8*D6*X**2*(2*D6**3 + 27*X**2)*(160*D6**3 - 27*X**2)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b0000_T1#sup9#idx1302",
+   "bid": "a12_b0000_T1",
+   "support": 9,
+   "degs": [
+    6,
+    9,
+    null,
+    12
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-2560*D6**5*E**2 - 6561*E**4",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b1110_T1#sup13#idx2244",
+   "bid": "a12_b1110_T1",
+   "support": 13,
+   "degs": [
+    6,
+    6,
+    0,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-2560*D6**5*E**2 - 6561*E**4",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b3000_T1#sup13#idx2408",
+   "bid": "a12_b3000_T1",
+   "support": 13,
+   "degs": [
+    6,
+    7,
+    0,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-2560*D6**5*E**2 - 6561*E**4",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a14_b1000_T1#sup13#idx2765",
+   "bid": "a14_b1000_T1",
+   "support": 13,
+   "degs": [
+    6,
+    7,
+    0,
+    15
+   ],
+   "branch": "T1"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-E**2*(2560*D6**5 + 6561*E**2)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b1111_T2#sup13#idx2988",
+   "bid": "a11_b1111_T2",
+   "support": 13,
+   "degs": [
+    6,
+    null,
+    11,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.1,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b3100_T2#sup12#idx3002",
+   "bid": "a11_b3100_T2",
+   "support": 12,
+   "degs": [
+    null,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.1,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b3100_T2#sup12#idx3003",
+   "bid": "a11_b3100_T2",
+   "support": 12,
+   "degs": [
+    0,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.1,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b3100_T2#sup12#idx3004",
+   "bid": "a11_b3100_T2",
+   "support": 12,
+   "degs": [
+    1,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.1,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b3100_T2#sup12#idx3005",
+   "bid": "a11_b3100_T2",
+   "support": 12,
+   "degs": [
+    2,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.1,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b3100_T2#sup12#idx3006",
+   "bid": "a11_b3100_T2",
+   "support": 12,
+   "degs": [
+    3,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.1,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b3100_T2#sup12#idx3007",
+   "bid": "a11_b3100_T2",
+   "support": 12,
+   "degs": [
+    4,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 17,
+   "elapsed": 2.5,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a11_b3100_T2#sup12#idx3008",
+   "bid": "a11_b3100_T2",
+   "support": 12,
+   "degs": [
+    5,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "PENDING_HEAVY",
+   "reason": "two-root + free deg-6 d2",
+   "field": "Q[r1,r2]/(q,q), r1!=r2",
+   "TD": 60,
+   "key": "a11_b3100_T2#sup14#idx3009",
+   "bid": "a11_b3100_T2",
+   "support": 14,
+   "tie_depth": 17,
+   "degs": [
+    6,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b1110_T2#sup12#idx3059",
+   "bid": "a12_b1110_T2",
+   "support": 12,
+   "degs": [
+    null,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b1110_T2#sup12#idx3060",
+   "bid": "a12_b1110_T2",
+   "support": 12,
+   "degs": [
+    0,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b1110_T2#sup12#idx3061",
+   "bid": "a12_b1110_T2",
+   "support": 12,
+   "degs": [
+    1,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b1110_T2#sup12#idx3062",
+   "bid": "a12_b1110_T2",
+   "support": 12,
+   "degs": [
+    2,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b1110_T2#sup12#idx3063",
+   "bid": "a12_b1110_T2",
+   "support": 12,
+   "degs": [
+    3,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "kill_depth": 2,
+   "tie_depth": 17,
+   "elapsed": 0.0,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b1110_T2#sup12#idx3064",
+   "bid": "a12_b1110_T2",
+   "support": 12,
+   "degs": [
+    4,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 17,
+   "elapsed": 0.1,
+   "j0": "-6561*E**4 + 8748*S**5",
+   "field": "Q[r]/(q)",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a12_b1110_T2#sup12#idx3065",
+   "bid": "a12_b1110_T2",
+   "support": 12,
+   "degs": [
+    5,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "PENDING_TIMEOUT",
+   "depth_reached": 2,
+   "elapsed": 380.1,
+   "j0": "960*D6**6*S**2 - 2560*D6**5*E**2 + 6048*D6**4*S**3 - 12528*D6**3*E**2*S + 12636*D6**2*S**4 - 14580*D6*E**2*S**2 - 6561*E**4 + 8748*S**5",
+   "TD": 60,
+   "field": "Q[r]/(q)",
+   "capped_depth": 2,
+   "key": "a12_b1110_T2#sup14#idx3066",
+   "bid": "a12_b1110_T2",
+   "support": 14,
+   "tie_depth": 17,
+   "degs": [
+    6,
+    null,
+    12,
+    15
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "NARROWED_or_UNOBSTRUCTED",
+   "depth_reached": 2,
+   "tie_depth": 14,
+   "elapsed": 0.2,
+   "j0": "960*D6**6*S**2 - 2560*D6**5*E**2",
+   "field": "Q[r]/(q)",
+   "TD": 58,
+   "capped_depth": 2,
+   "key": "a13_b1000_T2#sup11#idx3082",
+   "bid": "a13_b1000_T2",
+   "support": 11,
+   "degs": [
+    6,
+    null,
+    11,
+    14
+   ],
+   "branch": "T2"
+  },
+  {
+   "verdict": "KILLED",
+   "depth_reached": 2,
+   "tie_depth": 14,
+   "elapsed": 0.0,
+   "j0": "12*S**2*(4*D6**2 + 9*S)**2*(5*D6**2 + 9*S)",
+   "field": "Q",
+   "TD": 60,
+   "capped_depth": 2,
+   "key": "a14_b0000_T2#sup0#idx3093",
+   "bid": "a14_b0000_T2",
+   "support": 0,
+   "degs": [
+    6,
+    null,
+    12,
+    14
+   ],
+   "branch": "T2",
+   "kill_depth": 9,
+   "note": "over-Q whole-state kill; census over-Q large-d2 cap=2 shows NARROWED, but the depth-9 saturated GB (free deg-6 d2) is the unit ideal (standalone-verified; = landed Pilot B, PHASE_F2_PILOT sec 3)"
+  }
+ ],
+ "census_summary": {
+  "n_alt_defect0_states": 40,
+  "note_defect0": "states with d1, sigma AND e all forced defect-0 (unique cone split each, verified). 90 states have d1,sigma forced defect-0 but e free (e-cofactor freedom, control-like); those are NOT in this set.",
+  "verdict_census": {
+   "NARROWED_or_UNOBSTRUCTED": 18,
+   "KILLED": 20,
+   "PENDING_HEAVY": 1,
+   "PENDING_TIMEOUT": 1
+  },
+  "by_family": {
+   "a11_b0000_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 2
+   },
+   "a11_b1000_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 2
+   },
+   "a11_b1100_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 1
+   },
+   "a11_b1110_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 1
+   },
+   "a11_b1111_T1": {
+    "KILLED": 7,
+    "NARROWED_or_UNOBSTRUCTED": 1
+   },
+   "a11_b1111_T2": {
+    "NARROWED_or_UNOBSTRUCTED": 1
+   },
+   "a11_b3000_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 2
+   },
+   "a11_b3100_T2": {
+    "KILLED": 6,
+    "NARROWED_or_UNOBSTRUCTED": 1,
+    "PENDING_HEAVY": 1
+   },
+   "a12_b0000_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 2
+   },
+   "a12_b1110_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 1
+   },
+   "a12_b1110_T2": {
+    "KILLED": 6,
+    "NARROWED_or_UNOBSTRUCTED": 1,
+    "PENDING_TIMEOUT": 1
+   },
+   "a12_b3000_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 1
+   },
+   "a13_b1000_T2": {
+    "NARROWED_or_UNOBSTRUCTED": 1
+   },
+   "a14_b0000_T2": {
+    "KILLED": 1
+   },
+   "a14_b1000_T1": {
+    "NARROWED_or_UNOBSTRUCTED": 1
+   }
+  },
+  "killing_families": {
+   "a11_b1111_T1": "flagship, Galois-stable over Q; 7/8 KILLED (depth 2; d2=5 depth 8); d2=6 capped",
+   "a11_b3100_T2": "two marked roots r1!=r2; 6/8 KILLED depth 2; d2=5 NARROWED, d2=6 PENDING_HEAVY",
+   "a12_b1110_T2": "single marked root (complement of 3-equal); 6/8 KILLED depth 2; d2=5 NARROWED, d2=6 PENDING",
+   "a14_b0000_T2": "over Q whole-state kill depth 9 (= landed Pilot B)"
+  },
+  "d2_freedom_boundary": "within every killing family d2 in {none,0..4} KILL at low depth; d2 in {5,6} NARROWED/PENDING -- a free d2 cofactor of degree>=5 rescues the tower (mirrors PHASE_F2_PILOT control). Kills use d2 free (conservative/sound).",
+  "whole_branch": "branches a11_b3100_T2 and a12_b1110_T2 are ENTIRELY defect-0 (8 states each) and 6/8 KILLED; NOT fully closed (the deg_d2>=5 states survive under free d2).",
+  "field_labels": "Q (Galois-stable / pure t), Q[r]/(q) single marked root, Q[r1,r2]/(q,q) r1!=r2 two marked roots"
+ },
+ "pilot_c": {
+  "state": "a11_b3000_T1 (0,9,12,14) sigma-relaxed: d1,e forced defect-0, sigma=(y+1)^3 C generic deg 9, d2=D const",
+  "j0": "2187 c9^2 (4 c9^3 + 1)  (torus branch 4 c9^3 + 1 = 0)",
+  "triangular_reduction": "c8..c0 solved as triangular pivots from j1..j9 (all nonzero pivots); leaves 4 residuals j10..j13 in (D,E) over Q(r,c9) -- confirms PHASE_F2_PILOT sec5 structure EXACTLY",
+  "coherence": "sigma=4 d0 - d2^2 is already baked into h_0 (MONOMIALS[0] is expressed in sigma via that substitution); at the infinity h_0 tie it adds no new relation beyond fixing d0",
+  "certification": "exact unit-ideal certification of the 4-in-2 residual system STALLS: both the saturated grevlex GB over (c0..c9,D,E,r,w) (>6 min, through depth ~6) and the resultant elimination over the degree-12 number field Q[r,c9]/(q,4c9^3+1) (>5 min on Res_E of deg-15 x deg-20) exceed budget",
+  "verdict": "PENDING (residual structure confirmed; exact certification unresolved, consistent with the pilot report of a stalled GB)"
+ },
+ "sub2": {
+  "n_fully_forced": 243,
+  "demo_state": "sub2:a10_b0000_T1 (deg_d2,d1,sigma,e)=(0,0,0,10): reconstruction = d2,d1,sigma constants, e=(y+1)^10 (fully determined up to 4 scalars)",
+  "method": "convolution_descent master identity sum Phi^f e^(21-3f) h_f, start deg 241, c=-1/6630",
+  "result": "leading master coefficient (deg 241) is ONE nonzero relation among the 4 free leading scalars -> satisfiable hypersurface; saturated GB not unit at depth 1 (NARROWED). Analogous to the alt free-scalar CONSTRAINT: a fully-forced-but-low-degree sub2 state is not killed by its tie tower alone.",
+  "coverage_boundary": "the 203 b!=0000 fully-forced states need reconstruction of the q-support DROPPED by the existing generic batch_convolution_sub2 run; that requires the sub2 (geometric q-coprime) per-state finite-place split, which is not recorded in phase_f_defects.json and is DEFERRED. The 40 b0000 states coincide with the generic batch (no q-support to restore)."
+ }
+}

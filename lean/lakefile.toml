@@ -1,0 +1,5 @@
+name = "lean_certificates"
+defaultTargets = ["Cert"]
+
+[[lean_lib]]
+name = "Cert"

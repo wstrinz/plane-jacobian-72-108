@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.log
+# numeric search blobs are regenerable; keep only the load-bearing state pickle
+*.pkl
+!d2/t4_state.pkl
+best_*.pkl
+polished_*.pkl
+Ain.txt
+Bin.txt
+factor_*.txt
+run_tests.log
+t5_pivot_eqs.txt
+_wolfram_link/
+# Lean build output
+lean/.lake/
+lean/build/

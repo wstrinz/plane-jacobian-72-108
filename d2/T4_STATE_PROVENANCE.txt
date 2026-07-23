@@ -1,0 +1,15 @@
+t4_state.pkl — provenance and pickle-trust note
+================================================
+
+This is the one binary blob kept in the public tree because it is load-bearing:
+the headline ideal-membership checker `f37_sat_verify.py` (and the graded
+checkers) `pickle.loads()` it to regenerate the pre-resultant generators G1..G5.
+
+Pickle-trust: unpickling can in principle execute arbitrary code. If you would
+rather not trust the shipped blob, run
+
+    python3 regenerate_system.py
+
+which rebuilds this state object from scratch (needs the exact-arithmetic deps in
+requirements.txt), then run the verifier. The regenerated state reproduces the
+same G1..G5 the certificate was lifted against.
