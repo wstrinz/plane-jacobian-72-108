@@ -1,0 +1,46 @@
+{
+ "_about": "Published upstream facts that envelope_bounds_verify.py depends on, extracted ONCE from the arXiv source so the checker is self-contained and a clean public clone (which does not ship the copyrighted .tex) can run the suite. Each fact records the exact arXiv identifier and the 1-based line number in the source .tex it was transcribed from. When the .tex IS present locally, envelope_bounds_verify.py re-checks these facts against it as an OPTIONAL provenance step.",
+ "source": {
+  "arxiv_id": "2204.14178",
+  "title": "Gwozdziewicz-Guccione-Heaton-Valqui, cases (8,28) of the plane Jacobian conjecture",
+  "citation_key": "GGHV22",
+  "local_tex": "paper_src/2204.14178.tex",
+  "local_tex_sha256": "fd8cf4962263dc5f49a5678ffc6104801728a2f27d82a90bcb04add4be5116bf",
+  "line_numbers_are_1_based": true,
+  "note": "Line numbers refer to the local paper_src/2204.14178.tex copy (sha above). The .tex itself is excluded from the public release for copyright; these extracted facts are original transcription with citations."
+ },
+ "facts": {
+  "bracket_case": {
+   "tex_line": 1001,
+   "case": "(8,28)",
+   "P_Q_space": "L^{(1)}",
+   "bracket": "[P,Q] = x^2"
+  },
+  "newton_polygons": {
+   "sub1": {
+    "tex_line": 1003,
+    "P": [[0,0],[1,0],[8,14],[8,16],[0,8]],
+    "Q": [[0,0],[2,1],[12,21],[12,24],[0,12]]
+   },
+   "sub2": {
+    "tex_line": 1004,
+    "P": [[0,0],[1,0],[8,14],[8,16]],
+    "Q": [[0,0],[2,1],[12,21],[12,24]]
+   }
+  },
+  "common_root_template": {
+   "tex_lines": [1412, 1414],
+   "ell_1_0_P": "R^2",
+   "ell_1_0_Q": "R^3",
+   "C3": "y^8 (y+1)"
+  },
+  "induction_template": {
+   "tex_lines": [1428, 1435, 1436],
+   "markers": ["construct inductively", "v_{-1,1}", "v_{3,-1}"]
+  },
+  "recursion_template": {
+   "tex_lines": [1455, 1466],
+   "markers": ["2C_{3-k}x^{3-k} C_3x^3", "C_{3-k}:=-\\frac{1}{2C_3}"]
+  }
+ }
+}
