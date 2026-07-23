@@ -1,12 +1,13 @@
 ﻿#!/usr/bin/env python3
 """Exact checker for the (72,108) D-coefficient envelope bounds."""
 from __future__ import annotations
-import ast, re, sys, time
+import ast, json, re, sys, time
 from pathlib import Path
 import sympy as sp
 
 ROOT = Path(__file__).resolve().parent
 PAPER, AUDIT, STATE = ROOT/"paper_src"/"2204.14178.tex", ROOT/"T3_WINDOW_AUDIT.md", ROOT/"STATE.md"
+UPSTREAM_FACTS = ROOT/"paper_src"/"upstream_facts.json"
 EXPECTED_CHECKS = 106
 ASSUMPTIONS = (
  ("A1_PUBLISHED_POLYGON_REDUCTION",
@@ -64,23 +65,70 @@ def jetlift_configs(path):
     return out
 
 def check_sources(run):
-    print("S. source and base-data transcription")
-    paper,audit,state=lines(PAPER),lines(AUDIT),lines(STATE)
+    """Mandatory source/base-data checks.
+
+    The upstream (published) facts are read from paper_src/upstream_facts.json --
+    an original small file extracted ONCE from arXiv:2204.14178 with exact line
+    citations -- so a clean public clone (which does not ship the .tex) can run
+    the whole suite.  AUDIT and STATE are tracked in the public tree and are read
+    directly.  A separate OPTIONAL provenance step (tex_provenance) re-checks the
+    upstream facts against the .tex when it happens to be present locally."""
+    print("S. source and base-data transcription (upstream_facts.json + audit/state)")
+    audit,state=lines(AUDIT),lines(STATE)
+    facts=json.loads(UPSTREAM_FACTS.read_text(encoding="utf-8"))["facts"]
     p1=((0,0),(1,0),(8,14),(8,16),(0,8)); q1=((0,0),(2,1),(12,21),(12,24),(0,12))
     p2=((0,0),(1,0),(8,14),(8,16)); q2=((0,0),(2,1),(12,21),(12,24))
-    run.check("S1 cited files present",all(p.is_file() for p in (PAPER,AUDIT,STATE)))
-    run.check("S2 paper L1001 has L^(1), [P,Q]=x^2","P,Q \in L^{(1)}" in paper[1000] and "[P,Q] = x^2" in paper[1000])
-    run.check("S3 paper L1003 exact sub1 corners",pairs(paper[1002])==p1+q1)
-    run.check("S4 paper L1004 exact sub2 corners",pairs(paper[1003])==p2+q2)
+    def as_pairs(pts): return tuple((int(a),int(b)) for a,b in pts)
+    np_=facts["newton_polygons"]; bc=facts["bracket_case"]
+    crt=facts["common_root_template"]; ind=facts["induction_template"]; rec=facts["recursion_template"]
+    run.check("S1 cited data sources present",all(p.is_file() for p in (UPSTREAM_FACTS,AUDIT,STATE)))
+    run.check("S2 upstream bracket case (8,28), L^(1), [P,Q]=x^2",
+              bc["case"]=="(8,28)" and bc["P_Q_space"]=="L^{(1)}" and bc["bracket"]=="[P,Q] = x^2")
+    run.check("S3 upstream sub1 corners match reference",
+              as_pairs(np_["sub1"]["P"])==p1 and as_pairs(np_["sub1"]["Q"])==q1)
+    run.check("S4 upstream sub2 corners match reference",
+              as_pairs(np_["sub2"]["P"])==p2 and as_pairs(np_["sub2"]["Q"])==q2)
     run.check("S5 audit L22-23 exact sub1",pairs(audit[21])==p1 and pairs(audit[22])==q1)
     run.check("S6 audit L24-25 exact sub2",pairs(audit[23])==p2 and pairs(audit[24])==q2)
     run.check("S7 audit proposition premise/bracket","Case (8,28)" in audit[18] and "[P,Q] = x²" in audit[19])
-    run.check("S8 paper L1412-14 common-root template","R^2" in paper[1411] and "R^3" in paper[1411] and "C_3= y^8 (y+1)" in paper[1413])
-    run.check("S9 paper L1428-36 induction template","construct inductively" in paper[1427] and "v_{-1,1}" in paper[1434] and "v_{3,-1}" in paper[1435])
-    run.check("S10 paper L1455-67 recursion template","2C_{3-k}x^{3-k} C_3x^3" in paper[1454] and r"C_{3-k}:=-\frac{1}{2C_3}" in paper[1465])
+    run.check("S8 upstream common-root template R^2/R^3/C_3",
+              crt["ell_1_0_P"]=="R^2" and crt["ell_1_0_Q"]=="R^3" and crt["C3"]=="y^8 (y+1)")
+    run.check("S9 upstream induction template markers",
+              {"construct inductively","v_{-1,1}","v_{3,-1}"}<=set(ind["markers"]))
+    run.check("S10 upstream recursion template markers",
+              "2C_{3-k}x^{3-k} C_3x^3" in rec["markers"] and r"C_{3-k}:=-\frac{1}{2C_3}" in rec["markers"])
     run.check("S11 STATE items 1-4 normalization/D/shift","C₄ = y⁷(y+1)" in state[25] and "D-transformation" in state[31] and "Shift x ↦ x − D₃/4" in state[35])
     run.check("S12 audit L52-55 C4/t=4 recursion","C₄ = y⁷(y+1)" in audit[51] and "C_{4−k}" in audit[54] and "P_{8−k}" in audit[54])
     return p1,q1,p2,q2
+
+
+def tex_provenance():
+    """OPTIONAL provenance: when the copyrighted arXiv .tex is present locally,
+    re-verify that upstream_facts.json still agrees with it at the cited lines.
+    Skipped gracefully (with a note) on a clean public clone where the .tex is
+    absent.  Raises VerificationFailure on any genuine mismatch.  NOT counted in
+    the mandatory check total."""
+    if not PAPER.is_file():
+        print("  [provenance SKIPPED] paper_src/2204.14178.tex absent; "
+              "upstream_facts.json is the self-contained source of record.")
+        return
+    facts=json.loads(UPSTREAM_FACTS.read_text(encoding="utf-8"))["facts"]
+    paper=lines(PAPER)
+    bc=facts["bracket_case"]; np_=facts["newton_polygons"]
+    crt=facts["common_root_template"]; ind=facts["induction_template"]; rec=facts["recursion_template"]
+    def want(cond,msg):
+        if not cond: raise VerificationFailure(f"[FAIL] tex provenance: {msg}")
+    def as_pairs(pts): return tuple((int(a),int(b)) for a,b in pts)
+    want("P,Q \\in L^{(1)}" in paper[bc["tex_line"]-1] and "[P,Q] = x^2" in paper[bc["tex_line"]-1],"bracket L1001")
+    want(pairs(paper[np_["sub1"]["tex_line"]-1])==as_pairs(np_["sub1"]["P"])+as_pairs(np_["sub1"]["Q"]),"sub1 corners")
+    want(pairs(paper[np_["sub2"]["tex_line"]-1])==as_pairs(np_["sub2"]["P"])+as_pairs(np_["sub2"]["Q"]),"sub2 corners")
+    want("R^2" in paper[crt["tex_lines"][0]-1] and "R^3" in paper[crt["tex_lines"][0]-1]
+         and "C_3= y^8 (y+1)" in paper[crt["tex_lines"][1]-1],"common-root template")
+    want("construct inductively" in paper[ind["tex_lines"][0]-1] and "v_{-1,1}" in paper[ind["tex_lines"][1]-1]
+         and "v_{3,-1}" in paper[ind["tex_lines"][2]-1],"induction template")
+    want("2C_{3-k}x^{3-k} C_3x^3" in paper[rec["tex_lines"][0]-1]
+         and r"C_{3-k}:=-\frac{1}{2C_3}" in paper[rec["tex_lines"][1]-1],"recursion template")
+    print("  [provenance OK] upstream_facts.json matches paper_src/2204.14178.tex at all cited lines.")
 
 def check_geometry(run,p1,q1,p2,q2):
     print("B. polygon valuations and leading form")
@@ -190,6 +238,8 @@ def main():
         check_recursion(run); check_inductions(run); m2,m1,strip=check_transform(run)
         check_shift(run,m2,m1,strip); check_downstream(run,m2,m1,strip)
         if run.passed != EXPECTED_CHECKS: raise VerificationFailure(f"[FAIL] expected {EXPECTED_CHECKS} checks, ran {run.passed}")
+        print("P. optional upstream provenance")
+        tex_provenance()
     except (VerificationFailure,OSError,SyntaxError,ValueError,KeyError) as exc:
         print(f"\n{exc}\nFAILED after {run.passed} checks",file=sys.stderr); return 1
     elapsed=time.perf_counter()-start

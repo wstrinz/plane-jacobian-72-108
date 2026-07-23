@@ -7,6 +7,9 @@ set -uo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 rc=0
 
+echo "### CLEAN-CLONE guard — every file the suite reads must be git-tracked"
+( cd "$here" && python3 tools/clean_clone_check.py ) || rc=1
+
 echo "### D3 — exact counterexample verification"
 ( cd "$here/d3" && python3 verify.py ) || rc=1
 

@@ -16,6 +16,18 @@ f31 = c1·G1 + c2·G2 + c3·G3 + c4·(G5body + Φ)     (exact, over ℚ)
 in `ℚ[d̃2, d̃1, d̃0, d₋₁, d₋₂, d₋₃, d₋₄, Φ]`. This is what makes the entire
 `{f37 = 0}` branch of the resultant a classical excess-factor artifact.
 
+**What this build actually does (precise wording).** It does **not** "formally
+prove the ideal-membership theorem" in the abstract-algebra sense. It
+**Lean kernel-checks the emitted integer certificate under a small custom
+sparse-polynomial implementation** (`Cert/Poly.lean`): the kernel verifies that
+a specific integer polynomial identity between opaque `List (Nat × Int)` data
+normalizes to equality. The trust-base notes below (including the honest caveat
+that `add`/`mul` are tested, not semantically proven) delimit exactly what that
+buys. Scope is **characteristic zero**: the certificate divides out
+`Dmul = 46875 = 3·5⁶`, so the `f31 = 0` conclusion holds over any `ℚ`-algebra /
+field of characteristic `≠ 3, 5` (see the field-scope note in
+`d2_plane_72_108/F37_SATURATION_REPORT.md`).
+
 The Lean theorem `Cert.f37_certificate` proves the equivalent **integer** identity
 
 ```
@@ -63,7 +75,8 @@ Three layers, from most to least trusted:
 3. **The generator** (`d2_plane_72_108/lean_export/export_certificate.py`)
    produces the *data* only. It imports the exact data-loading functions of the
    READ-ONLY reference verifier `f37_sat_verify.py` — `pre_resultant_generators`
-   (regenerated from `t4_state.pkl`), `load_cofactors`
+   (parsed from the canonical `generators.json`; no pickle on this path),
+   `load_cofactors`
    (`f37_sat_certificate.txt`), `load_f31` (`f31_deg31.txt`) — and never
    hand-copies a coefficient. It clears denominators, **re-verifies the integer
    identity in sympy independently**, then emits the sorted `List (Nat × Int)`
@@ -122,7 +135,8 @@ resultant excess because `f31 ∈ ⟨G1,G2,G3,G5body+Φ⟩`. The remaining progr
 would still need:
 
 - **Provenance of the generators.** Here `G1..G4` are *given* integer data
-  (matching `STATE.md` item 4, regenerated from `t4_state.pkl`). Formalizing
+  (matching `STATE.md` item 4, shipped as exact term lists in `generators.json`,
+  originally regenerated from `t4_state.pkl`). Formalizing
   their derivation from the original (72,108) system (the `(D̃²)` linear
   substitutions producing `(D̃³)₋₁,₋₂,₋₃` and `(D̃³)₋₅ + Φ`) is not done here.
 - **The specialization step.** The ℚ[Φ]-identity specializes to the genuine

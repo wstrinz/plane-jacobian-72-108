@@ -10,15 +10,23 @@ Two independent exact checks, neither trusting the other tool:
       f37_sat_certificate.txt and verify, purely in sympy, the polynomial
       identity
           f31 == c1*G1 + c2*G2 + c3*G3 + c4*(G5body + Phi)
-      where G1,G2,G3,G5body are regenerated from t4_state.pkl.  Because f31 is
-      an explicit polynomial combination of the pre-resultant generators, it
-      vanishes on the entire pre-resultant variety, over every field and every
-      specialization of Phi (in particular the genuine (72,108) instance).
+      where G1,G2,G3,G5body are read from the canonical generators.json.
+      Because f31 is an explicit polynomial combination of the pre-resultant
+      generators, it vanishes on the entire pre-resultant variety over every
+      Q-algebra (characteristic zero; see the field-scope note in
+      F37_SATURATION_REPORT.md -- the shipped Lean multiplier D=46875=3*5^6
+      blocks characteristics 3 and 5), for every specialization of Phi (in
+      particular the genuine (72,108) instance).
 
-  (B) MASTER-IDENTITY CONSISTENCY.  Re-confirm, from the same regenerated
-      state, that the resultant master identity f31*f37*d_-1^21 also lies in
-      the ideal, so the case tree {f31=0} u {f37=0} is sound; combined with (A)
-      the f37 (and the d_-1^21) factor are pure resultant excess.
+  (B) FACTOR-DATA CONSISTENCY (NOT independent factorization provenance).
+      A cheap self-consistency check on the shipped factor data: confirm the
+      master-identity product f31*f37*d_-1^21 divides back exactly to
+      f37*d_-1^21 after removing the f31 we proved is in the ideal in (A).
+      This does NOT independently re-derive the resultant factorization; the
+      genuine provenance of the f31*f37*d_-1^21 factorization is the Singular
+      regeneration path (f37_sat_confirm.sing / regenerate_system.py).  Given
+      (A), any multiple of f31 is in the ideal, so this part adds no new ideal
+      content -- it only guards against a corrupted shipped f37/factor file.
 
 The elimination-ideal fact E = <G-system> cap Q[d2,d1,d0,d_-1,Phi] = <f31>
 (principal, 102 terms, degree 31) is a Groebner statement reproduced by
@@ -28,11 +36,12 @@ needs no Groebner engine to check.
 
 from __future__ import annotations
 
-import pickle
 import re
 from pathlib import Path
 
 import sympy as sp
+
+import system_generators as sysgen
 
 ROOT = Path(__file__).resolve().parent
 
@@ -100,9 +109,10 @@ def cleared(e: sp.Expr) -> sp.Expr:
 
 def pre_resultant_generators() -> list[sp.Expr]:
     """The four pre-resultant equations (STATE.md item 4: D3(1),D3(2),D3(3),
-    D3(5)+Phi), straight from the regenerated state, denominator-cleared to the
-    exact integer-coefficient generators the Singular lift() ran against."""
-    st = pickle.loads((ROOT / "t4_state.pkl").read_bytes())
+    D3(5)+Phi), parsed from the canonical generators.json, denominator-cleared
+    to the exact integer-coefficient generators the Singular lift() ran against.
+    No pickle is touched on this path."""
+    st = sysgen.load_generators()
     G1 = st["G1"]
     G2 = st["G2"]
     G3 = st["G3"]
@@ -139,36 +149,48 @@ def check_membership_certificate() -> None:
     print("    => f31 vanishes on the entire pre-resultant variety.")
 
 
-def check_master_identity() -> None:
-    """The resultant master identity factor f31*f37*dm1^21 lies in the ideal
-    only because its factor f31 does.
+def check_factor_data_consistency() -> None:
+    """Self-consistency of the shipped factor data -- NOT independent
+    factorization provenance.
 
-    Once (A) proves f31 in <G-system>, any multiple f31*g is in the ideal, so
-    f31*f37*dm1^21 in <G-system> is immediate and carries no extra content: the
-    f37 and dm1^21 factors of the resultant are excess.  We record this cheaply
-    (a symbolic exact-division check that f37*dm1^21 divides the master identity)
-    rather than re-expanding a multi-million-term product.
+    This part verifies only that the shipped f37/f31 factor files are mutually
+    consistent: it forms the master-identity product f31*f37*dm1^21 and divides
+    it back by f31 (proven in (A) to lie in <G-system>), checking the quotient
+    is exactly f37*dm1^21.  That division is a TAUTOLOGY -- (x*y)/x == y for the
+    same x -- so it carries NO independent evidence that the resultant really
+    factors as f31 * f37 * dm1^21.
+
+    The genuine provenance of that factorization is the Singular regeneration
+    path: f37_sat_confirm.sing reproduces the elimination-ideal / resultant
+    computation, and regenerate_system.py rebuilds the generators from scratch.
+    What this check DOES buy: given (A), any multiple of f31 is already in the
+    ideal, so this guards against a corrupted or mismatched shipped f37 file
+    (the division would leave a nonzero remainder), nothing more.
     """
     f31 = load_f31()
     f37 = load_f37()
-    master = f31 * f37 * dm1**21  # the resultant's factored master identity
+    master = f31 * f37 * dm1**21  # the resultant's *claimed* factored master identity
     quotient, remainder = sp.div(
         sp.Poly(sp.expand(master), d2, d1, d0, dm1, Phi),
         sp.Poly(f31, d2, d1, d0, dm1, Phi),
     )
     assert remainder == 0 and sp.expand(quotient.as_expr() - sp.expand(f37 * dm1**21)) == 0
-    print("(B) master identity consistency PASS:")
-    print("    master identity = f31 * (f37*dm1^21); f31 in <G-system> by (A),")
-    print("    so f37 and dm1^21 are resultant excess (add no ideal content).")
+    print("(B) shipped factor-data consistency PASS (NOT independent provenance):")
+    print("    (f31*f37*dm1^21) / f31 == f37*dm1^21 -- a tautology, guards only")
+    print("    against a corrupted f37 file; provenance is f37_sat_confirm.sing.")
 
 
 def main() -> None:
     check_membership_certificate()
-    check_master_identity()
+    check_factor_data_consistency()
+    # Optional provenance: confirm generators.json reproduces t4_state.pkl when
+    # the (trusted, local) pickle is present; skipped gracefully otherwise.
+    print(sysgen.verify_pickle_provenance())
     print()
-    print("CONCLUSION: f31 in <G1,G2,G3,G5body+Phi>.  Every solution of the")
-    print("pre-resultant system has f31 = 0; the f37 branch off {f31=0} does not")
-    print("lift.  The whole f37 component is a resultant artifact.")
+    print("CONCLUSION: f31 in <G1,G2,G3,G5body+Phi> over every Q-algebra")
+    print("(characteristic zero; the D=46875=3*5^6 Lean multiplier blocks char 3,5).")
+    print("Every solution of the pre-resultant system has f31 = 0; the f37 branch")
+    print("off {f31=0} does not lift.  The whole f37 component is a resultant artifact.")
 
 
 if __name__ == "__main__":

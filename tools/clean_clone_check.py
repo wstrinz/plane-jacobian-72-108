@@ -82,11 +82,15 @@ _TRACER = r'''
 import os, runpy, sys
 _OUT = os.environ["CLEAN_CLONE_OUT"]
 _REPO = os.path.normcase(os.path.realpath(os.environ["CLEAN_CLONE_REPO"]))
-# Append each newly-seen opened file IMMEDIATELY (line-buffered) so captures
-# survive even if this process is killed by the driver's timeout after the
+# Record each newly-seen opened repo file IMMEDIATELY with an append-and-close
+# (fully flushed to disk every time -- no long-lived buffered handle race) so
+# captures survive even when the driver terminates this process after the
 # input-reading phase (checkers read their data up front, then compute).
 _seen = set()
-_fh = open(_OUT, "w", encoding="utf-8", buffering=1)
+
+def _record(real):
+    with open(_OUT, "a", encoding="utf-8") as f:
+        f.write(real + "\n")
 
 def _is_write(mode, flags):
     if isinstance(mode, str) and any(c in mode for c in "wax+"):
@@ -118,7 +122,7 @@ def _hook(event, args):
     if os.path.isfile(real):
         _seen.add(real)
         try:
-            _fh.write(real + "\n"); _fh.flush()
+            _record(real)
         except (ValueError, OSError):
             pass
 

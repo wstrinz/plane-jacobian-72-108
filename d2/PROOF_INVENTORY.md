@@ -1,5 +1,11 @@
 # PROOF INVENTORY — the (72,108) program, single source of truth
 
+> **HISTORICAL CLAIM GRAPH.** This file is the historical, judgment-tagged claim
+> graph (every claim the writeup might rest on, including superseded, conditional,
+> and evidence-only nodes). For the **current** state — proven and audited nodes,
+> trusted inputs, and the live 224-cell frontier — see **`CURRENT_STATUS.md`**,
+> which supersedes this file for current truth.
+
 **Generated:** 2026-07-22, from git HEAD `51ac3f0` ("Sub1 Phase C worklist"), plus the
 uncommitted working-tree docs `ALT_REGIME_L2.md`, `T5_T2_INFINITY.md` and their checkers
 (both already logged in `STATE.md` and wired into `run_tests.sh`).

@@ -9,14 +9,16 @@ valuation/degree contradiction.
 
 from __future__ import annotations
 
-import pickle
 from pathlib import Path
 
 import sympy as sp
 
+import system_generators as sysgen
+
 
 ROOT = Path(__file__).resolve().parent
-state = pickle.loads((ROOT / "t4_state.pkl").read_bytes())
+# Parsed from the canonical generators.json (no pickle on the mandatory path).
+state = sysgen.load_generators()
 
 d2, d1, d0 = sp.symbols("d2 d1 d0")
 e, r, s, m4 = sp.symbols("dm1 dm2 dm3 dm4")
@@ -140,7 +142,7 @@ def main() -> None:
     compact_system()
     valuation_kill()
     print("f37 pre-resultant free-family kill: PASS")
-    print("  restricted H2/H3/H5 derived from t4_state.pkl")
+    print("  restricted H2/H3/H5 derived from generators.json")
     print("  compact product and sum equations verified")
     print("  e | Phi; local options at t and each split q-place exhausted")
     print("  infinity leaves e=C*t^10; final t-order 10 > degree 4")

@@ -10,8 +10,8 @@ abstract: >-
   every claim catalogued with its checker and trust tier.
 type: software
 authors:
-  - family-names: "TODO-OWNER-SURNAME"
-    given-names: "TODO-OWNER-GIVEN-NAME"
+  - family-names: "Strinz"
+    given-names: "Will"
 keywords:
   - "Jacobian Conjecture"
   - "polynomial automorphisms"

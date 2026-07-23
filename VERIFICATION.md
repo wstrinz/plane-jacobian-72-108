@@ -54,29 +54,36 @@ cd d2 && python3 f37_sat_verify.py
 It reads the four cofactors that Singular's `lift()` produced and verifies,
 purely in SymPy (not trusting the Gröbner engine), the exact polynomial identity
 `f31 = c1·G1 + c2·G2 + c3·G3 + c4·(G5body+Φ)` — i.e. `f31` lies in the
-pre-resultant ideal, hence vanishes on the entire variety, over every field.
-Expected output:
+pre-resultant ideal, hence vanishes on the entire variety, in characteristic
+zero (over every `ℚ`-algebra; the certificate's `D = 46875 = 3·5⁶` multiplier
+blocks characteristics 3 and 5 — see the field-scope note in
+`d2/F37_SATURATION_REPORT.md`). Expected output:
 
 ```
 (A) membership certificate PASS:
     f31 = c1*G1 + c2*G2 + c3*G3 + c4*(G5body+Phi)  [exact over Q]
     => f31 vanishes on the entire pre-resultant variety.
-(B) master identity consistency PASS:
-    master identity = f31 * (f37*dm1^21); f31 in <G-system> by (A),
-    so f37 and dm1^21 are resultant excess (add no ideal content).
+(B) shipped factor-data consistency PASS (NOT independent provenance):
+    (f31*f37*dm1^21) / f31 == f37*dm1^21 -- a tautology, guards only
+    against a corrupted f37 file; provenance is f37_sat_confirm.sing.
+    [provenance OK] generators.json reproduces t4_state.pkl exactly ...
 
-CONCLUSION: f31 in <G1,G2,G3,G5body+Phi>.  Every solution of the
-pre-resultant system has f31 = 0; the f37 branch off {f31=0} does not
-lift.  The whole f37 component is a resultant artifact.
+CONCLUSION: f31 in <G1,G2,G3,G5body+Phi> over every Q-algebra
+(characteristic zero; the D=46875=3*5^6 Lean multiplier blocks char 3,5).
+Every solution of the pre-resultant system has f31 = 0; the f37 branch
+off {f31=0} does not lift.  The whole f37 component is a resultant artifact.
 ```
 Runtime ~2–2.5 min (the certificate has degree-27 cofactors with thousands of
 terms; the SymPy re-expansion is the cost). Full writeup:
 `d2/F37_SATURATION_REPORT.md`. To reproduce the Gröbner facts
 themselves (optional, needs Singular 4.2.1): `d2/f37_sat_confirm.sing`.
 
-Note: this checker unpickles `t4_state.pkl` to regenerate the generators
-`G1..G5`. If you prefer not to trust a shipped pickle, `regenerate_system.py`
-rebuilds that state from scratch first (see `d2/T4_STATE_PROVENANCE.txt`).
+Note: this checker parses the generators `G1..G5` from the canonical
+`d2/generators.json` (exact term lists) — **nothing on the verification path
+unpickles**. `generators.json` was emitted once from `t4_state.pkl` (still
+shipped for provenance); when that pickle is present the checker additionally
+confirms `generators.json` reproduces it exactly, and `regenerate_system.py`
+rebuilds the whole state from scratch (see `d2/T4_STATE_PROVENANCE.txt`).
 
 ### (c) ~30+ min — the full suite
 

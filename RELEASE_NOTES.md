@@ -43,11 +43,15 @@ Per the source repo's internal publication audit:
    lived in `q1_msolve.log`, which is dropped (see #3).
 3. **Computation logs dropped.** All `*.log` run traces (33 tracked + a few
    untracked) removed; none is load-bearing. `*.log` added to `.gitignore`.
-4. **Numeric pickles dropped, except one.** The nine regenerable numeric-search
-   `*.pkl` blobs are removed. `d2/t4_state.pkl` is KEPT because
-   `f37_sat_verify.py` and the graded checkers unpickle it; see
-   `d2/T4_STATE_PROVENANCE.txt` for the regeneration note (pickle-trust:
-   `regenerate_system.py` rebuilds it from scratch).
+4. **Numeric pickles dropped; verification path de-pickled.** The nine
+   regenerable numeric-search `*.pkl` blobs are removed. The verification path no
+   longer unpickles anything: the pre-resultant generators are shipped as exact
+   term lists in `d2/generators.json` (emitted once from `t4_state.pkl`), and
+   `f37_sat_verify.py`, `f37_free_family_verify.py`, and the Lean exporter parse
+   that JSON. `d2/t4_state.pkl` is KEPT only for optional provenance (the
+   checkers confirm `generators.json` reproduces it when present); see
+   `d2/T4_STATE_PROVENANCE.txt` (pickle-trust: `regenerate_system.py` rebuilds it
+   from scratch). Nothing mandatory unpickles.
 5. **Batch raw pass intermediates dropped, final JSONs kept.** Removed
    `batch_convolution_sub1_gauge_raw.json`,
    `batch_convolution_sub2_gauge_raw.json`,

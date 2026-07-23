@@ -11,7 +11,7 @@ that a self-contained Lean library can verify by `decide` / `native_decide`.
 PROVENANCE / TRUST.  This script does NOT hand-copy any coefficient.  It imports
 the EXACT data-loading functions of ``f37_sat_verify.py`` (READ-ONLY) --
 ``pre_resultant_generators`` (the denominator-cleared integer generators G1,G2,G3,
-G5body+Phi regenerated from ``t4_state.pkl``), ``load_cofactors`` (the Singular
+G5body+Phi parsed from the canonical ``generators.json``), ``load_cofactors`` (the Singular
 ``lift()`` cofactors c1..c4 from ``f37_sat_certificate.txt``) and ``load_f31``
 (``f31_deg31.txt``).  It then:
 

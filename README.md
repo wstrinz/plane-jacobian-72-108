@@ -65,10 +65,14 @@ branches. In fact the whole `f37` (and `d₋₁²¹`) factor is a **resultant
 artifact**: the elimination ideal of the pre-resultant system in the
 `(d̃2,d̃1,d̃0,d₋₁,Φ)` variables is *exactly* `⟨f31⟩`, and `f31` lies in the
 pre-resultant ideal itself. So every solution of the original system has
-`f31 = 0`, and nothing on `{f37 = 0}\{f31 = 0}` lifts — uniformly, over every
-field, for both subcases. This is proven by an explicit ideal-membership
-certificate (Singular `lift()`), re-checked independently in SymPy without
-trusting the Gröbner engine. See `d2/F37_SATURATION_REPORT.md`; the
+`f31 = 0`, and nothing on `{f37 = 0}\{f31 = 0}` lifts — in characteristic zero
+(over every `ℚ`-algebra), for both subcases. This is established by an explicit
+ideal-membership certificate (Singular `lift()`), re-checked independently in
+SymPy without trusting the Gröbner engine. (The scope is characteristic-zero,
+not "every field": the integer certificate carries a denominator-clearing
+multiplier `D = 46875 = 3·5⁶`, so dividing back to `f31 = 0` needs `3, 5`
+invertible — see the field-scope note in `d2/F37_SATURATION_REPORT.md`.) See
+`d2/F37_SATURATION_REPORT.md`; the
 afternoon-checkable verifier is `d2/f37_sat_verify.py` (~2 min, exact). The
 (72,108) case therefore reduces to the `f31` window/cascade program alone.
 

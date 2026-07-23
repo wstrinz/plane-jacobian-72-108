@@ -12,11 +12,24 @@ system lies on `{f37 = 0} \ {f31 = 0}`.
 > `f31 ∈ ⟨G1, G2, G3, G5body + Φ⟩` over `Q[d̃2,d̃1,d̃0,d₋₁,d₋₂,d₋₃,d₋₄,Φ]`.
 
 Consequently `f31` vanishes on the **entire** pre-resultant variety, over every
-field and every specialization of `Φ` (including the genuine (72,108)
-instance).  So every solution of the original system has `f31 = 0`; the whole
-locus `{f37 = 0} \ {f31 = 0}` contains no solution.  The f37 factor — and the
-`d₋₁²¹` factor — of the resultant are **classical resultant excess factors**,
-not geometry.
+**Q-algebra** (characteristic zero) and every specialization of `Φ` (including
+the genuine (72,108) instance).  So every solution of the original system has
+`f31 = 0`; the whole locus `{f37 = 0} \ {f31 = 0}` contains no solution.  The
+f37 factor — and the `d₋₁²¹` factor — of the resultant are **classical resultant
+excess factors**, not geometry.
+
+> **Field-scope note (why not "every field").** The membership identity is
+> `f31 = Σ cᵢ·Gᵢ` with **rational** cofactors `cᵢ`. Clearing denominators, the
+> integer identity the Lean certificate kernel-checks is `D·f31 = Σ (D·cᵢ)·Gᵢ`
+> with denominator-clearing multiplier `D = 46875 = 3·5⁶` (see the Lean
+> `LEAN_CERTIFICATE.md` / `cert_meta.txt`). Dividing back by `D` is legal
+> only where `D` is invertible, i.e. in any **Q-algebra** / any field of
+> characteristic **≠ 3, 5**. In characteristics **3** and **5** the integer
+> identity still holds but does not yield `f31 = 0` by division, so the
+> membership claim is asserted **only in characteristic zero (over every
+> Q-algebra)**, not "uniformly over every field". This is the sole reason the
+> scope is characteristic-zero; the geometry over `Q` (the genuine (72,108)
+> instance) is unaffected.
 
 This closes the f37 branch in one stroke (Option A of `F37_FRONTIER.md` §5),
 superseding both the single proven `d̃2=d̃1=0` free-family slice
@@ -26,8 +39,9 @@ superseding both the single proven `d̃2=d̃1=0` free-family slice
 
 ## 1. What was computed
 
-The pre-resultant system is tiny (`STATE.md` item 4; regenerated from
-`t4_state.pkl`), all polynomial over `Q`:
+The pre-resultant system is tiny (`STATE.md` item 4; shipped as exact term
+lists in `generators.json`, originally regenerated from `t4_state.pkl` by
+`regenerate_system.py`), all polynomial over `Q`:
 
 ```
 G1 = 3·d̃1·e² + 6·d̃2·e·r + 6·e·d₋₄ + 6·r·s
@@ -96,9 +110,9 @@ This matches, and explains, every prior signal:
 
 ## 3. Strata of {f37=0} now proven not to lift
 
-**All of them.**  The result is uniform over the whole f37 cone, not a stratum
-list: every point of `{f37 = 0} \ {f31 = 0}` fails to solve the pre-resultant
-system.  In particular this subsumes the previously-open strata of the f37
+**All of them.**  The result covers the whole f37 cone at once (in
+characteristic zero), not a stratum list: every point of `{f37 = 0} \ {f31 = 0}`
+fails to solve the pre-resultant system.  In particular this subsumes the previously-open strata of the f37
 split-place ledger and the "permanently-live free family" branch of
 `T5_F37_GRADED.md` §6.3 / `F37_FRONTIER.md` §3 — none of them lift, because none
 of `{f37=0}\{f31=0}` lifts.  The (72,108) case therefore reduces to the `f31`
@@ -150,7 +164,12 @@ Note: the *literal* saturation `(I+⟨f37⟩):f31^∞` was not needed and was no
   (G-system) facts [1]–[7], PART 2 (independent H-system) [8]–[10].
 - `f37_sat_verify.py` — independent sympy verification of the explicit
   membership certificate `f31 = Σ cᵢ·Gᵢ` (does not trust the Gröbner engine),
-  plus the master-identity excess-factor check.  PASS.
+  parsing the generators from `generators.json` (no pickle on this path), plus a
+  **factor-data consistency** check.  Part (B) is honestly a self-consistency
+  check of the shipped `f31`/`f37` factor files — `(f31·f37·d₋₁²¹)/f31 =
+  f37·d₋₁²¹` is a tautology, NOT independent factorization provenance; the
+  genuine provenance is the Singular regeneration path (`f37_sat_confirm.sing`,
+  `regenerate_system.py`).  PASS.
 - `f37_sat_certificate.txt` — the four `lift()` cofactors `c1..c4` (data for the
   sympy checker).
 

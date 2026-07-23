@@ -39,11 +39,43 @@ img = collision['image']
 for p in srcs:
     check(f"F{tuple(p)} == {tuple(img)}", evaluate(p) == tuple(img))
 
-# 4. exact fiber
+# 4. exact fiber — via the lex Groebner triangular basis (primary argument).
+#    The fiber ideal I = <F1-img0, F2-img1, F3-img2> in Q[x,y,z].  Its reduced
+#    lex Groebner basis (order z > y > x) is triangular:
+#         z + 1/4 - 27/4 x^2,   y + 3/2 x,   x^3 - x.
+#    We DERIVE the basis and assert it has exactly this shape.  A triangular
+#    basis whose x-polynomial x^3-x = x(x-1)(x+1) has 3 simple roots, each
+#    determining y and z uniquely, proves the fiber is EXACTLY three points
+#    (a complete argument: no reliance on solve() enumerating every branch).
+G = sp.groebner([F[0] - img[0], F[1] - img[1], F[2] - img[2]],
+                z, y, x, order='lex')
+gb = [sp.expand(p.as_expr()) for p in G.polys]
+expected_gb = [
+    sp.expand(z + sp.Rational(1, 4) - sp.Rational(27, 4) * x**2),
+    sp.expand(y + sp.Rational(3, 2) * x),
+    sp.expand(x**3 - x),
+]
+check("fiber ideal lex Groebner basis is the expected triangular form "
+      "[z+1/4-27/4 x^2, y+3/2 x, x^3-x]",
+      gb == expected_gb)
+# x^3 - x factors into three distinct linear factors => three x-values, each
+# back-substituted to a unique (y, z); enumerate them from the triangular basis.
+x_roots = sp.solve(sp.Eq(x**3 - x, 0), x)
+check("elimination polynomial x^3-x has 3 distinct roots", len(set(x_roots)) == 3)
+gb_fiber_pts = set()
+for xv in x_roots:
+    yv = -sp.Rational(3, 2) * xv
+    zv = -sp.Rational(1, 4) + sp.Rational(27, 4) * xv**2
+    gb_fiber_pts.add((sp.nsimplify(xv), sp.nsimplify(yv), sp.nsimplify(zv)))
+check(f"triangular basis yields exactly the 3 collision points "
+      f"(found {len(gb_fiber_pts)})",
+      gb_fiber_pts == set(srcs))
+
+# Secondary assertion: the direct sympy.solve enumeration agrees.
 eqs = [sp.Eq(F[0], img[0]), sp.Eq(F[1], img[1]), sp.Eq(F[2], img[2])]
 fiber = sp.solve(eqs, [x, y, z], dict=True)
 fiber_pts = {(s[x], s[y], s[z]) for s in fiber}
-check(f"fiber over {tuple(img)} has exactly the 3 collision points "
+check(f"(secondary) sympy.solve fiber over {tuple(img)} agrees, 3 points "
       f"(found {len(fiber_pts)})",
       fiber_pts == set(srcs))
 
