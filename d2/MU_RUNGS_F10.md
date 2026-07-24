@@ -11,7 +11,8 @@ mu = 3   EMPTY
 mu = 4   REALIZED (the known fully ramified rational point)
 ```
 
-Thus the even-`dg` parity claim is **proved at `dg=4`**: the `mu=1` rung is
+Thus the even-`dg` parity claim is **proved at `dg=4` OVER THE REALS** (see
+the scope correction below): the real `mu=1` locus is
 empty.  The open intermediate rungs split: `mu=2` exists, while `mu=3` does
 not over the reals.
 
@@ -51,7 +52,7 @@ Here `e+N=274` and `e+N-1=273`.
 
 ## 2. Per-rung derivation
 
-### mu=1: EMPTY (parity claim proved at dg=4)
+### mu=1: REAL LOCUS EMPTY (real parity proved at dg=4; complex branches remain — scope correction 2026-07-24)
 
 All three partitions of the cubic `h` were treated.
 
@@ -301,3 +302,17 @@ full F12 ODE exactly modulo that quartic.
 5. **[cofactor dependence]** `cof=deg-ord-mult`, so each realized rung adds
    one independent new signature datum (`mult`); the reported cofactor check
    is nevertheless performed explicitly against the requested mu-graded law.
+
+
+## SCOPE CORRECTION (2026-07-24, GPT-Pro review 6)
+
+The eliminant arguments above establish that the relevant polynomials have
+**no real roots**; the recorded nonreal algebraic roots give formal complex
+solutions of the forcing ODE. Since the plane Jacobian problem is over C,
+the correct statement is: **at dg=4 the real mu=1 locus is empty; complex
+mu=1 branches of the forcing ODE are NOT excluded.** The complex parity
+claim remains proved only at dg=2 (PHI_F7's eliminant enumeration, which
+is a complete factorization argument, not a real-root count). Real-locus
+information is branch-selection data, not a complex kill; Sturm counts must
+never be used as complex branch kills. Upstream docs (ZETA_TAIL.md,
+COMPOSITE_CHARTS.md) carry the same rescope.

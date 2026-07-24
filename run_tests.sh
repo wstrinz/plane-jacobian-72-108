@@ -67,6 +67,7 @@ echo "### D2 — exact field-split proof checks"
   python3 c_series_75_125_verify.py --quiet &&
   python3 alok_crosscheck.py --quiet &&
   python3 g_system_75_125_verify.py --quiet &&
+  python3 f2_family_verify.py --quiet &&
   python3 case_compiler_verify.py --quiet &&
   python3 window_caps_verify.py --quiet
 ) || rc=1

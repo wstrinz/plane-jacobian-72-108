@@ -113,9 +113,10 @@ odd. The F12 analysis shows why parity is the real driver: at even dg the
 eliminant forces double or complex roots (no simple real root available — the
 ramified regime); at odd dg a simple real root always exists (the unramified
 regime survives). Ramification is a *root-availability* phenomenon, not a
-gap/r phenomenon. **Scope (updated per MU_RUNGS_F10.md):** the even-dg exclusion of the
-simple-root branch is PROVEN at dg=2 (PHI_F7) and at dg=4 (F10 rung
-enumeration, 39-check verifier); even dg ≥ 6 unenumerated. F10 also shows
+gap/r phenomenon. **Scope (rescoped 2026-07-24, GPT-Pro review 6):** the even-dg exclusion
+of the simple-root branch is PROVEN over C at dg=2 (PHI_F7); at dg=4 it is
+a REAL-LOCUS result (F10's eliminants have no real roots; complex branches
+not excluded — MU_RUNGS_F10.md scope correction); even dg ≥ 6 unenumerated. F10 also shows
 the ladder has SELECTION RULES: μ=3 is empty there while all three rungs
 realize at F12 — rung support varies by corner.
 

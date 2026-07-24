@@ -30,7 +30,8 @@ W_step := ord_y(Phi) / M ,        M = b·t + jphi = 36  (the forcing slice),
 ```
 
 is **`12` (integer)** at `(72,108)` (`204/17`) but **`201/36 = 67/12`
-(NON-integral)** at `(75,125)`. This is the `a ≥ 3` boundary that
+(NON-integral)** at `(75,125)`. [CORRECTED 2026-07-24: this is NOT an
+`a ≥ 3` boundary — see the correction block below.] This was attributed to
 `CORNER_144_COMPARISON.md` §5 already flagged as a **quasipolynomial** window cap
 (`8w + ceil(w/5)` for `(108,144)`, denominator `5`; here the denominator is
 `12`). The abstract G-system is weight-homogeneous under the intrinsic
@@ -249,3 +250,17 @@ result now scopes precisely.
   `case_compiler.py`.
 - `g_system_75_125_verify.py` — exact PASS/FAIL checker (`--quiet`, exit 0);
   control = `(72,108)` recipe reproducing the known G-weights and generators.
+
+
+## CORRECTION (2026-07-24, GPT-Pro review 6; verified in f2_family_verify.py)
+
+The non-integral W_step is **not** an `a ≥ 3` phase transition: already at
+a=2 (F2 j=0, the (50,75) case) W_step = 75/21 = 25/7 is non-integral. The
+meaningful invariant is the **window denominator**
+q_window := denom(ord_y(Phi)/M), which for the F2 family equals exactly
+**5a−3** (a=2: 7, a=3: 12, a=4: 17, ...; gcd(2a−1,5a−3)=1 always). The
+integral W_step = 12 at (72,108) is a friendly coincidence of that corner,
+not generic a=2 behavior. Consequence: the right generalization is an
+engine for **rationally related gradings** (bigraded/two-coordinate window
+lattice), not a separate `a ≥ 3` engine; for the fixed (75,125) case the
+tactical route is a q_window=12-phase (period-12) window compiler.
