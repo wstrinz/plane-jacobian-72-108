@@ -18,7 +18,7 @@ deg-6-d1 #state3, `a8_b1100_T1` deg-6-d1 #state0}, each with exactly one
 admissible split after Galois dedup). Replay guarantees, enforced by
 assertion before any msolve call:
 
-- `reconstruct_general(case, combo)` (ALT_HUNT's own code path) was
+- `reconstruct_general(case, combo)` (ALT_HUNT's own committed code path) was
   replayed on the recorded combo and its polys asserted **string-identical**
   to the recorded `polys` — 4/4 verbatim matches;
 - where ALT_HUNT recorded accumulated master coefficients (`sub1:a9` depth 2),

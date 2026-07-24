@@ -1,0 +1,438 @@
+﻿{
+    "schema":  "d2-kill-manifest-v1",
+    "timeout_seconds":  300,
+    "output_dir":  "kill_certificates",
+    "status_log":  "kill_certificates/status_log.json",
+    "sources":  {
+                    "harvest":  "TRIAGE_HARVEST.md",
+                    "msolve_blowup":  "BLOWUP_DIAGNOSIS.md",
+                    "d2_threshold":  "D2_THRESHOLD.md",
+                    "phase_f2_sub2":  "PHASE_F2_SUB2.md"
+                },
+    "entries":  [
+                    {
+                        "id":  "harvest:sub2T2_a8_b0000_dd20_dsig3",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a8_b0000_dd20_dsig3"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a8_b0000_dd21_dsig3",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a8_b0000_dd21_dsig3"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a8_b1000_dd20_dsig5",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a8_b1000_dd20_dsig5"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a8_b1000_dd21_dsig5",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a8_b1000_dd21_dsig5"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a8_b1000_dd22_dsig5",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a8_b1000_dd22_dsig5"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a7_b1000_dd20_dsig3",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a7_b1000_dd20_dsig3"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a7_b1000_dd21_dsig3",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a7_b1000_dd21_dsig3"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a7_b1000_dd22_dsig3",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a7_b1000_dd22_dsig3"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a7_b3000_dd20_dsig7",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a7_b3000_dd20_dsig7"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:sub2T2_a7_b3000_dd21_dsig7",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys4",
+                                       "name":  "sub2T2_a7_b3000_dd21_dsig7"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a11_b3000_T1_sup5",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys3",
+                                       "name":  "a11_b3000_T1_sup5"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a12_b1110_T1_sup13",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys3",
+                                       "name":  "a12_b1110_T1_sup13"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a12_b3000_T1_sup13",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys3",
+                                       "name":  "a12_b3000_T1_sup13"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a14_b1000_T1_sup13",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys3",
+                                       "name":  "a14_b1000_T1_sup13"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a11_b1111_T2_sup13",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys3",
+                                       "name":  "a11_b1111_T2_sup13"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a11_b3100_T2_sup12",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys3",
+                                       "name":  "a11_b3100_T2_sup12"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a12_b1110_T2_sup12",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys3",
+                                       "name":  "a12_b1110_T2_sup12"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a13_b1000_T2_sup11",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_sys3",
+                                       "name":  "a13_b1000_T2_sup11"
+                                   }
+                    },
+                    {
+                        "id":  "harvest:a8_dd2-inf_dd10_dsig5",
+                        "category":  "harvest",
+                        "recipe":  {
+                                       "builder":  "harvest_a8",
+                                       "name":  "a8_dd2-inf_dd10_dsig5"
+                                   }
+                    },
+                    {
+                        "id":  "msolve_blowup:a12_b1110_T2_d6",
+                        "category":  "msolve_blowup",
+                        "recipe":  {
+                                       "builder":  "blowup_case",
+                                       "case":  "a12_b1110_T2_d6",
+                                       "archived_ms":  "diag_a12_b1110_T2_d6.ms"
+                                   }
+                    },
+                    {
+                        "id":  "msolve_blowup:a11_b1111_T1_17",
+                        "category":  "msolve_blowup",
+                        "recipe":  {
+                                       "builder":  "blowup_case",
+                                       "case":  "a11_b1111_T1_17",
+                                       "archived_ms":  "diag_a11_b1111_T1_17.ms"
+                                   }
+                    },
+                    {
+                        "id":  "msolve_blowup:sub2_s14",
+                        "category":  "msolve_blowup",
+                        "recipe":  {
+                                       "builder":  "blowup_case",
+                                       "case":  "sub2_s14",
+                                       "archived_ms":  "diag_sub2_s14.ms"
+                                   }
+                    },
+                    {
+                        "id":  "msolve_blowup:sub2_s38",
+                        "category":  "msolve_blowup",
+                        "recipe":  {
+                                       "builder":  "blowup_case",
+                                       "case":  "sub2_s38",
+                                       "archived_ms":  "diag_sub2_s38.ms"
+                                   }
+                    },
+                    {
+                        "id":  "msolve_blowup:sub2_s94",
+                        "category":  "msolve_blowup",
+                        "recipe":  {
+                                       "builder":  "blowup_case",
+                                       "case":  "sub2_s94",
+                                       "archived_ms":  "diag_sub2_s94.ms"
+                                   }
+                    },
+                    {
+                        "id":  "d2_threshold:a12_b1110_T2_d5",
+                        "category":  "d2_threshold",
+                        "recipe":  {
+                                       "builder":  "d2_threshold",
+                                       "branch":  "a12_b1110_T2",
+                                       "degree_d2":  5,
+                                       "depth":  8
+                                   }
+                    },
+                    {
+                        "id":  "d2_threshold:a11_b3100_T2_d5",
+                        "category":  "d2_threshold",
+                        "recipe":  {
+                                       "builder":  "d2_threshold",
+                                       "branch":  "a11_b3100_T2",
+                                       "degree_d2":  5,
+                                       "depth":  8
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a10_b0000_T1_sz0_dz0_gz-s0",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a10_b0000_T1_sz0_dz0_gz-#state0",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a10_b0000_T1_sz0_dz0_gz-s1",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a10_b0000_T1_sz0_dz0_gz-#state1",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a10_b0000_T1_sz0_dz0_gz-s5",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a10_b0000_T1_sz0_dz0_gz-#state5",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a10_b0000_T1_sz0_dz0_gz-s6",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a10_b0000_T1_sz0_dz0_gz-#state6",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a10_b0000_T1_sz1_dz0_gz-s0",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a10_b0000_T1_sz1_dz0_gz-#state0",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a10_b0000_T1_sz1_dz0_gz-s1",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a10_b0000_T1_sz1_dz0_gz-#state1",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b0000_T1_sz0_dz0_gz-s3",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b0000_T1_sz0_dz0_gz-#state3",
+                                       "depth":  3
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b0000_T1_sz0_dz0_gz-s4",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b0000_T1_sz0_dz0_gz-#state4",
+                                       "depth":  7
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz0_gz-s0",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz0_gz-#state0",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz0_gz-s1",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz0_gz-#state1",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz0_gz-s5",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz0_gz-#state5",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz0_gz-s6",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz0_gz-#state6",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz0_gz-s13",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz0_gz-#state13",
+                                       "depth":  3
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz0_gz-s18",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz0_gz-#state18",
+                                       "depth":  3
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz0_gz-s33",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz0_gz-#state33",
+                                       "depth":  4
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz0_gz-s93",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz0_gz-#state93",
+                                       "depth":  3
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz1_gz-s0",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz1_gz-#state0",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz1_gz-s2",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz1_gz-#state2",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz1_gz-s6",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz1_gz-#state6",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz0_dz1_gz-s18",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz0_dz1_gz-#state18",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz1_dz0_gz-s0",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz1_dz0_gz-#state0",
+                                       "depth":  2
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz1_dz0_gz-s3",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz1_dz0_gz-#state3",
+                                       "depth":  3
+                                   }
+                    },
+                    {
+                        "id":  "phase_f2_sub2:a9_b1000_T1_sz1_dz1_gz-s0",
+                        "category":  "phase_f2_sub2",
+                        "recipe":  {
+                                       "builder":  "phase_f2_sub2",
+                                       "state_key":  "sub2:a9_b1000_T1_sz1_dz1_gz-#state0",
+                                       "depth":  2
+                                   }
+                    }
+                ]
+}

@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "attempt_wall_seconds": 927.313,
+      "category": "msolve_blowup",
+      "kill_id": "msolve_blowup:a11_b1111_T1_17",
+      "lift_method": "lift(I,ideal(1))",
+      "lift_wall_seconds": 900.766,
+      "reason": "Singular lift(I,ideal(1)) timed out after 900s",
+      "status": "NOT-YET-CERTIFICATED"
+    }
+  ],
+  "manifest": "kill_manifest.json",
+  "schema": "d2-kill-status-log-v1",
+  "timeout_seconds": 900.0
+}

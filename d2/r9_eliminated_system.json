@@ -1,0 +1,57 @@
+{
+ "H": {
+  "H2": "-3*d0*dm1**3/2 - 3*d1*dm1**2*dm2/2 - 3*d2*dm1*dm2**2/2 + 3*dm1*dm3**2/2 - 3*dm2**2*dm3",
+  "H3": "-3*d0*dm1**2*dm2 - 3*d1*dm1**2*dm3/2 - 3*d1*dm1*dm2**2/2 - 3*d2*dm1*dm2*dm3 - dm1**4/2 - 3*dm2*dm3**2",
+  "H5": "Phi*dm1 + 3*d0*d1*dm1**3/2 + 3*d0*d2*dm1**2*dm2 + 3*d1**2*dm1**2*dm2/2 + 3*d1*d2*dm1**2*dm3/2 + 3*d1*d2*dm1*dm2**2 - 3*d1*dm1*dm3**2/2 + 3*d1*dm2**2*dm3 + 3*d2**2*dm1*dm2*dm3 + 3*d2*dm2*dm3**2 - 3*dm1**3*dm3/2 - 3*dm1**2*dm2**2/2"
+ },
+ "cofactors": {
+  "H2": [
+   [
+    "dm1",
+    "G2"
+   ],
+   [
+    "-dm2",
+    "G1"
+   ]
+  ],
+  "H3": [
+   [
+    "dm1",
+    "G3"
+   ],
+   [
+    "-dm3",
+    "G1"
+   ]
+  ],
+  "H5": [
+   [
+    "dm1",
+    "G5"
+   ],
+   [
+    "d0*dm1 + d1*dm2 + d2*dm3",
+    "G1"
+   ]
+  ]
+ },
+ "pivots": {
+  "G1": "3*dm1",
+  "G2": "3*dm2",
+  "G3": "3*dm3",
+  "G5": "-3*d0*dm1 - 3*d1*dm2 - 3*d2*dm3"
+ },
+ "weights": {
+  "H2": 228,
+  "H3": 240,
+  "H5": 264
+ },
+ "checks": [
+  "linearity: G1,G2,G3,G5 all degree 1 in dm4; pivot(G1)=3*dm1",
+  "dm4-free: H2,H3,H5 contain no dm4; membership residuals 0",
+  "weighted-homogeneous: {'H2': 228, 'H3': 240, 'H5': 264}",
+  "divisibility lemma: G1 rearrangement identity exact => dm1 | dm2*dm3 on the G-variety"
+ ],
+ "note": "H2,H3,H5 in <G1,G2,G3,G5>; dm4-free. Sound necessary system per state: y-coeffs of H2,H3,H5 with dm2,dm3 capped (sub2: 12/14) + rem(dm2*dm3, monic(e)) = 0. UNIT => state killed (PENDING AUDIT). PROPER => inconclusive (weaker than full bridge)."
+}

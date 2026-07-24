@@ -19,6 +19,52 @@ Layout:
 | `run_tests.sh`, `setup.sh`, `requirements.txt` | the suite and environment setup |
 | `CITATION.cff`, `LICENSE` | citation metadata; MIT for code, CC-BY-4.0 for the math documents, third-party paper sources not included |
 
+## Update — 2026-07-24 (post-v0.1.0; no tag yet, published for review)
+
+A trust-layer + transfer-test drop on top of the 2026-07-23 corner-law layer.
+New content (all git-tracked; the exact files map into `d2/`):
+
+1. **Certificate architecture — first end-to-end pass.** Per-kill cofactor
+   certificates land under `d2/kill_certificates/` (49 records, ~19 MB;
+   largest single JSON ~4.7 MB — shipped, they are the trust artifact), with
+   `kill_manifest.json`, the producer `kill_certificate_tools.py`, and the
+   engine-free consumer `audit_gb_kills.py`. Census: **20 CERTIFIED, 29
+   not-yet-certificated**, all failures logged honestly in
+   `kill_certificates/status_log.json`.
+2. **Independent 49-kill audit (0 disagreements).** `audit_alt_hunt_kills.py`
+   + `audit_alt_hunt_census.json`: a from-scratch spec-only re-derivation
+   (producer code neither imported nor read) of all 49 forced HUNT/J6 state
+   kills — **41 FULLY-VERIFIED + 8 VERIFIED-DATA-ONLY, 0 DISAGREEMENT**.
+3. **Independent CAS replay of the f37 theorem.** `F37_REPLAY.md` +
+   `f37_replay_m2.m2` (Macaulay2) + `f37_replay_sage.py` (Sage) +
+   `f37_replay_selftest.py` (pure-Python construction self-test, 8/8).
+4. **μ-ladder + parity theorem at dg = 4.** `MU_RUNGS_F10.md` +
+   `mu_rungs_f10*.py` prove the even-`dg` parity claim at dg=4 (F10);
+   `REVIEW_ZETA_MU.md` + `review_zeta_mu.py` are an adversarial re-derivation
+   (31/31 confirmations). Corrections folded into `ZETA_TAIL.md`,
+   `COMPOSITE_CHARTS.md`, `PHI_75_125.md`, `CASE_COMPILER.md`.
+5. **Transfer test — phases 1–2 on (75,125).** `C_SERIES_75_125.md`
+   (+ verifier) derives the tower length **N = 98**; `G_SYSTEM_75_125.md`
+   (+ `g_system_75_125.py/.json/_verify.py`) builds the G-system and locates
+   its window-cap obstruction at **a ≥ 3**.
+6. **Cross-program corroboration.** `ALOK_CROSSCHECK.md` + `alok_crosscheck.py`:
+   exact setup corroboration against an independent parallel program, regime
+   disjointness quantified, **0 findings**.
+7. **Alt-bridge construction + honest wall (PENDING AUDIT).** `ALT_BRIDGE.md`
+   + `alt_bridge.py`, `J6_MSOLVE.md` + `j6_msolve.py`, `R9_SYMBOLIC.md` /
+   `R9_VALSPLIT.md` + `r9_symbolic_elim.py` / `r9_valsplit.py`: attempted
+   state-level bridge kills with their honest negative outcome (Gröbner cost
+   wall survives). Their PENDING-AUDIT labels are kept intact and these are
+   **not** counted in the frontier accounting (`d2/CURRENT_STATUS.md` §3c).
+
+Four new exact verifiers wired into `run_tests.sh`
+(`mu_rungs_f10_verify.py`, `c_series_75_125_verify.py`, `alok_crosscheck.py`,
+`g_system_75_125_verify.py`); the full suite is green from this tree, and
+`tools/clean_clone_check.py` confirms every file the suite reads is tracked.
+The certificate/audit tools and the CAS-replay scripts that need Macaulay2 /
+Sage / msolve / Singular are shipped as artifacts but not wired into the
+pure-Python suite (matching the source repo's own suite).
+
 ## Update — 2026-07-23 (post-v0.1.0; no tag yet, published for review)
 
 Thirty-seven files added/updated from the source repository. New content:
@@ -48,13 +94,16 @@ layer stay in the source repository until the certificate audit round lands.
 
 ## Provenance
 
-Generated from the source working repository at commit
-`05e6609650322e1a646861584011e398ec3db338`
-(branch `claude/d2-jacobian-counterexamples-sgp9in`).
+Generated from the source working repository. The 2026-07-23 content was cut at
+source commit `05e6609650322e1a646861584011e398ec3db338`; the 2026-07-24 trust
+layer + transfer test at source commit
+`8ba76adcd9f3f977ad7b763c3f37e4b74eaec501`. Only git-committed source revisions
+were shipped.
 
-Two files required by `run_tests.sh` that were untracked in the source working
-tree at that commit are included here (they are load-bearing spec-only auditors):
-`d2/audit_convolution_kills_r2.py` and `d2/audit_reconstruction_kills.py`.
+Two files required by the 2026-07-23 `run_tests.sh` that were untracked in the
+source working tree at that commit are included here (they are load-bearing
+spec-only auditors): `d2/audit_convolution_kills_r2.py` and
+`d2/audit_reconstruction_kills.py`.
 
 ## Exclusions and redactions applied
 

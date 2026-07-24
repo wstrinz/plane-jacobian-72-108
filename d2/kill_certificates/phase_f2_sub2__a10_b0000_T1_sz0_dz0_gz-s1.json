@@ -1,0 +1,148 @@
+{
+  "attempt_wall_seconds": 15.844,
+  "category": "phase_f2_sub2",
+  "generating_recipe": {
+    "cofactor_variables": [
+      "u3"
+    ],
+    "d2_mode": "reconstructed_defect1_lincofactor",
+    "identity": "f31_master",
+    "polynomials": {
+      "d1": "X",
+      "d2": "-D*u3 + D*y",
+      "e": "E*y**10 + 10*E*y**9 + 45*E*y**8 + 120*E*y**7 + 210*E*y**6 + 252*E*y**5 + 210*E*y**4 + 120*E*y**3 + 45*E*y**2 + 10*E*y + E",
+      "sigma": "S"
+    },
+    "root_variables": [],
+    "saturation_factors": [
+      "E",
+      "X",
+      "S",
+      "D"
+    ],
+    "source_key": "sub2:a10_b0000_T1_sz0_dz0_gz-#state1",
+    "state_degrees": [
+      0,
+      0,
+      1,
+      10
+    ],
+    "targets": [
+      250,
+      249
+    ]
+  },
+  "generator_normalization": "primitive integer associate with positive leading coefficient",
+  "generator_sha256": "6c58bb46181ec7db832193eb654913a6cb487382651954280057c153915f817b",
+  "generators": [
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2626562270214755071875"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2305843009213693952"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "21888018918456292265625"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "17582052945254416384"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1"
+          },
+          "powers": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1"
+          },
+          "powers": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "kill_id": "phase_f2_sub2:a10_b0000_T1_sz0_dz0_gz-s1",
+  "lift_method": null,
+  "lift_wall_seconds": null,
+  "manifest_recipe": {
+    "builder": "phase_f2_sub2",
+    "depth": 2,
+    "state_key": "sub2:a10_b0000_T1_sz0_dz0_gz-#state1"
+  },
+  "reason": "std-transform-lift returned cofactors that failed producer-side exact expansion",
+  "schema": "d2-kill-certificate-v1",
+  "status": "NOT-YET-CERTIFICATED",
+  "timeout_seconds": 300.0,
+  "variable_order": [
+    "D",
+    "E",
+    "S",
+    "X",
+    "w"
+  ]
+}

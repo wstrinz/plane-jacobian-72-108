@@ -1,0 +1,3343 @@
+{
+  "attempt_wall_seconds": 319.594,
+  "category": "msolve_blowup",
+  "generating_recipe": {
+    "archived_ms": {
+      "mismatch": "archived program differed; regenerated recipe used",
+      "path": "diag_sub2_s38.ms",
+      "reused": true
+    },
+    "cofactor_variables": [
+      "u2"
+    ],
+    "d2_mode": "reconstructed_defect0",
+    "identity": "f31_master",
+    "polynomials": {
+      "d1": "-X*r + X*y",
+      "d2": "D*y**3 + 3*D*y**2 + 3*D*y + D",
+      "e": "-E*r*y**9 - 9*E*r*y**8 - 36*E*r*y**7 - 84*E*r*y**6 - 126*E*r*y**5 - 126*E*r*y**4 - 84*E*r*y**3 - 36*E*r*y**2 - 9*E*r*y - E*r + E*y**10 + 9*E*y**9 + 36*E*y**8 + 84*E*y**7 + 126*E*y**6 + 126*E*y**5 + 84*E*y**4 + 36*E*y**3 + 9*E*y**2 + E*y",
+      "sigma": "-S*u2*y**6 - 6*S*u2*y**5 - 15*S*u2*y**4 - 20*S*u2*y**3 - 15*S*u2*y**2 - 6*S*u2*y - S*u2 + S*y**7 + 6*S*y**6 + 15*S*y**5 + 20*S*y**4 + 15*S*y**3 + 6*S*y**2 + S*y"
+    },
+    "root_variables": [
+      "r"
+    ],
+    "saturation_factors": [
+      "E",
+      "X",
+      "S",
+      "D"
+    ],
+    "source_key": "sub2:a9_b1000_T1_sz0_dz0_gz-#state38",
+    "state_degrees": [
+      1,
+      7,
+      3,
+      10
+    ],
+    "targets": [
+      250,
+      249,
+      248,
+      247,
+      246,
+      245
+    ]
+  },
+  "generator_normalization": "primitive integer associate with positive leading coefficient",
+  "generator_sha256": "410c8cee3c8e5bd17f76689bb5a16df31f565ed3de570b2788e96cde4184bc6d",
+  "generators": [
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2626562270214755071875"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2305843009213693952"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "20527970051508142080"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "65664056755368876796875"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-590976510798319891171875"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-81558769507290316800"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "18446744073709551616"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-509014844283922939904"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "26702945275720237056000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-54703837209396510720000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "249517475976081466982400"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-5013032926428545836646400"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "870705392576191306326562500"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-16325726110803586993623046875"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "73139252976400069731431250000"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1593836897599946188800000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1261714164277781200896000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-90122440305555800064000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "19939589917604220764160000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "71342782705071690874880"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-4499691223469878788751360"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "61800446647344116489256960"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1180591620717411303424"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "75639873672251965440000"
+          },
+          "powers": [
+            3,
+            17,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-619825460177756851200000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-93460308465020829696000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1477006660563275612160000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1612417393659613530234375"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "232491308139935170560000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "13675959302349127680000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-3029224985470331781120000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-311896844970101833728000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "13785840547678501050777600"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-137858405476785010507776000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-2866451090828773294080"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1668852002437700003792578125"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "48977178332410760980869140625"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-457120331102500435821445312500"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1359171117811434629175764062500"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-7969184487999730944000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-796918448799973094400000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "88358333010697016841600000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2050285516951394451456000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "315428541069445300224000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-69788564711614772674560000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-4984897479401055191040000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "548961834919041202913280000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "12179442913088687308800"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-35671391352535845437440"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "3937229820536143940157440"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-123600893294688232978513920"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1126570642008877123502080000"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-885443715538058477568"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-590295810358705651712"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "64194669376509239623680"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1146268257021784070553600000"
+          },
+          "powers": [
+            4,
+            20,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-5674944820398919513344000000"
+          },
+          "powers": [
+            3,
+            23,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "5266955683546248857518080000"
+          },
+          "powers": [
+            3,
+            17,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-68625334347382007172956160000"
+          },
+          "powers": [
+            3,
+            17,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-50776101697761841250304000000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-2538805084888092062515200000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "562980027573934414862745600000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-2488287252572714569826304000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "84697469943340476703703040000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-666236348393597856928235520000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-21380142073719112807219200"
+          },
+          "powers": [
+            2,
+            9,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "151902617821884871456320000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "13208923288859554039680000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1466190485063410498404480000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "7618275185129395668910080000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "952284398141174458613760000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-210930994188270142582947840000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-12407705540486478975467520000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1367949535838634307045294080000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "92285378872889139265536000"
+          },
+          "powers": [
+            1,
+            12,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-3832588430992611332849664000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "282334014416455701519925248000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-6211348317162025433438355456000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "41220766104802532421909086208000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-70445902008207932475310080"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-23481967336069310825103360"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2556599193714546216083128320"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1528615030968855197073880200000000"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-22462504155301520717482330125000000"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "139174716694604470499588227593750000"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-308974072182292582514759957719921875"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-310096906797045530492928000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-65283559325693795893248000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "7238314640236299619663872000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1632088983142344897331200000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "723831464023629961966387200000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-39946448920804078526019993600000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-336100375814532161863680000"
+          },
+          "powers": [
+            0,
+            15,
+            4,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "33591877909731646692655104000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "8397969477432911673163776000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1858050746882031707687485440000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-285853961058774108874997760000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "31479667461597498739859128320000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2248547675828392767132794880000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-164331359308458371397955092480000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "448982983548101368951603200"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "149660994516033789650534400"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-10875365601498455381272166400"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "32208127308900845275609825280"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1771913869159568479303625605120"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "36915445394512074061408894976000"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-251198198082768101128775139328000"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-3626777458843887524118528"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-7253554917687775048237056"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "788824097298545536495779840"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1208925819614629174706176"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "525882731532363690997186560"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-28463402844189184775222722560"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "13915573505959036354560000000"
+          },
+          "powers": [
+            5,
+            23,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "275104381685228176932864000000"
+          },
+          "powers": [
+            4,
+            20,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-3050219831934967411743129600000"
+          },
+          "powers": [
+            4,
+            20,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1566284770430101785682944000000"
+          },
+          "powers": [
+            3,
+            23,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-68099337844787034160128000000"
+          },
+          "powers": [
+            3,
+            23,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "15118053001542721583548416000000"
+          },
+          "powers": [
+            3,
+            23,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "505627745620439890321735680000"
+          },
+          "powers": [
+            3,
+            17,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-13999568206865929463283056640000"
+          },
+          "powers": [
+            3,
+            17,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "90791317341586395489820999680000"
+          },
+          "powers": [
+            3,
+            17,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1599613233796745080602624000"
+          },
+          "powers": [
+            3,
+            12,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-5788475593544849902534656000000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-609313220373142095003648000000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "135115206617744259567058944000000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "6755760330887212978352947200000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-745667046521676132485706547200000"
+          },
+          "powers": [
+            2,
+            20,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-14788416535839415122001920000"
+          },
+          "powers": [
+            2,
+            15,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-119437788123490299351662592000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "6606402655580557182888837120000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-111927706530124439963943567360000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "584289277541185320526062551040000"
+          },
+          "powers": [
+            2,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-2309055343961664183179673600"
+          },
+          "powers": [
+            2,
+            9,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-513123409769258707373260800"
+          },
+          "powers": [
+            2,
+            9,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "55930451664849199103685427200"
+          },
+          "powers": [
+            2,
+            9,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "20051145552488803032234240000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "3645662827725236914951680000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-404668573877501297559636480000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "79253539733157324238080000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-35188571641521851961707520000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1944168583194082320884340480000000"
+          },
+          "powers": [
+            1,
+            23,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "52226847460555036714598400000"
+          },
+          "powers": [
+            1,
+            18,
+            4,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "457096511107763740134604800000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "91419302221552748026920960000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-20249375442073933687962992640000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-2531171930259241710995374080000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "279061705311081398637239992320000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "16415394430063611684543528960000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1201059692466320921585768202240000"
+          },
+          "powers": [
+            1,
+            17,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "13289094557696036054237184000"
+          },
+          "powers": [
+            1,
+            12,
+            3,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "3322273639424009013559296000"
+          },
+          "powers": [
+            1,
+            12,
+            3,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-241695407268096655736438784000"
+          },
+          "powers": [
+            1,
+            12,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "10141028988406449586720210944000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-372666526823105303713803141120000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "5441130346678972112972625739776000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-26958372274477449443469051297792000"
+          },
+          "powers": [
+            1,
+            11,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-2113377060246237974259302400"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1690701648196990379407441920"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "184075141947447327557985239040"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-140891804016415864950620160"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "61358380649149109185995079680"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-3324857251425767354016108380160"
+          },
+          "powers": [
+            1,
+            6,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-2041535951612711608950567399780000000"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "20025784831521098333396965480650000000"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-92681275080318697041534310491407812500"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "163872126499452927100770634206918046875"
+          },
+          "powers": [
+            0,
+            25,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-47552123839894394542848000000"
+          },
+          "powers": [
+            0,
+            21,
+            5,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-97925338988540693839872000000"
+          },
+          "powers": [
+            0,
+            21,
+            0,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-22326977289387278195490816000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-7442325763129092731830272000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "825167868986938156641681408000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-391701355954162775359488000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            1,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "173719551365671190871932928000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-9587147740992978846244798464000000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "4342988784141779771798323200000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-958714774099297884624479846400000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "35112928601386785024371574374400000"
+          },
+          "powers": [
+            0,
+            20,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-60498067646615789135462400000"
+          },
+          "powers": [
+            0,
+            15,
+            4,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-16132818039097543769456640000"
+          },
+          "powers": [
+            0,
+            15,
+            4,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "881255185385703328406568960000"
+          },
+          "powers": [
+            0,
+            15,
+            4,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "403102534916779760311861248000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            3,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-88909302857582235883784896512000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-22296608962584380492249825280000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2455240853884132847905753006080000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "377756009539169984878309539840000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-27607538457730652354504011284480000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1971976311701500456775461109760000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "107595851958514706015024735846400000"
+          },
+          "powers": [
+            0,
+            14,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "21551183210308865709676953600"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "16163387407731649282257715200"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1174539484961833181177393971200"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1795931934192405475806412800"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-391513161653944393725797990400"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "14159726013150988906416360652800"
+          },
+          "powers": [
+            0,
+            9,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-42405501676685389364502001090560"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1550373873697872106781181109862400"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-24114971873682129304351102363238400"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "130673265677647976162943908079206400"
+          },
+          "powers": [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-38685626227668133590597632"
+          },
+          "powers": [
+            0,
+            4,
+            0,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-14507109835375550096474112"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-87042659012253300578844672"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "9465889167582546437949358080"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-43521329506126650289422336"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            1,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "18931778335165092875898716160"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1024682502390810651908018012160"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "3155296389194182145983119360"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-683121668260540434605345341440"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "24535453251691077276241986846720"
+          },
+          "powers": [
+            0,
+            3,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "1"
+          },
+          "powers": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-1"
+          },
+          "powers": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "2048"
+          },
+          "powers": [
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-512"
+          },
+          "powers": [
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "320"
+          },
+          "powers": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "-240"
+          },
+          "powers": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "coefficient": {
+            "denominator": "1",
+            "numerator": "195"
+          },
+          "powers": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "kill_id": "msolve_blowup:sub2_s38",
+  "lift_method": "lift(I,ideal(1))",
+  "lift_wall_seconds": 300.063,
+  "manifest_recipe": {
+    "archived_ms": "diag_sub2_s38.ms",
+    "builder": "blowup_case",
+    "case": "sub2_s38"
+  },
+  "reason": "Singular lift(I,ideal(1)) timed out after 300s",
+  "schema": "d2-kill-certificate-v1",
+  "status": "NOT-YET-CERTIFICATED",
+  "timeout_seconds": 300.0,
+  "variable_order": [
+    "D",
+    "E",
+    "S",
+    "X",
+    "r",
+    "u2",
+    "w"
+  ]
+}

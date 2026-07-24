@@ -1,6 +1,6 @@
 # CURRENT STATUS — the (72,108) program (current truth)
 
-**As of:** 2026-07-23. This file states only what is *currently true*: proven and
+**As of:** 2026-07-24. This file states only what is *currently true*: proven and
 checker-enforced nodes, trusted published inputs, independently audited results,
 and the live open frontier. Engine kills that are **pending independent audit are
 not counted as progress** below. For the full historical claim graph (including
@@ -138,15 +138,69 @@ ten new suite verifiers (all exact sympy, wired into `run_tests.sh`):
   is now recited and proven (81 checks); the corresponding [judgment] flags
   in `FULL_SYSTEM_BRIDGE.md`/`BRIDGE_SWEEP.md` are retired.
 
-**Trust architecture (in progress).** A cofactor-certificate pipeline
-(`kill_certificate_tools.py` + the certificate-consuming spec auditor
-`audit_gb_kills.py`) now extracts engine-free-checkable certificates
-`1 = Σ cᵢfᵢ` for saturated-Gröbner kills: 29 of the 49 targeted kills have
-certificates so far (15 lift timeouts and 5 open failures recorded honestly);
-the audit census is running. Separately, the s-unit BM-candidate residual
-layer is now fully killed at engine level (`ALT_HUNT.md`, `J6_MSOLVE.md`:
-49/49 states, with mod-p corroboration) — **all pending audit**, so per the
-rule above these are NOT counted in §1 or in the frontier table yet.
+**Trust architecture (first end-to-end pass — see §3c for the 2026-07-24
+state).** A cofactor-certificate pipeline (`kill_certificate_tools.py` + the
+certificate-consuming spec auditor `audit_gb_kills.py`) extracts
+engine-free-checkable certificates `1 = Σ cᵢfᵢ` for saturated-Gröbner kills.
+As of 2026-07-24 the first full pass has landed: **20 of the 49 targeted kills
+carry a certificate (`CERTIFICATE-FOUND`); 29 remain `NOT-YET-CERTIFICATED`**
+(lift timeouts / open failures, all recorded honestly in
+`kill_certificates/status_log.json`). Separately, the s-unit BM-candidate
+residual layer is fully killed at engine level (`ALT_HUNT.md`, `J6_MSOLVE.md`:
+49/49 states, mod-p corroboration) and has now been re-derived by an
+independent spec-only auditor (`audit_alt_hunt_kills.py`, census
+`audit_alt_hunt_census.json`: **49/49, zero disagreements**). These layers
+are still labelled **PENDING AUDIT** in their own documents and per the rule
+above are NOT counted in §1 or in the frontier table yet.
+
+---
+
+## 3c. Update 2026-07-24 (trust layer + transfer test; tier as noted)
+
+Same-author checker-enforced unless stated; published here for external review.
+
+- **Certificate architecture — first end-to-end pass.** The kill-certificate
+  pipeline now produces per-kill JSON certificates under `kill_certificates/`
+  (49 records), consumed by two independent readers: `audit_gb_kills.py`
+  (re-expands `1 = Σ cᵢfᵢ` from the certificate, no engine trust) and
+  `kill_certificate_tools.py` (producer/manifest, `kill_manifest.json`).
+  Census: **20 CERTIFIED, 29 not-yet-certificated**, failures logged, nothing
+  overclaimed.
+- **Independent 49-kill audit (0 disagreements).** `audit_alt_hunt_kills.py`
+  — a from-scratch, spec-only re-derivation with no access to the producer
+  code (`alt_hunt_depth2.py`, `j6_msolve.py` are neither imported nor read) —
+  re-checks all 49 forced HUNT/J6 state kills via isolated per-kill SymPy
+  Gröbner subprocesses. Result: **41 FULLY-VERIFIED + 8 VERIFIED-DATA-ONLY,
+  0 DISAGREEMENT, 0 UNPARSEABLE** (`audit_alt_hunt_census.json`, exit 0).
+- **f37-branch closure — independent CAS replay scripts.** `F37_REPLAY.md`
+  ships standalone Macaulay2 (`f37_replay_m2.m2`) and Sage
+  (`f37_replay_sage.py`) re-derivations of the C11 f37-artifact theorem, plus
+  a pure-Python construction self-test (`f37_replay_selftest.py`, 8/8) that
+  needs no external CAS.
+- **μ-ladder + parity theorem (dg = 2, 4).** `MU_RUNGS_F10.md` +
+  `mu_rungs_f10_verify.py` extend the μ-graded law (`ZETA_TAIL.md`) up the
+  ramified ladder and **prove the even-`dg` parity claim at `dg = 4` (F10)**:
+  the μ=1 rung is empty, matching dg=2. `REVIEW_ZETA_MU.md` +
+  `review_zeta_mu.py` are an adversarial re-derivation of the ζ/μ layer
+  (**31/31 confirmations hold**, F12 quartic re-obtained by a different
+  elimination route).
+- **Transfer test — phases 1–2 on (75,125).** The corner-law machinery is
+  exercised on a *second* family. Phase 1: the (75,125) C-series is built
+  from the polygon data and its tower length **N = 98 is DERIVED**, matching
+  the formula (`C_SERIES_75_125.md` + `c_series_75_125_verify.py`). Phase 2:
+  the associated G-system is built and its weight-integrality boundary
+  characterised — the quasipolynomial window-cap obstruction is located at
+  **a ≥ 3** (`G_SYSTEM_75_125.md` + `g_system_75_125_verify.py`).
+- **Cross-program corroboration (Alok).** `ALOK_CROSSCHECK.md` +
+  `alok_crosscheck.py` reconcile the (72,108) setup and the cascade/infinity
+  state artifacts against an independent parallel program: exact setup
+  corroboration, regime-disjointness quantified, **0 findings**.
+- **Alternate-bridge construction + honest wall.** `ALT_BRIDGE.md` +
+  `alt_bridge.py` and the R9 symbolic/valuation-split status docs
+  (`R9_SYMBOLIC.md`, `R9_VALSPLIT.md`, `r9_symbolic_elim.py`,
+  `r9_valsplit.py`) record the attempted state-level bridge kills and their
+  **honest negative outcome** (Gröbner cost wall survives; every completed
+  verdict is COST, no survival signal) — **PENDING AUDIT**, not counted in §1.
 
 ---
 

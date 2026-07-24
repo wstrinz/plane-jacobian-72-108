@@ -13,8 +13,9 @@ actual law (see §4).
 
 Model (COMPOSITE_CHARTS §4 commutator analysis, standard framework shape):
 `P = x^ζ (C^a + tail)`, `Q = C^b + tail + F`, `v(F) < 0`, `[P,Q] = x^κ`,
-`ell(C) = x^t c(y)`, κ = t−2 (fused-chart lemma). The tail-tail bracket's
-top slice is
+`ell(C) = x^t c(y)`, κ = t−2 (fused-chart lemma). The head-head bracket's
+top slice (the tails contribute nothing at this slice — that is the point;
+terminology corrected per REVIEW_ZETA_MU.md item 1) is
 
 ```
 [x^ζ C^a, C^b] -> ζ·b · x^(ζ+(a+b)t−1) · c^(a+b−1) c′   (nonzero for ζ>0),
@@ -83,7 +84,7 @@ F12 standard family (η=0, N=97, e+N=102) realizes **all three rungs**:
 
 | μ | branch | signature |
 |---|---|---|
-| 1 | COMPOSITE_CHARTS.md's two squarefree points (g₁ = (−1±√22)/8) | (814, 506, 102, 206) |
+| 1 | the μ=1 branch's two squarefree points (g₁ = (−1±√22)/8) | (814, 506, 102, 206) |
 | 2 | g = (y+1)²(y−β), β a root of **195β⁴+120β³−40β²+32β−80** (2 real roots; system ≡ 0 exactly mod the quartic) | (814, 506, 203, 105) |
 | 3 | g = (y+1)³, u = −(2048y⁴+2560y³+320y²−80y+35)/1155 | (814, 506, 304, 4) |
 
@@ -104,8 +105,16 @@ which (via the identity **r = dg−1**, always) specializes *exactly* to the
 old unramified law at μ=1 and to PHI_F7's ramified law (mult = dg(e+N)−(dg−1),
 cof = gap+r) at μ=dg. PHI_F7's judgment-6 "mult_g-indexed unification,
 observation only" is therefore now the actual branch structure, realized at
-μ = 1, 2, 3 in one corner. **Parity refinement:** dg even kills μ=1 (PHI_F7's
-theorem); odd dg keeps μ=1 available but does **not** exclude higher rungs.
+μ = 1, 2, 3 in one corner. **Parity refinement (scoped per
+REVIEW_ZETA_MU.md item 3):** dg even kills μ=1 — PROVEN at dg=2 (PHI_F7's
+eliminant enumeration) AND at dg=4 (MU_RUNGS_F10.md: all cubic-h partitions
+eliminated by exact polynomials with zero real roots); even dg ≥ 6 remains
+unenumerated (no gap>0,r>0 survey corner has dg ≥ 6). Odd dg keeps μ=1 available but does **not** exclude higher
+rungs. Presentational notes from the same review: r = dg−1 is definitional
+(r = a0−q−1, dg = a0−q), so the μ=dg specialization identity is exact
+algebra, not an independent confirmation; and deg−ord = (e+N)dg+gap
+identically, so the cofactor law is equivalent to the mult law — each
+realized rung contributes ONE independent datum, not two.
 
 ## 5. F12 at η = +2: the canonical collapse
 
@@ -132,9 +141,9 @@ Both rungs sit ON the μ-graded law. Note the μ-support differs between
   the unramified seven, μ=dg for the PHI_F7 four, μ=1 for (72,108)).
 * **COMPOSITE_CHARTS.md §5**: the "NO ramified branch at dg=3" sentence and
   the "(814,506,304,4) NOT realized" parenthesis are corrected by §4 above;
-  COMPOSITE_CHARTS.md's conditional μ=1 signature itself stands.
+  the conditional μ=1 signature itself stands.
 * **Case compiler**: F12's conjectural flag should stay (model selection
-  η ∈ {0, +2} open), but its reason can now cite this lane: the surviving
+  η ∈ {0, +2} open), but its reason can now cite this analysis: the surviving
   models and their full μ-rung signatures are enumerated.
 * **PHI_F7 branch-completeness judgment**: dg=4 (F10) likely carries
   intermediate rungs μ=2,3 as well — named follow-up, one small solve each.
@@ -152,7 +161,7 @@ Both rungs sit ON the μ-graded law. Note the μ-support differs between
    scan*, post-hoc motivated by its unique restoration of the standard
    structure — model selection between η ∈ {0, +2} requires the actual
    (8,24) polygon reduction or a C-series build (no paper performs either).
-3. **[chart carryover]** t = l and κ = t−2 for the escapes are COMPOSITE_CHARTS.md's
+3. **[chart carryover]** t = l and κ = t−2 for the escapes are the earlier
    fused-chart lemma + its judgment 3 (t = l unproven for the escapes).
 4. **[branch completeness]** Partition analyses cover all root partitions of
    dg ≤ 3 with the (y+1)-place at a chosen rung; μ-rungs with the multiple

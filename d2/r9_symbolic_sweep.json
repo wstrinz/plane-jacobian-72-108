@@ -1,0 +1,539 @@
+{
+ "states": [
+  {
+   "label": "R9_z1",
+   "n_equations": 136,
+   "n_unknowns": 37,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 10
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.31,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.27,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.28,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": {
+    "status": "rc1",
+    "verdict": "PARSE_FAIL",
+    "unit": null,
+    "dim": null,
+    "wall": 281.28,
+    "stderr": "<3>WSL (253857 - Relay) ERROR: CreateProcessCommon:810: chdir(<repo>/d2) failed 5",
+    "engine": "singular-minpoly"
+   },
+   "verdict": "COST",
+   "wall": 1654.2
+  },
+  {
+   "label": "R9_z2",
+   "n_equations": 136,
+   "n_unknowns": 38,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 10
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.66,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.33,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.27,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": {
+    "status": "rc124",
+    "verdict": "TIMEOUT",
+    "unit": null,
+    "dim": null,
+    "wall": 300.31,
+    "stderr": "",
+    "engine": "singular-minpoly"
+   },
+   "verdict": "COST",
+   "wall": 1264.2
+  },
+  {
+   "label": "R9_z3",
+   "n_equations": 136,
+   "n_unknowns": 39,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 10
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.27,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.3,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.55,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 693.6
+  },
+  {
+   "label": "batch_a9T2_e10_d2-inf_d1-inf_sig2",
+   "n_equations": 134,
+   "n_unknowns": 33,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 9
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.34,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.3,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.45,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 196.5
+  },
+  {
+   "label": "batch_a9T2_e10_d20_d1-inf_sig2",
+   "n_equations": 134,
+   "n_unknowns": 34,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 9
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.36,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc1",
+      "verdict": "PARSE_FAIL",
+      "unit": null,
+      "dim": null,
+      "wall": 2.3,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.28,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 236.6
+  },
+  {
+   "label": "batch_a9T2_e10_d2-inf_d1-inf_sig3",
+   "n_equations": 134,
+   "n_unknowns": 34,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 9
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.27,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.47,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.5,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 205.3
+  },
+  {
+   "label": "batch_a9T2_e10_d20_d1-inf_sig3",
+   "n_equations": 134,
+   "n_unknowns": 35,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 9
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.42,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.47,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.28,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 277.6
+  },
+  {
+   "label": "batch_a9T2_e10_d21_d1-inf_sig2",
+   "n_equations": 134,
+   "n_unknowns": 35,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 9
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.39,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.27,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.27,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 365.5
+  },
+  {
+   "label": "batch_a9T2_e10_d2-inf_d1-inf_sig4",
+   "n_equations": 134,
+   "n_unknowns": 35,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 9
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.28,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.3,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.3,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 203.6
+  },
+  {
+   "label": "batch_a9T2_e10_d20_d1-inf_sig4",
+   "n_equations": 134,
+   "n_unknowns": 36,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 9
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.3,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.44,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.72,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 282.4
+  },
+  {
+   "label": "batch_a9T2_e10_d21_d1-inf_sig3",
+   "n_equations": 134,
+   "n_unknowns": 36,
+   "sizes": {
+    "H2": 39,
+    "H3": 41,
+    "H5": 45,
+    "divisibility": 9
+   },
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.47,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.31,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.27,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 357.6
+  }
+ ],
+ "control_300s": {
+  "label": "batch_a9T2_e10_d2-inf_d1-inf_sig2",
+  "prime": 10007,
+  "status": "rc124",
+  "verdict": "TIMEOUT",
+  "unit": null,
+  "dim": null,
+  "wall": 300.62
+ },
+ "not_attempted": {
+  "R9_z4_z5_z6": "budget truncation after z=1,2,3 all COST (monotone column trend; builds ~10-15 min each, triage all-TIMEOUT expected)",
+  "batch_dege10_T2_remaining": "82 of 90 states unswept (limit-8 cheapest-first sample; all 8 attempted returned COST uniformly)"
+ }
+}

@@ -1,0 +1,1815 @@
+{
+  "schema": 1,
+  "item": "independent spec-only audit of ALT_HUNT/J6 state kills",
+  "inputs": {
+    "f31_graded": "f31_graded.txt",
+    "alt_hunt": "alt_hunt_results.json",
+    "j6_msolve": "j6_msolve_results.json"
+  },
+  "independence": {
+    "project_python_imports": [],
+    "producer_files_not_imported": [
+      "alt_hunt_depth2.py",
+      "j6_msolve.py"
+    ],
+    "master_identity_source": "from-scratch parser over f31_graded.txt",
+    "relation_method": "independent monic-quartic division and valuation-profile reconstruction",
+    "contradiction_method": "isolated SymPy grevlex Groebner subprocess per kill"
+  },
+  "groebner_hard_timeout_seconds_per_kill": 120,
+  "census": {
+    "overall": {
+      "FULLY-VERIFIED": 41,
+      "VERIFIED-DATA-ONLY": 8,
+      "DISAGREEMENT": 0,
+      "UNPARSEABLE": 0,
+      "TOTAL": 49
+    },
+    "by_source": {
+      "alt_hunt": {
+        "FULLY-VERIFIED": 41,
+        "VERIFIED-DATA-ONLY": 4,
+        "DISAGREEMENT": 0,
+        "UNPARSEABLE": 0,
+        "TOTAL": 45
+      },
+      "j6_msolve": {
+        "FULLY-VERIFIED": 0,
+        "VERIFIED-DATA-ONLY": 4,
+        "DISAGREEMENT": 0,
+        "UNPARSEABLE": 0,
+        "TOTAL": 4
+      }
+    }
+  },
+  "disagreements": [],
+  "unparseable": [],
+  "results": [
+    {
+      "kill_id": "sub2:a10_b0000_T1_sz1_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [],
+          "division_quotient_degree": 4,
+          "division_remainder_coefficients": 0
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.015,
+        "wall_seconds": 1.656,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a10_b0000_T1_sz1_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.0,
+        "wall_seconds": 1.75,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a10_b0000_T1_sz1_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "c0_1",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.015,
+        "wall_seconds": 1.641,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a10_b0000_T1_sz1_dz1_gz-#state3",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 1.547,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a10_b0000_T1_sz1_dz1_gz-#state4",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [],
+          "division_quotient_degree": 4,
+          "division_remainder_coefficients": 0
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 1.609,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T1_sz1_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.063,
+        "wall_seconds": 1.891,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T1_sz1_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.078,
+        "wall_seconds": 1.734,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T1_sz1_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "timeout",
+        "hard_timeout_seconds": 120,
+        "wall_seconds": 120.015,
+        "process_killed": true
+      },
+      "category": "VERIFIED-DATA-ONLY"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.063,
+        "wall_seconds": 1.984,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T2_sz0_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.079,
+        "wall_seconds": 1.953,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T2_sz0_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.078,
+        "wall_seconds": 3.313,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T2_sz0_dz1_gz-#state3",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.063,
+        "wall_seconds": 2.484,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T2_sz0_dz1_gz-#state6",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "timeout",
+        "hard_timeout_seconds": 120,
+        "wall_seconds": 120.125,
+        "process_killed": true
+      },
+      "category": "VERIFIED-DATA-ONLY"
+    },
+    {
+      "kill_id": "sub2:a8_b1100_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c0_1",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.078,
+        "wall_seconds": 4.0,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a8_b1100_T2_sz0_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.078,
+        "wall_seconds": 3.265,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a8_b1100_T2_sz0_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c0_1",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.156,
+        "wall_seconds": 12.343,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a7_b1110_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.062,
+        "wall_seconds": 3.75,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a7_b1110_T2_sz0_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 16.407,
+        "wall_seconds": 22.578,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T1_sz1_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [],
+          "division_quotient_degree": 4,
+          "division_remainder_coefficients": 0
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.0,
+        "wall_seconds": 1.625,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T1_sz1_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 2.219,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T1_sz1_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "c0_1",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 1.937,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T1_sz1_dz1_gz-#state3",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 3.781,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T1_sz1_dz1_gz-#state4",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [],
+          "division_quotient_degree": 4,
+          "division_remainder_coefficients": 0
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.015,
+        "wall_seconds": 1.734,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [],
+          "division_quotient_degree": 4,
+          "division_remainder_coefficients": 0
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 2.39,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T2_sz0_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 3.219,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T2_sz0_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c0_1",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 2.25,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T2_sz0_dz1_gz-#state3",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 1.781,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b0000_T2_sz0_dz1_gz-#state4",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [],
+          "division_quotient_degree": 4,
+          "division_remainder_coefficients": 0
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.016,
+        "wall_seconds": 2.375,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b3110_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            375,
+            374
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.594,
+        "wall_seconds": 2.266,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a10_b5000_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            375,
+            374
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.453,
+        "wall_seconds": 2.031,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T1_sz1_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.032,
+        "wall_seconds": 1.687,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T1_sz1_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "X",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.062,
+        "wall_seconds": 1.781,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T1_sz1_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "timeout",
+        "hard_timeout_seconds": 120,
+        "wall_seconds": 120.266,
+        "process_killed": true
+      },
+      "category": "VERIFIED-DATA-ONLY"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.093,
+        "wall_seconds": 2.797,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T2_sz0_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.062,
+        "wall_seconds": 2.562,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T2_sz0_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.062,
+        "wall_seconds": 1.828,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T2_sz0_dz1_gz-#state3",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.031,
+        "wall_seconds": 1.844,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T2_sz0_dz1_gz-#state6",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "timeout",
+        "hard_timeout_seconds": 120,
+        "wall_seconds": 120.0,
+        "process_killed": true
+      },
+      "category": "VERIFIED-DATA-ONLY"
+    },
+    {
+      "kill_id": "sub1:a8_b1100_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c0_1",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.047,
+        "wall_seconds": 2.094,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a8_b1100_T2_sz0_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1,
+            1
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c1_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.062,
+        "wall_seconds": 1.891,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a8_b1100_T2_sz0_dz1_gz-#state2",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "c0_1",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.078,
+        "wall_seconds": 1.781,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a7_b1110_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249
+          ],
+          "coefficients_checked": 2
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 0.062,
+        "wall_seconds": 1.75,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a7_b1110_T2_sz0_dz1_gz-#state1",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "c0_0",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 15.109,
+        "wall_seconds": 16.625,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a6_b1111_T2_sz0_dz1_gz-#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [],
+          "division_quotient_degree": 4,
+          "division_remainder_coefficients": 0
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 1.859,
+        "wall_seconds": 3.828,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub1:a6_b1111_T2_sz0_dz1_gz5#state0",
+      "source": "alt_hunt",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [],
+          "division_quotient_degree": 4,
+          "division_remainder_coefficients": 0
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "completed",
+        "unit_ideal": true,
+        "variables": [
+          "E",
+          "S",
+          "w"
+        ],
+        "basis_size": 1,
+        "worker_groebner_seconds": 1.61,
+        "wall_seconds": 3.687,
+        "hard_timeout_seconds": 120
+      },
+      "category": "FULLY-VERIFIED"
+    },
+    {
+      "kill_id": "sub2:a9_b1000_T1_sz1_dz1_gz-#state3",
+      "source": "j6_msolve",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "timeout",
+        "hard_timeout_seconds": 120,
+        "wall_seconds": 120.032,
+        "process_killed": true
+      },
+      "category": "VERIFIED-DATA-ONLY"
+    },
+    {
+      "kill_id": "sub2:a8_b1100_T1_sz1_dz1_gz-#state0",
+      "source": "j6_msolve",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "timeout",
+        "hard_timeout_seconds": 120,
+        "wall_seconds": 120.015,
+        "process_killed": true
+      },
+      "category": "VERIFIED-DATA-ONLY"
+    },
+    {
+      "kill_id": "sub1:a9_b1000_T1_sz1_dz1_gz-#state3",
+      "source": "j6_msolve",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            1
+          ],
+          "division_quotient_degree": 3,
+          "division_remainder_coefficients": 1
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "timeout",
+        "hard_timeout_seconds": 120,
+        "wall_seconds": 120.015,
+        "process_killed": true
+      },
+      "category": "VERIFIED-DATA-ONLY"
+    },
+    {
+      "kill_id": "sub1:a8_b1100_T1_sz1_dz1_gz-#state0",
+      "source": "j6_msolve",
+      "data_checks": {
+        "master_identity": {
+          "degrees_checked": [
+            250,
+            249,
+            248
+          ],
+          "coefficients_checked": 3
+        },
+        "class_polynomial": {
+          "parameterized_factor_degrees": [
+            2
+          ],
+          "division_quotient_degree": 2,
+          "division_remainder_coefficients": 2
+        },
+        "passed": true
+      },
+      "mismatches": [],
+      "groebner": {
+        "status": "timeout",
+        "hard_timeout_seconds": 120,
+        "wall_seconds": 120.047,
+        "process_killed": true
+      },
+      "category": "VERIFIED-DATA-ONLY"
+    }
+  ],
+  "auditor_exit_code": 0,
+  "wall_seconds": 1110.36
+}

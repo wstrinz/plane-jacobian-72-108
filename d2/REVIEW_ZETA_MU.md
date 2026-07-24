@@ -1,6 +1,6 @@
 # REVIEW_ZETA_MU.md — adversarial review of ZETA_TAIL.md and the μ-ladder
 
-Independent skeptical review pass (separately prompted, no code shared with the derivation), 2026-07-23. Targets: ZETA_TAIL.md / zeta_tail.py /
+Adversarial review (skeptic), 2026-07-23. Targets: ZETA_TAIL.md / zeta_tail.py /
 zeta_tail_verify.py; upstream COMPOSITE_CHARTS.md (incl. correction block),
 PHI_F7.md, PHI_F14.md, PHI_CORNER4.md; the case compiler's F12 flag.
 Companion computations: `review_zeta_mu.py` — **31/31 confirmations hold,
@@ -78,7 +78,7 @@ match (checks D, E).
 ### 5. Cross-document consistency — **mostly consistent; three minor findings**
 
 - **COMPOSITE_CHARTS correction block: accurate.** It faithfully reports what
-  changed, quotes the correct quartic and signatures, and leaves COMPOSITE_CHARTS.md's
+  changed, quotes the correct quartic and signatures, and leaves the
   μ=1 result standing (which is right). Its dg-parity paragraph shares the
   item-3 scope overreach (above).
 - **Compiler F12 flag: consistent but incomplete.** It cites the η=0 rungs

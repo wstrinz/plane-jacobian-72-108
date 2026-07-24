@@ -1,0 +1,65 @@
+{
+ "schema": "alt-bridge-v1",
+ "soundness": {
+  "homogeneity": {
+   "G1": "156",
+   "G2": "168",
+   "G3": "180",
+   "G5": "204"
+  },
+  "phi_identical": true,
+  "sub1_caps": {
+   "dm2": 18,
+   "dm3": 21,
+   "dm4": 24
+  },
+  "alt_states_in_sub1_window": true,
+  "complement_exact_mod_q": true
+ },
+ "cases": [
+  {
+   "label": "a12_b1110_T2_degd2_6",
+   "bid": "a12_b1110_T2",
+   "deg_d2": 6,
+   "regime": "sub1",
+   "n_equations": 182,
+   "n_unknowns": 76,
+   "n_spare": 66,
+   "triage": [
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "wall": 49.1,
+     "prime": 10007
+    },
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "wall": 45.4,
+     "prime": 10009
+    },
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "wall": 45.5,
+     "prime": 100019
+    }
+   ],
+   "exact": {
+    "status": "timeout",
+    "verdict": "TIMEOUT",
+    "unit": null,
+    "dim": null,
+    "wall": 300.5
+   },
+   "verdict": "COST"
+  }
+ ],
+ "fast_builder_validated": true
+}

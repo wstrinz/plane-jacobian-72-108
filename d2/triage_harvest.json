@@ -1,0 +1,452 @@
+{
+ "metadata": {
+  "title": "Exact rational harvest of modular-triage LIKELY-EMPTY states",
+  "method": "Same generators as modular_triage, but marked roots kept as ring variables with q(r) adjoined and Groebner over Q (Singular char 0). UNIT over Q = EXACT KILL (PENDING AUDIT).",
+  "note": "A state where the exact-Q run REFUSES to confirm the mod-p UNIT prediction is flagged loudly as REFUSED."
+ },
+ "r9z3": [
+  {
+   "status": "timeout",
+   "verdict": "TIMEOUT",
+   "unit": null,
+   "dim": null,
+   "wall": 800.36,
+   "name": "R9_z3",
+   "note": "z=3, 7 master coeffs, sat(gamma,g_last,G(r)), q(r) adjoined",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": false,
+   "refused": false
+  }
+ ],
+ "system3": [
+  {
+   "status": "timeout",
+   "verdict": "TIMEOUT",
+   "unit": null,
+   "dim": null,
+   "wall": 400.05,
+   "name": "a11_b1110_T1_sup1",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": false,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 4.89,
+   "stderr": "",
+   "name": "a11_b3000_T1_sup5",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "timeout",
+   "verdict": "TIMEOUT",
+   "unit": null,
+   "dim": null,
+   "wall": 400.06,
+   "name": "a11_b3000_T1_sup9",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": false,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 1.39,
+   "stderr": "",
+   "name": "a12_b1110_T1_sup13",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 4.81,
+   "stderr": "",
+   "name": "a12_b3000_T1_sup13",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 2.41,
+   "stderr": "",
+   "name": "a14_b1000_T1_sup13",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 16.84,
+   "stderr": "",
+   "name": "a11_b1111_T2_sup13",
+   "note": "field=Q, depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 67.55,
+   "stderr": "",
+   "name": "a11_b3100_T2_sup12",
+   "note": "field=Q[r1,r2]/(q,q), r1!=r2, depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 23.95,
+   "stderr": "",
+   "name": "a12_b1110_T2_sup12",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 114.36,
+   "stderr": "",
+   "name": "a13_b1000_T2_sup11",
+   "note": "field=Q[r]/(q), depth=12, 12 tie coeffs",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  }
+ ],
+ "system4": [
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 0.94,
+   "stderr": "",
+   "name": "sub2T2_a8_b0000_dd20_dsig3",
+   "note": "8 master coeffs, no root, deg_G=3",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 0.66,
+   "stderr": "",
+   "name": "sub2T2_a8_b0000_dd21_dsig3",
+   "note": "8 master coeffs, no root, deg_G=3",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 1.45,
+   "stderr": "",
+   "name": "sub2T2_a8_b1000_dd20_dsig5",
+   "note": "8 master coeffs, 1 root, deg_G=3",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 0.83,
+   "stderr": "",
+   "name": "sub2T2_a8_b1000_dd21_dsig5",
+   "note": "8 master coeffs, 1 root, deg_G=3",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 0.73,
+   "stderr": "",
+   "name": "sub2T2_a8_b1000_dd22_dsig5",
+   "note": "8 master coeffs, 1 root, deg_G=3",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 0.55,
+   "stderr": "",
+   "name": "sub2T2_a7_b1000_dd20_dsig3",
+   "note": "8 master coeffs, 1 root, deg_G=1",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 0.62,
+   "stderr": "",
+   "name": "sub2T2_a7_b1000_dd21_dsig3",
+   "note": "8 master coeffs, 1 root, deg_G=1",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 0.48,
+   "stderr": "",
+   "name": "sub2T2_a7_b1000_dd22_dsig3",
+   "note": "8 master coeffs, 1 root, deg_G=1",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 1.14,
+   "stderr": "",
+   "name": "sub2T2_a7_b3000_dd20_dsig7",
+   "note": "8 master coeffs, 1 root, deg_G=1",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  },
+  {
+   "status": "ok",
+   "verdict": "UNIT",
+   "unit": true,
+   "dim": -1,
+   "wall": 1.52,
+   "stderr": "",
+   "name": "sub2T2_a7_b3000_dd21_dsig7",
+   "note": "8 master coeffs, 1 root, deg_G=1",
+   "modp_prediction": "LIKELY-EMPTY",
+   "exact_kill": true,
+   "refused": false
+  }
+ ],
+ "a8": {
+  "flip_count": 7,
+  "total": 24,
+  "coeffs_per_state": 16,
+  "states": [
+   {
+    "name": "a8_dd2-inf_dd10_dsig5",
+    "note": "16 master coeffs (window 239..200, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "UNIT",
+     "10009": "UNIT",
+     "100019": "UNIT"
+    },
+    "modp_flip_to_unit": true,
+    "exact": {
+     "status": "ok",
+     "verdict": "UNIT",
+     "unit": true,
+     "dim": -1,
+     "wall": 0.92,
+     "stderr": ""
+    },
+    "exact_kill": true
+   },
+   {
+    "name": "a8_dd2-inf_dd11_dsig6",
+    "note": "16 master coeffs (window 241..202, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "UNIT",
+     "10009": "UNIT",
+     "100019": "UNIT"
+    },
+    "modp_flip_to_unit": true
+   },
+   {
+    "name": "a8_dd2-inf_dd12_dsig7",
+    "note": "16 master coeffs (window 243..204, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "TIMEOUT"
+    },
+    "modp_flip_to_unit": false
+   },
+   {
+    "name": "a8_dd2-inf_dd13_dsig8",
+    "note": "16 master coeffs (window 245..206, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "TIMEOUT"
+    },
+    "modp_flip_to_unit": false
+   },
+   {
+    "name": "a8_dd20_dd10_dsig5",
+    "note": "16 master coeffs (window 239..200, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "UNIT",
+     "10009": "UNIT",
+     "100019": "UNIT"
+    },
+    "modp_flip_to_unit": true
+   },
+   {
+    "name": "a8_dd20_dd11_dsig6",
+    "note": "16 master coeffs (window 241..202, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "UNIT",
+     "10009": "UNIT",
+     "100019": "UNIT"
+    },
+    "modp_flip_to_unit": true
+   },
+   {
+    "name": "a8_dd20_dd12_dsig7",
+    "note": "16 master coeffs (window 243..204, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "TIMEOUT"
+    },
+    "modp_flip_to_unit": false
+   },
+   {
+    "name": "a8_dd20_dd13_dsig8",
+    "note": "16 master coeffs (window 245..206, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "TIMEOUT"
+    },
+    "modp_flip_to_unit": false
+   },
+   {
+    "name": "a8_dd21_dd10_dsig5",
+    "note": "16 master coeffs (window 239..200, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "UNIT",
+     "10009": "UNIT",
+     "100019": "UNIT"
+    },
+    "modp_flip_to_unit": true
+   },
+   {
+    "name": "a8_dd21_dd11_dsig6",
+    "note": "16 master coeffs (window 241..202, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "UNIT",
+     "10009": "UNIT",
+     "100019": "UNIT"
+    },
+    "modp_flip_to_unit": true
+   },
+   {
+    "name": "a8_dd21_dd12_dsig7",
+    "note": "16 master coeffs (window 243..204, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "TIMEOUT"
+    },
+    "modp_flip_to_unit": false
+   },
+   {
+    "name": "a8_dd21_dd13_dsig8",
+    "note": "16 master coeffs (window 245..206, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "TIMEOUT"
+    },
+    "modp_flip_to_unit": false
+   },
+   {
+    "name": "a8_dd22_dd10_dsig5",
+    "note": "16 master coeffs (window 239..200, gamma sat) vs triage top-3",
+    "ncoeff": 16,
+    "modp": {
+     "10007": "UNIT",
+     "10009": "UNIT",
+     "100019": "UNIT"
+    },
+    "modp_flip_to_unit": true
+   }
+  ],
+  "exact_confirmation": {
+   "state": "a8_dd2-inf_dd10_dsig5",
+   "verdict": "UNIT",
+   "wall": 0.92,
+   "exact_kill": true,
+   "note": "exact-Q over Q (no root), 16 coeffs, gamma-saturated -> UNIT"
+  }
+ },
+ "summary": {
+  "system4_exact_kills": 10,
+  "system4_total": 10,
+  "system3_exact_kills": 8,
+  "system3_total": 10,
+  "system3_cost_bound": 2,
+  "system3_refused": 0,
+  "r9z3": "TIMEOUT",
+  "a8_states_screened": 13,
+  "a8_flip_to_unit": 7,
+  "a8_cost_bound": 6,
+  "refusals_total": 0,
+  "a8_exact_kill_confirmed": true,
+  "a8_flip_pattern": "deg_sigma 5,6 flip PROPER->UNIT (3 primes); 7,8 cost-bound at cap 16"
+ }
+}

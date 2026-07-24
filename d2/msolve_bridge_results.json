@@ -1,0 +1,140 @@
+[
+ {
+  "ts": "10:14:40",
+  "result": {
+   "case": "a12_b1110_T2_d6",
+   "char": 10007,
+   "verdict": "EMPTY(KILL)",
+   "wall": 156.5,
+   "nvars": 11,
+   "ngens": 14,
+   "rss_kb": 1012552,
+   "out_head": "[-1]:",
+   "note": "a12_b1110_T2 deg_d2=6 depth=12 free-d2 tie tower, 12 tie coeffs"
+  }
+ },
+ {
+  "ts": "10:20:22",
+  "result": {
+   "case": "a12_b1110_T2_d6",
+   "char": 0,
+   "verdict": "EMPTY(KILL)",
+   "wall": 231.2,
+   "nvars": 11,
+   "ngens": 14,
+   "rss_kb": 1045520,
+   "out_head": "[-1]:",
+   "note": "a12_b1110_T2 deg_d2=6 depth=12 free-d2 tie tower, 12 tie coeffs"
+  }
+ },
+ {
+  "ts": "10:35:07",
+  "result": {
+   "case": "R9_z4",
+   "char": 10007,
+   "verdict": "TIMEOUT",
+   "wall": 900.0,
+   "nvars": 13
+  }
+ },
+ {
+  "ts": "10:42:41",
+  "result": {
+   "case": "a11_b3100_T2_d6",
+   "char": 10007,
+   "verdict": "TIMEOUT",
+   "wall": 1200.0,
+   "nvars": 13
+  }
+ },
+ {
+  "ts": "11:18:08",
+  "result": {
+   "case": "sub2_s14",
+   "char": 0,
+   "verdict": "EMPTY(KILL)",
+   "wall": 6.2,
+   "nvars": 7,
+   "ngens": 8,
+   "rss_kb": 23036,
+   "out_head": "[-1]:",
+   "note": "sub2:a9_b1000_T1_sz0_dz0_gz-#state14 degs=[1, 2, 4, 10] d2_mode=reconstructed_defect1_lincofactor 6 master coeffs, field=Q[r]/(q)"
+  }
+ },
+ {
+  "ts": "11:18:22",
+  "result": {
+   "case": "sub2_s38",
+   "char": 0,
+   "verdict": "EMPTY(KILL)",
+   "wall": 3.3,
+   "nvars": 7,
+   "ngens": 8,
+   "rss_kb": 11496,
+   "out_head": "[-1]:",
+   "note": "sub2:a9_b1000_T1_sz0_dz0_gz-#state38 degs=[1, 7, 3, 10] d2_mode=reconstructed_defect0 6 master coeffs, field=Q[r]/(q)"
+  }
+ },
+ {
+  "ts": "11:21:19",
+  "result": {
+   "case": "sub2_s94",
+   "char": 0,
+   "verdict": "EMPTY(KILL)",
+   "wall": 15.7,
+   "nvars": 7,
+   "ngens": 8,
+   "rss_kb": 45708,
+   "out_head": "[-1]:",
+   "note": "sub2:a9_b1000_T1_sz0_dz0_gz-#state94 degs=[3, 0, 4, 10] d2_mode=reconstructed_defect1_lincofactor 6 master coeffs, field=Q[r]/(q)"
+  }
+ },
+ {
+  "ts": "11:22:01",
+  "result": {
+   "case": "a11_b1111_T1_17",
+   "char": 10007,
+   "verdict": "EMPTY(KILL)",
+   "wall": 58.5,
+   "nvars": 11,
+   "ngens": 13,
+   "rss_kb": 364624,
+   "out_head": "[-1]:",
+   "note": "a11_b1111_T1_sup17 | field=Q, depth=12, 12 tie coeffs"
+  }
+ },
+ {
+  "ts": "11:30:27",
+  "result": {
+   "case": "a11_b1111_T1_17",
+   "char": 0,
+   "verdict": "EMPTY(KILL)",
+   "wall": 65.2,
+   "nvars": 11,
+   "ngens": 13,
+   "rss_kb": 372932,
+   "out_head": "[-1]:",
+   "note": "a11_b1111_T1_sup17 | field=Q, depth=12, 12 tie coeffs"
+  }
+ },
+ {
+  "ts": "11:32:40",
+  "result": {
+   "case": "sub2_s263",
+   "char": 0,
+   "verdict": "TIMEOUT",
+   "wall": 600.5,
+   "nvars": 6
+  }
+ },
+ {
+  "ts": "11:44:26",
+  "result": {
+   "case": "sub2_s268",
+   "char": 10007,
+   "verdict": "TIMEOUT",
+   "wall": 905.3,
+   "nvars": 7
+  }
+ }
+]

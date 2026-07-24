@@ -54,12 +54,16 @@ computation, never as numeric guesses: the tower data `(D,F,E,s)` off (72,108)
 case's D-transform), window-cap slopes (case degree arithmetic; the symbolic-
 in-k induction METHOD transfers), and the cascade depth constant.
 
-**Flags that fire automatically:** regime `gap>0 & r>0` (no derived point —
-the REGIME_STATUS table is data-driven; flip it when a new regime derivation lands (F7: PHI_F7.md, landed));
-`k=2` rows (N-formula unverified); `A0' != (1,0)` (F12/F13 — chart itself
-unverified, so t and kappa are conjectural); dg even (the `g(−1)=0` residual
-mechanism of every derived point fails — residual structure honestly UNKNOWN);
-non-integral gap (law undefined as stated).
+**Flags that fire automatically** (updated 2026-07-23 after the F7/composite/
+ζ-tail landings): regime `gap>0 & r>0` is now GROUNDED — the F7 test came back
+DIFFERS and the RAMIFIED law replaced the old conjecture (PHI_F7.md; refined
+by the μ-ladder, ZETA_TAIL.md), so `law_signature` branches there instead of
+flagging; `k=2` rows still flag (N-formula unverified); `A0' != (1,0)` still
+flags with an updated reason (chart now SETTLED, κ=t−2 extends per
+COMPOSITE_CHARTS.md; the residual conditionality is the ζ>0 commuting-tail
+break, models enumerated in ZETA_TAIL.md); dg even no longer means UNKNOWN —
+the residual is the ramified shape (PHI_F7.md; parity scoping per
+REVIEW_ZETA_MU.md); non-integral gap (law undefined as stated) still flags.
 
 ## Galois transfer as compiled
 
@@ -92,6 +96,6 @@ METHOD-ONLY: S-unit corner kills. Details + caveats in every dossier's
 1. **Instantiate a second case's deep structure** (the real T1/T2 test):
    build (75,125)'s C-series/D-transform from polygon data and fill the
    schematic fields — the dossier now states exactly which fields those are.
-2. **F7 (PHI_F7.md)** flips the last conjectural regime row if it matches.
+2. **F7** flips the last conjectural regime row if it matches.
 3. **Residue-layer analogue at one non-home case** would upgrade the Galois
    verdicts from CONDITIONAL and is the named blocker for layer-2 transfer.

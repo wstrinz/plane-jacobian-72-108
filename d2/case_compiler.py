@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""case_compiler.py — pilot CASE COMPILER (pilot).
+"""case_compiler.py — pilot CASE COMPILER (INDUCTIVE_PROGRAM.md architecture item).
 
 Input : a GGV5 family case (family id + j) or a special externally-sourced case
         (GGHV22 (72,108)/(108,144)).
@@ -9,7 +9,7 @@ Output: a compiled CASE DOSSIER — canonical JSON + human-readable rendering �
   (2) the predicted Phi signature from the unified seven-point corner law
       (PHI_F14.md), flagged CONJECTURAL when the case sits in a regime without a
       derived point (data-driven REGIME_STATUS table below — update it when a
-      new regime point lands, e.g. the F7 test of gap>0 & r>0, PHI_F7.md);
+      new regime point lands, e.g. the F7 test of gap>0 & r>0);
   (3) the master-identity layout in BOTH presentations (INDUCTIVE_PROGRAM.md
       amendment): eliminated / f31-style for the tropical & infinity layers, and
       the pre-resultant G-system for terminal decisions.  STRUCTURE is emitted;
@@ -87,7 +87,7 @@ SPECIAL_CASES = {
 
 # ---------------------------------------------------------------------------
 # Regime status — DATA-DRIVEN; update when a new regime point lands.
-# A regime key is (gap_positive, r_positive).  PHI_F7.md settled F7
+# A regime key is (gap_positive, r_positive).  F7 is currently being tested
 # (42,147), the smallest gap>0 & r>0 case; if it lands MATCHES, flip that row
 # to grounded and cite PHI_F7.
 # ---------------------------------------------------------------------------

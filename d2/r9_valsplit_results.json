@@ -1,0 +1,225 @@
+{
+ "states": {},
+ "cases": [
+  {
+   "label": "R9_z1_i0_j0",
+   "case": [
+    0,
+    0
+   ],
+   "n_equations": 146,
+   "n_unknowns": 37,
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.97,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.39,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.41,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 788.4
+  },
+  {
+   "label": "R9_z1_i0_j1",
+   "case": [
+    0,
+    1
+   ],
+   "n_equations": 146,
+   "n_unknowns": 37,
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.44,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.39,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.39,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 778.2
+  },
+  {
+   "label": "R9_z1_i1_j0",
+   "case": [
+    1,
+    0
+   ],
+   "n_equations": 146,
+   "n_unknowns": 37,
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.48,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.62,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.97,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 790.8
+  },
+  {
+   "label": "R9_z1_i1_j1",
+   "case": [
+    1,
+    1
+   ],
+   "n_equations": 146,
+   "n_unknowns": 37,
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 46.2,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.41,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 45.41,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "COST",
+   "wall": 799.1
+  },
+  {
+   "label": "R9_z1_i9_j1_CONTROL300",
+   "case": [
+    9,
+    1
+   ],
+   "n_equations": 146,
+   "n_unknowns": 37,
+   "modp": {
+    "primes": [
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 300.47,
+      "stderr": "",
+      "prime": 10007
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 302.23,
+      "stderr": "",
+      "prime": 10009
+     },
+     {
+      "status": "rc124",
+      "verdict": "TIMEOUT",
+      "unit": null,
+      "dim": null,
+      "wall": 302.31,
+      "stderr": "",
+      "prime": 100019
+     }
+    ],
+    "prediction": "INDETERMINATE"
+   },
+   "exact": null,
+   "verdict": "CONTROL-300s: INDETERMINATE",
+   "wall": 1649.6
+  }
+ ]
+}

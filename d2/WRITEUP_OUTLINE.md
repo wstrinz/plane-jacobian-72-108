@@ -256,7 +256,7 @@ theorem is not yet proven and the precise, machine-generated survivor list (drif
 ## Appendices
 
 - **A. Reproducibility (the suite map).** Map each claim to its checker and the authoritative
-  runner. The suite is `run_tests.sh` at the REPOSITORY ROOT (`math-stuff/run_tests.sh`,
+  runner. The suite is `run_tests.sh` at the REPOSITORY ROOT (`run_tests.sh`,
   git-tracked; it cds into `d2_plane_72_108/` — a draft of this outline mistakenly looked for
   it inside the subdirectory). The appendix should state the root-relative invocation
   explicitly. Fold in the I8 wiring list (`verify_derivation.py`,
