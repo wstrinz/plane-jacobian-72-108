@@ -19,6 +19,33 @@ Layout:
 | `run_tests.sh`, `setup.sh`, `requirements.txt` | the suite and environment setup |
 | `CITATION.cff`, `LICENSE` | citation metadata; MIT for code, CC-BY-4.0 for the math documents, third-party paper sources not included |
 
+## Update — 2026-07-23 (post-v0.1.0; no tag yet, published for review)
+
+Thirty-seven files added/updated from the source repository. New content:
+
+1. **The corner-law structure layer** — closed-form Φ derivations and the
+   μ-graded signature law at twelve exact points (`d2/PHI_75_125.md`,
+   `d2/PHI_CORNER4.md`, `d2/PHI_F14.md`, `d2/PHI_F7.md`,
+   `d2/COMPOSITE_CHARTS.md`, `d2/ZETA_TAIL.md` + derivation `.py` files),
+   each with its own exact verifier in `run_tests.sh`, plus an independent
+   skeptical review pass of the ζ/μ layer (`d2/REVIEW_ZETA_MU.md`).
+2. **Prior-art audit** (`d2/PRIOR_ART.md`) + the zero-freedom postdiction of
+   GGHV22 §4's printed `f₁` (`d2/prior_art_postdiction_verify.py`).
+3. **Window caps k=6,7,8 proven** (`d2/WINDOW_CAPS.md`); the corresponding
+   judgment flags in `d2/FULL_SYSTEM_BRIDGE.md`/`d2/BRIDGE_SWEEP.md` (both
+   newly shipped, with `d2/full_system_bridge.py`) are retired.
+4. **Galois-descent library census** (`d2/GALOIS_LIBRARY.md`) and the pilot
+   **case compiler** (`d2/CASE_COMPILER.md` + three dossier JSONs).
+5. **Kill-side status documents** — `d2/ALT_HUNT.md`, `d2/J6_MSOLVE.md`,
+   `d2/R9_SYMBOLIC.md`: the s-unit BM-candidate residual layer fully killed
+   at engine level (49/49 states) and the dm4-elimination negative result —
+   **all PENDING AUDIT** and not counted in the frontier accounting
+   (`d2/CURRENT_STATUS.md` §3b).
+
+Ten new verifiers appended to `run_tests.sh`; the full suite is green from
+this tree. Machine kill-records and certificate JSONs for the pending-audit
+layer stay in the source repository until the certificate audit round lands.
+
 ## Provenance
 
 Generated from the source working repository at commit

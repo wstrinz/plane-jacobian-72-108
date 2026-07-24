@@ -1,0 +1,193 @@
+{
+ "case": {
+  "A0": [
+   7,
+   21
+  ],
+  "A0prime": [
+   1,
+   0
+  ],
+  "A1": "(11\\7,2)",
+  "a": 2,
+  "b": 3,
+  "chain_length": 1,
+  "degrees": [
+   56,
+   84
+  ],
+  "diophantine": "(m+n)*q*k - n*(q*l - p) = 1 = k  OK",
+  "family": "F9",
+  "j": 0,
+  "k": 1,
+  "m": 2,
+  "n": 3,
+  "source": "GGV5 v11<=35 length-1 table (transcription Diophantine-checked; phi_corner4.py judgment 1)",
+  "tag": "F9_j0_56_84",
+  "v11": 28
+ },
+ "corner_signature": {
+  "N": 52,
+  "a": 2,
+  "a0": 7,
+  "b": 3,
+  "dg": 5,
+  "e": 2,
+  "gap": 0,
+  "gap_den": 1,
+  "gap_num": 0,
+  "kappa": 5,
+  "q": 2,
+  "r": 4,
+  "t": 7
+ },
+ "galois_transfer": {
+  "forcing_candidate": {
+   "degree": 4,
+   "poly": "y**4 - y**3 + y**2 - y + 1",
+   "rationale": "computed: residual H = (y^dg+1)/(y+1) \u2014 the forcing-polynomial correspondence of INDUCTIVE_PROGRAM.md (disc-17 quartic at (72,108); 10th cyclotomic at (108,144))"
+  },
+  "galois": {
+   "degree": 4,
+   "disc": "125",
+   "disc_class": 5,
+   "irreducible": true,
+   "label": "C4",
+   "method": "one rational resolvent root; factors over Q(sqrt(5)) -> C4",
+   "quadratic_subfield_classes": [
+    5
+   ]
+  },
+  "rule": "kill transfers iff Galois label in {S4,C4,A4} (or any label whose splitting field misses sqrt(Delta)) and disc class avoids {105, 170}; D4/V4 witness-decided",
+  "status": "CONDITIONAL: rule assumes the case's residue layer reproduces the (72,108) shape library on its free torus (GALOIS_LIBRARY sec.4 + judgment G1); the residue analogue is underived off (72,108)",
+  "verdicts": {
+   "C08": "KILLS",
+   "C20": "KILLS"
+  }
+ },
+ "judgment": [
+  "[judgment] unreduced polygon: the corner's explicit reduction is performed in no paper; standard type-II.b root shift + Laurent chart assumed (t=l, kappa=l-2, deg C=a0) \u2014 PHI_75_125/PHI_CORNER4/PHI_F14 shared conditional boundary",
+  "[judgment] N-formula: (b-1)/a is integral, so the corner-144 forcing-slice picture transfers verbatim (less-conditional class)",
+  "[judgment] forcing-polynomial identification for non-audited cases follows the INDUCTIVE_PROGRAM.md correspondence; only (72,108) is audited"
+ ],
+ "phi_prediction": {
+  "conjectural": false,
+  "conjectural_reasons": [],
+  "derived_reference": {
+   "signature": [
+    377,
+    107,
+    54,
+    216
+   ],
+   "source": "PHI_CORNER4.md"
+  },
+  "regime": "gap0_r_pos",
+  "regime_evidence": "derived: (108,144), (75,125), F9 (56,84), F2 j=0 (50,75), F14 (66,231) \u2014 PHI_75_125/PHI_CORNER4/PHI_F14, all MATCH",
+  "regime_grounded": true,
+  "signature": {
+   "branch": "unramified (simple root at -1; all seven derived points)",
+   "cofactor_deg": 216,
+   "deg": 377,
+   "mult_y_plus_1": 54,
+   "ord_y": 107
+  }
+ },
+ "presentations": {
+  "amendment": "BOTH presentations emitted (INDUCTIVE_PROGRAM.md adopted architecture): eliminated form for tropical/discovery, pre-resultant for terminal decisions \u2014 each layer wants its own presentation",
+  "eliminated_f31_style": {
+   "cascade_chain_shape": {
+    "instantiated": false,
+    "note": "a_branch is the cascade branch parameter (NOT the corner 'a'); the depth constant (30 = mult at (72,108)) and step are case data \u2014 schematic off (72,108)",
+    "shape": "t^v * g_(l+1) = ehat^3 * g_l + u^l * h_l; anchor t^v g_1 = h_0; v = 30 - 3*a_branch at (72,108)"
+   },
+   "infinity_layer": "v_inf = -deg; unique-max forcing with recorded tie obligations \u2014 engine transfers per INDUCTIVE_PROGRAM layer 1 (PARAMETRIC)",
+   "instantiated": false,
+   "master_identity_shape": "f_D = sum_{f=0}^{F} Phi^f * e^(E - s*f) * h_f == 0 in Q[y]",
+   "parameters": null,
+   "phi_normalized": {
+    "H": "y**4 - y**3 + y**2 - y + 1",
+    "H_note": null,
+    "deg_u_gap": 0,
+    "form": "Phi_stripped = Phi_full / (lc * y^ord) = t^mult * u_gap * H^mult, t = y+1, deg u_gap = gap, H = (y^dg+1)/(y+1)",
+    "lc": "-1/10",
+    "mult": 54,
+    "note": "instantiated from the corner law; the underlying Phi_full = f*C^N",
+    "total_stripped_degree": 270
+   },
+   "purpose": "tropical / infinity / discovery layers (window-generic engines)",
+   "schematic_note": "the tower data (D,F,E,s) requires the case's cascade construction; no f31-analogue exists off (72,108) (corner-144 recurrence: skeleton yes, numerics no \u2014 INDUCTIVE_PROGRAM.md T2). No numeric guess is offered; building the case's C-series/D-transform is the instantiating computation."
+  },
+  "pre_resultant_G_system": {
+   "G_weights": null,
+   "bridge": "schematic: the state->G-system bridge equations need the case's D-transform",
+   "generator_skeleton": "4-generator pre-resultant ideal; elimination ideal in the deep window variables is principal (= <f_D>); corner-144: skeleton recurs, numerics do not",
+   "generators": null,
+   "instantiated": false,
+   "purpose": "terminal decisions (the presentation holding strictly more information than the eliminated form)",
+   "ring": "deep window coefficients + e + spare unknowns (negative-index d's) + Phi",
+   "spare_dictionary": "r, s, dm4 = d_(-2), d_(-3), d_(-4) (FULL_SYSTEM_BRIDGE.md sec.1, verified V1)",
+   "window_caps": {
+    "pattern": "ord >= 12k; deg <= 15k (sub1) / 14k (sub2); k = 2..8",
+    "status": "slopes are case degree arithmetic (schematic); the T3 inductions close symbolically in k, so the METHOD transfers (WINDOW_CAPS.md)"
+   }
+  }
+ },
+ "schema": "case-dossier-v1",
+ "transfer_inventory": [
+  {
+   "mechanism": "tropical/infinity cascade engine",
+   "rationale": "engines run window-generically; kill laws affine in the branch parameter (t-depth 30-3a at (72,108)); sub1 26-family was a-independent until low-a infinity effects (understood)",
+   "source": "INDUCTIVE_PROGRAM.md layer 1; cascade_engine.py",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "T2 squeeze (F^2|G degree squeeze)",
+   "rationale": "the squeeze inequality is presentation-independent; the terminal law m_i = 6+2s_i-3b_i gating it is case arithmetic",
+   "source": "cascade engine C24; test_cascade_inf.py R5",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "residue library + Galois descent",
+   "rationale": "support-geometry classification of all 23 shapes is corner-independent; only case inputs are the forcing polynomial's Galois label + disc class (two-line check); caveat G1: free-torus scope",
+   "source": "GALOIS_LIBRARY.md sec. 2, 4",
+   "status": "AS-IS"
+  },
+  {
+   "mechanism": "corner law (Phi signature)",
+   "rationale": "seven exact points, t in {3,4,5,7}; AS-IS within the standard-chart length-1 class; CONJECTURAL for gap>0 & r>0, A0'=(2,0) (F12,F13) and length-2 chains (F18-F24)",
+   "source": "PHI_F14.md unified law",
+   "status": "AS-IS"
+  },
+  {
+   "mechanism": "full-system bridge (pre-resultant G-system)",
+   "rationale": "corner-144 recurrence: skeleton yes, numerics no; weights and the ~122-equation bridge need the case's D-transform",
+   "source": "FULL_SYSTEM_BRIDGE.md; INDUCTIVE_PROGRAM.md test T2",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "window caps (ord/deg caps on D_k)",
+   "rationale": "the three T3 valuation inductions close as symbolic identities in k; the slopes (12k/15k/14k at (72,108)) come from case degree arithmetic",
+   "source": "WINDOW_CAPS.md",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "divisor-lemma engine (confluent Vandermonde)",
+   "rationale": "rank/dimension statements with resultant-product determinants are polynomial in the case data",
+   "source": "INDUCTIVE_PROGRAM.md layer 3; DIVISOR_LEMMAS",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "S-unit / Mason-Stothers corner kills",
+   "rationale": "the height gate transfers as a method; the 17-does-not-divide-5 coprimality corner is instance arithmetic",
+   "source": "S_UNIT_LAYER",
+   "status": "METHOD-ONLY"
+  },
+  {
+   "mechanism": "modular triage (GB mod p)",
+   "rationale": "pipeline is case-agnostic; only the bad-prime set is case-dependent",
+   "source": "MODULAR_TRIAGE",
+   "status": "AS-IS"
+  }
+ ]
+}

@@ -106,6 +106,50 @@ tables in §1 and are not counted as closed. The independently audited layers
 
 ---
 
+## 3b. Structure layer — the corner law (added 2026-07-23; tier 2 unless noted)
+
+A new cross-family layer, developed on the GGV/GGHV corner data and checked by
+ten new suite verifiers (all exact sympy, wired into `run_tests.sh`):
+
+- **Corner law for the tower's last element Φ** (`PHI_75_125.md`,
+  `PHI_CORNER4.md`, `PHI_F14.md`, `PHI_F7.md`): twelve exact
+  derived/audited points across four regimes (t ∈ {3,4,5,7}, both gap
+  regimes), unified as a **μ-graded law** (`ZETA_TAIL.md`); the ramified and
+  unramified branch laws are its μ = dg and μ = 1 specializations.
+- **κ = t−2 chart theorem** (`PHI_CORNER4.md`, extended in
+  `COMPOSITE_CHARTS.md`): proven for the standard chart class and every
+  escape family (composite charts fuse to a single inversion); the true
+  boundary for A0′=(2,0) families is the ζ-defect model correction
+  (`ZETA_TAIL.md`), with surviving models enumerated.
+- **Prior-art audit** (`PRIOR_ART.md`): the corner-law claims checked against
+  the published GGV corpus (read, not searched). Novelty verdicts recorded
+  per claim, with required citations. Flagship check:
+  `prior_art_postdiction_verify.py` re-derives GGHV22 §4's printed
+  closed-form `f₁` and confirms the corner law **postdicts it with zero
+  fitting freedom** (12 checks).
+- **Galois-descent library** (`GALOIS_LIBRARY.md`): the 23-shape residue
+  library classified structurally; C08 and C20 are the exactly-two
+  quadratic-obstruction kills, with a two-line transfer criterion for any
+  family member.
+- **Case compiler** (`CASE_COMPILER.md`, three dossiers): corner data →
+  compiled case dossier, validated to reproduce the audited (72,108) facts
+  exactly; conjectural flags are data-driven per regime.
+- **Window caps k=6,7,8** (`WINDOW_CAPS.md`): the formerly flagged extension
+  is now recited and proven (81 checks); the corresponding [judgment] flags
+  in `FULL_SYSTEM_BRIDGE.md`/`BRIDGE_SWEEP.md` are retired.
+
+**Trust architecture (in progress).** A cofactor-certificate pipeline
+(`kill_certificate_tools.py` + the certificate-consuming spec auditor
+`audit_gb_kills.py`) now extracts engine-free-checkable certificates
+`1 = Σ cᵢfᵢ` for saturated-Gröbner kills: 29 of the 49 targeted kills have
+certificates so far (15 lift timeouts and 5 open failures recorded honestly);
+the audit census is running. Separately, the s-unit BM-candidate residual
+layer is now fully killed at engine level (`ALT_HUNT.md`, `J6_MSOLVE.md`:
+49/49 states, with mod-p corroboration) — **all pending audit**, so per the
+rule above these are NOT counted in §1 or in the frontier table yet.
+
+---
+
 ## 4. One-line summary
 
 The f37 branch is closed (C11, char 0; Lean-kernel-checked certificate). The

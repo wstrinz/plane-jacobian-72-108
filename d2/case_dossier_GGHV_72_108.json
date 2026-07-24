@@ -1,0 +1,204 @@
+{
+ "case": {
+  "A0": [
+   8,
+   28
+  ],
+  "A0prime": null,
+  "A1": null,
+  "a": 2,
+  "b": 3,
+  "chain_length": 1,
+  "degrees": [
+   72,
+   108
+  ],
+  "diophantine": "N/A (chain data externally sourced, not a GGV5 v11<=35 table row)",
+  "family": null,
+  "j": null,
+  "k": null,
+  "m": 2,
+  "n": 3,
+  "source": "GGHV22 arXiv:2204.14178 Prop 4.3 case (8,28); l=4 chart at 2204 lines 1228-1230 (PHI_CORNER4.md); audited campaign case",
+  "tag": "GGHV_72_108",
+  "v11": 36
+ },
+ "corner_signature": {
+  "N": 28,
+  "a": 2,
+  "a0": 8,
+  "b": 3,
+  "dg": 1,
+  "e": 2,
+  "gap": 4,
+  "gap_den": 1,
+  "gap_num": 4,
+  "kappa": 2,
+  "q": 7,
+  "r": 0,
+  "t": 4
+ },
+ "galois_transfer": {
+  "forcing_candidate": {
+   "degree": 4,
+   "poly": "2048*y**4 - 512*y**3 + 320*y**2 - 240*y + 195",
+   "rationale": "registry: audited resonance-gap unit cofactor (deg = gap)"
+  },
+  "galois": {
+   "degree": 4,
+   "disc": "12837954459480883200",
+   "disc_class": 17,
+   "irreducible": true,
+   "label": "S4",
+   "method": "irreducible resolvent cubic; disc class 17",
+   "quadratic_subfield_classes": [
+    17
+   ]
+  },
+  "rule": "kill transfers iff Galois label in {S4,C4,A4} (or any label whose splitting field misses sqrt(Delta)) and disc class avoids {105, 170}; D4/V4 witness-decided",
+  "status": "AUDITED (this is the home case: kills C08+C20 are proved here)",
+  "verdicts": {
+   "C08": "KILLS",
+   "C20": "KILLS"
+  }
+ },
+ "judgment": [
+  "[audited] this case's corner facts and Phi are the campaign's proven ground truth (STATE.md)",
+  "[judgment] forcing-polynomial identification for non-audited cases follows the INDUCTIVE_PROGRAM.md correspondence; only (72,108) is audited"
+ ],
+ "phi_prediction": {
+  "conjectural": false,
+  "conjectural_reasons": [],
+  "derived_reference": {
+   "signature": [
+    238,
+    204,
+    30,
+    4
+   ],
+   "source": "STATE.md (audited) / PHI_F14.md"
+  },
+  "regime": "resonance_gap_r0",
+  "regime_evidence": "audited (72,108) + derived F1 (48,64) (PHI_F14.md: unit cofactor of degree gap)",
+  "regime_grounded": true,
+  "signature": {
+   "branch": "unramified (simple root at -1; all seven derived points)",
+   "cofactor_deg": 4,
+   "deg": 238,
+   "mult_y_plus_1": 30,
+   "ord_y": 204
+  }
+ },
+ "presentations": {
+  "amendment": "BOTH presentations emitted (INDUCTIVE_PROGRAM.md adopted architecture): eliminated form for tropical/discovery, pre-resultant for terminal decisions \u2014 each layer wants its own presentation",
+  "eliminated_f31_style": {
+   "cascade_chain_shape": {
+    "instantiated": true,
+    "note": "a_branch is the cascade branch parameter (NOT the corner 'a'); the depth constant (30 = mult at (72,108)) and step are case data \u2014 schematic off (72,108)",
+    "shape": "t^v * g_(l+1) = ehat^3 * g_l + u^l * h_l; anchor t^v g_1 = h_0; v = 30 - 3*a_branch at (72,108)"
+   },
+   "infinity_layer": "v_inf = -deg; unique-max forcing with recorded tie obligations \u2014 engine transfers per INDUCTIVE_PROGRAM layer 1 (PARAMETRIC)",
+   "instantiated": true,
+   "master_identity_shape": "f_D = sum_{f=0}^{F} Phi^f * e^(E - s*f) * h_f == 0 in Q[y]",
+   "parameters": {
+    "D": 31,
+    "E": 21,
+    "F": 7,
+    "s": 3
+   },
+   "phi_normalized": {
+    "H": "1",
+    "H_note": null,
+    "deg_u_gap": 4,
+    "form": "Phi_stripped = Phi_full / (lc * y^ord) = t^mult * u_gap * H^mult, t = y+1, deg u_gap = gap, H = (y^dg+1)/(y+1)",
+    "lc": "-1/6630",
+    "mult": 30,
+    "note": "equals the audited master-identity Phi = c*t^30*q4 exactly (FULL_SYSTEM_BRIDGE.md sec.1: Phi_full/y^204 = c*t^30*q, verified)",
+    "total_stripped_degree": 34
+   },
+   "purpose": "tropical / infinity / discovery layers (window-generic engines)",
+   "schematic_note": null
+  },
+  "pre_resultant_G_system": {
+   "G_weights": [
+    156,
+    168,
+    180,
+    204
+   ],
+   "bridge": "~122 quadratic equations, 45 sub2 spare coefficients",
+   "generator_skeleton": "4-generator pre-resultant ideal; elimination ideal in the deep window variables is principal (= <f_D>); corner-144: skeleton recurs, numerics do not",
+   "generators": [
+    "G1",
+    "G2",
+    "G3",
+    "G5body+Phi"
+   ],
+   "instantiated": true,
+   "purpose": "terminal decisions (the presentation holding strictly more information than the eliminated form)",
+   "ring": "Q[d~2,d~1,d~0,e,r,s,dm4,Phi]",
+   "spare_dictionary": "r, s, dm4 = d_(-2), d_(-3), d_(-4) (FULL_SYSTEM_BRIDGE.md sec.1, verified V1)",
+   "window_caps": {
+    "pattern": "ord >= 12k; deg <= 15k (sub1) / 14k (sub2); k = 2..8",
+    "status": "PROVEN (WINDOW_CAPS.md, 81 checks; k=6,7,8 flags retired)"
+   }
+  }
+ },
+ "schema": "case-dossier-v1",
+ "transfer_inventory": [
+  {
+   "mechanism": "tropical/infinity cascade engine",
+   "rationale": "engines run window-generically; kill laws affine in the branch parameter (t-depth 30-3a at (72,108)); sub1 26-family was a-independent until low-a infinity effects (understood)",
+   "source": "INDUCTIVE_PROGRAM.md layer 1; cascade_engine.py",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "T2 squeeze (F^2|G degree squeeze)",
+   "rationale": "the squeeze inequality is presentation-independent; the terminal law m_i = 6+2s_i-3b_i gating it is case arithmetic",
+   "source": "cascade engine C24; test_cascade_inf.py R5",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "residue library + Galois descent",
+   "rationale": "support-geometry classification of all 23 shapes is corner-independent; only case inputs are the forcing polynomial's Galois label + disc class (two-line check); caveat G1: free-torus scope",
+   "source": "GALOIS_LIBRARY.md sec. 2, 4",
+   "status": "AS-IS"
+  },
+  {
+   "mechanism": "corner law (Phi signature)",
+   "rationale": "seven exact points, t in {3,4,5,7}; AS-IS within the standard-chart length-1 class; CONJECTURAL for gap>0 & r>0, A0'=(2,0) (F12,F13) and length-2 chains (F18-F24)",
+   "source": "PHI_F14.md unified law",
+   "status": "AS-IS"
+  },
+  {
+   "mechanism": "full-system bridge (pre-resultant G-system)",
+   "rationale": "corner-144 recurrence: skeleton yes, numerics no; weights and the ~122-equation bridge need the case's D-transform",
+   "source": "FULL_SYSTEM_BRIDGE.md; INDUCTIVE_PROGRAM.md test T2",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "window caps (ord/deg caps on D_k)",
+   "rationale": "the three T3 valuation inductions close as symbolic identities in k; the slopes (12k/15k/14k at (72,108)) come from case degree arithmetic",
+   "source": "WINDOW_CAPS.md",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "divisor-lemma engine (confluent Vandermonde)",
+   "rationale": "rank/dimension statements with resultant-product determinants are polynomial in the case data",
+   "source": "INDUCTIVE_PROGRAM.md layer 3; DIVISOR_LEMMAS",
+   "status": "PARAMETRIC"
+  },
+  {
+   "mechanism": "S-unit / Mason-Stothers corner kills",
+   "rationale": "the height gate transfers as a method; the 17-does-not-divide-5 coprimality corner is instance arithmetic",
+   "source": "S_UNIT_LAYER",
+   "status": "METHOD-ONLY"
+  },
+  {
+   "mechanism": "modular triage (GB mod p)",
+   "rationale": "pipeline is case-agnostic; only the bad-prime set is case-dependent",
+   "source": "MODULAR_TRIAGE",
+   "status": "AS-IS"
+  }
+ ]
+}

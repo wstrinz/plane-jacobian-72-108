@@ -54,7 +54,17 @@ echo "### D2 — exact field-split proof checks"
   python3 alt_combined_verify.py &&
   python3 alt_residue_congruences_verify.py &&
   python3 phase_f2_pilot_verify.py &&
-  python3 envelope_bounds_verify.py
+  python3 envelope_bounds_verify.py &&
+  python3 phi_75_125_verify.py &&
+  python3 phi_corner4_verify.py &&
+  python3 phi_f14_verify.py --quiet &&
+  python3 galois_library_verify.py --quiet &&
+  python3 phi_f7_verify.py --quiet &&
+  python3 prior_art_postdiction_verify.py --quiet &&
+  python3 composite_charts_verify.py --quiet &&
+  python3 zeta_tail_verify.py --quiet &&
+  python3 case_compiler_verify.py --quiet &&
+  python3 window_caps_verify.py --quiet
 ) || rc=1
 
 if [ "${SKIP_SLOW:-0}" = "1" ]; then

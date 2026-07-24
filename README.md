@@ -110,6 +110,33 @@ python3 jetlift.py control f31_sub2                     # validate the harness (
 python3 jetlift.py stats   f37_sub2 1800                # map the residual floor
 ```
 
+## New (2026-07-23): the corner law — a structure layer across cases
+
+Beyond the (72,108) kill program, this tree now carries a cross-family
+**structure layer** on the GGV/GGHV corner data — a candidate seed for an
+inductive treatment:
+
+- A **corner law** for the tower's last algebraic element Φ: closed forms and a
+  μ-graded signature law with **twelve exact derived points** across four
+  regimes (`d2/PHI_75_125.md`, `d2/PHI_CORNER4.md`, `d2/PHI_F14.md`,
+  `d2/PHI_F7.md`, `d2/ZETA_TAIL.md`), plus a proven chart theorem κ = t−2
+  (`d2/COMPOSITE_CHARTS.md`).
+- A **prior-art audit** against the published literature (`d2/PRIOR_ART.md`),
+  including the strongest available check: GGHV22 §4 prints one closed-form
+  last element (their CAS-solved `f₁` at the (9,24) corner) — and the corner
+  law **postdicts their printed polynomial exactly, with zero fitting
+  freedom**. That postdiction is machine-verified by
+  `d2/prior_art_postdiction_verify.py`, one of ten new exact-arithmetic
+  verifiers wired into `run_tests.sh`.
+- A structural classification of the 23-shape residue library via Galois
+  descent (`d2/GALOIS_LIBRARY.md`) and a pilot **case compiler**
+  (`d2/CASE_COMPILER.md`) that reproduces the audited (72,108) facts from
+  corner data alone.
+
+These are same-author checker-enforced results (tier 2), published here for
+external review; see `d2/CURRENT_STATUS.md` §3b for the honest tier/status
+accounting.
+
 ## What is NOT claimed
 
 The (72,108) case is **not closed** and nothing here proves or refutes JC(2).
