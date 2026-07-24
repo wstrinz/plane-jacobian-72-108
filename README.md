@@ -92,7 +92,8 @@ and alternate-regime kills are re-derived by spec-only auditors
 `audit_alt_regime.py`, `audit_convolution_kills*.py`, `audit_reconstruction_kills.py`
 — separately authored, no access to the engine code they check), wired into
 `run_tests.sh`. Every claim is catalogued with its checker, audit status, and a
-trust tier in `d2/PROOF_INVENTORY.md` (the single source of truth, C0–C46), and
+trust tier in `d2/PROOF_INVENTORY.md` (the claim inventory, C0–C46; for the
+current frontier and certificate counts `d2/CURRENT_STATUS.md` supersedes it), and
 the cross-front frontier counts are regenerated from the JSON artifacts into
 `d2/FRONTIER.md` rather than hand-maintained. The referee-facing skeleton is
 `d2/WRITEUP_OUTLINE.md`. A reader's map through these documents is in

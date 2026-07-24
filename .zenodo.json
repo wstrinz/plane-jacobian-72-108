@@ -1,0 +1,21 @@
+{
+    "title": "plane-jacobian-72-108: an audited computational case-closure program for the last open plane Jacobian Conjecture case below degree 125",
+    "description": "Computational program attacking the (72,108) case of the two-dimensional Jacobian Conjecture (the case (8,28) of Guccione–Guccione–Horruitiner–Valqui, arXiv:2204.14178) — the last open case below degree 125. Contains: the f37 pre-resultant elimination theorem with exact certificate and Lean kernel check (characteristic-0 scope); a branch-complete state ledger with independent spec-only auditors (zero disagreements to date); cofactor-certificate architecture for saturated-Gröbner kills; the corner-signature law for tower last elements with thirteen derived points and a machine-checked zero-freedom postdiction of the printed instance in arXiv:2204.14178 §4; the μ-graded ramification ladder with parity theorem at dg=2,4; transfer-test instantiation on the (75,125) case. The target claim C0 (case closure) remains OPEN; all frontier counts and trust tiers are stated in d2/CURRENT_STATUS.md. Exact SymPy verification suite; every load-bearing claim carries a runnable checker.",
+    "creators": [
+        {
+            "name": "Strinz, Will"
+        }
+    ],
+    "keywords": [
+        "Jacobian conjecture",
+        "affine algebraic geometry",
+        "polynomial automorphisms",
+        "computer-assisted proof",
+        "Newton polygon",
+        "computational algebra",
+        "sympy"
+    ],
+    "license": "MIT",
+    "upload_type": "software",
+    "access_right": "open"
+}
