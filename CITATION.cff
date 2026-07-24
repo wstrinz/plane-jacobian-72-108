@@ -18,7 +18,9 @@ keywords:
   - "computer-assisted proof"
   - "Groebner bases"
 license: MIT
-date-released: "2026-07-23"
+doi: 10.5281/zenodo.21534896
+version: v0.2.0
+date-released: "2026-07-24"
 references:
   - type: article
     title: "On the Jacobian Conjecture in two variables (case (8,28))"
