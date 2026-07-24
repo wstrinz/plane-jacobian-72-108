@@ -1,5 +1,7 @@
 # The plane (72,108) Jacobian case — verified reduction
 
+[![Fast checks](https://github.com/wstrinz/plane-jacobian-72-108/actions/workflows/fast-checks.yml/badge.svg)](https://github.com/wstrinz/plane-jacobian-72-108/actions/workflows/fast-checks.yml)
+
 Work on the **Jacobian Conjecture** (JC): *a polynomial map `F: C^n -> C^n` with
 nonzero-constant Jacobian determinant is invertible.* This repository holds two
 related but separate lines of work.

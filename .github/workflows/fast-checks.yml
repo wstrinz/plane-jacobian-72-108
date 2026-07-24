@@ -1,0 +1,51 @@
+name: Fast checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  fast-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install pinned SymPy
+        run: python -m pip install sympy==1.14.0
+
+      - name: Clean-clone guard
+        run: python tools/clean_clone_check.py
+
+      - name: Verify D3 counterexample
+        working-directory: d3
+        run: python verify.py
+
+      - name: Check f37 certificates
+        working-directory: d2
+        run: |
+          python f37_free_family_verify.py
+          python f37_sat_verify.py
+
+      - name: Check field-split ledgers
+        working-directory: d2
+        run: |
+          python t5_split_place_verify.py
+          python test_split_place_proofs.py
+          python test_split_place_ledger.py
+
+      # The complete sequence measured about 12m15s locally; this independent
+      # auditor was the slowest math check (~4m02s) but remains within budget.
+      - name: Run representative independent auditor
+        working-directory: d2
+        run: python audit_inf_cases.py --quiet
