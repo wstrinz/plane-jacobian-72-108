@@ -33,6 +33,14 @@ import sympy as sp
 from fractions import Fraction
 from math import gcd
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 QUIET = "--quiet" in sys.argv[1:]
 y, A = sp.symbols("y A")
 _n, _fail = 0, 0
@@ -200,8 +208,8 @@ def force_and_sign(a_, b_, t_, a0_, q_):
     c_ = y**q_ * g_
     A_ = sp.Rational(1, a_ * (t_ * rho_ - coef_ * q_))
     f_ = sp.expand(A_ * y**rho_ * g_**e_)
-    assert sp.expand(a_ * t_ * c_ * sp.diff(f_, y)
-                     - a_ * coef_ * sp.diff(c_, y) * f_ - c_**e_) == 0
+    _require(sp.expand(a_ * t_ * c_ * sp.diff(f_, y)
+                     - a_ * coef_ * sp.diff(c_, y) * f_ - c_**e_) == 0, "sp.expand(a_ * t_ * c_ * sp.diff(f_, y) - a_ * coef_ * sp.diff(c_, y) * f_ - c_**e_) == 0")
     N_ = a_ * (t_ * (a_ + b_ - 1) + 1) - 2 * b_
     return signature(f_ * c_**N_), A_
 

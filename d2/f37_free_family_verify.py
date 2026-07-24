@@ -15,6 +15,14 @@ import sympy as sp
 
 import system_generators as sysgen
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 
 ROOT = Path(__file__).resolve().parent
 # Parsed from the canonical generators.json (no pickle on the mandatory path).
@@ -34,9 +42,9 @@ def source_equations() -> tuple[sp.Expr, sp.Expr, sp.Expr]:
     raw_H5 = (state["G5body"] + Phi).subs(m4, state["sol4"])
     H5 = sp.factor(sp.numer(sp.together(raw_H5)).subs(restriction))
 
-    assert sp.expand(H2 - (-3 * (d0 * e**3 - e * s**2 + 2 * r**2 * s))) == 0
-    assert sp.expand(H3 - (-6 * d0 * e**2 * r - e**4 - 6 * r * s**2)) == 0
-    assert sp.expand(H5 - e * (2 * Phi - 3 * e**2 * s - 3 * e * r**2)) == 0
+    _require(sp.expand(H2 - (-3 * (d0 * e**3 - e * s**2 + 2 * r**2 * s))) == 0, "sp.expand(H2 - (-3 * (d0 * e**3 - e * s**2 + 2 * r**2 * s))) == 0")
+    _require(sp.expand(H3 - (-6 * d0 * e**2 * r - e**4 - 6 * r * s**2)) == 0, "sp.expand(H3 - (-6 * d0 * e**2 * r - e**4 - 6 * r * s**2)) == 0")
+    _require(sp.expand(H5 - e * (2 * Phi - 3 * e**2 * s - 3 * e * r**2)) == 0, "sp.expand(H5 - e * (2 * Phi - 3 * e**2 * s - 3 * e * r**2)) == 0")
     return H2, H3, H5
 
 
@@ -47,8 +55,8 @@ def compact_system() -> tuple[sp.Expr, sp.Expr]:
     resultant = sp.factor(sp.resultant(eq0, eq1, d0))
     product_eq = 12 * r * s * (r**2 - e * s) - e**5
     sum_eq = 3 * e * (r**2 + e * s) - 2 * Phi
-    assert sp.expand(resultant + e**2 * product_eq) == 0
-    assert sp.expand(H5 + e * sum_eq) == 0
+    _require(sp.expand(resultant + e**2 * product_eq) == 0, "sp.expand(resultant + e**2 * product_eq) == 0")
+    _require(sp.expand(H5 + e * sum_eq) == 0, "sp.expand(H5 + e * sum_eq) == 0")
     return product_eq, sum_eq
 
 
@@ -100,20 +108,20 @@ def valuation_kill() -> None:
     # e has no roots away from t and the four simple q-roots.
     q_unselected = local_options(1, 0)
     q_selected = local_options(1, 1)
-    assert q_unselected == [(0, 0, 0)]
-    assert q_selected == [(0, 5, 0)]
+    _require(q_unselected == [(0, 0, 0)], "q_unselected == [(0, 0, 0)]")
+    _require(q_selected == [(0, 5, 0)], "q_selected == [(0, 5, 0)]")
 
     t_options = [
         (a, *option)
         for a in range(11)
         for option in local_options(30, a)
     ]
-    assert t_options == [
+    _require(t_options == [
         (0, 0, 0, 0),
         (5, 6, 7, 12),
         (9, 12, 12, 21),
         (10, 10, 10, 30),
-    ]
+    ], "t_options == [ (0, 0, 0, 0), (5, 6, 7, 12), (9, 12, 12, 21), (10, 10, 10, 30), ]")
 
     # k selected q-roots contribute k to deg(e) and 5k to deg(s).
     # The infinity degree in r^2+es=2Phi/(3e) forces deg(e)=10:
@@ -128,14 +136,14 @@ def valuation_kill() -> None:
             if 34 - deg_e > max(24, deg_e + 14):
                 continue
             candidates.append((a, k, x, y, z, deg_e))
-    assert candidates == [(10, 0, 10, 10, 30, 10)]
+    _require(candidates == [(10, 0, 10, 10, 30, 10)], "candidates == [(10, 0, 10, 10, 30, 10)]")
 
     # Write e=C*t^10, r=t^10*R (deg R<=2), s=t^10*S (deg S<=4).
     # v_t(r^2-es)=30 requires t^10 | R^2-C*S, but that polynomial has
     # degree at most 4.  It would be zero, contradicting product_eq=e^5.
-    assert 30 - 20 == 10
-    assert max(2 * (12 - 10), 14 - 10) == 4
-    assert 10 > 4
+    _require(30 - 20 == 10, "30 - 20 == 10")
+    _require(max(2 * (12 - 10), 14 - 10) == 4, "max(2 * (12 - 10), 14 - 10) == 4")
+    _require(10 > 4, "10 > 4")
 
 
 def main() -> None:

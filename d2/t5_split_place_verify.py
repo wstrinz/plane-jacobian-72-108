@@ -19,6 +19,14 @@ from typing import Iterable
 
 import sympy as sp
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 
 # ---------------------------------------------------------------------------
 # Part A. Split-place valuation ledger for A^4 B = const * e^17.
@@ -53,14 +61,14 @@ def local_options(phi_order: int) -> list[tuple[int, int, int]]:
 T_OPTIONS = local_options(30)
 Q_OPTIONS = local_options(1)
 
-assert T_OPTIONS == [(0, 0, 0), (5, 17, 17), (9, 30, 33)]
-assert Q_OPTIONS == [
+_require(T_OPTIONS == [(0, 0, 0), (5, 17, 17), (9, 30, 33)], "T_OPTIONS == [(0, 0, 0), (5, 17, 17), (9, 30, 33)]")
+_require(Q_OPTIONS == [
     (0, 0, 0),
     (1, 1, 13),
     (1, 4, 1),
     (2, 1, 30),
     (5, 21, 1),
-]
+], "Q_OPTIONS == [ (0, 0, 0), (1, 1, 13), (1, 4, 1), (2, 1, 30), (5, 21, 1), ]")
 
 
 def enumerate_global_patterns() -> list[dict[str, object]]:
@@ -115,24 +123,24 @@ def enumerate_global_patterns() -> list[dict[str, object]]:
 
 
 PATTERNS = enumerate_global_patterns()
-assert len(PATTERNS) == 6
+_require(len(PATTERNS) == 6, "len(PATTERNS) == 6")
 
 mason_killed = [p for p in PATTERNS if int(p["mason_gap"]) > 0]
 exceptional = [p for p in PATTERNS if int(p["mason_gap"]) <= 0]
-assert len(mason_killed) == 2
-assert len(exceptional) == 4  # same pattern, one choice of the q-root
+_require(len(mason_killed) == 2, "len(mason_killed) == 2")
+_require(len(exceptional) == 4, "len(exceptional) == 4")  # same pattern, one choice of the q-root
 
 # The exceptional pattern is e=t^9*p, with (v_p(A),v_p(B))=(4,1).
 # The second linear relation has the form const*A + const*B = const*d*e^3.
 # Its left side has order 1 at p; the right side has order >= 3.  Contradiction.
 for row in exceptional:
     q_rows = row["q"]
-    assert isinstance(q_rows, tuple)
+    _require(isinstance(q_rows, tuple), "isinstance(q_rows, tuple)")
     nonzero = [triple for triple in q_rows if triple != (0, 0, 0)]
-    assert nonzero == [(1, 4, 1)]
+    _require(nonzero == [(1, 4, 1)], "nonzero == [(1, 4, 1)]")
     left_order = min(4, 1)
     right_order_lower_bound = 3 * 1
-    assert left_order == 1 < right_order_lower_bound
+    _require(left_order == 1 < right_order_lower_bound, "left_order == 1 < right_order_lower_bound")
 
 
 # Correct geometric stratum count: sorted multiplicity vectors at the four
@@ -145,7 +153,7 @@ def sorted_q_vectors(total_cap: int) -> list[tuple[int, int, int, int]]:
     ]
 
 
-assert sum(len(sorted_q_vectors(10 - a)) for a in range(11)) == 327
+_require(sum(len(sorted_q_vectors(10 - a)) for a in range(11)) == 327, "sum(len(sorted_q_vectors(10 - a)) for a in range(11)) == 327")
 
 
 # ---------------------------------------------------------------------------
@@ -169,16 +177,16 @@ raw_level5 = sp.expand(raw_level5.subs(sigma**2, E**3 * G / (3072 * c**6)))
 rearranged = E**3 * (g5 - (3 / c) * q**5 * d2 * G) - t**9 * q**5 * (
     q * G - 2048 * c**5 * t**5 * E**2
 )
-assert sp.cancel(raw_level5 - rearranged) == 0
-assert sp.simplify(-3 / sp.Rational(-1, 6630)) == 19890
+_require(sp.cancel(raw_level5 - rearranged) == 0, "sp.cancel(raw_level5 - rearranged) == 0")
+_require(sp.simplify(-3 / sp.Rational(-1, 6630)) == 19890, "sp.simplify(-3 / sp.Rational(-1, 6630)) == 19890")
 
 # T2 degree facts.  If N=qG-2048*c^5*t^5 E^2=E^3 S, then
 # deg(t^9 q^5 S)<=31 forces deg S<=2.  The subsequent quotient L has deg<=1.
-assert 9 + 5 * 4 == 29
-assert 31 - 29 == 2
-assert max(4 + 7, 5 + 2 * 3) == 11
-assert 11 - 3 * 3 == 2
-assert 5 - 4 == 1
+_require(9 + 5 * 4 == 29, "9 + 5 * 4 == 29")
+_require(31 - 29 == 2, "31 - 29 == 2")
+_require(max(4 + 7, 5 + 2 * 3) == 11, "max(4 + 7, 5 + 2 * 3) == 11")
+_require(11 - 3 * 3 == 2, "11 - 3 * 3 == 2")
+_require(5 - 4 == 1, "5 - 4 == 1")
 
 # T1 UFD parameterization:
 # E = gamma*s*u^2, H=eta*s*v^2, d1=delta*s^2*u^3*v.
@@ -187,7 +195,7 @@ local_escapes: list[tuple[int, int, int]] = []
 for e_order in (1, 3):
     for h_order in (1, 3):
         d1_order = (3 * e_order + h_order) // 2
-        assert 2 * d1_order == 3 * e_order + h_order
+        _require(2 * d1_order == 3 * e_order + h_order, "2 * d1_order == 3 * e_order + h_order")
 
         # Level 6 orders away from t and q:
         # E^3*G6, sigma^2, d1^2*d2, d1*e, RHS H.
@@ -212,7 +220,7 @@ for e_order in (1, 3):
         if possible:
             local_escapes.append((e_order, h_order, d1_order))
 
-assert local_escapes == [(1, 3, 3)]
+_require(local_escapes == [(1, 3, 3)], "local_escapes == [(1, 3, 3)]")
 
 # In that sole escape, level 6 forces v_s(sigma)>=2 and v_s(G6)=0.
 # Then level 5 has orders: E^3 g5 >=3; h5 has unique e^2 order 2;
@@ -226,15 +234,15 @@ exceptional_level5_orders = {
     "e2": 2,
     "rhs_g6": 0,
 }
-assert min(
+_require(min(
     exceptional_level5_orders["E3g5_lower"],
     exceptional_level5_orders["d2_sigma2_lower"],
     exceptional_level5_orders["sigma_d1sq_lower"],
     exceptional_level5_orders["d2sq_d1sq_lower"],
     exceptional_level5_orders["d1_d2_e_lower"],
     exceptional_level5_orders["e2"],
-) == 2
-assert exceptional_level5_orders["rhs_g6"] == 0
+) == 2, "min( exceptional_level5_orders[\"E3g5_lower\"], exceptional_level5_orders[\"d2_sigma2_lower\"], exceptional_level5_orders[\"sigma_d1sq_lower\"], exceptional_level5_orders[\"d2sq_d1sq_lower\"], exceptional_level5_orders[\"d1_d2_e_lower\"], exceptional_level5_orders[\"e2\"], ) == 2")
+_require(exceptional_level5_orders["rhs_g6"] == 0, "exceptional_level5_orders[\"rhs_g6\"] == 0")
 
 # With the squarefree factor s gone, deg u,deg v are 0 or 1.  The following
 # table checks the degree-domination argument for every case and every possible
@@ -269,7 +277,7 @@ def top_term_indices(deg_u: int, deg_v: int, deg_sigma: int) -> tuple[int, ...]:
 
 for deg_u, deg_v, deg_sigma in product((0, 1), (0, 1), range(9)):
     tops = top_term_indices(deg_u, deg_v, deg_sigma)
-    assert len(tops) == 1, (deg_u, deg_v, deg_sigma, tops)
+    _require(len(tops) == 1, (deg_u, deg_v, deg_sigma, tops))
 
 
 print("split-place sigma ledger: PASS")

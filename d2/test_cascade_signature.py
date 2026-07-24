@@ -7,12 +7,20 @@ import sympy as sp
 
 import cascade_signature as signature
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 
 def main() -> None:
     levels = signature.load_levels()
 
-    assert sorted(levels) == list(range(8))
-    assert [levels[index].degree_cap for index in range(8)] == [
+    _require(sorted(levels) == list(range(8)), "sorted(levels) == list(range(8))")
+    _require([levels[index].degree_cap for index in range(8)] == [
         40,
         36,
         32,
@@ -21,7 +29,7 @@ def main() -> None:
         20,
         16,
         12,
-    ]
+    ], "[levels[index].degree_cap for index in range(8)] == [ 40, 36, 32, 28, 24, 20, 16, 12, ]")
 
     d2, d1, sigma, e = signature.SIGNATURE_VARIABLES
     expected = {
@@ -47,12 +55,12 @@ def main() -> None:
         ),
     }
     for index, expression in expected.items():
-        assert sp.expand(levels[index].sigma_expression - expression) == 0, index
+        _require(sp.expand(levels[index].sigma_expression - expression) == 0, index)
 
     encoded = signature.build_signature()
-    assert encoded["source"] == "f31_graded.txt"
-    assert [level["term_count"] for level in encoded["levels"][-4:]] == [8, 5, 3, 1]
-    assert all(level["monomials"] for level in encoded["levels"])
+    _require(encoded["source"] == "f31_graded.txt", "encoded[\"source\"] == \"f31_graded.txt\"")
+    _require([level["term_count"] for level in encoded["levels"][-4:]] == [8, 5, 3, 1], "[level[\"term_count\"] for level in encoded[\"levels\"][-4:]] == [8, 5, 3, 1]")
+    _require(all(level["monomials"] for level in encoded["levels"]), "all(level[\"monomials\"] for level in encoded[\"levels\"])")
 
     print("cascade signature: PASS")
     print("  source-linked h_0,...,h_7 parse and sigma round trip")

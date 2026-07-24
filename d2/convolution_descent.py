@@ -21,6 +21,14 @@ from typing import Iterable, Mapping, Sequence
 import sympy as sp
 import t5_90t1_verify as base
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 y = base.y
 SparsePolynomial = dict[int, sp.Expr]
 
@@ -152,10 +160,10 @@ def build_ansatz(
     d0_expr, sigma_expr = resolve('d0'), resolve('sigma')
     if (d0_expr is None) == (sigma_expr is None):
         raise ValueError('specify exactly one of d0 and sigma')
-    assert d2_expr is not None and d1_expr is not None and e_expr is not None
+    _require(d2_expr is not None and d1_expr is not None and e_expr is not None, "d2_expr is not None and d1_expr is not None and e_expr is not None")
     if sigma_expr is not None:
         d0_expr = sp.expand((d2_expr**2 + sigma_expr)/4)
-    assert d0_expr is not None
+    _require(d0_expr is not None, "d0_expr is not None")
 
     parameter_set = frozenset(parameters)
     if unknowns is None:
@@ -373,7 +381,7 @@ def _self_test() -> None:
         for failure in failures:
             print(f'  {failure}')
         raise AssertionError('; '.join(failures))
-    assert final.subs(c, -sp.Rational(1, 6630)).is_zero is False
+    _require(final.subs(c, -sp.Rational(1, 6630)).is_zero is False, "final.subs(c, -sp.Rational(1, 6630)).is_zero is False")
     print('PASS: T5_90_T1 constant-E CONTRADICTION at degree 226')
 
 

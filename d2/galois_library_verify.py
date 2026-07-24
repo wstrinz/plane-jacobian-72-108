@@ -65,6 +65,14 @@ from sympy.polys.numberfields import galois_group
 
 import residue_lemmas_verify as rl
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 y = sp.Symbol("y")
 QUIET = "--quiet" in sys.argv
 CHECKS = []
@@ -83,7 +91,7 @@ def squarefree_part(value):
     value = sp.nsimplify(value)
     num, den = sp.fraction(sp.together(value))
     value = int(num) * int(den)
-    assert value != 0
+    _require(value != 0, "value != 0")
     sign = -1 if value < 0 else 1
     return sign * int(sp.prod(p for p, e in sp.factorint(abs(value)).items()
                               if e % 2))
@@ -136,8 +144,8 @@ def bezout_vector(g):
         cur_u = [int(a) * x for x in cur_u]
         cur_u[i] += int(b)
         cur_g = cur_g_new
-    assert sum(ui * gi for ui, gi in zip(cur_u, g)) == cur_g
-    assert cur_g == 1, "direction must be primitive"
+    _require(sum(ui * gi for ui, gi in zip(cur_u, g)) == cur_g, "sum(ui * gi for ui, gi in zip(cur_u, g)) == cur_g")
+    _require(cur_g == 1, "direction must be primitive")
     return cur_u
 
 
@@ -207,7 +215,7 @@ def classify(equations):
 # --------------------------------------------------- Galois branching machine
 def galois_label(q_poly):
     P = sp.Poly(q_poly, y, domain=sp.QQ)
-    assert P.is_irreducible
+    _require(P.is_irreducible, "P.is_irreducible")
     group, alt = galois_group(q_poly, y)
     order = group.order()
     disc_square = squarefree_part(sp.discriminant(q_poly, y)) == 1
@@ -228,7 +236,7 @@ def decide_kill(q_poly, delta, membership_witness=None):
     D4/V4: decided only by an exact membership witness w with
     w^2 == delta mod q (witness present => solvable => no kill); V4 with no
     witness supplied returns None (undecided here), same for D4."""
-    assert delta != 1
+    _require(delta != 1, "delta != 1")
     label = galois_label(q_poly)
     disc_class = squarefree_part(sp.discriminant(q_poly, y))
     if label in ("S4", "C4"):
@@ -238,7 +246,7 @@ def decide_kill(q_poly, delta, membership_witness=None):
         return {"label": label, "kills": True, "obs": None}
     if membership_witness is not None:
         rem = sp.rem(sp.expand(membership_witness**2 - delta), q_poly, y)
-        assert sp.expand(rem) == 0, "membership witness failed"
+        _require(sp.expand(rem) == 0, "membership witness failed")
         return {"label": label, "kills": False, "obs": None}
     return {"label": label, "kills": None, "obs": None}
 

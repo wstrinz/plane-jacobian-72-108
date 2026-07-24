@@ -7,6 +7,14 @@ import sympy as sp
 
 import t5_90t1_verify as base
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 
 # First link the local formulas to the repository source decomposition.
 H = base.load_h()
@@ -19,7 +27,7 @@ h4_source = -16*(
     + 1952*d1_source**2*d2_source**3
     + 192*d1_source*d2_source**2*e_source - 352*d2_source*e_source**2
 )
-assert sp.expand(H[4]-h4_source) == 0
+_require(sp.expand(H[4]-h4_source) == 0, "sp.expand(H[4]-h4_source) == 0")
 
 
 x, T = sp.symbols("x T", nonzero=True)
@@ -61,10 +69,10 @@ def coefficient(expr: sp.Expr, degree: int) -> sp.Expr:
 
 
 N51 = sp.factor(coefficient(N5, 1))
-assert sp.factor(N51-3072*Q0*S0**2*T**3*c**6/gamma**3) == 0
+_require(sp.factor(N51-3072*Q0*S0**2*T**3*c**6/gamma**3) == 0, "sp.factor(N51-3072*Q0*S0**2*T**3*c**6/gamma**3) == 0")
 R1 = sp.factor(coefficient(R, 1))
 N52 = sp.factor(coefficient(N5, 2).subs(S0, 0))
-assert sp.factor(N52+2048*T**6*c**5*R1**2/gamma**6) == 0
+_require(sp.factor(N52+2048*T**6*c**5*R1**2/gamma**6) == 0, "sp.factor(N52+2048*T**6*c**5*R1**2/gamma**6) == 0")
 
 # R_1=0 fixes W1. Build level 4: G4=N4/(gamma^3*x^3).
 W1_forced = sp.factor(gamma**4*T**5*(T*Q1-6*Q0)/(2*c*delta*Q0**2))
@@ -90,11 +98,11 @@ def n4_coefficient(degree: int) -> sp.Expr:
 
 
 N42 = n4_coefficient(2)
-assert sp.factor(N42-3072*Q0**2*S1**2*T**6*c**6/gamma**6) == 0
+_require(sp.factor(N42-3072*Q0**2*S1**2*T**6*c**6/gamma**6) == 0, "sp.factor(N42-3072*Q0**2*S1**2*T**6*c**6/gamma**6) == 0")
 conditions[S1] = 0
 R2 = sp.factor(coefficient(R, 2).subs(conditions))
 N43 = n4_coefficient(3)
-assert sp.factor(N43+2048*Q0*T**9*c**5*R2**2/gamma**9) == 0
+_require(sp.factor(N43+2048*Q0*T**9*c**5*R2**2/gamma**9) == 0, "sp.factor(N43+2048*Q0*T**9*c**5*R2**2/gamma**9) == 0")
 
 # R_2=0 fixes the last coefficient W2. Level 3 forces ord_x(G4)>=2,
 # hence the x^4 coefficient of N4 also vanishes.
@@ -103,7 +111,7 @@ W2_forced = sp.factor(
 )
 conditions[W2] = W2_forced
 N44 = n4_coefficient(4)
-assert sp.factor(N44-3072*Q0**2*S2**2*T**6*c**6/gamma**6) == 0
+_require(sp.factor(N44-3072*Q0**2*S2**2*T**6*c**6/gamma**6) == 0, "sp.factor(N44-3072*Q0**2*S2**2*T**6*c**6/gamma**6) == 0")
 
 print("a_t=9 geometric q-coprime T1, nonconstant E: LOCAL REDUCTION PASS")
 print("  level 5/4 alternation forces s^6 | sigma and s^3 | R")

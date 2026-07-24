@@ -37,6 +37,14 @@ import sympy as sp
 import cascade_engine as ce
 import t5_90t1_verify as base
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 NEG_INF = ce.NEG_INF
 D, X, S, E = sp.symbols("D X S E")  # leading coeffs of d2, d1, sigma, e
 LABEL = re.compile(r"^(-?\d+)\*d2\^(\d+)\*d1\^(\d+)\*sigma\^(\d+)\*e\^(\d+)$")
@@ -46,7 +54,7 @@ def parse_labels(labels: tuple[str, ...]) -> sp.Expr:
     total = sp.Integer(0)
     for label in labels:
         match = LABEL.match(label)
-        assert match, label
+        _require(match, label)
         coefficient, kd, xd, zd, ed = (int(g) for g in match.groups())
         total += coefficient * D**kd * X**xd * S**zd * E**ed
     return total
@@ -56,14 +64,14 @@ def check_a_constants() -> None:
     y = base.y
     q = base.q
     c = sp.Rational(-1, 6630)
-    assert sp.LC(q, y) == 2048
-    assert q.subs(y, -1) == 3315
+    _require(sp.LC(q, y) == 2048, "sp.LC(q, y) == 2048")
+    _require(q.subs(y, -1) == 3315, "q.subs(y, -1) == 3315")
     lc_u = c * sp.LC(q, y)
-    assert lc_u == sp.Rational(-1024, 3315)
-    assert sp.Rational(ce.LC_U) == lc_u
+    _require(lc_u == sp.Rational(-1024, 3315), "lc_u == sp.Rational(-1024, 3315)")
+    _require(sp.Rational(ce.LC_U) == lc_u, "sp.Rational(ce.LC_U) == lc_u")
     # Phi = c t^30 q with t monic: same top coefficient.
     phi = sp.expand(c * (y + 1) ** 30 * q)
-    assert sp.LC(phi, y) == lc_u
+    _require(sp.LC(phi, y) == lc_u, "sp.LC(phi, y) == lc_u")
     print("A. lc(q)=2048, q(-1)=3315, lc(u)=lc(Phi)=-1024/3315 = LC_U")
 
 
@@ -88,7 +96,7 @@ def check_b_backbone() -> None:
         maximum, labels, count, _ = ce.tropical_h_max_full(
             level, degstate, flags
         )
-        assert len(labels) == count, (level, labels)  # full tie
+        _require(len(labels) == count, (level, labels))  # full tie
         engine_side = parse_labels(labels)
         # Reference: recompute the tied initial form directly from source.
         rows = ce.MONOMIALS[level]
@@ -97,14 +105,14 @@ def check_b_backbone() -> None:
             for exponents, coefficient in rows
         ]
         top = max(value for value, _, _ in values)
-        assert top == maximum
+        _require(top == maximum, "top == maximum")
         reference = sum(
             int(coefficient) * D**e[0] * X**e[1] * S**e[2] * E**e[3]
             for value, e, coefficient in values
             if value == top
         )
-        assert sp.expand(engine_side - reference) == 0, level
-        assert sp.expand(engine_side - relation) == 0, level
+        _require(sp.expand(engine_side - reference) == 0, level)
+        _require(sp.expand(engine_side - relation) == 0, level)
     print(
         "B. depth-1 infinity tie equations == residue-lemma initial forms "
         "(P6/P10/P11 at degstate (2,3,4,5))"
@@ -122,26 +130,22 @@ def check_c_forbidden_drops() -> None:
         maximum, labels, _, exponent_set = ce.tropical_h_max_full(
             level, degstate, flags
         )
-        assert (level, exponent_set) in ce.FORBIDDEN_RISES, (
+        _require((level, exponent_set) in ce.FORBIDDEN_RISES, (
             level,
             exponent_set,
-        )
+        ))
         saved = ce.APPLY_RESIDUE_KILLS
         try:
             ce.APPLY_RESIDUE_KILLS = False
             options_off = ce.deg_h_options(level, degstate, flags)
-            assert len(options_off) > 1  # drops offered without the lemma
+            _require(len(options_off) > 1, "len(options_off) > 1")  # drops offered without the lemma
             ce.APPLY_RESIDUE_KILLS = True
             options_on = ce.deg_h_options(level, degstate, flags)
-            assert options_on == [(maximum, ())], options_on
-            assert (
-                ce.deg_h_options(level, degstate, flags, required=maximum - 1)
-                == []
-            )
-            assert (
-                ce.deg_h_options(level, degstate, flags, required=NEG_INF)
-                == []
-            )
+            _require(options_on == [(maximum, ())], options_on)
+            _require(ce.deg_h_options(level, degstate, flags, required=maximum - 1)
+                == [], "ce.deg_h_options(level, degstate, flags, required=maximum - 1) == []")
+            _require(ce.deg_h_options(level, degstate, flags, required=NEG_INF)
+                == [], "ce.deg_h_options(level, degstate, flags, required=NEG_INF) == []")
         finally:
             ce.APPLY_RESIDUE_KILLS = saved
     print(
@@ -155,22 +159,22 @@ def check_d_engine_labels() -> None:
         9, "T2", 37, 4, False, False, {6: False, 5: False, 4: False},
         (0.0, NEG_INF, 0.0, 10.0),
     )
-    assert profiles
+    _require(profiles, "profiles")
     cancellations = [
         obligation
         for profile in profiles
         for obligation in profile.obligations
         if obligation.kind == "leading_cancellation"
     ]
-    assert cancellations
+    _require(cancellations, "cancellations")
     obligation = cancellations[0]
-    assert obligation.level == 5
+    _require(obligation.level == 5, "obligation.level == 5")
     g_side, h_side = obligation.tied
-    assert g_side == "lc(ehat)^3*lc(g5)"
+    _require(g_side == "lc(ehat)^3*lc(g5)", "g_side == \"lc(ehat)^3*lc(g5)\"")
     prefix = f"({ce.LC_U})^5*["
-    assert h_side.startswith(prefix) and h_side.endswith("]"), h_side
+    _require(h_side.startswith(prefix) and h_side.endswith("]"), h_side)
     inner = parse_labels(tuple(h_side[len(prefix):-1].split(" + ")))
-    assert sp.expand(inner - 2048 * E**2) == 0, inner
+    _require(sp.expand(inner - 2048 * E**2) == 0, inner)
     print(
         "D. emitted a9-T2 tie labels reconstruct "
         "lc(ehat)^3*lc(g5) + (-1024/3315)^5*2048*lc(e)^2 = 0"

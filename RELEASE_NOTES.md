@@ -1,3 +1,39 @@
+# 2026-07-25 — the family wave
+
+- **Certificate-tower experiment (F2_TOWER.md)**: first machine reproduction of
+  GGV3 §5's historical (50,75) kill, bit-exact in both reduced charts. Verdict
+  on extending it to (75,125) by the family block rule: **BLOCK-OBSTRUCTION** —
+  the algebraic layer transfers exactly, but the kill lives in the window
+  lattice with period q_window = 5a−3, and gcd(7,12)=1: incommensurate. The
+  required tool (a bigraded/period-12 window engine) is now uniquely determined.
+- **Family grammar (FAMILY_GRAMMAR.md)**: all 17 length-1 families classified —
+  8 closed-form, 9 rung-structured, 0 irregular — governed by one theorem
+  (pure ansatz ⟺ gap = 0, universal constant A = −1/(a·dg)). 210-check verifier.
+- **Chain natural-history survey (CHAIN_SURVEY.md)**: GGV5's enumeration
+  reproduced exactly (with a documented erratum: the printed F6 base pair
+  violates the paper's own coprimality; corrected (6j+7,16j+18)), extended to
+  v11 ≤ 100 (3995 families). Fine censuses never stabilize; coarse regime
+  clusters plateau at ~20 — a bounded grammar of reduction shapes with
+  unbounded numeric labels.
+- **Polygon-reduction compiler (POLYGON_REDUCTION.md)**: input chain data,
+  output the complete reduction with an explicit branch manifest. Reproduces
+  the published (8,28) reduction exactly; derives (50,75) and (75,125) —
+  discharging the standing "unreduced polygon" judgment for (75,125).
+- **Coverage proof-DAG v1 (PROOF_DAG.md)**: closure is now a computed fact
+  (certificate → state → cell → branch → subcase → C0; 4455 nodes). Its
+  report currently finds 3 real doc-vs-data inconsistencies (fixes in
+  progress) — shipped as-is: this is the machine-honesty layer working.
+- **Proof-gate hardening (HARDENING_NOTES.md)**: 532 proof-critical asserts
+  across 29 checkers converted to explicit exit-1 gates (immune to python -O);
+  generated artifacts now byte-deterministic (SHA-256 + git-commit provenance).
+- Cross-program/literature: EUMEMIC_MAP.md (shared five-step schema with the
+  Weyl-algebra program; import candidates), ML_RESTRICTION.md (Makar-Limanov
+  2025 restriction: inapplicable to these polygons — machine-checked),
+  ALT_ELIM.md (alt-bridge spare elimination: sound, wall persists —
+  formulation-level), kill_certificate_msolve.py (mod-p reconstruction lift
+  route for the hard certificates; batch execution pending).
+- chain_survey_data.json is 3.3 MB (full enumeration; JSON-artifact precedent).
+
 # Release notes — public release tree
 
 ## What this tree is

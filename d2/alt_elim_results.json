@@ -1,0 +1,146 @@
+{
+ "schema": "alt-elim-v1",
+ "role": {
+  "a12_b1110_T2_degd2_6": "control",
+  "a11_b3100_T2_degd2_6": "prize"
+ },
+ "elimination_census": {
+  "regime": "sub1",
+  "caps": {
+   "dm2": 18,
+   "dm3": 21,
+   "dm4": 24
+  },
+  "spare_scalars_total": 66,
+  "spare_scalars_per": {
+   "dm2": 19,
+   "dm3": 22,
+   "dm4": 25
+  },
+  "eliminated_symbolically": {
+   "dm4": 25
+  },
+  "remaining_after_dm4": 41,
+  "unique_guaranteed_pivot_spare": "dm4",
+  "pivot_of_G1_in_dm4": "3*dm1 (= 3*e, guaranteed nonzero)",
+  "greedy_note": "dm4 is the UNIQUE spare with a guaranteed-nonzero linear pivot; dm3/dm2 pivots are spare-valued or the term is quadratic (see pivot_census) -- no further guaranteed-nonzero-pivot linear elimination exists. Per-state scalar presolve (constant pivots) removes more at instantiation."
+ },
+ "cases": [
+  {
+   "label": "a12_b1110_T2_degd2_6",
+   "bid": "a12_b1110_T2",
+   "deg_d2": 6,
+   "regime": "sub1",
+   "n_spare": 41,
+   "triage_numroot": [
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "neq": 187,
+     "wall": 45.3,
+     "prime": 10007,
+     "roots": [
+      9869
+     ]
+    },
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "neq": 187,
+     "wall": 45.3,
+     "prime": 10009,
+     "roots": [
+      6629
+     ]
+    },
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "neq": 187,
+     "wall": 45.3,
+     "prime": 100019,
+     "roots": [
+      88669
+     ]
+    }
+   ],
+   "n_equations": 187,
+   "exact_singular": {
+    "status": "timeout",
+    "verdict": "TIMEOUT",
+    "unit": null,
+    "dim": null,
+    "neq": null,
+    "wall": 300.3
+   },
+   "verdict": "COST",
+   "wall": 436.4
+  },
+  {
+   "label": "a11_b3100_T2_degd2_6",
+   "bid": "a11_b3100_T2",
+   "deg_d2": 6,
+   "regime": "sub1",
+   "n_spare": 41,
+   "triage_numroot": [
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "neq": 187,
+     "wall": 45.3,
+     "prime": 10007,
+     "roots": [
+      9869,
+      2540
+     ]
+    },
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "neq": 187,
+     "wall": 45.3,
+     "prime": 10009,
+     "roots": [
+      6629,
+      5840
+     ]
+    },
+    {
+     "status": "timeout",
+     "verdict": "TIMEOUT",
+     "unit": null,
+     "dim": null,
+     "neq": 187,
+     "wall": 45.3,
+     "prime": 100019,
+     "roots": [
+      88669,
+      86040
+     ]
+    }
+   ],
+   "n_equations": 187,
+   "exact_singular": {
+    "status": "timeout",
+    "verdict": "TIMEOUT",
+    "unit": null,
+    "dim": null,
+    "neq": null,
+    "wall": 300.2
+   },
+   "verdict": "COST",
+   "wall": 436.4
+  }
+ ],
+ "control_verdict": "COST"
+}

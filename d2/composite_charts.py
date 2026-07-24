@@ -366,7 +366,7 @@ for name, (m, n), t_f, a0_f, q_f in SURVEY:
     if gap_f > 0 and r_f > 0 and dg_f % 2 == 1:
         note.append(f"gap>0,r>0 with dg ODD -- outside the standard-15 parity lemma")
     if gap_f < 0:
-        note.append("NEGATIVE gap: res < pure, regime unobserved anywhere")
+        note.append("NEGATIVE gap: res < pure (CHAIN_SURVEY.md: 588/3995 families at v11<=100 share this regime; no derived Phi point yet)")
     print(f"  {name:5}{str((aa, bb)):>8}{t_f:>3}{kap:>4}{a0_f:>4}{q_f:>3}{e_f:>3}"
           f"{r_f:>3}{dg_f:>4}{N_f:>5}{str(gap_f):>5}   {'; '.join(note)}")
 print("\n  F13 j=1 is Orevkov's extensively analyzed case (GGV5 remark, line 1789).")

@@ -126,7 +126,7 @@ realize at F12 — rung support varies by corner.
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | F12 | (3,7) | 4 | 2 | 8 | 5 | 5 | 2 | 3 | 97 | 2 | dg ODD in gap>0,r>0; conditional sig (814,506,102,206) |
 | F13 | (2,13) | 3 | 1 | 9 | 7 | 12 | 1 | 2 | 60 | 3 | dg=2: PHI_F7's obstruction applies verbatim if the model holds; j=1 is Orevkov's case |
-| F22 | (2,3) | 4 | 2 | 8 | 2 | 2 | 5 | 6 | 28 | **−1** | NEGATIVE gap — res < pure, regime unobserved anywhere |
+| F22 | (2,3) | 4 | 2 | 8 | 2 | 2 | 5 | 6 | 28 | **−1** | NEGATIVE gap — res < pure (updated per CHAIN_SURVEY.md: 588/3995 families at v11≤100 populate this regime; still no derived Phi point) |
 | F23 | (2,7) | 4 | 2 | 8 | 4 | 6 | 3 | 4 | 52 | 1 | dg even |
 | F24 | (3,4) | 8 | 6 | 8 | 3 | 2 | 4 | 5 | 139 | 1 | dg ODD; only two-transformation chain |
 

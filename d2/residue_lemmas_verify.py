@@ -14,6 +14,14 @@ from pathlib import Path
 import sympy as sp
 from sympy.polys.numberfields import galois_group
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 ROOT = Path(__file__).resolve().parent
 WINDOWS = {"sub2": ROOT / "cascade_cones_qt.json",
            "sub1": ROOT / "cascade_cones_sub1_qt.json"}
@@ -33,7 +41,7 @@ def load_h():
             raw[int(match.group(1))] = sp.sympify(
                 match.group(2), locals={"d0": d0, "d1": d1,
                                         "d2": d2, "dm1": dm1})
-    assert sorted(raw) == list(range(8))
+    _require(sorted(raw) == list(range(8)), "sorted(raw) == list(range(8))")
     return {level: sp.expand(expr.subs(d0, (sigma+d2**2)/4))
             for level, expr in raw.items()}
 
@@ -56,7 +64,7 @@ def tied_support(text):
     expr = sp.sympify(text, locals={"d2": d2, "d1": d1,
                                    "sigma": sigma, "e": dm1})
     parsed = sp.Poly(expr, *VARS, domain=sp.QQ).terms()
-    assert len(parsed) == 1
+    _require(len(parsed) == 1, "len(parsed) == 1")
     return parsed[0]
 
 
@@ -69,8 +77,8 @@ def inventory(rows, terms):
                     checked = []
                     for text in ob.get("tied", []):
                         support, json_coeff = tied_support(text)
-                        assert support in terms[ob["level"]]
-                        assert json_coeff == terms[ob["level"]][support]
+                        _require(support in terms[ob["level"]], "support in terms[ob[\"level\"]]")
+                        _require(json_coeff == terms[ob["level"]][support], "json_coeff == terms[ob[\"level\"]][support]")
                         checked.append(support)
                     key = (place["place"], int(ob["level"]), ob["kind"],
                            tuple(sorted(checked)))
@@ -85,7 +93,7 @@ def residue_shapes(inventories, terms):
               for key in freq if key[3] and key[2] in
               {"monomial_tie_rise", "identical_vanishing"}}
     ordered = sorted(shapes, key=lambda item: (-item[0], len(item[1]), item[1]))
-    assert len(ordered) == 23
+    _require(len(ordered) == 23, "len(ordered) == 23")
     equations = {}
     for number, (level, support) in enumerate(ordered, 1):
         equations[f"C{number:02}"] = sp.expand(sum(
@@ -135,39 +143,39 @@ def rational_witnesses():
 def verify_constraints(equations):
     kills = {"C08", "C20"}
     witnesses = rational_witnesses()
-    assert set(witnesses) == set(equations) - kills
+    _require(set(witnesses) == set(equations) - kills, "set(witnesses) == set(equations) - kills")
     for name, point in witnesses.items():
         used = equations[name].free_symbols
-        assert used <= set(point) and all(point[v] != 0 for v in used)
-        assert sp.expand(equations[name].subs(point)) == 0
+        _require(used <= set(point) and all(point[v] != 0 for v in used), "used <= set(point) and all(point[v] != 0 for v in used)")
+        _require(sp.expand(equations[name].subs(point)) == 0, "sp.expand(equations[name].subs(point)) == 0")
 
     # Derive the two torus quadratics from the source equations.
     r, quadratics = sp.Symbol("r"), {}
     for name in kills:
         reduced = equations[name].subs({D: 1, X: 1, E: r})
         quadratics[name] = sp.Poly(reduced, r, domain=sp.QQ).primitive()[1]
-        assert quadratics[name].degree() == 2
+        _require(quadratics[name].degree() == 2, "quadratics[name].degree() == 2")
     discriminants = {name: poly.discriminant()
                      for name, poly in quadratics.items()}
-    assert {squarefree_part(value) for value in discriminants.values()} == {105, 170}
+    _require({squarefree_part(value) for value in discriminants.values()} == {105, 170}, "{squarefree_part(value) for value in discriminants.values()} == {105, 170}")
     for name, poly in quadratics.items():
         roots = sp.solve(poly.as_expr(), r)
-        assert len(roots) == 2 and all(root.is_real is True and root != 0
-                                       for root in roots)
-        assert all(sp.expand(equations[name].subs({D: 1, X: 1, E: root})) == 0
-                   for root in roots)
+        _require(len(roots) == 2 and all(root.is_real is True and root != 0
+                                       for root in roots), "len(roots) == 2 and all(root.is_real is True and root != 0 for root in roots)")
+        _require(all(sp.expand(equations[name].subs({D: 1, X: 1, E: root})) == 0
+                   for root in roots), "all(sp.expand(equations[name].subs({D: 1, X: 1, E: root})) == 0 for root in roots)")
 
     # q has S4 splitting field. Its derived subgroup has order 12, hence the
     # unique quadratic subfield is its discriminant field Q(sqrt(17)).
-    assert sp.Poly(q, y, domain=sp.QQ).is_irreducible
+    _require(sp.Poly(q, y, domain=sp.QQ).is_irreducible, "sp.Poly(q, y, domain=sp.QQ).is_irreducible")
     group, alternating = galois_group(q, y)
-    assert group.order() == 24 and not alternating
-    assert group.derived_subgroup().order() == 12
+    _require(group.order() == 24 and not alternating, "group.order() == 24 and not alternating")
+    _require(group.derived_subgroup().order() == 12, "group.derived_subgroup().order() == 12")
     factors = sp.factorint(sp.discriminant(q, y))
     squarefree = sp.prod(p for p, exponent in factors.items() if exponent % 2)
-    assert squarefree == 17
-    assert all(squarefree_part(value) != squarefree
-               for value in discriminants.values())
+    _require(squarefree == 17, "squarefree == 17")
+    _require(all(squarefree_part(value) != squarefree
+               for value in discriminants.values()), "all(squarefree_part(value) != squarefree for value in discriminants.values())")
 
 
 def verify_global_flag_cuts(h, rows_by_window):
@@ -178,7 +186,7 @@ def verify_global_flag_cuts(h, rows_by_window):
         combos = {(row["branch"] == "T2", bool(case["d2_zero"]),
                    bool(case["sigma_zero"]))
                   for row in rows for case in row["survivor_cases"]}
-        assert combos == expected
+        _require(combos == expected, "combos == expected")
         for t2, d2_zero, sigma_zero in combos:
             subs = {}
             if t2:
@@ -189,15 +197,15 @@ def verify_global_flag_cuts(h, rows_by_window):
                 subs[sigma] = 0
             for level in (4, 5, 6):
                 cut = sp.Poly(sp.expand(h[level].subs(subs)), *VARS)
-                assert cut.terms()
+                _require(cut.terms(), "cut.terms()")
                 if len(cut.terms()) == 1:
                     (_, coefficient), = cut.terms()
-                    assert coefficient != 0
+                    _require(coefficient != 0, "coefficient != 0")
 
 
 def verify_incidence(inventories, ordered):
-    assert len(inventories["sub2"][0]) == 41
-    assert len(inventories["sub1"][0]) == 67
+    _require(len(inventories["sub2"][0]) == 41, "len(inventories[\"sub2\"][0]) == 41")
+    _require(len(inventories["sub1"][0]) == 67, "len(inventories[\"sub1\"][0]) == 67")
     shape_by_id = {f"C{i:02}": shape for i, shape in enumerate(ordered, 1)}
 
     def uses(label, name):
@@ -209,19 +217,19 @@ def verify_incidence(inventories, ordered):
             return 0, set()
         return sum(freq[key] for key in keys), set().union(*(cells[key] for key in keys))
 
-    assert uses("sub2", "C04")[0] == 132 and uses("sub1", "C04")[0] == 621
-    assert uses("sub2", "C10")[0] == 145 and uses("sub1", "C10")[0] == 910
-    assert uses("sub2", "C23")[0] == 145 and uses("sub1", "C23")[0] == 937
-    assert (uses("sub2", "C08")[0], len(uses("sub2", "C08")[1])) == (15, 3)
-    assert (uses("sub1", "C08")[0], len(uses("sub1", "C08")[1])) == (304, 54)
-    assert uses("sub2", "C20") == (0, set())
-    assert (uses("sub1", "C20")[0], len(uses("sub1", "C20")[1])) == (17, 8)
+    _require(uses("sub2", "C04")[0] == 132 and uses("sub1", "C04")[0] == 621, "uses(\"sub2\", \"C04\")[0] == 132 and uses(\"sub1\", \"C04\")[0] == 621")
+    _require(uses("sub2", "C10")[0] == 145 and uses("sub1", "C10")[0] == 910, "uses(\"sub2\", \"C10\")[0] == 145 and uses(\"sub1\", \"C10\")[0] == 910")
+    _require(uses("sub2", "C23")[0] == 145 and uses("sub1", "C23")[0] == 937, "uses(\"sub2\", \"C23\")[0] == 145 and uses(\"sub1\", \"C23\")[0] == 937")
+    _require((uses("sub2", "C08")[0], len(uses("sub2", "C08")[1])) == (15, 3), "(uses(\"sub2\", \"C08\")[0], len(uses(\"sub2\", \"C08\")[1])) == (15, 3)")
+    _require((uses("sub1", "C08")[0], len(uses("sub1", "C08")[1])) == (304, 54), "(uses(\"sub1\", \"C08\")[0], len(uses(\"sub1\", \"C08\")[1])) == (304, 54)")
+    _require(uses("sub2", "C20") == (0, set()), "uses(\"sub2\", \"C20\") == (0, set())")
+    _require((uses("sub1", "C20")[0], len(uses("sub1", "C20")[1])) == (17, 8), "(uses(\"sub1\", \"C20\")[0], len(uses(\"sub1\", \"C20\")[1])) == (17, 8)")
 
 
 def main():
     h = load_h()
     terms = source_terms(h)
-    assert tuple(len(terms[level]) for level in (6,5,4)) == (3,5,8)
+    _require(tuple(len(terms[level]) for level in (6,5,4)) == (3,5,8), "tuple(len(terms[level]) for level in (6,5,4)) == (3,5,8)")
     print("V1. parsed source and recovered h6/h5/h4 term counts             OK")
     rows = {label: survivors(path) for label, path in WINDOWS.items()}
     inventories = {label: inventory(rows[label], terms) for label in WINDOWS}

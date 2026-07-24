@@ -1193,3 +1193,1110 @@ C. Prove the envelope bounds (v_{2,−1}, v_{−2,1} induction per template);
   inferred dead by the Pilot-B depth-9 analogy, NOT claimed). Kills
   ENGINE+LEMMA-PROVEN PENDING AUDIT. Queued: mod-p precheck + long
   detached rational runs for the two deg-6 states.
+- TRIAGE HARVEST — 19 EXACT KILLS, ZERO REFUSALS, A8 REVERSED
+  (2026-07-23): `triage_harvest.py/.json`, `TRIAGE_HARVEST.md`,
+  verifier (re-run locally, PASS; independent sympy-Groebner
+  cross-CAS re-derivations). (1) a7/a8 T2 pattern-B sample: **10/10
+  EXACT KILLS over Q** (<2s each, 8 coefficients + q(r)) — the T2
+  tie frontier is falling exactly as the modular map predicted.
+  (2) Flipped alt NARROWED states: **8/10 EXACT KILLS** at full tie
+  depth (incl. the over-Q flagship a11_b1111_T2 and the two-root
+  a11_b3100_T2); the 2 misses are 400s-budget cost, not refusal.
+  (3) R9 z=3: cost-bound over Q (astronomical integer swell), mod-p
+  EMPTY stands — needs the multi-modular route. (4) **A8 REVERSAL**:
+  the LIKELY-SOLVABLE triage verdict was a 3-coefficient truncation
+  artifact — at 10-16 coefficients the deg_sigma 5/6 states flip
+  PROPER->UNIT on all primes, and a8_dd2-inf_dd10_dsig5 is UNIT
+  OVER Q in 0.92s (exact kill): a8 needed MORE EQUATIONS, not
+  real/sign mathematics; deg_sigma 7/8 remain cost-bound.
+  HEADLINE DISCIPLINE FACT: zero states anywhere returned
+  PROPER-over-Q where mod-p said UNIT — the triage map is
+  trustworthy. All 19 kills PENDING AUDIT (queue a GB-kill auditor
+  extension next round: these are saturated-unit-ideal certificates,
+  auditable by cofactor extraction like the NulLA style).
+- PUBLIC REPO LIVE (2026-07-23): github.com/wstrinz/plane-jacobian-72-108
+  (public, commit 548237e) — the clean release tree (layout: README /
+  VERIFICATION / d2 / d3 / lean / docs; PUBLICATION_AUDIT exclusions
+  applied: no third-party tex, no drafts, no leaks/logs). Publish
+  gate: d3 verify + f37_sat_verify re-run green IN the release tree;
+  the builder lane's full-suite run continues as belt-and-braces
+  (any late failure = fix-forward commit). Contact drafts can now
+  carry the real URL. The private workspace repo remains the working
+  home; releases flow one-way into the public tree.
+- FULL-SYSTEM BRIDGE — THE CONCEPTUAL GAP IS RETIRED (2026-07-23):
+  `full_system_bridge.py`, `FULL_SYSTEM_BRIDGE.md`, verifier (13/13,
+  re-run locally; V2 proves bridge >= cascade via the audited
+  ideal-membership cofactors; V4 re-derives the pilot on fresh prime
+  32003). The bridge: state -> augmented G-system with stripped spare
+  unknowns dm2/dm3/dm4 (weighted-homogeneity strip proven: G-weights
+  156/168/180/204), ansatz cost only 45 (sub2) / 66 (sub1) spare
+  coefficients — ~122 quadratic equations per state. PILOT VERDICT:
+  the a8 deg_sigma=7 state (MODULAR_TRIAGE "LIKELY-SOLVABLE") is
+  **UNIT OVER EXACT Q IN 8.75s** under the pure G-system (zero f31
+  coefficients needed) — the a8 germ does not lift; no surviving
+  germ found. CONSEQUENCE: everything that resists f31-alone has a
+  cheap second gate; the "genuinely-solvable residue" risk is now
+  carried only by [judgment] items (k=6..8 window-cap transcription,
+  low risk) and whatever the bridge itself fails to kill — none
+  found yet. NEXT (dispatched): bridge sweep across the R9 column,
+  the structural blowup cases, and every remaining UNRESOLVED class.
+- GPT-PRO REVIEW IN (2026-07-23): external review of the public repo —
+  verdict: "a legitimate flag ... one mathematically substantive and
+  unusually clean result" (the f37 elimination as centerpiece; the
+  membership identity ALONE suffices — the Groebner exactness claim
+  is not load-bearing, a better referee framing). REAL DEFECTS
+  CAUGHT (fix lane running): (1) clean-checkout break —
+  envelope_bounds_verify reads the excluded arXiv tex, so the public
+  suite cannot pass from a fresh clone (the builder had gated
+  against a tree still containing it); fix = original
+  upstream_facts.json + optional provenance mode + a clean-clone CI
+  gate; (2) pickle in the verification path — replace with canonical
+  generators.json; (3) "over every field" overclaim — the Lean
+  multiplier D = 46875 = 3*5^6 blocks char 3,5; scope to char 0;
+  (4) f37_sat_verify Part B is tautological (reframe, not delete);
+  (5) Lean claim wording narrowed; (6) CITATION TODOs + env pinning;
+  plus D3 fiber -> explicit lex-Groebner triangular basis, and one
+  CURRENT_STATUS.md superseding the inventory's log-vs-truth
+  ambiguity. WORLD UPDATES from the review: Tao's 2026-07-21
+  digestion post analyzes D3 and identifies the dim-2 obstruction
+  (resultant scaling exponent n-2 = 0 — the plane's exceptionality
+  in one line); the competing Helali program's OWN audit retracted
+  its (72,108) closure claim (Zenodo now: "strong machine evidence
+  ... not yet a complete proof") — NO competing completed proof
+  exists; fresh preprint arXiv:2607.20210: Gm-equivariant plane
+  Keller maps are automorphisms. STRATEGIC (recorded for the next
+  campaign): the reviewer ranks the scalable outputs as (a) a
+  PARAMETRIC pre-resultant elimination theorem (Bezout/Koszul
+  structure of the certificate; same ideal at (108,144)?), (b) a
+  global divisor/infinity obstruction engine (rewrite ledgers as
+  divisor inequalities; Riemann-Roch/Mason arguments), (c)
+  proof-producing tropical search with Farkas certificates
+  replacing bespoke branch scripts. Suggested GGHV opener quoted
+  verbatim in the review and adopted for the contact draft.
+- BLOWUP DIAGNOSIS FINAL — FIRST WHOLE BRANCH AT 8/8 + THE RAM
+  ANSWER (2026-07-23): `BLOWUP_DIAGNOSIS.md` + tool bridges landed
+  (msolve 0.10.1 built from source in WSL — the decisive engine;
+  nulla_unit_cert.py live with an honest negative on deep systems).
+  FIVE new exact char-0 kills (msolve, PENDING AUDIT; .ms systems
+  archived for independent re-derivation): **a12_b1110_T2 deg-d2=6 —
+  taking that branch to 8/8, the program's FIRST WHOLE-BRANCH
+  CLOSURE (pending audit of this final kill + the roll-up)**;
+  a11_b1111_T1 #17 (last triage indeterminate); sub2 s14/s38/s94
+  (3 of the 26 pending-hard class — the rest should fall the same
+  way). DIAGNOSIS TABLE (11 cases): most "blowups" were
+  ENGINE-SWELL (sympy/Singular Buchberger) — msolve F4 kills them
+  in seconds-to-minutes at <=1GB; the genuinely STRUCTURAL set is
+  R9 z=4-6 + sub2 s268 + the a11 two-root rational certificate
+  (fail mod-p under 3+ engine/order combos — reformulation via
+  resultant pre-elimination + lex + wall-clock, NOT hardware).
+  OWNER BOTTOM LINE: renting RAM clears nothing; the 12GB blowup
+  was killed mod-p in 242MB by the right engine. Housekeeping: two
+  permission-blocked WSL Singular orphans killed at session level.
+- S-UNIT LAYER (F5) LANDED — A PRECISION TOOL, HONESTLY CALIBRATED
+  (2026-07-23): `s_unit_layer.py`, `S_UNIT_LAYER.md`, verifier
+  (re-run locally, ALL PASS; Mason + Brownawell-Masser stated
+  verbatim and cited, tier-4). GATE: the sigma-locus kill re-derives
+  EXACTLY through the fresh engine — and is newly framed as
+  a-UNIFORM (deg A = deg B = 34 independent of the b-split: one
+  inequality erases the family across both windows). NEW COMPLETED
+  KILL (a-uniform, both windows): the d1=d2=sigma=0 defect-0 corner
+  collapses the master identity to e^17 = const * Phi^5, forcing
+  17*v(e) = 5 — no integer solution (17 does not divide 5, nor 150
+  at t): the family is EMPTY by pure divisibility. CALIBRATION
+  (the important honest finding): raw n-term BM on the full 88-term
+  identity is useless (binom(87,2)*4 ~ 15000 >> 250) — the layer's
+  power concentrates at n <= 3 AFTER structural collapse; 17 sparse
+  cells have favourable BM bounds but owe 254-1022-leaf subsum trees
+  (labeled bm_candidate_pending_subsums, NOT kills; bounded witness-
+  DB work). CONSEQUENCE: S-unit = the precision family-killer for
+  collapsed/sparse cells; the bulk stays bridge territory. Zero
+  coefficient-field hazards (integer valuation arithmetic only).
+- SECOND GPT-PRO PASS ON THE HELALI CLAIM (2026-07-23): correction —
+  the earlier comparison had matched a DIFFERENT public program (the
+  Santibanez project); there are at least TWO external (72,108)/
+  (75,125) efforts. Current read on Helali: SERIOUS BUT UNVERIFIED
+  announcement (Zenodo DOI mentioned, artifacts not yet retrievable);
+  all technical specificity concerns (75,125) — internally
+  disciplined (mod-101 discovery vs exact pivot certification
+  correctly separated; (75,125) honestly left open at 578 vars /
+  2209 equations) — while the (72,108) exclusion sentence has NO
+  audit surface. Key epistemics adopted: exact computation on a
+  chosen system != proof the system exhausts the geometry; the
+  danger lives in the normalization->supports->branches chain, and
+  our field-split episode is exactly the warning to contribute.
+  ACTIONS: draft C superseded by C-v2 (GPT-Pro's message + the
+  seven-question artifact checklist + four-outcome table, in
+  CONTACT_DRAFT.md); dated external-claims note added to the public
+  repo; OUR STATUS UNCHANGED — (72,108) remains open in this
+  program until an independently replayable certificate exists.
+- UNIFIED KILL LEDGER + ROLL-UP — THREE BRANCHES CLOSED AS COMPUTED
+  FACT (2026-07-23): `state_kill_ledger.py/.json` + `frontier_rollup.py`
+  + `FRONTIER_V2.md` (verified by regeneration; cross-check asserts
+  per-cell totals == source state totals exactly, sub2 7888/sub1
+  44117, zero drift). LEDGER: 388 distinct killed states across 16
+  ingests (350 audited, 38 pending incl. all alt/corner); ZERO
+  verdict conflicts anywhere; 9 multi-source dedups. CLOSURES
+  (CLOSED-PENDING-AUDIT): **a12_b1110_T2 8/8** (three lanes
+  recombined: scale d2<=4 + threshold d2=5 + msolve d2=6 — the
+  scattered-kill recombination is the ledger's raison d'etre),
+  **a11_b1111_T1 8/8** (bonus finding), **a14_b0000_T2 1/1**;
+  a11_b3100_T2 at 7/8, ONE state (msolve-timeout deg_d2=6) from
+  closure. HONEST SCALE: the phase-D universes hold 52,005 states,
+  0.70% killed — the closures live in the alt defect-0 layer; the
+  bulk remains bridge/family-lemma territory. PROCESS FINDING: 27
+  redundant re-attempts exposed (overnight lane re-ground states
+  already dead elsewhere) — all future worklists must consult the
+  ledger. 27 a8 kills held as PENDING-AMBIGUOUS-MAP (deg_e
+  unpinned) rather than counted — resolve in the audit round.
+- DIVISOR-LEMMA ENGINE LANDED (2026-07-23): `divisor_lemmas.py`,
+  `DIVISOR_LEMMAS.md`, verifier (re-run locally, ALL PASS). **L1 —
+  the new consolidation**: defect-0 determinacy is ONE lemma — the
+  confluent-Vandermonde determinant = +/- prod m! * prod
+  (s_i-s_j)^{k_i k_j} != 0 by separability of t*q, over ANY field —
+  replacing every per-state determinacy fact; the most (75,125)-
+  transferable object yet. L2 (flagship a11_b1111 as rank+torus
+  lemma), L3 (17-divides-5 corner), L4 (sigma-locus degree overflow),
+  L5 (C08/C20 square classes) = exact re-proofs in divisor language
+  (the consolidation goal; no new coverage claimed). JUDGMENT [J3]:
+  the kills are NOT all rank statements — L1 isolates the closing
+  obstruction into few variables; the obstruction itself varies
+  (torus/divisibility/height/square-class). HUNT: the 17 S-unit
+  candidates explained — deg sigma <= 8 sits exactly at the blocking
+  cap; top datum only NARROWS (2048 Phi^5 = 6561 e^17 hypersurface);
+  each needs ONE depth-2 coefficient with L1-determined sub-leadings
+  (the r=1/4 mechanism) — bounded queue, PENDING.
+- THIRD EXTERNAL REVIEW FOLDED IN (2026-07-23): strategy-grade pass;
+  verdict "mechanism-close, not proof-close" for 108 (its near-term
+  list is largely our running board — roll-up already landed beyond
+  its snapshot). Adopted into INDUCTIVE_PROGRAM.md: the induction-
+  variable reframe (chain type/power pair/multiplicities/j, NOT
+  degree), the Sigma signature, the F_2-family framing of (75,125),
+  two new ideas (monotone defect potential on chains — cheap first
+  test vs the 144 data; configuration-space Galois descent for the
+  arithmetic layer), the case-compiler spec with our both-
+  presentations amendment, and the 70/25/5 allocation.
+- REVIEW FIXES LANDED + v0.1.0 TAGGED (2026-07-23): all 8 external-
+  review items implemented and gated in BOTH trees (workspace cd20305,
+  public 5c9d96f, pushed; public tagged v0.1.0): upstream_facts.json
+  replaces the tex dependency (12 mandatory checks offline; provenance
+  optional); generators.json de-pickles the verification path
+  (verified passing WITHOUT the pickle in the public tree);
+  char-0 scope corrected everywhere (D = 3*5^6 reason recorded);
+  Part-B reframed honestly; Lean wording narrowed; CITATION +
+  requirements-lock + ENVIRONMENT pinned; D3 fiber now lex-Groebner
+  triangular ([z+1/4-27/4x^2, y+3/2x, x^3-x]); CURRENT_STATUS.md is
+  the single current-truth document (inventory headed as historical).
+  tools/clean_clone_check.py (audit-hook file tracing, 72 files, all
+  tracked) is now the FIRST line of both suites. Zenodo deposit
+  remains owner-side.
+- POTENTIAL PROBE LANDED (2026-07-23): `potential_probe.py`,
+  `POTENTIAL_PROBE.md` (verified by re-run). VERDICT: two genuine
+  MONOTONE-CANDIDATE potentials across the (72,108)->(108,144)
+  corner transition — deg Phi = 64a^2-8a-2 and mult_(y+1) Phi =
+  8a^2-a, BOTH cases exactly on the closed forms, no free
+  parameters. The section-slack candidate is monotone but jumps by
+  PLACE MIGRATION (4 -> 276 = 4*69: the residual quartic moves
+  inside C4) — the "fixed quantum per transition" reading is NOT
+  supported; the potential idea survives in the refined form
+  "closed-form-in-a monotone quantities exist; freedom moves
+  discontinuously between places at corner steps". Level-1
+  (defect-vector) potentials are NEEDS-DATA (no 144 cascade).
+  DECISIVE NEXT DATA POINT (queued): the light Phi = f*C4^N
+  derivation for (75,125) — tests power-a invariance vs corner
+  coincidence; no cascade required.
+- BRIDGE SWEEP FINAL — 35 EXACT KILLS, ZERO TWO-GATE SURVIVORS
+  (2026-07-23): `bridge_sweep.py/.json`, `BRIDGE_SWEEP.md`, verifier
+  (re-run locally, 4/4 incl. cross-CAS legs). LOUD NEGATIVE: no
+  state anywhere returned PROPER under the bridge — the first true
+  two-gate survivor DOES NOT EXIST in anything affordable. **A8
+  CHAPTER CLOSED** (all 24 states exact-Q, incl. the 12 deg_sigma
+  7/8 the harvest could not certify — 0.6-24s each; no real/sign
+  mathematics needed anywhere). a7/a8 T2 deg_e=8 classes complete
+  (10/10). **R9 z=0 KILLED exact-Q — first ever in the column**
+  (3.4s); z=1..6 are COST not survival (five formulations exhausted;
+  z<=3 logically empty over F_p-bar by f31-in-G-ideal + triage
+  UNIT). STRUCTURAL FINDING: the bridge's cost wall tracks deg_e
+  hitting the sub2 cap (engine-independent) — R9 z>=1 / a10 exact
+  certificates need symbolic spare-unknown elimination, not budget.
+  Alt-regime honestly SKIPPED (bridge is a standard-window object;
+  applying it would be unsound). Kills PENDING AUDIT.
+- GALOIS DESCENT PILOT LANDED — LAYER 2 HAS ITS TEMPLATE
+  (2026-07-23): `galois_descent_pilot.py`, md, verifier (re-run,
+  PASS). THE LEMMA: C08 kills iff sqrt(105) is not in the splitting
+  field L; for S4/C4 quartics this is the single obstruction
+  polynomial Obs = 105*disc(q) not a square (product of residue-side
+  and forcing-side discriminants); A4 always kills; D4/V4 need the
+  resolvent subfields — PROVEN necessary by an explicit V4 witness
+  where the naive Obs errs. Verified three ways: specialization to
+  our disc-17 quartic (105*17 = 1785 non-square -> kill, matching
+  the audit); a SHARP counter-instance (disc class 105 -> obstruction
+  vanishes and an explicit all-nonzero splitting-field solution
+  exists); the V4 branch witness. C20 fits verbatim (170*17: class
+  10 -> kills). The reusable machine: residue relation -> obstruction
+  subgroup of Q*/(Q*)^2 -> membership in the forcing divisor's
+  square-class subgroup. Non-quadratic rows (C12-type) need higher
+  resolvents — scoped, not claimed.
+
+
+## 2026-07-23 — (75,125) Phi derived: the a-only potential is refuted, corner signature confirmed as the real index
+Opus lane derived Phi for Helali's (75,125) case (family F_2, j=1, corner
+(5,20)->(7/5,2), reduced C-power pair (a,b)=(3,5), non-adjacent):
+  Phi_75_125 = f*C^98 = -(1/9) y^201 (y^3+1)^101,
+  signature (deg, ord_y, mult_{y+1}, cofactor deg) = (504, 201, 101, 202).
+The ODE 15 c f' - 42 c' f = c^3 (c = y^2(y^3+1)) collapses under the forced
+ansatz f = A y^5 g^3 to g = y^3+1, f = -(1/9) y^5 (y^3+1)^3 — the unique
+polynomial solution of degree <= 14.
+VERDICT on POTENTIAL_PROBE's a-only prediction (deg 550 / mult 69 at a=3):
+DIFFERS, and unconditionally — deg Phi = 14 + 5N (deg C = a0 = 5 here vs 8),
+so 550 is unreachable for ANY integer tower length N. The monotone potential
+is NOT power-only; it must be indexed by the full corner signature Sigma,
+confirming the third-review caution. A 3-point fit
+  deg = (e*a0 - q + 1) + N*a0,  mult = e + N,  cofactor = r(e+N),
+  N = a[t(a+b)-(kappa+1)] - 2b
+reproduces all three known cases exactly; t and kappa remain correlated
+(need a fourth corner with different t to separate).
+Caveats [judgment]: the (5,20) polygon reduction is assumed type-II.b
+(done in no paper); N=98 is formula-based pending an actual C-series build;
+headline verdict robust to both. (72,108) is the resonance-gap exception
+(r=0: pure-ansatz deg 10 < resonant 14).
+Checker: phi_75_125_verify.py (50/50, from-scratch re-derivation + both
+audited (8,28) corners as controls) — wired into run_tests.sh.
+Files: PHI_75_125.md, phi_75_125.py, phi_75_125_verify.py.
+
+
+## 2026-07-23 — Lane D: fourth AND fifth corners MATCH the fit; kappa = t-2 is structural
+Two new out-of-sample Phi derivations by the PHI_75_125 method:
+  F9 j=0 (56,84), corner (7,21), (a,b)=(2,3), t=7 (first t outside {4,5}):
+    Phi = -(1/10) y^107 (y^5+1)^54, signature (377,107,54,216) — MATCHES the
+    six-parameter fit'''s parameter-free prediction exactly.
+  F2 j=0 (50,75), corner (5,20), (a,b)=(2,3):
+    Phi = -(1/6) y^75 (y^3+1)^38, signature (189,75,38,76) — MATCHES.
+Five points now separate corner-dependence from pair-dependence.
+kappa = t-2 is PROVEN structural on the whole standard-chart class: the
+Laurent chart (X,Y)->(x^-1, x^l y) has Jacobian -x^(l-2) (verified
+symbolically for generic l) and t=l, so kappa=t-2 identically for all 15
+length-1 A0'''=(1,0) families. The fit reduces to five parameters with
+  N = a[t(a+b-1)+1] - 2b   (reproduces all five N values),
+now overdetermined and validated at t in {4,5,7}. Possible kappa != t-2
+escapes: A0'''=(2,0) families (F12,F13) and length-2 chains (F18-F24) —
+composite charts exist in no paper; named follow-up (composition heuristic
+kappa=l2-l1 is conjecture only). F14 (t=3) is the natural sixth point.
+Judgment items mirror PHI_75_125.md; the t=7 point is LESS conditional
+((b-1)/a=1 so the slice-index picture transfers verbatim).
+Checker: phi_corner4_verify.py (40/40, controls included) — wired into
+run_tests.sh. Files: PHI_CORNER4.md, phi_corner4.py, phi_corner4_verify.py.
+
+## 2026-07-23 — Lane A: the k=6,7,8 window caps are PROVEN; bridge judgment flags retirable
+The caps load-bearing under every bridge kill (ord >= 12k; deg <= 15k sub1 /
+14k sub2; stripped 3k/2k; k=6/7/8 = dm2/dm3/dm4) are now recited and proved:
+the three T3 section-3 valuation inductions close as symbolic identities in k
+(k=6,7,8 consume genuine slices P2,P1,P0); D-transform arithmetic gives the
+caps identically in k; the d3-killing shift is the polynomial identity
+  D~_j = sum_m binom(m,m-j) D_m (-D_3/4)^(m-j)
+(C4 exponents cancel, D~_3 = 0, caps preserved term-by-term). End-to-end
+generic corroboration on random exact-Q slices: caps hold k=2..8 both regimes,
+degree caps attained 7/7 rows (tight). No new conditionality beyond the
+program'''s inherited premises [P1][P2][P3] — upstream facts loaded from
+sha-pinned paper_src/upstream_facts.json, not hand-copied. The k=6,7,8
+[judgment] flags in FULL_SYSTEM_BRIDGE.md section 4 and BRIDGE_SWEEP.md are
+retirable to the audited k=2..5 trust tier (WINDOW_CAPS.md section 5).
+Checker: window_caps_verify.py (81/81) — wired into run_tests.sh.
+Files: WINDOW_CAPS.md, window_caps_verify.py.
+
+
+## 2026-07-23 — Lane G: F14 (t=3) MATCHES; gap>0 probe confirms the resonance-gap story; SEVEN exact points
+F14 j=0 ((66,231), corner (9,24), (a,b)=(2,7), t=3, kappa=1): ODE
+6cf' - 34c'f = c^6 collapses to g = y^5+1, A = -1/10:
+  Phi = -(1/10) y^165 (y^5+1)^42, signature (375,165,42,168) — the law's
+parameter-free prediction, exactly. First t=3 point (coverage t in
+{3,4,5,7}), first e=6, first q=4. Uniqueness by full 52-unknown linear
+solve. The residual is again the 10th cyclotomic: residual is indexed by
+dg = a0-q alone (F14, F9, (108,144) all have dg=5).
+gap>0 probe (F1, r=0, gap=1): the (72,108) resonance-gap story GENERALIZES.
+Generic-f solve gives unique f = (1/15) y^4 (y+1)^2 (4y-1) — pure-ansatz
+shape times a unit cofactor of degree exactly gap (degree-1 analogue of the
+(72,108) quartic). Phi = (1/15) y^205 (y+1)^69 (4y-1), signature
+(275,205,69,1) — MATCHES the r=0-amended law. Unified law
+  (pure+gap+N*a0, rho+Nq, e+N, gap+r(e+N))
+now reproduces SEVEN exact points, two in the gap regime.
+Two new checked mini-lemmas: gap = (q-1) - a0/t (gap=0 iff a0 = t(q-1) —
+pure corner-data criterion for the resonance-gap regime); te-coef = 1 is
+the kappa=t-2 identity in ODE form.
+Honest remaining hole: gap>0 WITH r>0 (F3,F7,F10,F15,F16) has no derived
+point — cofactor formula is conjecture there; F7 (42,147) smallest next.
+Judgment: unreduced-polygon as before; F1's c = y^q(y+1) normalization is
+by-construction, not ODE-forced (flagged); both new points in the
+less-conditional (b-1)/a-integral class.
+Checker: phi_f14_verify.py (37/37; all four previous corners as controls
+plus audited (72,108) arithmetic) — wired into run_tests.sh.
+Files: PHI_F14.md, phi_f14.py, phi_f14_verify.py.
+
+
+## 2026-07-23 — Lane F: C20 KILLED via Galois descent; full 23-shape library census is a structural theorem
+C20 (61X^2D^2+6XDE-11E^2, source-derived) reduces to 11r^2-6r-61=0,
+residue discriminant class 170; solvable over F iff sqrt(170) in F. Fixed
+q (S4, disc class 17): Obs = squarefree(170*17) = 10 != 1 -> KILLS (the
+shared factor 17 cancels; obstruction survives as cofactor 10; a forcing
+quartic with disc class exactly 170 is the unique S4-escape). All branches
+carry verified witnesses: sharpness qs = y^4+7y^2-8y+10 (S4, disc =
+170*52^2, obstruction vanishes, C20 solvable over split(qs)); branching
+necessity qv = y^4-344y^2+28224 (V4, square disc, naive obstruction wrong,
+(512x-x^3)^2 = 170*336^2 mod qv); A4 live test qa = y^4+8y+12 -> kills.
+Library census (all 23 shapes, predicted by support geometry):
+  QUADRATIC-OBSTRUCTION: 2 — exactly C08 (105) and C20 (170), both killing
+  simultaneously for fixed q (joint subgroup {1,105,170,714} meets {1,17}
+  trivially).
+  LINEAR-in-primitive-character: 12 (C01-C03,C05,C06,C11-C17) — character
+  surjectivity proven constructively (Bezout vector + explicit rational
+  torus point per shape) -> solvable over every field; CONSTRAINT for any
+  forcing quartic.
+  MULTIDIM rank>=2: 9 (C04,C07,C09,C10,C18,C19,C21-C23) — rational
+  witnesses re-verified.
+  HIGHER-RESOLVENT-NEEDED: 0 — the pilot'''s C12 worry dissolves (linear in
+  S^3/X^4, gcd(3,4)=1 -> surjective); higher resolvents matter only on
+  constrained sub-loci (scoped, not claimed).
+Case-compiler transfer: C08/C20 kills transfer to any family member by a
+two-line check — Galois label + disc class of its forcing quartic (kill
+iff S4/C4/A4 and disc class avoids {105,170}).
+Checker: galois_library_verify.py (69/69; all 23 equations re-derived from
+f31_graded.txt via the audited residue_lemmas machinery; witnesses''' every
+used property verified from scratch) — wired into run_tests.sh.
+Files: GALOIS_LIBRARY.md, galois_library_verify.py.
+
+
+## 2026-07-23 — Lane I: case compiler pilot lands; three grounded cases reproduce exactly
+case_compiler.py compiles a family case into a case-dossier-v1: corner
+signature (kappa=t-2 substituted), unified-law Phi prediction with
+data-driven REGIME_STATUS + conjectural flags, BOTH presentations
+(eliminated-f31 / pre-resultant G-system) with instantiated-vs-schematic
+markers per field, the GALOIS_LIBRARY two-line transfer check (Galois
+label + disc class vs {105,170}), per-mechanism transfer inventory, and a
+judgment section. Canonical JSON is deterministic (byte-identical across
+recompiles).
+Validation (case_compiler_verify.py, 71/71): (72,108) reproduces the
+audited facts exactly — signature (238,204,30,4), regime resonance_gap_r0,
+forcing quartic S4/class 17, both kills AUDITED, both presentations
+INSTANTIATED ((D,F,E,s)=(31,7,21,3), G-weights 156/168/180/204).
+(75,125): (504,201,101,202), forcing H=y^2-y+1 (C2, class -3), transfer
+CONDITIONAL, presentations schematic. F9: (377,107,54,216), forcing 10th
+cyclotomic labeled C4 by the generic router, cross-checked constructively.
+Conjectural flags fire exactly on F7 (gap>0&r>0), F12 (A0'!=(1,0)), F4
+(k=2); all 17 family Diophantine identities check.
+Transfer inventory: AS-IS — residue library + Galois descent, corner law
+(standard-chart class), modular triage. PARAMETRIC — cascade engine, T2
+squeeze, bridge, window caps, divisor lemmas. METHOD-ONLY — S-unit corner.
+New automatic flag: dg-even cases (F7 residual y^2+1) break the g(-1)=0
+mechanism every derived point uses — marked UNKNOWN, not predicted (watch
+Lane H). REGIME_STATUS is the table to flip when F7 lands.
+Checker wired into run_tests.sh. Files: case_compiler.py,
+case_compiler_verify.py, CASE_COMPILER.md, case_dossier_GGHV_72_108.json,
+case_dossier_F2_j1_75_125.json, case_dossier_F9_j0_56_84.json.
+
+
+## 2026-07-23 — Lane H: gap>0,r>0 regime DIFFERS — old conjecture refuted, RAMIFIED law derived at four corners
+F7 (42,147) derived signature (250,165,83,2) vs old-law (250,165,42,43):
+deg/ord match on every branch; mult/cofactor conjecture REFUTED. Same split
+at F3 (189,112,75,2), F16 (528,407,117,4), F10 (1917,820,1093,4).
+Why it had to fail (PROVEN at dg=2): the polynomial-solvability eliminant
+factors completely (F7: E ~ g0^27 (3g0-2g1^2)(4g0-g1^2)^6), leaving only a
+RAMIFIED branch (g=(y+1)^2, double root forced to -1) or a complex-pair
+branch (no real root at -1); a simple root at -1 — what mult=e+N needs —
+is impossible; independently mult=e+N > res >= deg f by degree count.
+Amended ramified law (four exact points): deg = res + N*a0 and
+ord = rho + N*q survive; mult = dg(e+N) - (dg-1); cofactor = gap + r —
+retro-explaining the audited (72,108) quartic (4 = gap + r). F16 (gap=3)
+was the separating experiment for the unit degree. Mini-lemma: dg is even
+exactly on the gap>0,r>0 rows — the regime split is corner-data-visible.
+Judgment: branch selection by continuity with (y+1)|C (complex-pair branch
+recorded, not excluded — no C-series exists in any paper); (b-1)/a
+non-integral for F10/F16; branch completeness proven only at dg=2; F15 not
+attempted. Twelve derived/audited points total; a mult_g-indexed
+unification is recorded as observation only.
+CASE COMPILER UPDATED (first live regime flip): REGIME_STATUS
+gap_pos_r_pos -> grounded; law_signature branches to the ramified formulas;
+dg-even H_note now states the proven ramified shape. Compiler now predicts
+F7 at exactly the derived signature, branch-annotated; verifier check F
+updated accordingly; dossiers regenerated (71/71).
+Checkers: phi_f7_verify.py (62/62), case_compiler_verify.py (71/71) — both
+in run_tests.sh. Files: PHI_F7.md, phi_f7.py, phi_f7_verify.py + compiler
+updates.
+
+
+## 2026-07-23 — Prior-art deep audit: corner-law claims are NEW; literature contains a zero-freedom postdiction
+Full-text read of the GGV corpus (GGV1/GGV3/GGV5/GGHV22 TeX, 1310.8249
+complete, 2506.05697 + five more at theorem level; Moh 1983 scans
+unreadable — caveat recorded; Horruitiner thesis unfetchable, siblings
+read). Verdicts: closed-form Phi + signatures NOT FOUND (new); signature
+law + N-formula NOT FOUND even partially (new); parametric ODE family /
+kappa=t-2 theorem / ramified dichotomy PARTIALLY (instance layer only);
+resonance gap PARTIALLY (one instance, no law).
+DECISIVE FIND (GGHV22 sec.4, L1571-1597): killing the (66,99)/(9,24)
+corner they solve 6*C3*f1' - 10*C3'*f1 = C3^2 (C3=y^8(y+1)) by CAS,
+print f1 = -(1/910) y^9 (y+1)^2 (243y^4-81y^3+54y^2-42y+35) — exactly the
+parametric ODE at (a,b,t,kappa)=(2,3,3,1), kappa=t-2 holds, and the
+f-level corner law postdicts its FULL signature with zero fitting freedom
+(ord 9, mult 2, deg 15, unit cofactor degree gap+r=4, separable, coprime
+to y(y+1)) — the published record confirms the law out of sample. Their
+D_k transformation (L1612-1632) is the ancestor of ours. (72,108) itself
+is left open in print (L268), no ODE or quartic published.
+Required citations recorded in PRIOR_ART.md (GGHV22 sec.4 is the critical
+one; GGV1 bracket ODE + multiplicity lemma; 1310.8249 Abel-ODE genre).
+New checker: prior_art_postdiction_verify.py (12/12: family membership,
+uniqueness, coefficient-exact match to the printed f1, law postdiction,
+cofactor properties) — wired into run_tests.sh.
+Files: PRIOR_ART.md, prior_art_postdiction_verify.py.
+
+
+## 2026-07-23 — Lane J: kappa = t-2 EXTENDS to every escape family; the survey boundary moves from chart to model
+Composite-chart construction for the named escapes (A0'=(2,0): F12, F13;
+length-2: F18-F24): every chain transformation is a root-shift shear
+(Jacobian 1, bracket-preserving), the chain performs exactly ONE final
+inversion, and the composite fuses to (X,Y) = (x^-1, x^l y + sum lambda_i
+x^{e_i}) with Jacobian -x^(l-2) FOR ANY shear terms (verified
+symbolically; fused exponents integral >= 0 on all five escapes). The
+kappa = l2 - l1 heuristic is REFUTED — it is the Jacobian of a
+two-inversion chart the chain never makes. Escape kappas: F12: 2, F13: 1,
+F22: 2, F23: 2, F24: 6 — all t-2.
+Bonus: F18-F21 are DEAD (GGV5 itself proves no standard (m,n)-pair
+realizes them; core re-verified) — the only real length-2 escapes are
+F22-F24; F22/F23 use only one transformation (same chart as F12);
+chain-step formula A_next = lower + q*(s/l,1) reproduces every table
+corner (10 families).
+The real boundary: pure-power defect zeta > 0 breaks the commuting-tail
+structure by exactly [x^zeta C^a, C^b] = zeta*b x^(zeta-1) C^(a+b-1) C_y
+!= 0. kappa settled; zeta-corrected tail theory is the named follow-up.
+F12 Phi (CONDITIONAL-zeta): first dg-odd point in gap>0,r>0 — branch
+variety is two points (g1 = (-1 +- sqrt(22))/8), both squarefree: NO
+ramified branch exists at dg=3, mirror of the dg=2 obstruction. So
+dg-parity has a MECHANISM: ramification is root-availability (even dg
+forces double/complex roots; odd dg keeps a simple real root).
+Conditional signature (814, 506, 102, 206) — OLD-law shape. F22 lands at
+gap=-1 (no derived point in any negative-gap regime — flagged, nothing
+claimed).
+Compiler updated: A0'!=(1,0) conjectural reason now states chart settled /
+CONDITIONAL-zeta (still fires, honest reason); dossiers regenerated
+(71/71).
+Checker: composite_charts_verify.py (41/41; resultant-route eliminant,
+exact Q(sqrt(22)) arithmetic, length-1 Jacobian control) — wired into
+run_tests.sh. Files: COMPOSITE_CHARTS.md, composite_charts.py,
+composite_charts_verify.py.
+
+
+## 2026-07-23 — Lane C: 45/49 HUNT-cell states KILLED (pending audit); 13/17 cells fully-forced dead
+The 17 s-unit BM-candidate cells (11 T2 d1=d2==0, 6 T1 d2=sigma==0, sub2
+AND sub1) carry 49 fully-forced states. Census: 45 KILLED (37 at depth 2,
+8 at depth 3 — exactly the DIVISOR_LEMMAS section-6 prediction), 4 OPEN.
+All 11 T2 cells fully dead; the 4 survivors are deg-d1=6 T1 states (both
+windows x a9_b1000_T1, a8_b1100_T1) — the known [J6] grevlex blowup at
+600s/1500s budgets; exact systems recorded; msolve pass is the next dent.
+Enabling idea: CLASS-POLYNOMIAL root reconstruction — group q-roots by
+joint exponent profile; each class is an unknown monic factor of q/2048,
+largest class = exact quotient, division-remainder coefficients = the
+relations. q squarefree => one unit ideal kills every Galois assignment of
+every admissible split at once over Q, <=2 unknowns in practice. Dissolved
+every heavy pattern incl. the deg-sigma=8 weight-scaling states (the
+degree-250 homogeneous point died at depth 3, no subsum tree needed).
+HONEST SCOPE: these cells live in the standard-regime windows — closes
+queue item 4's depth-2 residue work / s-unit residual layer; does NOT
+directly close any of the 24 alt branches (need alt-window bridge analog).
+Cross-check: one prior phase_f2_sub2 kill independently reproduced; 44 new.
+Audit trail: every kill records reconstructed polynomials, class
+relations, saturation, and all master coefficients as exact strings in
+alt_hunt_results.json — spec-only re-derivable from f31_graded.txt.
+Files: alt_hunt_depth2.py (resumable), alt_hunt_results.json, ALT_HUNT.md.
+
+
+## 2026-07-23 — Lane B: R9 symbolic elimination CERTIFIED; sweep verdict an honest structural NEGATIVE — wall localized
+Elimination artifact: every G-system generator is linear in dm4 with pivot
+3*dm1 = 3e != 0; dm4-free combinations H2 = dm1*G2 - dm2*G1, H3 = dm1*G3 -
+dm3*G1, H5 = dm1*G5 + (d0*dm1+d1*dm2+d2*dm3)*G1 (5/6/12 terms, weights
+228/240/264) live in the G-ideal by explicit cofactor certificate,
+re-verified by exact expansion; divisibility lemma monic(e) | dm2*dm3 from
+G1. Spare unknowns 45 -> 28 per state. Instantiation validated
+BYTE-IDENTICAL against the independent fsb.augment route on R9 z=1; every
+state build asserts exact cancellation of all 17 dm4 coefficients. Cached:
+r9_eliminated_system.json (rebuild+recheck seconds: r9_symbolic_elim.py).
+Sweep census (11 attempted; 45s triage + 300s exact caps;
+r9_symbolic_sweep.json): R9 z=1,2,3 COST; z=4..6 not attempted (recorded
+truncation); a9 T2 deg_e=10 8 cheapest states COST x8; 82/90 not attempted
+(recorded truncation). ZERO kills, ZERO PROPER — no survival signal.
+Decisive control: first batch state re-triaged at the bridge's own 300s
+budget on p=10007: TIMEOUT — the reduction did not cross the feasibility
+boundary. The deg_e=10 wall survives dm4 elimination on both families; it
+is now localized to the dm2/dm3 ansatze (28 scalars) coupled to window-cap
+e. Named continuation (R9_SYMBOLIC.md 3c): divisibility-forced valuation
+split — v_{y+1}(dm2)+v_{y+1}(dm3) >= 9, v_r(dm2)+v_r(dm3) >= 1 — 20
+exhaustive cases of 18 spare unknowns each, composing with the certified
+H-system unchanged.
+Ops: orphan-proof runner (WSL-side timeout + ulimit -v 8G), final WSL ps
+clean; mid-lane defect (slow Poly builder) found and fixed honestly with
+equation-set-identical validation before any verdict relied on it.
+Files: r9_symbolic_elim.py, r9_eliminated_system.json,
+r9_symbolic_sweep.py, r9_symbolic_sweep.json, R9_SYMBOLIC.md.
+
+
+## 2026-07-23 — Lane M: the 4 [J6] states KILLED by msolve — 49/49 HUNT states dead, 17/17 cells CLOSED(all0)
+All four deg-d1=6 T1 states (sub{2,1} x a9_b1000_T1_sz1_dz1#state3,
+a8_b1100_T1_sz1_dz1#state0) KILLED at depth 3 (PENDING AUDIT), msolve
+walls 0.5-4.5s per call, ~20s per state end to end. The s-unit
+BM-candidate residual layer is fully gone. Per ALT_HUNT [J5],
+CLOSED(all0) does not close the enclosing branches.
+Replay guarantee: reconstructions replayed string-identical to Lane C's
+recorded polys before anything reached msolve; systems attacked identical
+to Lane C's generator sets.
+STRUCTURAL FINDING (why [J6] blew up): the depth-2 truncations are
+GENUINELY SATISFIABLE — msolve returns isolated solutions at depth 2 for
+all four; GB engines were not slow at seeing a unit ideal, they were
+computing a full GB of a satisfiable system. The depth-3 master
+coefficient is the killer. On the depth-3 killing system, sympy Buchberger
+and Singular std over Q still time out at 240s while msolve decides in
+~1s. Corroboration: Singular std over F_p (10007/10009/100019) unit ideal
+12/12, <=1s each — independent second implementation agrees. Full
+end-to-end rerun reproduces KILLED x4. WSL sweep clean.
+Audit note: char-0 std timing out means Singular-lift certificate
+extraction for these 4 may need longer budget or an msolve-assisted route.
+Files: j6_msolve.py, j6_msolve_results.json, J6_MSOLVE.md.
+
+
+## 2026-07-23 — Lane K: zeta-corrected tail theory lands; the mu-LADDER unifies the laws and corrects a landed claim
+One-slice rigidity theorem: the zeta-defect cannot stay in the tail (the
+top commutator slice sits strictly above x^kappa, uncancellable); unique
+repair puts it in the element D = x^eta C, eta = zeta/a, giving the same
+parametric family with T = t+eta (kappa = t-2 chart-fixed) — the family
+moves off the diagonal by exactly eta. Universal lemma: eta=-1 is ALWAYS
+dead (integrates to (f/c^e)' = 1/(aTc), polynomial iff all residues of 1/c
+vanish — impossible).
+F12: every motivated defect 0<|eta|<=1 is NO-POLYNOMIAL-SOLUTION; the two
+surviving models are eta=0 (conditional) and an eta=+2 canonical collapse
+(T=6, forces g=y^3+1, N=157, signature (1292,806,162,324)); model
+selection needs the actual polygon reduction. F13: only eta=0 survives.
+THE MU-LADDER (corrects COMPOSITE_CHARTS section 5): branches are graded
+by mu = mult_{y+1}(g). F12's standard family realizes ALL rungs: mu=1
+(Lane J's points, (814,506,102,206)), mu=2 NEW (g=(y+1)^2(y-beta), beta a
+root of 195b^4+120b^3-40b^2+32b-80, (814,506,203,105)), mu=3 NEW
+(g=(y+1)^3, (814,506,304,4) — exactly the formulas COMPOSITE_CHARTS
+declared NOT realized; that claim was a g^e-uniform-ansatz artifact, now
+corrected in place). mu-graded law: mult = mu(e+N)-(mu-1),
+cof = gap+r(e+N)-(mu-1)(e+N-1) — specializes identically to the
+unramified law at mu=1 and PHI_F7's ramified law at mu=dg (via r = dg-1).
+PHI_F7 judgment-6 observation is now the actual branch structure. Parity
+refinement: even dg kills mu=1 (that theorem stands); odd dg does not
+exclude higher rungs. Twelve corner-law points untouched — the mu-graded
+law is a strict generalization all of them obey.
+Compiler F12 flag updated to cite the enumerated surviving models;
+dossiers regenerated (71/71). Named follow-up: F10 (dg=4) likely carries
+intermediate rungs — one small solve each.
+Checker: zeta_tail_verify.py (34/34; fresh mu=2 rebuild, exact
+mod-quartic residuals) — wired into run_tests.sh.
+Files: ZETA_TAIL.md, zeta_tail.py, zeta_tail_verify.py.
+
+
+## 2026-07-23 — Lane R: adversarial review of zeta-tail/mu-ladder — NO REAL HOLE; five patches applied
+Independent skeptic re-derived the load-bearing mathematics, including the
+F12 mu=2 quartic by a DIFFERENT elimination route (augmented-matrix minors
++ gcd): same quartic up to scalar, signature (814,506,203,105) exact; mu=3
+also rebuilt. Verdicts: rigidity SOUND (verified at three (a,b) x two t
+beyond the author'''s instance; wording fixed tail-tail -> head-head);
+eta=-1 lemma SOUND (all residues reproduced via sympy.residue;
+squarefreeness not needed); mu-ladder SOUND with findings (r = dg-1 is
+DEFINITIONAL so the specialization is exact algebra not discovery;
+deg-ord = (e+N)dg+gap identically so cof-law == mult-law — one datum per
+rung); cross-doc consistency: correction block accurate, compiler flag
+completed (eta=+2 mu-support {1,3}, eta in {-2,-3} OPEN rows added).
+THE ONE GAP: "dg even kills mu=1" was overreach — branch-completeness is
+proven only at dg=2 (PHI_F7 judgment 5); now SCOPED (proven dg=2,
+conjectured even dg>=4 pending F10 enumeration — Lane Q running) in
+ZETA_TAIL.md and COMPOSITE_CHARTS.md. Defensive guard added to
+zeta_tail.py'''s sub-resonant-evasion branch (verified to fire on no
+current row; now refuses to conclude silently if a future row trips it).
+All checkers re-verified post-patch (zeta 34/34, compiler 71/71).
+Review artifacts: REVIEW_ZETA_MU.md, review_zeta_mu.py (31/31).
+
+## 2026-07-23 — Lane L: R9 valuation split — WALL SURVIVES; obstruction is formulation-level
+Exhaustiveness MACHINE-CHECKED: the 20-case R9 split covers all 5145
+achievable valuation profiles (batch shapes a=7/8/9: 8/9/10 cases,
+6958/6126/5295 profiles); degenerate dm2/dm3=0 representable everywhere.
+Implementation finding: structured-product ansatz densified convolutions
+(>25 min/case, measured, killed); replaced by the equivalent LINEAR
+derivative-vanishing formulation (v_{y+1}(p)>=m iff p(-1)=...=p^(m-1)(-1)
+=0) on Lane B'''s cached dm4-eliminated builds — spare dimension 28->18.
+Census: z=1 4 full cases COST x4 (45s x 3-prime triage TIMEOUT uniform);
+2 partial (outage); DECISIVE CONTROL: case (9,1) — the structurally
+easiest, 10/13 dm2 coefficients forced — TIMEOUT at the bridge'''s own
+300s budget on both completed primes. Remaining cases/columns NOT
+ATTEMPTED (honest truncation). Zero kills, zero PROPER.
+VERDICT: two successive sound reductions each strictly shrank the system
+without crossing the mod-p feasibility boundary — the swell is driven by
+the generic dm3 tail coupled to window-cap e, not spare-dimension count.
+Named next (R9_VALSPLIT.md section 4): msolve/F4 on a split case (the
+[J6] lesson), e'''s unknown-tail divisibility content, or linear-algebra
+on the H-system coefficient matrix in forced-valuation coordinates.
+Files: r9_valsplit.py, r9_valsplit_results.json, R9_VALSPLIT.md.
+
+
+## 2026-07-23/24 — Codex trust round: 49/49 HUNT kills independently audited (0 disagreements); f37 replay scripts; public CI live
+Independent-author audit of all 49 HUNT/J6 kills (audit_alt_hunt_kills.py,
+codex-authored, imports no project code, own f31_graded.txt parser +
+homogeneity checks, own class-factor reconstruction, subprocess GB with
+120s hard kill): 41 FULLY-VERIFIED (independent sympy GB reproduces the
+unit ideal), 8 VERIFIED-DATA-ONLY (honest GB timeout — includes the 4 J6
+states known to need msolve), 0 DISAGREEMENTS, 0 UNPARSEABLE; exit 0.
+The zero-disagreement streak survives a full different-author replay.
+Census: audit_alt_hunt_census.json.
+f37 INDEPENDENT REPLAY (codex-authored, per GPT-Pro review 4 requirement):
+f37_replay_m2.m2 (Macaulay2) + f37_replay_sage.py regenerate the
+pre-resultant generators FROM SCRATCH (native convolution, no
+generators.json consumption), rebuild f31 via the resultant chain, and
+check principality + equality-up-to-unit + membership. Sympy self-test
+(f37_replay_selftest.py): 8/8 — the independent construction equals
+generators.json exactly. Execution of M2/Sage awaits install (F37_REPLAY.md
+has instructions); after one green run, the f37 standalone note (short
+Version A) is unblocked.
+PUBLIC REPO: v0.2 content live (48b85e1) + CI added (834bbfc, pushed):
+fast-checks.yml on push/PR (clean-clone guard, D3, f37 certs, field-split
+ledger, audit_inf_cases; measured 12m10s, all PASS locally) + weekly/manual
+full-suite.yml. GPT-Pro review 4 folded: contact-draft scope fix,
+CASE_COMPILER.md refresh, landscape correction (CAOS/alok/Naskrecki/
+eumemic) in memory. Spend-limit casualties: Lane Q (F10 rungs, no artifacts
+— re-dispatched to codex), Lane N (alt bridge, artifacts on disk
+uncommitted, resume pending), local auditor + overnight batch (relaunched).
+
+
+## 2026-07-24 — F10 mu-rungs (codex lane): parity PROVEN at dg=4; new mu=2 point MATCHES; the ladder has selection rules
+Exact enumeration of all F10 rungs (dg=4): mu=1 EMPTY — every cubic-h
+partition eliminated by exact polynomials with zero real roots, so the
+even-dg parity claim is PROVEN at dg=4 (the Lane R scoping gap closes:
+now proven at dg=2 AND dg=4; dg>=6 has no gap>0,r>0 survey corner).
+mu=2 REALIZED — signature (1917,820,547,550), mu-graded law MATCH
+(thirteenth exact point); squarefree component minimal polynomial
+192p^6-720p^5+586p^4-668p^3+1728p^2-1510p+45 (two real roots), plus a
+double-root component 12z^4+15z^3-5z^2+15z+12 (two real roots).
+mu=3 EMPTY — obstruction 10s^4-20s^3+8s^2+2s+5 irreducible with zero real
+roots. mu=4 reproduces PHI_F7's (1917,820,1093,4) with resonant
+coefficient 3740*F27 = 2401.
+STRUCTURAL FINDING: the mu-ladder has SELECTION RULES — F12 realizes all
+three rungs, F10 realizes only {2,4} — rung support varies by corner,
+strengthening the finite-regime-grammar picture over any universal law.
+Docs upgraded: ZETA_TAIL.md + COMPOSITE_CHARTS.md parity scope now cites
+the proof. Checker: mu_rungs_f10_verify.py (39/39, exact ODE
+substitutions, F12 control) — wired into run_tests.sh.
+Files: MU_RUNGS_F10.md, mu_rungs_f10.py, mu_rungs_f10_verify.py.
+
+
+## 2026-07-24 — AUDIT ROUND landing: 20 certificates CERTIFIED end-to-end; ledger + roll-up regenerated; reconciliation clean
+The certificate pipeline's first full end-to-end pass: 20 kills now carry
+cofactor certificates (1 = sum c_i f_i) verified by the certificate-
+consuming ninth auditor (pure sympy expansion, no GB engine):
+AUDIT CENSUS CERTIFIED=20 EXPANSION-FAILED=0 UNCERTIFICATED=29. Zero
+disagreements. Reconciliation: producer claims (11 first batch + 9
+parse-fixed rerun) = 20 = disk = auditor exactly (an earlier '29 found'
+count was a grep artifact matching census summary lines; no certificates
+were lost). The 29 uncertificated split: 15 genuine lift timeouts (0/15
+cracked even at 900s — structurally hard lifts, msolve-assisted route
+dispatched) + 14 fallback-route expansion failures (std-transform lift
+composition bug, distinct from the fixed GEN-shadowing bug; on the fix
+list). Ledger + roll-up regenerated: unmapped 0, real conflicts 0,
+ambiguous 31, redundant re-attempts 27; branch closures a11_b1111_T1 8/8,
+a12_b1110_T2 8/8, a14_b0000_T2 1/1 all CLOSED-pending-audit.
+Overnight cert batch stamped DONE 23:21 (honest zero at 900s).
+kill_certificates/ (49 per-kill JSONs incl. the 20 certified) committed.
+
+
+## 2026-07-24 — Lane N (collected by Opus): alt-window bridge EXISTS as construction; computational wall — formulation-level again
+Construction verdict: EXISTS (derived + mechanically spot-checked). The
+alt analog is the landed G-system augment(state, regime="sub1") with sub1
+stripped caps (dm2/dm3/dm4 <= 18/21/24, 66 spare scalars) + marked-root
+adjunction q(r)=0. Load-bearing novelty [J1]: BRIDGE_SWEEP section-3's
+"not applicable" skip used the SUB2 cap (deg e <= 10) but alt states are
+SUB1 states (deg e = 15 attained); WINDOW_CAPS' k=6,7,8 caps are
+t-regime-free. Soundness chain re-verified independently by the collector
+(homogeneity 156/168/180/204, phi_identical, caps, complement exact mod q;
+fast builder equation-set IDENTICAL to fsb.augment).
+Pilot census: 0 KILL, 0 PROPER, 2 COST — both deg-d2=6 alt stragglers
+time out on EVERY engine (Singular mod-p x3, exact Q, numroot x3, msolve
+char-0 ~300s each). CRITICAL HONEST FINDING: the control a12_b1110_T2 is
+a KNOWN kill on the direct/f31 route, and the bridge did NOT reproduce it
+— the bridge system is strictly harder in the alt regime (the +66 spare
+unknowns + marked-root nonlinearity put it in the known swell family).
+Inverse of the standard-window pilot (1-9s kills).
+Named next (ALT_BRIDGE.md section 4a): symbolically eliminate the 66
+spare unknowns BEFORE solving (the Lane B pattern); secondary numroot
+recon. Alt frontier UNCHANGED by this lane; zero kills (nothing to audit).
+Files: ALT_BRIDGE.md (finalized), alt_bridge.py, alt_bridge_results.json,
+alt_bridge_results_symbolic.json.
+
+
+## 2026-07-24 — TRANSFER TEST phase 1 (Opus lane): the (75,125) C-series is BUILT; N = 98 DERIVED, judgment retired
+The actual C-series + D-transform tower for (75,125) constructed from
+corner data. N read off the built tower: Phi is the whole integer slice
+M = b*t + j = 36 of S^b; the SLICE-SUM INVARIANT — every monomial of a
+slice carries the uniform factor c^(a*M-b), because the D-weight
+a(t-k)-1 summed over a slice collapses to a*M-b independent of the
+individual k_i — gives clear = 103, N = clear - b = 98. This dissolves
+the exact concern behind PHI_75_125 judgment item 3 (the non-integral
+per-term index (b-1)/a = 4/3 is per-term; Phi is the slice): the
+corner-144 N-formula is re-derived structurally, not extrapolated.
+Judgment item 3 RETIRED in PHI_75_125.md.
+Phi emergence CONFIRMED: the tower yields -(1/9) y^201 (y^3+1)^101,
+signature (504,201,101,202) exactly. Controls: same machinery reproduces
+(72,108) (N=28 -> (238,204,30,4), audited ground truth) and (108,144)
+(N=67 -> (550,205,69,276)).
+Remaining boundary: the unreduced-polygon assumption (shared with all
+derived corners). Later phases (D-transform G-system, window/pre-resultant
+layer on (75,125)) are the named next steps of the transfer test.
+Checker: c_series_75_125_verify.py (36/36) — wired into run_tests.sh.
+Files: C_SERIES_75_125.md, c_series_75_125.py, c_series_75_125_verify.py.
+
+
+## 2026-07-24 — Alok cross-check (Opus lane): exact setup corroboration; regime-disjointness quantified; 0 findings
+The independent public program alok/jacobian-two (commit ded8e67, docs/
+newton-72-108-sparse.md + scripts/newton_72_108.py L118-127) proves for
+the GGHV (72,108) polygons: Case 1 >= 3 / Case 2 >= 4 total nonzero
+strict-interior coefficients (exact exhaustion, 7504/3683 patterns, 5
+GB=[1] certificates with recorded sha256s).
+Correspondence EXACT at the setup level, verified vertex-for-vertex:
+their CASE_1 = our sub1 (corners (0,8),(0,12) added), CASE_2 = our sub2;
+identical [P,Q]=x^2. Our checker independently re-derived their interior
+lattice census from the vertices and reproduced their table exactly
+(Case 1: P=35, Q=87; Case 2: P=7, Q=21) — two independent programs are
+provably attacking the identical configuration.
+Per-state support mapping: NOT soundly recoverable (their (x,y)-monomial
+counts vs our y-degree/zero-flag D-transform coordinates are related by a
+nonlinear convolution; no per-state formula invented — honesty over
+coverage).
+Cross-check verdict: CORROBORATION, 0 findings. Sound guard over ALL live
+states (sub1 171 branches / 44117 states; sub2 26 / 7888):
+live-below-threshold = 0. No open branch of ours sits in their
+proven-dead sparse region. Regime-disjointness quantified: their theorem
+closes the sparse floor (<=2/<=3 interior terms), our cascade attacks the
+dense body (every tracked state carries forced Phi != 0, above threshold
+by construction) — complementary, not overlapping; they contradict us at
+no live branch. First concrete act of the exchange-variable-maps
+collaboration mode.
+Checker: alok_crosscheck.py (exit 0 iff no live-below-threshold state) —
+wired into run_tests.sh. Files: ALOK_CROSSCHECK.md, alok_crosscheck.py.
+
+
+## 2026-07-24 — TRANSFER TEST phase 2 (Opus lane): the (75,125) G-system BUILT; the a>=3 window-cap boundary characterized
+The pre-resultant G-system for (75,125) constructed by the (72,108)
+recipe with derived parameters: linear window S^3 (20 eliminations),
+forcing window S^5 -> 10 quintic generators G1..G9,G11 (slice j=10
+skipped, its window unknown pairing with the skipped linear slice —
+system closed). Spare inventory: 9 spares dm2..dm10 (formula (a-1)t-1;
+the jump 3->9 is purely a: 2->3). Weights: intrinsic-u arithmetic
+progression 26..34,36 (Phi at 36; 35 = skipped G10), every generator
+verified weight-homogeneous. Builder control: reproduces the published
+(72,108) G1,G2,G3,G5body+Phi BIT-FOR-BIT with weights 156/168/180/204.
+THE OBSTRUCTION (boundary as result): the physical y-order normalization
+W_step = ord_y(Phi)/M is 12 (integer) at (72,108) but 201/36 = 67/12
+NON-integral at (75,125) — the exact integer y^W stripping behind the
+(72,108) bridge substitution does NOT transfer; the window-cap layer is
+QUASIPOLYNOMIAL at a>=3 (quasi-period 12 here), exactly the boundary
+CORNER_144_COMPARISON section 5 flagged (denominator 5 there). The
+abstract ideal transfers; the bridge layer needs a quasipolynomial cap
+theory — the named phase-3 obstacle.
+Phi-consistency: CONSISTENT in the intrinsic grading (Phi enters G11 at
+slice 36 with forced weight; clear=103, N=98 matching phase 1;
+ord_y(Phi) = W_step*M as a rational identity).
+g_system_75_125.json (g-system-v1) instantiates exactly the fields the
+case compiler marks schematic -> structure-instantiated with
+window_caps OBSTRUCTED(a=3 boundary).
+Checker: g_system_75_125_verify.py (47/47; (72,108) control +
+anti-fabrication re-derivation of G1,G2) — wired into run_tests.sh.
+Files: G_SYSTEM_75_125.md, g_system_75_125.py, g_system_75_125.json,
+g_system_75_125_verify.py.
+
+
+## 2026-07-24 — Makar-Limanov restriction check (Opus lane): INAPPLICABLE across the frontier; paraphrase corrected
+Paper located: L. Makar-Limanov, "On the shape of a counterexample to the
+two-dimensional Jacobian conjecture," Serdica Math. J. 51 (2025) 299-314,
+DOI 10.55630/serdica.2025.51.299-314. CLOSED ACCESS — no arXiv/galley
+reachable; the tested lemma is the review's paraphrase made precise and
+SELF-CERTIFIED computationally (stated loudly in ML_RESTRICTION.md §1;
+obtaining the PDF to upgrade to verbatim is the recorded open item).
+Finding on the lemma itself: the paraphrase AS LITERALLY STATED is false
+(counterexample J(x+y, xy+y^2) = x+y on the diagonal w(x)=w(y); also
+fails non-primitive weights). Verified correct hypotheses: positive +
+primitive gcd(w(x),w(y))=1 + non-diagonal. Under those: holds with no
+exception in tested range.
+Per-edge verdicts: all 27 objects INAPPLICABLE — the decisive geometry:
+with the origin a vertex, NEITHER (8,28)-reduced polygon has any strictly
+positive-weight edge (every strictly positive weight maxes at the lone
+monomial vertex); the principal common-root edge has weight (1,0) (not
+positive) and J(R^2,R^3) = 0 exactly — our leading pairs live in the
+J=0 (algebraically dependent) regime ML handles separately, never the
+J(rho,tau)=rho regime the lemma restricts. Same for all 17 survey
+families (chart Jacobian -x^(l-2) => bracket monomial => J in
+{0, monomial}).
+Frontier impact: NONE — no branch removed, promoted, or contradicted; a
+clean negative literature check that locates our frontier relative to the
+newest published shape restriction.
+Checker: ml_restriction_check.py (exit 0 iff no inconsistency either
+direction; re-checks polygon data against upstream_facts.json) — wired
+into run_tests.sh. Files: ML_RESTRICTION.md, ml_restriction_check.py.
+
+
+## 2026-07-24 — Proof-gate hardening (Opus lane): 532 asserts converted across 29 checkers; artifacts byte-deterministic
+The python -O vulnerability was REAL and is now closed: control
+demonstration showed an original bare-assert checker returning rc=0 under
+-O with a CORRUPTED f31_graded.txt (false pass), while the hardened
+version correctly exits 1. 532 proof-critical assert statements across 29
+checker files converted to explicit _require(cond,msg) gates (AST-based
+transform with byte-offset splicing; BOM and inline/multiline asserts
+handled; 0 residual asserts; _require count == original count per file;
+check-count report lines byte-unchanged). audit_*.py already used raise
+AssertionError (-O-safe, untouched); 16 checkers had no asserts. All 29
+edited checkers re-run rc=0. Three -O gate demonstrations on corrupted
+scratch copies: all fire correctly.
+Determinism: state_kill_ledger.py, frontier_rollup.py, frontier_gen.py
+stripped of wall-clock/mtimes -> git commit + SHA-256 of every source
+artifact + schema version; SOURCE_DATE_EPOCH honored. Regenerated twice:
+state_kill_ledger.json, FRONTIER_V2.md, FRONTIER.md all BYTE-IDENTICAL.
+Full inventory: HARDENING_NOTES.md.
+
+
+## 2026-07-24 — Alt spare-unknown elimination (Opus lane): dm4 eliminated (66->41), control STILL COSTs — wall is deeper than spare count
+The certified R9 dm4-elimination transfers VERBATIM to the alt bridge
+(generators are regime-independent; sub1/sub2 differ only in caps). Greedy
+pivot probe: dm4 is the UNIQUE spare with a guaranteed-nonzero linear
+pivot (3*dm1 = 3e); all 25 dm4 scalars eliminated symbolically at zero
+soundness cost (cofactor certificates re-verified by exact expansion;
+homogeneity 228/240/264; divisibility identity checked). No further
+guaranteed-pivot elimination exists.
+CONTROL VERDICT: COST — the known a12_b1110_T2 kill is NOT reproduced on
+the reduced system (187 eq / 41 spares): numroot mod-p TIMEOUT x3, char-0
+Singular std TIMEOUT 300s. Identical in shape to R9_SYMBOLIC's negative:
+shrinking the system does not cross the feasibility boundary. PRIZE
+(a11_b3100_T2): COST. Sweep not reached (gated on control). 0 KILL,
+0 PROPER, 2 COST. Alt frontier unchanged.
+Wall characterization (now shared verbatim with R9): the swell lives in
+the dm2/dm3 CUBIC ansatz (H cubic in 41 spares, e to the 4th) coupled to
+window-cap-attaining e (deg 15) + marked-root nonlinearity. Named next:
+the divisibility valuation split (R9 sec 3c, ~18 unknowns/case), set up
+here by the certified monic(e) | dm2*dm3 lemma, not yet implemented for
+alt.
+Engineering finding: the reduced system is intractable to BUILD in sympy
+(one state > 30 min CPU); pushing all expansion into Singular via
+coeffs(H_i, y) made it tractable — and re-hit the documented gm^8/N
+parser trap (fixed by rational-coefficient-first emission). msolve
+unusable here (needs pre-expanded input). Exact engine of record:
+Singular-native std over Q.
+Files: alt_elim.py, alt_eliminated_system.json, alt_elim_results.json,
+ALT_ELIM.md. Orphan discipline verified clean.
+
+
+## 2026-07-24 — GPT-Pro review 6 folded: TWO SCOPE CORRECTIONS + the F2 FAMILY THEOREM (first symbolic family closed form)
+CORRECTION 1 (real vs complex): the F10 dg=4 parity result is a
+REAL-LOCUS theorem, not a complex one — the eliminants have no real
+roots, but the recorded nonreal roots give formal complex mu=1 branches.
+Complex parity remains proved only at dg=2 (PHI_F7's complete
+factorization). Rescoped in MU_RUNGS_F10.md (correction block),
+ZETA_TAIL.md, COMPOSITE_CHARTS.md. Standing rule adopted: classify ODE
+branch schemes over Qbar first; real-locus info is branch-selection
+annotation; Sturm counts are NEVER complex kills.
+CORRECTION 2 (the boundary is not a>=3): W_step = 75/21 = 25/7 is already
+non-integral at a=2 (F2 j=0 = (50,75)) — verified. The invariant is
+q_window := denom(ord_y(Phi)/M) = 5a-3 exactly for F2 (gcd(2a-1,5a-3)=1).
+(72,108)'s integral 12 is that corner's coincidence. Corrected in
+G_SYSTEM_75_125.md. Consequence: generalize to RATIONALLY RELATED
+GRADINGS (bigraded window lattice), not an a>=3 engine; tactical route
+for (75,125) is a period-12 window compiler.
+THE F2 FAMILY THEOREM (review-proposed, verified here symbolically in a):
+with a=j+2, b=2a-1, t=5, kappa=3, c=y^2(y^3+1):
+  f_a = -(1/(3a)) y^(2a-1) (y^3+1)^a solves the forcing ODE for EVERY a
+  (collapse identity y*g'-3g = -3);
+  N_a = 15a^2-13a+2;
+  Phi_a = -(1/(3a)) y^(30a^2-24a+3) (y^3+1)^(15a^2-12a+2);
+  block recurrence Phi_{a+1} = (a/(a+1)) C^(30a+3) Phi_a.
+Reproduces both landed points ((50,75): N=36, (189,75,38,76); (75,125):
+N=98, (504,201,101,202)). First FAMILY-level closed form in the program —
+the forcing layer of all F2 in one formula. System growth is fixed
+5-blocks (5 spares + 5 generators per a-step) — the certificate-tower
+question (does the a=2 kill extend by a block rule?) is now well-posed.
+Checker: f2_family_verify.py (14/14, symbolic-in-a) — wired into
+run_tests.sh. Review's strategic program recorded: polygon-reduction
+compiler (the missing front end), F2 j=0 end-to-end reproduction as
+positive control, bigraded bridge, five orthogonal-axis next cases.
+
+
+## 2026-07-24 — POLYGON-REDUCTION COMPILER (Opus lane): the missing front end built; (75,125) unconditional at the polygon layer
+polygon_reduction.py: input a GGV chain case, output the COMPLETE
+reduction — transform sequence (root shifts + fused Laurent inversion,
+building on composite_charts' proven Jacobian -x^(l-2)), the DERIVED
+bracket exponent kappa = l-2, both reduced Newton polygons, an explicit
+BRANCH MANIFEST (every opposite-edge/endpoint/denominator-zero
+alternative with its follow-or-exclude reason — no silent selection),
+and the corner signature (t,kappa,a0,q,c).
+Regression contract, all three targets PASS (56/56 checks):
+R1: reproduces the PUBLISHED (72,108)/(8,28) reduction exactly (both
+polygons match upstream_facts.json; branch manifest reproduces the
+paper's own split: k=2 excluded, three-factor excluded, deep shift
+excluded via GGV6 Prop 2.5).
+R2: F2 j=0 = (50,75): t=5,kappa=3,a0=5,q=2,c=y^2(y^3+1); Phi
+(189,75,38,76), N=36 — matches landed data and GGV3 sec 5.
+R3: F2 j=1 = (75,125) derived WITHOUT a judgment flag — the chart is
+IDENTICAL to j=0 (same corner, same inversion; only (m,n) scales the
+polygon, not the chart), kappa forced by the fused-chart lemma; Phi
+(504,201,101,202) matches. THE "UNREDUCED POLYGON" JUDGMENT (PHI_75_125
+item 2) IS DISCHARGED — the (75,125) model is unconditional at the
+polygon layer. Surviving judgment correctly re-scoped to the forcing
+layer (corner-144 correspondence, audited only for (72,108)).
+Branch manifests: (8,28) 4 branches/12 options; F2 j=0,j=1 each 3/6.
+Checker: polygon_reduction_verify.py (56/56) — wired into run_tests.sh.
+Files: polygon_reduction.py, polygon_reduction_verify.py,
+POLYGON_REDUCTION.md.
+
+
+## 2026-07-24 — CERTIFICATE TOWER (Opus lane): BLOCK-OBSTRUCTION — the new geometry at 125 is the incommensurate window lattice
+First direct attack on (75,125). Verdict: the (50,75) a=2 kill does NOT
+extend by the fixed 5-block rule.
+THE a=2 CERTIFICATE (major artifact in itself): GGV3 section-5's (50,75)
+kill reproduced BIT-EXACT by machine in both reduced charts (exact sympy
+Groebner): gamma=2 — 13-equation terminal system eliminates to
+<g-2^5, ..., g-5^4> so g-2^5 = g-5^4 = 0 verbatim as the paper states,
+then the square-in-K((1/y)) step forces e-10 = 0 contradicting corner
+primitivity (b6); gamma=3 — window elimination bottoms C0's y-support at
+y^-6, c0,-10 = 0, contradicting primitivity (a6). Certificate kind: a
+small set of TERMINAL COEFFICIENT EQUATIONS forcing a corner
+window-coefficient to vanish — intrinsically BIGRADED (u-weight, y-order),
+a window-depth contradiction, NOT a scalar covector/syzygy on the
+G-system (the scalar G-ideal has the trivial solution and does not die).
+THE TOWER STEP: the algebraic block layer transfers EXACTLY (generators
+5->10, spares 4->9, Phi recurrence, literal nesting
+coeff_{d0^2}(G1^{a=3}) = (10/3) G1^{a=2}). The KILL layer does not: it
+lives in the y-order/window-cap layer governed by q_window = 5a-3, which
+jumps 7 -> 12 with gcd(7,12) = 1 — INCOMMENSURATE lattices; the
+forcing-slice fractional denominators fragment {1,7} -> {1,2,3,4,6,12};
+the 5 new forcing generators + deepened Phi slice carry the new classes
+with no period-7 analog.
+NAMED OBSTRUCTING BLOCK: the window-cap/y-order layer of the 5 new
+forcing generators. Exactly the review-predicted "new geometry at 125."
+CONSEQUENCE: (75,125) not killed; the required tool is now UNIQUELY
+DETERMINED — the period-12 window compiler / bigraded lattice engine
+(already independently flagged by G_SYSTEM_75_125's correction). Three
+independent threads (transfer test, family theorem, tower experiment)
+now converge on the same missing tool.
+Checker: f2_tower_verify.py (19/19) — wired into run_tests.sh.
+Files: F2_TOWER.md, f2_tower.py, f2_tower_verify.py.
+
+
+## 2026-07-24 — FAMILY GRAMMAR SWEEP (Opus lane): all 17 families classified, ZERO irregular — the finite grammar is real
+The F2 closed form generalizes to a complete grammar governed by two
+j-invariant corner numbers (gap, r), a 2x2 dichotomy:
+THE ONE THEOREM (proved symbolically in j): the pure ansatz
+f = A y^rho (y^dg+1)^e solves the forcing ODE for ALL j iff
+t-(kappa+1)q+dg = 0 iff a0 = t(q-1) iff gap = 0, with UNIVERSAL constant
+A = -1/(a*dg) (F2's -1/(3a) is the dg=3 instance; the collapse mechanism
+is two j-constant identities + y g'-dg g = -dg).
+Census: CLOSED-FORM 8 (PURE gap=0: F2, F9, F14; COFACTOR r=0 with unit
+cofactor of degree gap and universal u(-1) = -1/a: F1, F5, F6, F8, F17);
+RUNG-STRUCTURED 9 (F3, F4, F7, F10, F11, F12, F13, F15, F16 — the mu=dg
+fully-ramified rung f = y^rho (y+1)^(dg*e-(dg-1)) u, deg u = gap+r, is a
+UNIFORM closed form in j); IRREGULAR 0. Composite escapes: only F22
+(gap = -1) outside the grammar.
+Cross-checks 210/210: every landed point reproduced exactly (both F2
+rungs, F9, F14, F1, all four PHI_F7 ramified polynomials substituted
+directly into the ODE, F12 mu in {1,2,3} and F10 mu in {2,4} via the
+mu-graded law). (72,108) honestly excepted (the (8,28) resonance corner —
+no family formula claimed).
+Surprises recorded: dg even iff RUNG on standard rows (the parity
+mini-lemma falls out of dg = a0-q + the gauge); complex-scope discipline
+maintained (real-emptiness = annotation only).
+The grammar table (with per-family q_window laws) is direct design input
+for the bigraded window engine — the tool all three threads converge on.
+Checker: family_grammar_verify.py (210/210; independent full-ODE
+substitution j=0..3 + symbolic-in-j structure) — wired into run_tests.sh.
+Files: FAMILY_GRAMMAR.md, family_grammar.py, family_grammar_verify.py.
+
+
+## 2026-07-24 — COVERAGE PROOF-DAG v1 (Opus lane): closure is now COMPUTED; three real inconsistencies found on day one
+proof_dag.py builds the machine-enforced graph certificate -> state ->
+cell -> branch -> subcase -> C0 (4455 nodes / 4445 edges; deterministic,
+byte-identical regeneration). Evidence levels {claimed < exact-checked <
+independently-audited < certified} propagate as minima; no hand roll-up
+can assert closure.
+Census: states 18 certified / 41 independently-audited / 334
+exact-checked / 29 claimed; branches 2404 closed@claimed, 209 open
+(26 sub2 + 171 sub1 + 12 defect-0) — matching the docs; C0 OPEN; 3
+defect-0 family closures confirmed. Unmapped bucket: 43, surfaced loudly
+(31 ledger-ambiguous, 8 unresolved certificates, 4 j6 kills without
+joinable degrees). Audit priority queue (weakest edges): (1) one cascade
+spec-audit join promotes 2401 branches from claimed; (2) 334 same-author
+exact-checked states await independent audit; (3) the four
+judgment-referenced subcase->C0 completeness edges cap C0.
+THREE REAL INCONSISTENCIES (the DAG doing its job):
+1. FRONTIER's "Killed (audited)" counts same-author exact-checked kills
+   as audited (overstates 292 states) — labeling fix owed.
+2. CURRENT_STATUS S1a asserts independent audit of cascade branch kills;
+   the audit artifacts (audit_cascade_kills*.py) EXIST and run in the
+   suite but are NOT machine-joined in DAG v1 — either the join (v2) or
+   the claim wording must move; until joined, the DAG honestly rates
+   those branches claimed.
+3. ORPHAN CERTIFICATE: harvest:a8_dd2-inf_dd10_dsig5 is CERTIFICATE-FOUND
+   but maps to no ledger state — the certificate corpus is stronger than
+   the ledger records; mapping resolution owed.
+proof_dag_report.py exits nonzero while inconsistencies stand — NOT wired
+into run_tests.sh until the three fixes land (next audit round).
+Files: proof_dag.py, proof_dag.json, proof_dag_report.py, PROOF_DAG.md.
+
+
+## 2026-07-24 — CHAIN NATURAL-HISTORY SURVEY (Opus lane): GGV5 reproduced exactly (+ a paper typo found); the grammar picture refined
+Full GGV5 pipeline re-implemented in pure Python; at M=35 reproduces the
+published tables to the letter (24 chains exact; 23/24 (m,n) families
+verbatim). THE EXCEPTION IS A PROVABLE TYPO IN GGV5: F6's printed base
+pair (4,10) has gcd 2, violating the paper's own coprimality definition;
+the algorithm returns the coprime correction (6j+7, 16j+18) satisfying
+the same Diophantine identity — an erratum worth including in any GGHV
+contact. Also: GGV5's prose "2 length-2 chains" contradicts its own
+7-row table (algorithm sides with the table).
+Extension to v11 <= 100: 3995 family rows, 3403 canonical admissible
+chains (~170s full sweep).
+DEMOGRAPHY: fine censuses NEVER flatten (A0-motifs 9->147, signatures
+19->982, families 24->3995 — anti-signal at the labelled level), BUT
+coarse regime clusters (gap-sign, r-sign, dg-parity, length) PLATEAU at
+~20 across M=65-85 (26 when length-4 chains open at M=100). Verdict: a
+BOUNDED SET OF REDUCTION SHAPES decorated by unbounded numeric labels —
+the finite grammar is real at the shape level, exactly matching the
+FAMILY_GRAMMAR 2x2 dichotomy picture. Max chain length creeps 2->3->4
+(capped by bigOmega(gcd)+1). The window-denominator law (F2's 5a-3
+analogue) is NON-TRIVIAL for all 3995 families — (72,108)'s integral
+W_step confirmed as a coincidence at population scale.
+CORRECTION APPLIED: composite_charts' "negative gap unobserved anywhere"
+was wrong at scale — 588/3995 families populate gap<0 (no derived Phi
+point yet); both files updated, verifier re-run green.
+Checker: chain_survey_verify.py (18/18) — wired into run_tests.sh.
+Files: CHAIN_SURVEY.md, chain_survey.py, chain_survey_verify.py,
+chain_survey_data.json (3.3MB).
+
+
+## 2026-07-24 — Eumemic study (Opus lane): deep method parallel found; variable map built; import candidates recorded
+Read of eumemic/jacobian-keller-research (pinned commit 201c2f6): the
+band method works in the localized Weyl algebra A_1[x^-1] = (+)_k x^k C[E];
+[D,X]=1 decomposes into degree-free ladder rung-equations on root
+multisets (necklaces) probed by trace-form covectors; the program forces
+a counterexample pair to band <= 2 (proven tame, their tier: internally
+audited) and stalls at the band-3 W2 hatch (a3=E(E+2)(E+4), b2=E(E+3)),
+bounded-closed at d=3, arbitrary-d OPEN.
+Map verdict: (a) slope laws ANALOGOUS not importable (their
+shifted-power wall vs our kappa=t-2 — same role, different object);
+(b) W2 vs our polygons DISJOINT (JC2=>DC1 gives no transfer either way);
+(c) methodologically complementary, object-disjoint — one level up from
+alok (who at least shared our polygons).
+KEY FINDING — the same five-step schema reached independently by both
+programs: graded commutator ladder -> per-rung elimination -> proven
+degree-free slope law -> bounded exact UNIT-ideal kill -> open
+arbitrary-degree residual needing a degree-free covector. Their W2 unit
+ideal at d=3 mirrors our bridge UNIT pilot almost exactly. The tool BOTH
+programs lack is the same tool.
+Import candidates (eumemic_import_candidates.json, 5 + 3 non-candidates):
+(1) their Nullstellensatz-multiplier certificate re-check format — hardens
+our bridge kills; (2) their msolve ^-vs-** parser caveat (a wrong glyph
+fabricates a FALSE SURVIVOR — directly relevant to our J6/msolve usage);
+(3) trace-form covector calculus as the template for lifting bounded
+per-state kills to degree-free closure (shared direction, their recipe
+also OPEN); (4) joint glossary (Q_m ~ G-system, band ~ window, necklace ~
+Newton corner, Q_0=1 ~ Phi != 0); (5) export offer: our proven kappa=t-2 +
+arbitrary-k window caps are closed instances of slope laws their Gap 2
+leaves open — offered as proof strategy.
+Their audit discipline (self-flagged doc-ahead-of-proof rows) is itself
+an import. Files: EUMEMIC_MAP.md, eumemic_import_candidates.json.

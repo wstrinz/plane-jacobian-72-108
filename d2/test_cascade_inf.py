@@ -31,6 +31,14 @@ from pathlib import Path
 
 import cascade_engine as ce
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 NEG_INF = ce.NEG_INF
 ROOT = Path(__file__).resolve().parent
 
@@ -41,38 +49,36 @@ def r0_semantics() -> None:
     degstate = (1.0, 2.0, 3.0, 9.0)
     flags = (False, False, False)
     options = ce.deg_h_options(6, degstate, flags)
-    assert options == [(11.0, ())], options
+    _require(options == [(11.0, ())], options)
 
     # Descend level 6 (a=9: v=3, deg ehat=0) below deg g7 = 32:
     # target 35; case (b) gives deg g6 in [0,34], case (c) the depth-0 tie
     # at 35; case (a) is empty because the h-term equals the target.
     results = ce.descend_options_inf(6, 32.0, False, degstate, flags, 37, 0, 3)
     values = sorted(value for value, _ in results)
-    assert values == [float(k) for k in range(36)], values
-    assert all(not obligations for _, obligations in results)
+    _require(values == [float(k) for k in range(36)], values)
+    _require(all(not obligations for _, obligations in results), "all(not obligations for _, obligations in results)")
 
     # Tie: (1,2,6,10) makes X+E = 2Z = 12 with 2X+K = 5 below: the maximum
     # may drop only with a degree_tie_drop obligation naming both tied
     # monomials, or vanish identically.
     degstate = (1.0, 2.0, 6.0, 10.0)
     options = ce.deg_h_options(6, degstate, flags)
-    assert options[0] == (12.0, ())
+    _require(options[0] == (12.0, ()), "options[0] == (12.0, ())")
     drops = [entry for entry in options if entry[0] not in (12.0, NEG_INF)]
-    assert len(drops) == 12, len(drops)
+    _require(len(drops) == 12, len(drops))
     for value, obligations in drops:
         (obligation,) = obligations
-        assert obligation.kind == "degree_tie_drop"
-        assert obligation.depth == int(12 - value)
-        assert len(obligation.tied) == 2
-    assert options[-1][0] == NEG_INF
-    assert options[-1][1][0].kind == "identical_vanishing"
+        _require(obligation.kind == "degree_tie_drop", "obligation.kind == \"degree_tie_drop\"")
+        _require(obligation.depth == int(12 - value), "obligation.depth == int(12 - value)")
+        _require(len(obligation.tied) == 2, "len(obligation.tied) == 2")
+    _require(options[-1][0] == NEG_INF, "options[-1][0] == NEG_INF")
+    _require(options[-1][1][0].kind == "identical_vanishing", "options[-1][1][0].kind == \"identical_vanishing\"")
 
     # Unique maxima cannot vanish or drop even when requested.
-    assert ce.deg_h_options(7, (0.0, 3.0, 0.0, 9.0), flags, required=5.0) == []
-    assert (
-        ce.deg_h_options(7, (0.0, 3.0, 0.0, 9.0), flags, required=NEG_INF)
-        == []
-    )
+    _require(ce.deg_h_options(7, (0.0, 3.0, 0.0, 9.0), flags, required=5.0) == [], "ce.deg_h_options(7, (0.0, 3.0, 0.0, 9.0), flags, required=5.0) == []")
+    _require(ce.deg_h_options(7, (0.0, 3.0, 0.0, 9.0), flags, required=NEG_INF)
+        == [], "ce.deg_h_options(7, (0.0, 3.0, 0.0, 9.0), flags, required=NEG_INF) == []")
     print("R0 max-plus semantics: unique max forces, ties drop with obligations")
 
 
@@ -102,18 +108,18 @@ def r1_a9_t2() -> None:
     # T5_90_T2.md section 2: deg e = 9 (constant E) has no consistent
     # degree chain for ANY (deg sigma, deg d2, flags).
     for deg_sigma in range(0, 9):
-        assert not _t2_state_survives(9, 9, deg_sigma), deg_sigma
+        _require(not _t2_state_survives(9, 9, deg_sigma), deg_sigma)
     # deg e = 10 (linear E) must survive tropically -- section 1's UFD
     # argument is a residue argument, not a degree argument -- and every
     # witness must carry a cancellation obligation.
     surviving = [z for z in range(0, 9) if _t2_state_survives(9, 10, z)]
-    assert surviving, "linear-E states must remain tropically open"
+    _require(surviving, "linear-E states must remain tropically open")
     profile = ce.inf_place_profiles(
         9, "T2", 37, 4, False, False, {6: False, 5: False, 4: False},
         (0.0, NEG_INF, 0.0, 10.0),
     )[0]
     kinds = {obligation.kind for obligation in profile.obligations}
-    assert kinds & {"leading_cancellation", "degree_tie_drop"}, kinds
+    _require(kinds & {"leading_cancellation", "degree_tie_drop"}, kinds)
     print("R1 a_t=9 T2 kill (T5_90_T2.md): constant-E dead, linear-E open")
 
 
@@ -150,7 +156,7 @@ def r2_a9_t1_constant() -> None:
             if cell_survives(d, sigma_zero, z):
                 survivors.add((d, case))
     expected = {(2, "zero")} | {(2, z) for z in range(6)}
-    assert survivors == expected, survivors
+    _require(survivors == expected, survivors)
     print("R2 a_t=9 T1 constant cells (T5_90_T1.md): 43/50 dead, 7 ties open")
 
 
@@ -167,7 +173,7 @@ def r3_t2_column() -> None:
         (6, 9, 6),   # a6 b1110 (0,0):  242 < 243
     ]
     for a, deg_e, deg_sigma in kill_rows:
-        assert not _t2_state_survives(a, deg_e, deg_sigma), (a, deg_e, deg_sigma)
+        _require(not _t2_state_survives(a, deg_e, deg_sigma), (a, deg_e, deg_sigma))
     # Documented open residual states (patterns A and B) stay open.
     open_rows = [
         (9, 10, 2), (9, 10, 8),          # R9 endpoints
@@ -175,7 +181,7 @@ def r3_t2_column() -> None:
         (7, 8, 3), (7, 10, 7),           # R71 pattern A + B
     ]
     for a, deg_e, deg_sigma in open_rows:
-        assert _t2_state_survives(a, deg_e, deg_sigma), (a, deg_e, deg_sigma)
+        _require(_t2_state_survives(a, deg_e, deg_sigma), (a, deg_e, deg_sigma))
     print("R3 T2-column dominations (T5_T2_COLUMN.md): 7 margins dead, A/B open")
 
 
@@ -191,7 +197,7 @@ def r4_join_smoke() -> None:
         and record["b"] == [1, 0, 0, 0]
         and record["branch"] == "T2"
     )
-    assert row["status"] == "survives"
+    _require(row["status"] == "survives", "row[\"status\"] == \"survives\"")
     reference_cases = {
         (case["sigma_zero"], case["d2_zero"], tuple(case["g_zero_levels"]))
         for case in row["survivor_cases"]
@@ -204,7 +210,7 @@ def r4_join_smoke() -> None:
         (case["sigma_zero"], case["d2_zero"], tuple(case["g_zero_levels"]))
         for case in outcome["survivor_cases"]
     }
-    assert inf_cases <= reference_cases, inf_cases - reference_cases
+    _require(inf_cases <= reference_cases, inf_cases - reference_cases)
 
     # Every survivor witness carries an infinity record with a full chain.
     for case in outcome["survivor_cases"]:
@@ -213,8 +219,8 @@ def r4_join_smoke() -> None:
             for record in case["witness"]
             if record["place"] == "inf"
         ]
-        assert len(inf_records) == 1
-        assert set(inf_records[0]["deg_g"]) == {str(l) for l in range(1, 7)}
+        _require(len(inf_records) == 1, "len(inf_records) == 1")
+        _require(set(inf_records[0]["deg_g"]) == {str(l) for l in range(1, 7)}, "set(inf_records[0][\"deg_g\"]) == {str(l) for l in range(1, 7)}")
 
     # The g5=0 flag case is narrowed to (deg e, deg sigma) = (10, 8)
     # (T5_T2_COLUMN.md section 4, G5 row: state (0,6,12;10,8)).
@@ -225,8 +231,8 @@ def r4_join_smoke() -> None:
     ]
     for case in g5_cases:
         (record,) = [r for r in case["witness"] if r["place"] == "inf"]
-        assert record["deg_e"] == 10, record
-        assert record["deg_sigma"] == 8, record
+        _require(record["deg_e"] == 10, record)
+        _require(record["deg_sigma"] == 8, record)
     print(
         "R4 joint q+t+inf smoke (a9 b1000 T2): no new survivors vs "
         "cascade_cones_qt.json; g5=0 narrowed to (deg e, deg sigma)=(10,8)"
@@ -257,7 +263,7 @@ def r5_t2_squeeze() -> None:
             include_t=True, include_inf=True, t2_squeeze=True,
         )
         actual = "open" if outcome["status"] == "survives" else "dead"
-        assert actual == expected, (a, b_vector, actual)
+        _require(actual == expected, (a, b_vector, actual))
     print(
         "R5 T2 squeeze joined to infinity: the four T5_T2_COLUMN cells "
         "die, the eight open cells survive"

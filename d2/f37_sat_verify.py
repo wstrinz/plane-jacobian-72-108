@@ -43,6 +43,14 @@ import sympy as sp
 
 import system_generators as sysgen
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 ROOT = Path(__file__).resolve().parent
 
 d2, d1, d0 = sp.symbols("d2 d1 d0")
@@ -133,7 +141,7 @@ def load_cofactors() -> list[sp.Expr]:
         ln for ln in (ROOT / "f37_sat_certificate.txt").read_text().splitlines()
         if ln.strip() and not ln.lstrip().startswith("#")
     ]
-    assert len(lines) == 4, f"expected 4 cofactors, got {len(lines)}"
+    _require(len(lines) == 4, f"expected 4 cofactors, got {len(lines)}")
     return [parse(ln) for ln in lines]
 
 
@@ -143,7 +151,7 @@ def check_membership_certificate() -> None:
     f31 = load_f31()
     combo = sp.expand(sum(c * g for c, g in zip(cof, gens)))
     residual = sp.expand(combo - sp.expand(f31))
-    assert residual == 0, f"certificate FAILED, residual has {len(sp.Add.make_args(residual))} terms"
+    _require(residual == 0, f"certificate FAILED, residual has {len(sp.Add.make_args(residual))} terms")
     print("(A) membership certificate PASS:")
     print("    f31 = c1*G1 + c2*G2 + c3*G3 + c4*(G5body+Phi)  [exact over Q]")
     print("    => f31 vanishes on the entire pre-resultant variety.")
@@ -174,7 +182,7 @@ def check_factor_data_consistency() -> None:
         sp.Poly(sp.expand(master), d2, d1, d0, dm1, Phi),
         sp.Poly(f31, d2, d1, d0, dm1, Phi),
     )
-    assert remainder == 0 and sp.expand(quotient.as_expr() - sp.expand(f37 * dm1**21)) == 0
+    _require(remainder == 0 and sp.expand(quotient.as_expr() - sp.expand(f37 * dm1**21)) == 0, "remainder == 0 and sp.expand(quotient.as_expr() - sp.expand(f37 * dm1**21)) == 0")
     print("(B) shipped factor-data consistency PASS (NOT independent provenance):")
     print("    (f31*f37*dm1^21) / f31 == f37*dm1^21 -- a tautology, guards only")
     print("    against a corrupted f37 file; provenance is f37_sat_confirm.sing.")

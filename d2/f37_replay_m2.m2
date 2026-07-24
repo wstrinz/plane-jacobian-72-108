@@ -115,11 +115,16 @@ factorBases = f -> (
     apply(toList(0..(#FF-1)), i -> FF#i#0)
     );
 
+-- resultant() rejects rings carrying an Eliminate monomial order, so the
+-- resultant chain runs in a plain-order copy of the same ring.
+P = QQ[dm2,dm3,dm4,d2,d1,d0,dm1,Phi];
+toP = map(P,R,vars P);
+fromP = map(R,P,vars R);
 print("INFO: computing the two dm3 resultants");
-RA = resultant(H2,H3,dm3);
-RB = resultant(H2,H5,dm3);
-AhCandidates = select(factorBases RA, q -> diff(dm2,q) != 0_R);
-BhCandidates = select(factorBases RB, q -> diff(dm2,q) != 0_R);
+RA = resultant(toP H2,toP H3,P_1);
+RB = resultant(toP H2,toP H5,P_1);
+AhCandidates = select(factorBases RA, q -> diff(P_0,q) != 0_P);
+BhCandidates = select(factorBases RB, q -> diff(P_0,q) != 0_P);
 resultantInputsOK = (#AhCandidates == 1) and (#BhCandidates == 1);
 report("unique dm2-bearing factors in the two intermediate resultants",
     resultantInputsOK);
@@ -128,13 +133,13 @@ Ah = first AhCandidates;
 Bh = first BhCandidates;
 
 print("INFO: computing and factoring the final dm2 resultant");
-master = resultant(Ah,Bh,dm2);
+master = resultant(Ah,Bh,P_0);
 f31Candidates = select(factorBases master, q ->
-    (first degree q == 31) and (diff(Phi,q) != 0_R));
+    (first degree q == 31) and (diff(P_7,q) != 0_P));
 f31Unique = (#f31Candidates == 1);
 report("unique Phi-bearing total-degree-31 resultant factor",f31Unique);
 if not f31Unique then exit 1;
-f31 = first f31Candidates;
+f31 = fromP first f31Candidates;
 
 -- -------------------------------------------------------------------------
 -- 3. Compute the true elimination ideal and replay the theorem.

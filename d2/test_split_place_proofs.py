@@ -14,6 +14,14 @@ import re
 
 import sympy as sp
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 
 ROOT = Path(__file__).resolve().parent
 d0, d1, d2, e = sp.symbols("d0 d1 d2 dm1")
@@ -30,7 +38,7 @@ def load_h() -> dict[int, sp.Expr]:
                 match.group(2),
                 locals={"d0": d0, "d1": d1, "d2": d2, "dm1": e},
             )
-    assert sorted(out) == list(range(8))
+    _require(sorted(out) == list(range(8)), "sorted(out) == list(range(8))")
     return out
 
 
@@ -56,17 +64,17 @@ def check_source_formulas() -> None:
         + 18432 * d1 * d2 * e
         + 2048 * e**2
     )
-    assert sp.expand(H[7] - 8192 * d1**2) == 0
-    assert sp.expand(H[6] - h6_expected) == 0
-    assert sp.expand(H[5] - h5_expected) == 0
-    assert sp.expand(H[6].subs(d1, 0) + 3072 * sigma**2) == 0
-    assert sp.expand(
+    _require(sp.expand(H[7] - 8192 * d1**2) == 0, "sp.expand(H[7] - 8192 * d1**2) == 0")
+    _require(sp.expand(H[6] - h6_expected) == 0, "sp.expand(H[6] - h6_expected) == 0")
+    _require(sp.expand(H[5] - h5_expected) == 0, "sp.expand(H[5] - h5_expected) == 0")
+    _require(sp.expand(H[6].subs(d1, 0) + 3072 * sigma**2) == 0, "sp.expand(H[6].subs(d1, 0) + 3072 * sigma**2) == 0")
+    _require(sp.expand(
         H[5].subs(d1, 0) - (-9216 * d2 * sigma**2 + 2048 * e**2)
-    ) == 0
+    ) == 0, "sp.expand( H[5].subs(d1, 0) - (-9216 * d2 * sigma**2 + 2048 * e**2) ) == 0")
 
     generic_caps = {d2: 4, d1: 6, d0: 8, e: 10}
     for f, expr in H.items():
-        assert weighted_degree_bound(expr, generic_caps) <= 40 - 4 * f
+        _require(weighted_degree_bound(expr, generic_caps) <= 40 - 4 * f, "weighted_degree_bound(expr, generic_caps) <= 40 - 4 * f")
 
 
 def local_parity_escape(include_sigma: bool) -> list[tuple[int, int, int]]:
@@ -74,7 +82,7 @@ def local_parity_escape(include_sigma: bool) -> list[tuple[int, int, int]]:
     for e_order in (1, 3):
         for h_order in (1, 3):
             d1_order = (3 * e_order + h_order) // 2
-            assert 2 * d1_order == 3 * e_order + h_order
+            _require(2 * d1_order == 3 * e_order + h_order, "2 * d1_order == 3 * e_order + h_order")
             sigma_orders = range(9) if include_sigma else (None,)
             possible = False
             for sigma_order in sigma_orders:
@@ -113,7 +121,7 @@ def term_bounds(
             deg_d1 + 4 + deg_e,
             2 * deg_e,
         )
-        assert max(h5_terms) == 18
+        _require(max(h5_terms) == 18, "max(h5_terms) == 18")
         bounds[5] = 5 * 34 + 6 * deg_e + 18
 
     h6_terms = (
@@ -130,23 +138,23 @@ def term_bounds(
     if top_index == 6:
         # The sigma^2 term must strictly lead h6, so the asserted top degree
         # cannot disappear through cancellation.
-        assert h6_terms[0] > max(h6_terms[1:])
+        _require(h6_terms[0] > max(h6_terms[1:]), "h6_terms[0] > max(h6_terms[1:])")
     else:
-        assert top_index == 7
-        assert H[7] == 8192 * d1**2
+        _require(top_index == 7, "top_index == 7")
+        _require(H[7] == 8192 * d1**2, "H[7] == 8192 * d1**2")
     return bounds, top_index
 
 
 def check_a7_degree_table() -> None:
-    assert local_parity_escape(include_sigma=True) == [(1, 3, 3)]
+    _require(local_parity_escape(include_sigma=True) == [(1, 3, 3)], "local_parity_escape(include_sigma=True) == [(1, 3, 3)]")
     # sigma=0 is an omitted term, not a finite valuation; it has the same sole
     # escape and is checked separately to close that logical edge case.
-    assert local_parity_escape(include_sigma=False) == [(1, 3, 3)]
+    _require(local_parity_escape(include_sigma=False) == [(1, 3, 3)], "local_parity_escape(include_sigma=False) == [(1, 3, 3)]")
 
     for deg_u, deg_v, deg_sigma in product((0, 1), (0, 1), range(9)):
         bounds, top_index = term_bounds(deg_u, deg_v, deg_sigma)
-        assert bounds.count(max(bounds)) == 1
-        assert top_index in (6, 7)
+        _require(bounds.count(max(bounds)) == 1, "bounds.count(max(bounds)) == 1")
+        _require(top_index in (6, 7), "top_index in (6, 7)")
 
 
 def main() -> None:

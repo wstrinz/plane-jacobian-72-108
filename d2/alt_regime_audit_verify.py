@@ -23,6 +23,14 @@ import json, random, re
 from pathlib import Path
 import sympy as sp
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 ROOT = Path(__file__).resolve().parent
 
 # ---------------------------------------------------------------- shared parse
@@ -35,7 +43,7 @@ phit = c*t**30*q
 _text = (ROOT / "f31_graded.txt").read_text(encoding="utf-8")
 _pat = r"h_(\d) \(weight \d+, dm1-power \d+\) = (.+)"
 hs = {int(m.group(1)): sp.sympify(m.group(2)) for m in re.finditer(_pat, _text)}
-assert sorted(hs) == list(range(8)), "graded source parse failed"
+_require(sorted(hs) == list(range(8)), "graded source parse failed")
 
 # ============================================================ 1. t-order min
 # t-order of the f-term is 30f + a(21-3f) = 21a + f(30-3a).  For a>=11 this is
@@ -44,10 +52,10 @@ assert sorted(hs) == list(range(8)), "graded source parse failed"
 for a in range(11, 16):
     v, w = 30 - 3*a, 3*a - 30
     ords = [30*f + a*(21 - 3*f) for f in range(8)]
-    assert v < 0 and w == -v
-    assert min(ords) == ords[7] == 210 == 21*a + 7*v
-    assert all(ords[f] - 210 == (7 - f)*w for f in range(8))          # exact
-    assert all(ords[f] > ords[f + 1] for f in range(7))               # strict min
+    _require(v < 0 and w == -v, "v < 0 and w == -v")
+    _require(min(ords) == ords[7] == 210 == 21*a + 7*v, "min(ords) == ords[7] == 210 == 21*a + 7*v")
+    _require(all(ords[f] - 210 == (7 - f)*w for f in range(8)), "all(ords[f] - 210 == (7 - f)*w for f in range(8))")          # exact
+    _require(all(ords[f] > ords[f + 1] for f in range(7)), "all(ords[f] > ords[f + 1] for f in range(7))")               # strict min
 print("1. t-order min at f=7, =210, residual (7-f)w, strict            OK")
 
 # ============================================================ 2. F = t^210 G'
@@ -61,13 +69,13 @@ for a in (13, 14):
     D2, D1, D0, Eh = rpoly(2), rpoly(3), rpoly(min(r, 4)), rpoly(min(r, 4))
     if Eh.subs(y, -1) == 0:
         Eh += 1
-    assert Eh.subs(y, -1) != 0 and sp.degree(Eh, y) <= 15 - a
+    _require(Eh.subs(y, -1) != 0 and sp.degree(Eh, y) <= 15 - a, "Eh.subs(y, -1) != 0 and sp.degree(Eh, y) <= 15 - a")
     e = t**a*Eh
     hv = {f: hs[f].subs({d2: D2, d1: D1, d0: D0, dm1: e}) for f in range(8)}
     F = sp.expand(sum(phit**f * e**(21 - 3*f) * hv[f] for f in range(8)))
     Gp = sp.expand(sum(t**((7 - f)*w) * u**f * Eh**(21 - 3*f) * hv[f] for f in range(8)))
-    assert sp.expand(F - t**210*Gp) == 0, a
-    assert sp.rem(sp.expand(Gp), t, y) != 0 or True  # G' generically t-coprime
+    _require(sp.expand(F - t**210*Gp) == 0, a)
+    _require(sp.rem(sp.expand(Gp), t, y) != 0 or True, "sp.rem(sp.expand(Gp), t, y) != 0 or True")  # G' generically t-coprime
 print("2. F = t^210 G' exact on OWN a=13 and a=14 windows              OK")
 
 # ============================================================ 3. telescope
@@ -80,27 +88,27 @@ r = {6: Hs[7]/T}
 for f in range(6, 0, -1):
     r[f - 1] = (E**(3*(7 - f))*Hs[f] + U*r[f])/T
 Gp_sym = sum(T**(7 - f)*U**f*E**(21 - 3*f)*Hs[f] for f in range(8))
-assert sp.cancel(Gp_sym - T**7*(E**21*Hs[0] + U*r[0])) == 0
+_require(sp.cancel(Gp_sym - T**7*(E**21*Hs[0] + U*r[0])) == 0, "sp.cancel(Gp_sym - T**7*(E**21*Hs[0] + U*r[0])) == 0")
 # bottom-up auxiliaries reproduce the terminal law  E^3 g7 + u^7 h7 = G'.
 g = {1: T*Hs[0]}
 for l in range(1, 7):
     g[l + 1] = sp.expand(T*(E**3*g[l] + U**l*Hs[l]))
-assert sp.expand(E**3*g[7] + U**7*Hs[7] - Gp_sym) == 0
+_require(sp.expand(E**3*g[7] + U**7*Hs[7] - Gp_sym) == 0, "sp.expand(E**3*g[7] + U**7*Hs[7] - Gp_sym) == 0")
 print("3. telescope G'=T^7(E^21 h0+u r0); bottom-up E^3 g7+u^7 h7=G'   OK")
 
 # ============================================================ 4. source forms
 # Re-derive h7/h6/h5 in the (d1,d2,sigma,e) basis from the raw source, with
 # sigma = 4 d0 - d2^2  (i.e. d0 = (d2^2+sigma)/4).
 Hsub = {f: sp.expand(hs[f].subs(d0, (d2**2 + sig)/4)) for f in range(8)}
-assert sp.expand(Hsub[7] - 8192*d1**2) == 0
-assert sp.expand(Hsub[6] - (14336*d1**2*d2 + 8192*d1*dm1 - 3072*sig**2)) == 0
-assert sp.expand(Hsub[5] - (-12288*d1**2*d2**2 + 32256*d1**2*sig
-                            + 18432*d1*d2*dm1 - 9216*d2*sig**2 + 2048*dm1**2)) == 0
+_require(sp.expand(Hsub[7] - 8192*d1**2) == 0, "sp.expand(Hsub[7] - 8192*d1**2) == 0")
+_require(sp.expand(Hsub[6] - (14336*d1**2*d2 + 8192*d1*dm1 - 3072*sig**2)) == 0, "sp.expand(Hsub[6] - (14336*d1**2*d2 + 8192*d1*dm1 - 3072*sig**2)) == 0")
+_require(sp.expand(Hsub[5] - (-12288*d1**2*d2**2 + 32256*d1**2*sig
+                            + 18432*d1*d2*dm1 - 9216*d2*sig**2 + 2048*dm1**2)) == 0, "sp.expand(Hsub[5] - (-12288*d1**2*d2**2 + 32256*d1**2*sig + 18432*d1*d2*dm1 - 9216*d2*sig**2 + 2048*dm1**2)) == 0")
 # monomial supports (exponents in d1,d2,sigma,e), used by the cone below.
 H6MON = [tuple(m) for m in sp.Poly(Hsub[6], d1, d2, sig, dm1).monoms()]
 H5MON = [tuple(m) for m in sp.Poly(Hsub[5], d1, d2, sig, dm1).monoms()]
-assert set(H6MON) == {(2, 1, 0, 0), (1, 0, 0, 1), (0, 0, 2, 0)}
-assert set(H5MON) == {(2, 2, 0, 0), (2, 0, 1, 0), (1, 1, 0, 1), (0, 1, 2, 0), (0, 0, 0, 2)}
+_require(set(H6MON) == {(2, 1, 0, 0), (1, 0, 0, 1), (0, 0, 2, 0)}, "set(H6MON) == {(2, 1, 0, 0), (1, 0, 0, 1), (0, 0, 2, 0)}")
+_require(set(H5MON) == {(2, 2, 0, 0), (2, 0, 1, 0), (1, 1, 0, 1), (0, 1, 2, 0), (0, 0, 0, 2)}, "set(H5MON) == {(2, 2, 0, 0), (2, 0, 1, 0), (1, 1, 0, 1), (0, 1, 2, 0), (0, 0, 0, 2)}")
 print("4. source h7/h6/h5 and monomial supports re-derived             OK")
 
 # ============================================================ 5. terminal id
@@ -110,8 +118,8 @@ print("4. source h7/h6/h5 and monomial supports re-derived             OK")
 # its valuation reading with b=v_p(E), v_p(u)=1, v_p(h7)=2 v_p(d1).  The t-side
 # reading is v_t(g7)=2 v_t(d1) since u,E are t-units.  Symbolic sanity:
 b_, x_ = sp.symbols("b_ x_", nonnegative=True, integer=True)
-assert sp.simplify((3*b_ + (7 + 2*x_ - 3*b_)) - (7 + 2*x_)) == 0   # v_p(g7)=7+2x-3b
-assert sp.simplify((6*sp.Integer(1) + (6 + 2*x_ - 3*b_)) - (6 + 2*x_)*sp.Integer(1)) == 0 or True
+_require(sp.simplify((3*b_ + (7 + 2*x_ - 3*b_)) - (7 + 2*x_)) == 0, "sp.simplify((3*b_ + (7 + 2*x_ - 3*b_)) - (7 + 2*x_)) == 0")   # v_p(g7)=7+2x-3b
+_require(sp.simplify((6*sp.Integer(1) + (6 + 2*x_ - 3*b_)) - (6 + 2*x_)*sp.Integer(1)) == 0 or True, "sp.simplify((6*sp.Integer(1) + (6 + 2*x_ - 3*b_)) - (6 + 2*x_)*sp.Integer(1)) == 0 or True")
 print("5. q-terminal 3b+v(g7)=7+2v(d1) & t-reading v_t(g7)=2 v_t(d1)    OK")
 
 # ============================================================ 6. order lemmas
@@ -133,12 +141,12 @@ def T2_first(s, m):
         return ("kill", None)
     return ("z", (s + 2*m)//2)
 
-assert {a: T1_first(3*a - 30, a) for a in range(11, 16)} == {11: 3, 12: 3, 13: 9, 14: 6, 15: 15}
-assert {b: T1_first(3*b - 1, b) for b in range(1, 5)} == {1: 1, 2: 5, 3: 4, 4: 11}
-assert {a: T2_first(3*a - 30, a) for a in range(11, 16)} == {
-    11: ("z", 3), 12: ("z", 6), 13: ("z", 9), 14: ("z", 12), 15: ("z", 15)}
-assert {b: T2_first(3*b - 1, b) for b in range(1, 5)} == {
-    1: ("z", 2), 2: ("kill", None), 3: ("z", 7), 4: ("kill", None)}
+_require({a: T1_first(3*a - 30, a) for a in range(11, 16)} == {11: 3, 12: 3, 13: 9, 14: 6, 15: 15}, "{a: T1_first(3*a - 30, a) for a in range(11, 16)} == {11: 3, 12: 3, 13: 9, 14: 6, 15: 15}")
+_require({b: T1_first(3*b - 1, b) for b in range(1, 5)} == {1: 1, 2: 5, 3: 4, 4: 11}, "{b: T1_first(3*b - 1, b) for b in range(1, 5)} == {1: 1, 2: 5, 3: 4, 4: 11}")
+_require({a: T2_first(3*a - 30, a) for a in range(11, 16)} == {
+    11: ("z", 3), 12: ("z", 6), 13: ("z", 9), 14: ("z", 12), 15: ("z", 15)}, "{a: T2_first(3*a - 30, a) for a in range(11, 16)} == { 11: (\"z\", 3), 12: (\"z\", 6), 13: (\"z\", 9), 14: (\"z\", 12), 15: (\"z\", 15)}")
+_require({b: T2_first(3*b - 1, b) for b in range(1, 5)} == {
+    1: ("z", 2), 2: ("kill", None), 3: ("z", 7), 4: ("kill", None)}, "{b: T2_first(3*b - 1, b) for b in range(1, 5)} == { 1: (\"z\", 2), 2: (\"kill\", None), 3: (\"z\", 7), 4: (\"kill\", None)}")
 print("6. first-level parity lemmas re-derived (T1_T,T1_Q,T2_T,T2_Q)    OK")
 
 # ============================================================ 7. deep T1 cone
@@ -203,7 +211,7 @@ def cone_T2(kind, val):
 # k-quantifier robustness: EXISTS-k and FORALL-k cones coincide (the audited L2
 # script uses all(); we confirm it does not change any cone or min).
 for kind, val in [("t", a) for a in range(11, 16)] + [("q", b) for b in range(1, 5)]:
-    assert cone_T1(kind, val, any) == cone_T1(kind, val, all)
+    _require(cone_T1(kind, val, any) == cone_T1(kind, val, all), "cone_T1(kind, val, any) == cone_T1(kind, val, all)")
 print("7a. deep T1 cone rebuilt; ALL-k and ANY-k semantics coincide     OK")
 
 # per-place min v(d1) (finite-sigma and sigma=0) matches ALT_REGIME_L2 T1F/T1Z.
@@ -211,14 +219,14 @@ def minx(kind, val):
     fin, zer = cone_T1(kind, val, any)
     xs = [x for x, _ in fin] + list(zer)
     return min(xs) if xs else None
-assert {a: minx("t", a) for a in range(11, 16)} == {11: 5, 12: 3, 13: None, 14: 6, 15: None}
-assert {b: minx("q", b) for b in range(1, 5)} == {1: 1, 2: 7, 3: 4, 4: None}
+_require({a: minx("t", a) for a in range(11, 16)} == {11: 5, 12: 3, 13: None, 14: 6, 15: None}, "{a: minx(\"t\", a) for a in range(11, 16)} == {11: 5, 12: 3, 13: None, 14: 6, 15: None}")
+_require({b: minx("q", b) for b in range(1, 5)} == {1: 1, 2: 7, 3: 4, 4: None}, "{b: minx(\"q\", b) for b in range(1, 5)} == {1: 1, 2: 7, 3: 4, 4: None}")
 print("7b. deep min v(d1): t=(5,3,-,6,-) q=(1,7,4,-) match T1F table    OK")
 
 # ============================================================ 8. all 52 kills
 rows = [r for r in json.loads((ROOT / "split_place_ledger_sub1.json").read_text())["strata"]
         if r["a_t"] >= 11]
-assert len(rows) == 26 and all(r["stratum_status"] == "alternate_regime_open" for r in rows)
+_require(len(rows) == 26 and all(r["stratum_status"] == "alternate_regime_open" for r in rows), "len(rows) == 26 and all(r[\"stratum_status\"] == \"alternate_regime_open\" for r in rows)")
 
 def kill_T1(a, b):
     """T1 branch killed iff no assignment of place valuations meets deg d1<=9,
@@ -274,19 +282,19 @@ CLAIM_T2 = sorted([(11, (2, 0, 0, 0)), (11, (2, 1, 0, 0)), (11, (2, 1, 1, 0)),
                    (11, (2, 2, 0, 0)), (11, (4, 0, 0, 0)), (12, (2, 0, 0, 0)),
                    (12, (2, 1, 0, 0)), (12, (3, 0, 0, 0)), (13, (1, 1, 0, 0)),
                    (13, (2, 0, 0, 0)), (14, (1, 0, 0, 0)), (15, (0, 0, 0, 0))])
-assert K1 == CLAIM_T1, (K1, CLAIM_T1)
-assert K2 == CLAIM_T2, (K2, CLAIM_T2)
-assert len(K1) + len(K2) == 25
+_require(K1 == CLAIM_T1, (K1, CLAIM_T1))
+_require(K2 == CLAIM_T2, (K2, CLAIM_T2))
+_require(len(K1) + len(K2) == 25, "len(K1) + len(K2) == 25")
 # residual composition after L2:  27 open = 13 open T1 + 14 open T2.
 open_T1 = 26 - len(K1)
 open_T2 = 26 - len(K2)
-assert open_T1 == 13 and open_T2 == 14 and open_T1 + open_T2 == 27
+_require(open_T1 == 13 and open_T2 == 14 and open_T1 + open_T2 == 27, "open_T1 == 13 and open_T2 == 14 and open_T1 + open_T2 == 27")
 # Strata dead in BOTH branches.  ALT_REGIME.md's "6" is the pre-L2 count; the 6
 # new L2 T1 kills complete 4 strata that were already T2-dead in L1, so after
 # L2 there are 10 fully-dead strata (residual sits in 26-... strata).
 full = sum(kill_T1(r["a_t"], tuple(r["b"])) and kill_T2(r["a_t"], tuple(r["b"]))
            for r in rows)
-assert full == 10
+_require(full == 10, "full == 10")
 print("8. independent kill computation = claimed 25 (T1 13, T2 12);")
 print("   27 residual = 13 T1 + 14 T2; 10 strata fully dead post-L2     OK")
 
@@ -302,7 +310,7 @@ for r in rows:
         g7 = 2*mt + sum(7 + 2*minx("q", bi) - 3*bi for bi in b if bi)
         if g7 > 46 - 3*B:
             extra.add((a, b, "T1"))
-assert all((a, b) in CLAIM_T1 for a, b, br in extra if br == "T1")   # subset of kills
+_require(all((a, b) in CLAIM_T1 for a, b, br in extra if br == "T1"), "all((a, b) in CLAIM_T1 for a, b, br in extra if br == \"T1\")")   # subset of kills
 sigma0_only = []
 for r in rows:
     a, b = r["a_t"], tuple(r["b"])
@@ -327,7 +335,7 @@ for r in rows:
         zer = {X + x for X in zer for x in pz if X + x <= 9}
     if not fin and zer:
         sigma0_only.append((a, b))
-assert sigma0_only == []      # every residual keeps a genuine sigma!=0 solution
+_require(sigma0_only == [], "sigma0_only == []")      # every residual keeps a genuine sigma!=0 solution
 print("9. residual honesty: g-bound adds nothing; no sigma=0-only survivor OK")
 
 print("\nALL INDEPENDENT ALTERNATE-REGIME AUDIT CHECKS PASS")

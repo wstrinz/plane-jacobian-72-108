@@ -16,6 +16,14 @@ from pathlib import Path
 
 import cascade_engine as engine
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 ROOT = Path(__file__).resolve().parent
 INF = engine.INF
 
@@ -25,7 +33,7 @@ def check_terminal_reproduction() -> None:
         (ROOT / "split_place_ledger.json").read_text(encoding="utf-8")
     )
     strata = ledger["strata"]
-    assert len(strata) == 327
+    _require(len(strata) == 327, "len(strata) == 327")
     mismatches = []
     for row in strata:
         for branch, terminal_depth in (("T1", 7), ("T2", 6)):
@@ -36,7 +44,7 @@ def check_terminal_reproduction() -> None:
             actual = outcome["status"] == "survives"
             if actual != expected:
                 mismatches.append((row["a_t"], tuple(row["b"]), branch))
-    assert not mismatches, f"terminal disagreements: {mismatches[:10]}"
+    _require(not mismatches, f"terminal disagreements: {mismatches[:10]}")
     print("  terminal layer reproduces split_place_ledger.json on 654 records")
 
 
@@ -59,24 +67,24 @@ def check_descent_semantics() -> None:
             and any(o.kind == kind and o.depth == depth for o in obligations)
         ]
 
-    assert find(7.0, "monomial_tie_rise", 2), "case (a) missing"
-    assert find(8.0, "monomial_tie_rise", 1), "case (b) missing"
-    assert find(6.0, "term_cancellation", 1), "case (c) missing"
+    _require(find(7.0, "monomial_tie_rise", 2), "case (a) missing")
+    _require(find(8.0, "monomial_tie_rise", 1), "case (b) missing")
+    _require(find(6.0, "term_cancellation", 1), "case (c) missing")
     # No option may grant a valuation rise without an obligation.
     for r_l, obligations in options:
         if r_l not in (7.0,):  # case (a) at the tropical minimum w=2 is a rise
             continue
     minimum, tied, _ = engine.tropical_h(6, state, flags)
-    assert minimum == 0 and len(tied) == 3
+    _require(minimum == 0 and len(tied) == 3, "minimum == 0 and len(tied) == 3")
 
     # Unique-monomial level: h_7 = 8192*d1^2 admits no rise at all.
     unique_options = engine.w_options(7, (0.0, 1.0, 0.0, 0), flags)
-    assert unique_options == [(2.0, ())] or unique_options == [(2, ())]
+    _require(unique_options == [(2.0, ())] or unique_options == [(2, ())], "unique_options == [(2.0, ())] or unique_options == [(2, ())]")
 
     # T2 terminal: h_6 with d1 == 0 collapses to -3072*sigma^2 (unique).
     t2_flags = (False, False, True)
     minimum, tied, count = engine.tropical_h(6, (0.0, INF, 3.0, 0), t2_flags)
-    assert minimum == 6 and len(tied) == 1 and count == 1
+    _require(minimum == 6 and len(tied) == 1 and count == 1, "minimum == 6 and len(tied) == 1 and count == 1")
     print("  descent case analysis matches the hand-worked level-6 example")
 
 
@@ -94,11 +102,11 @@ def check_depth_monotonicity() -> None:
                 )
                 statuses[depth] = outcome["status"]
             if statuses[5] == "engine_killed_pending_audit":
-                assert statuses[4] == "engine_killed_pending_audit", (
+                _require(statuses[4] == "engine_killed_pending_audit", (
                     row["a_t"],
                     row["b"],
                     branch,
-                )
+                ))
     print("  depth monotonicity holds on a 12-stratum sample")
 
 
@@ -108,23 +116,23 @@ def check_t_place_semantics() -> None:
     profiles = engine.t_place_profiles(
         5, "T2", 25, 4, False, False, {6: False, 5: False, 4: False}
     )
-    assert profiles, "T2 a=5 t-place must admit chains"
+    _require(profiles, "T2 a=5 t-place must admit chains")
     for profile in profiles:
-        assert profile.place == "t" and profile.b == 5
-        assert dict(profile.r)[6] == 2 * profile.z
+        _require(profile.place == "t" and profile.b == 5, "profile.place == \"t\" and profile.b == 5")
+        _require(dict(profile.r)[6] == 2 * profile.z, "dict(profile.r)[6] == 2 * profile.z")
     # The Pareto-minimal chain is the zero state; it survives only through
     # deep term cancellations (v + s_6 = 15 vs tied minima at 0), so every
     # profile must carry cancellation obligations — no free ride at t.
-    assert all(
+    _require(all(
         any(o.kind == "term_cancellation" and o.depth > 0 for o in p.obligations)
         for p in profiles
-    )
+    ), "all( any(o.kind == \"term_cancellation\" and o.depth > 0 for o in p.obligations) for p in profiles )")
     # Coupling t must never revive a q-only kill (monotonicity in places):
     outcome_q = engine.analyze_branch(5, (1, 0, 0, 0), "T2", 4)
     outcome_qt = engine.analyze_branch(5, (1, 0, 0, 0), "T2", 4, include_t=True)
-    assert outcome_q["status"] == "survives"
-    assert outcome_qt["status"] == "survives"
-    assert len(outcome_qt["survivor_cases"]) <= len(outcome_q["survivor_cases"])
+    _require(outcome_q["status"] == "survives", "outcome_q[\"status\"] == \"survives\"")
+    _require(outcome_qt["status"] == "survives", "outcome_qt[\"status\"] == \"survives\"")
+    _require(len(outcome_qt["survivor_cases"]) <= len(outcome_q["survivor_cases"]), "len(outcome_qt[\"survivor_cases\"]) <= len(outcome_q[\"survivor_cases\"])")
     print("  t-place terminal law, forced cancellations, place monotonicity")
 
 

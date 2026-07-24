@@ -56,6 +56,14 @@ import sympy as sp
 
 from cascade_signature import load_levels
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 ROOT = Path(__file__).resolve().parent
 FRONTIER = ROOT / "cascade_cones_sub1_qt_inf_rl.json"
 
@@ -88,7 +96,7 @@ def tie_polynomial(level, support, terms):
     """Rebuild sum_{M in support} coeff_source(M) * M from the parsed source."""
     F = sp.Integer(0)
     for mono in support:
-        assert mono in terms[level], ("support monomial absent from source "
+        _require(mono in terms[level], "support monomial absent from source "
                                       f"h_{level}: {mono}")
         F += terms[level][mono] * sp.prod(v**n for v, n in zip(SIGVARS, mono))
     return sp.expand(F)
@@ -259,18 +267,17 @@ def verify_top3(terms):
 
         # (i) IF matches the RESIDUE_LEMMAS primitive relation up to nonzero const
         ratio = sp.simplify(IF / PRIMITIVE[name])
-        assert ratio.free_symbols == set() and ratio != 0, name
+        _require(ratio.free_symbols == set() and ratio != 0, name)
 
         # (ii) jet decomposition identities
         C0, C1, C2 = jet_coefficients(F)
-        assert sp.expand(C0 - IF) == 0, f"{name}: C0 != IF"
-        assert sp.expand(C1 - grad_dot(IF, J1)) == 0, f"{name}: C1"
-        assert sp.expand(C2 - grad_dot(IF, J2) - hess_quadratic(IF, J1)) == 0, \
-            f"{name}: C2"
+        _require(sp.expand(C0 - IF) == 0, f"{name}: C0 != IF")
+        _require(sp.expand(C1 - grad_dot(IF, J1)) == 0, f"{name}: C1")
+        _require(sp.expand(C2 - grad_dot(IF, J2) - hess_quadratic(IF, J1)) == 0, f"{name}: C2")
 
         # (iii) smooth rational nonzero-leading point (verified against source)
         cert = smooth_certificate(support, IF)
-        assert cert is not None, f"{name}: no smooth certificate"
+        _require(cert is not None, f"{name}: no smooth certificate")
         pt, grad = cert
         present = sorted(IF.free_symbols, key=sp.default_sort_key)
 
@@ -289,7 +296,7 @@ def verify_top3(terms):
         c1 = C1.subs(base).subs(forced1).subs(zero1)
         j1val = sp.solve(sp.Eq(c1, 0), piv1)[0]
         j1sub = {**forced1, **zero1, piv1: j1val}
-        assert sp.expand(C1.subs(base).subs(j1sub)) == 0
+        _require(sp.expand(C1.subs(base).subs(j1sub)) == 0, "sp.expand(C1.subs(base).subs(j1sub)) == 0")
         # order 2: force present non-pivot order-2 jets, solve C2=0
         forced2 = {J2[LEAD.index(v)]: vals[i] for i, v in enumerate(nonpiv)}
         zero2 = {j: 0 for j in J2 if j not in forced2 and j is not piv2}
@@ -297,9 +304,9 @@ def verify_top3(terms):
         j2val = sp.solve(sp.Eq(c2, 0), piv2)[0]
         j2sub = {**forced2, **zero2, piv2: j2val}
         full = {**base, **j1sub, **j2sub}
-        assert sp.expand(C0.subs(full)) == 0
-        assert sp.expand(C1.subs(full)) == 0
-        assert sp.expand(C2.subs(full)) == 0
+        _require(sp.expand(C0.subs(full)) == 0, "sp.expand(C0.subs(full)) == 0")
+        _require(sp.expand(C1.subs(full)) == 0, "sp.expand(C1.subs(full)) == 0")
+        _require(sp.expand(C2.subs(full)) == 0, "sp.expand(C2.subs(full)) == 0")
 
         results[name] = {
             "IF": IF, "pt": pt, "pivot": piv,
@@ -312,16 +319,16 @@ def main():
     print("Residue-lemma DEPTH verifier (a-quantified jet structure)\n")
     h = source_h()
     terms = source_terms(h)
-    assert tuple(len(terms[l]) for l in (6, 5, 4)) == (3, 5, 8)
+    _require(tuple(len(terms[l]) for l in (6, 5, 4)) == (3, 5, 8), "tuple(len(terms[l]) for l in (6, 5, 4)) == (3, 5, 8)")
     print("V1. parsed f31_graded.txt; h6/h5/h4 term counts 3/5/8            OK")
 
     data, surv = survivors()
     ncases = sum(len(b["survivor_cases"]) for b in surv)
     avals = sorted({b["a_t"] for b in surv})
-    assert len(surv) == 171 and ncases == 1145
-    assert avals == [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    _require(len(surv) == 171 and ncases == 1145, "len(surv) == 171 and ncases == 1145")
+    _require(avals == [2, 3, 4, 5, 6, 7, 8, 9, 10], "avals == [2, 3, 4, 5, 6, 7, 8, 9, 10]")
     freq, cells, av, dep, mism = census(surv, terms)
-    assert mism == 0
+    _require(mism == 0, "mism == 0")
     print(f"V2. frontier: {len(surv)} branches / {ncases} cases, a in "
           f"{avals[0]}..{avals[-1]}; 0 tied-vs-source mismatches         OK")
 
@@ -335,7 +342,7 @@ def main():
                         if ob["kind"] == "term_cancellation":
                             tdep[b["a_t"]][ob["depth"]] += 1
     for a in range(2, 10):
-        assert tdep[a].most_common(1)[0][0] == 30 - 3 * a, a
+        _require(tdep[a].most_common(1)[0][0] == 30 - 3 * a, a)
     print("V3. affine t-depth law depth = 30-3a holds (a=2..9)             OK")
 
     # top-3 identification and frequencies
@@ -344,7 +351,7 @@ def main():
     top = sorted(tkeys, key=lambda k: -tkeys[k])[:3]
     got = {(k[1], k[3]): tkeys[k] for k in top}
     for name, level, support, ef in TOP3:
-        assert got.get((level, support)) == ef, (name, got.get((level, support)))
+        _require(got.get((level, support)) == ef, (name, got.get((level, support))))
     print("V4. top-3 a-growing t window patterns = C09/C02/C22 "
           "(201/196/160)   OK")
 
@@ -367,10 +374,10 @@ def main():
             tsupports[(k[1], k[3])] += freq[k]
     for (level, support), _ in sorted(tsupports.items()):
         F = tie_polynomial(level, support, terms)
-        assert tie_weight_exists(support), (level, support)
+        _require(tie_weight_exists(support), (level, support))
         IF = initial_form(F)
         cert = smooth_certificate(support, IF)
-        assert cert is not None, ("no smooth certificate", level, support)
+        _require(cert is not None, ("no smooth certificate", level, support))
     print(f"V6. all {len(tsupports)} t-place tie supports smooth at a rational "
           f"point   OK")
     print("    => every t-place monomial_tie_rise is a CONSTRAINT at all "
@@ -381,7 +388,7 @@ def main():
     C08 = frozenset({(2, 2, 0, 0), (1, 0, 0, 1), (0, 0, 0, 2)})
     C20 = frozenset({(3, 2, 0, 0), (2, 1, 0, 1), (1, 0, 0, 2)})
     kill_hits = [k for k in freq if k[3] in (C08, C20)]
-    assert kill_hits == []
+    _require(kill_hits == [], "kill_hits == []")
     print("V7. C08/C20 kill supports occur 0x on the 1145 survivors "
           "(a-indep, q, d1) OK")
 

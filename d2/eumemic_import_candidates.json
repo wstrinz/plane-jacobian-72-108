@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "generated": "2026-07-24",
+    "study_doc": "EUMEMIC_MAP.md",
+    "external_program": {
+      "repo": "https://github.com/eumemic/jacobian-keller-research",
+      "commit": "201c2f6530a774bfed10939a90ae97b5cfcf80cf",
+      "commit_msg": "Repair DC1 evidence scope and verifier reporting",
+      "commit_date": "2026-07-24",
+      "problem": "DC1 / Dixmier conjecture for the Weyl algebra A_1; band method",
+      "relation_to_ours": "linked only by JC2 => DC1 (Belov-Kanel--Kontsevich); object-disjoint from our commutative plane (72,108) program"
+    },
+    "map_verdict": {
+      "3a_slope_forcing_vs_corner_signature": "complementary/analogous (not a variable identification; different rings)",
+      "3b_w2_localization_vs_our_polygons": "disjoint (no theorem transfers to/from (72,108) in either direction)",
+      "3c_degree_free_vs_fixed_degree_ledger": "methodologically complementary, object-disjoint (one level up from alok, which shared the (72,108) polygons)"
+    },
+    "tier_label_legend": "tier labels are the EXTERNAL program's own self-applied labels, reported verbatim per their audit discipline"
+  },
+  "candidates": [
+    {
+      "id": "EU-1",
+      "kind": "checker_import",
+      "title": "Committed Nullstellensatz-multiplier certificate format (Sum h_i f_i = 1, solver-independent recheck)",
+      "source_files": ["research/band3/w2-verdict.md#2", "research/band3/w2_d3_qq_certificates.txt"],
+      "their_tier": "committed exact QQ certificate (bounded to raw cap d=3, both branches); NOT peer reviewed",
+      "what_it_gives_us": "Hardens FULL_SYSTEM_BRIDGE.md kills: our '%exact UNIT over QQ in 8.75s' currently trusts Singular's verdict; their format commits sparse multipliers re-checked by exact coefficient collection WITHOUT trusting the solver.",
+      "our_target": ["FULL_SYSTEM_BRIDGE.md#5", "full_system_bridge.py:exact_kill"],
+      "translation_status": "directly portable (certificate-format discipline); minimal cost",
+      "priority": "high"
+    },
+    {
+      "id": "EU-2",
+      "kind": "checker_import",
+      "title": "msolve '^' (graded) vs '**' parser discipline: '**' fabricates a spurious surviving sub-locus",
+      "source_files": ["research/dc1-program/joint-covector.md#4", "research/dc1-program/hatch-census.md#5"],
+      "their_tier": "machine-checked correction of a prior committed claim; NOT peer reviewed",
+      "what_it_gives_us": "Concrete tool-hygiene fix for our msolve usage; a wrong exponent glyph can hide a unit ideal as a false survivor.",
+      "our_target": ["J6_MSOLVE.md", "MSOLVE_REPORT.md", "j6_msolve.py"],
+      "translation_status": "directly portable (tool-flag discipline); minimal cost",
+      "priority": "high"
+    },
+    {
+      "id": "EU-3",
+      "kind": "method_template",
+      "title": "Algebraic-node covector calculus + trace-form descent (degree-free annihilators over algebraic node-sets, no root named)",
+      "source_files": ["research/dc1-program/algebraic-covector.md#1", "research/dc1-program/joint-covector.md", "research/dc1-program/lambda-general-k.md"],
+      "their_tier": "PROVED node-free (the tool); the arbitrary-d recipe producing W is OPEN (varying-tops coupling obstruction, NOT obtained)",
+      "what_it_gives_us": "Template for lifting our bounded per-state bridge UNIT kills to a degree-free closure -- the tool our program lacks. Our RESIDUE_LEMMAS/cone lemmas are the nascent local version.",
+      "our_target": ["RESIDUE_LEMMAS.md", "CASCADE_CONE_LEMMAS.md", "FULL_SYSTEM_BRIDGE.md"],
+      "translation_status": "substantial: their ring C[E] shift-graded (sigma=T^-1) vs our K[y,C4^-1] weighted-homogeneous; necklace(root-multiset) vs Newton-corner. Idea transfers, setup must be rebuilt. HONEST BOUNDARY: their own arbitrary-d recipe is OPEN, so this is a shared research direction not a finished import.",
+      "priority": "medium"
+    },
+    {
+      "id": "EU-4",
+      "kind": "shared_object",
+      "title": "Joint definition of the 'graded commutator ladder -> slope-forcing -> bounded UNIT ideal -> degree-free residual' schema + glossary",
+      "source_files": ["research/dc1-program/band-reduction.md", "research/dc1-program/slope-forcing-degree-free.md", "research/band3/w2-verdict.md"],
+      "their_tier": "framework is PROVED-components + named-open-gaps (conditional); schema is descriptive",
+      "what_it_gives_us": "A shared glossary (their Q_m <-> our (D~^3)_-l / G-system; their band k <-> our window k; their necklace <-> our Newton corner; their kappa shifted-power wall <-> our kappa=t-2 chart law; their Q_0=1 <-> our Phi!=0) lets each program cite the other's degree-free closure lemma once proven and cross-check the shared unit-ideal tooling.",
+      "our_target": ["FULL_SYSTEM_BRIDGE.md#1", "CASCADE_INF_REPORT.md", "STATE.md corner-signature entries"],
+      "translation_status": "definitional, not mathematical -- formalizes an analogy both sides already feel",
+      "priority": "medium"
+    },
+    {
+      "id": "EU-5",
+      "kind": "export_offer",
+      "title": "OUR proven kappa = t-2 slope law (chart-Jacobian) + arbitrary-k WINDOW_CAPS induction, as a template for their open slope/propagation gaps",
+      "source_files_ours": ["STATE.md#2026-07-23-Lane-D", "PHI_CORNER4.md", "WINDOW_CAPS.md"],
+      "their_open_targets": ["research/dc1-program/band-reduction.md#9 (Gap 2 shifted-power descent)", "research/dc1-program/shifted-power-descent.md#3 (h|a_1 conditionality)", "research/dc1-program/slope-forcing-degree-free.md#6 (arbitrary-degree residual)"],
+      "their_tier": "their corresponding results are OPEN / CONDITIONAL",
+      "what_it_gives_them": "A fully-closed degree-free slope law (kappa=t-2 proved from chart Jacobian -x^(l-2) for generic l) is exactly the kind of arbitrary-degree slope statement their descent gaps chase; suggests deriving slope from a change-of-chart Jacobian rather than from ladder rungs.",
+      "translation_status": "technique/analogy export (different ring) -- NOT a theorem that plugs into their verifier; offer as a proof strategy, not a result",
+      "priority": "low"
+    }
+  ],
+  "non_candidates_explicit": [
+    {
+      "claim": "W2 obstruction (a_3=E(E+2)(E+4), b_2=E(E+3)) kills one of our live (72,108) branches",
+      "verdict": "NO -- disjoint objects; W2 is a band-3 Weyl datum, our branches are dense-regime D-lattice degree-states. No dictionary maps W2 to a (72,108) Newton corner."
+    },
+    {
+      "claim": "Our (72,108) kills imply any of their DC1 targets",
+      "verdict": "NO -- JC2=>DC1 gives ¬DC1=>¬JC2, but ¬JC2 does not imply ¬DC1; neither direction transfers a theorem."
+    },
+    {
+      "claim": "Their slope-forcing kappa equals / constrains our corner-signature kappa",
+      "verdict": "NO -- their kappa is a Weyl-ladder leading-coefficient ratio in C[E]; ours is a Newton-polygon chart-slope (kappa=t-2). Analogous role, not the same object."
+    }
+  ]
+}

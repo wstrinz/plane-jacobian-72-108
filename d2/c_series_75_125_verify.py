@@ -37,6 +37,14 @@ import sys
 
 import sympy as sp
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 QUIET = "--quiet" in sys.argv[1:]
 y, x, X, Y, u, c = sp.symbols("y x X Y u c")
 checks = 0
@@ -216,7 +224,7 @@ def c_exponent(term):
     if cpart == 1:
         return 0
     base, expo = cpart.as_base_exp()
-    assert base == c, (term, cpart)
+    _require(base == c, (term, cpart))
     return int(expo)
 
 

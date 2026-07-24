@@ -4,7 +4,11 @@
 #   D2: exact proof checkers — always run.
 #   D2 harness positive control (~a few minutes) — run unless SKIP_SLOW=1.
 set -uo pipefail
-here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+here="${RUN_TESTS_HERE:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
+if [ -z "${RUN_TESTS_PRIVATE_COPY:-}" ]; then
+  _tmp="$(mktemp)" && cp "${BASH_SOURCE[0]}" "$_tmp" &&
+  RUN_TESTS_PRIVATE_COPY=1 RUN_TESTS_HERE="$here" exec bash "$_tmp" "$@"
+fi
 rc=0
 
 echo "### CLEAN-CLONE guard — every file the suite reads must be git-tracked"
@@ -68,6 +72,11 @@ echo "### D2 — exact field-split proof checks"
   python3 alok_crosscheck.py --quiet &&
   python3 g_system_75_125_verify.py --quiet &&
   python3 f2_family_verify.py --quiet &&
+  python3 f2_tower_verify.py --quiet &&
+  python3 family_grammar_verify.py --quiet &&
+  python3 chain_survey_verify.py --quiet &&
+  python3 polygon_reduction_verify.py --quiet &&
+  python3 ml_restriction_check.py --quiet &&
   python3 case_compiler_verify.py --quiet &&
   python3 window_caps_verify.py --quiet
 ) || rc=1

@@ -12,6 +12,14 @@ import sympy as sp
 
 import t5_90t1_verify as base
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 
 y = base.y
 H = base.load_h()
@@ -102,7 +110,7 @@ def master_coefficient(target: int) -> sp.Expr:
 
 def check(target: int, forced: dict[sp.Symbol, sp.Expr], expected: sp.Expr) -> None:
     actual = master_coefficient(target).subs(forced)
-    assert sp.factor(actual-expected) == 0, target
+    _require(sp.factor(actual-expected) == 0, target)
     print(f"  degree {target}: checked")
 
 
@@ -137,7 +145,7 @@ def main() -> None:
     check(227, forced, sp.Integer(0))
     final = 29570349989420274657771126784*c**5*gamma**8
     check(226, forced, final)
-    assert final != 0
+    _require(final != 0, "final != 0")
 
     print("a_t=9 geometric q-coprime T1, constant E: INFEASIBLE")
     print("  exact coefficients 238 down to 226 checked from f31_graded.txt")

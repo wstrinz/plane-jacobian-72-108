@@ -8,6 +8,14 @@ import re
 
 import sympy as sp
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 
 ROOT = Path(__file__).resolve().parent
 d0, d1, d2, e = sp.symbols("d0 d1 d2 dm1")
@@ -29,18 +37,18 @@ def load_h() -> dict[int, sp.Expr]:
 
 def main() -> None:
     h = load_h()
-    assert sorted(h) == list(range(8))
-    assert sp.expand(h[7].subs(d1, 0)) == 0
-    assert sp.expand(h[6].subs(d1, 0) + 3072 * sigma**2) == 0
-    assert sp.expand(
+    _require(sorted(h) == list(range(8)), "sorted(h) == list(range(8))")
+    _require(sp.expand(h[7].subs(d1, 0)) == 0, "sp.expand(h[7].subs(d1, 0)) == 0")
+    _require(sp.expand(h[6].subs(d1, 0) + 3072 * sigma**2) == 0, "sp.expand(h[6].subs(d1, 0) + 3072 * sigma**2) == 0")
+    _require(sp.expand(
         h[5].subs(d1, 0) - (-9216 * d2 * sigma**2 + 2048 * e**2)
-    ) == 0
+    ) == 0, "sp.expand( h[5].subs(d1, 0) - (-9216 * d2 * sigma**2 + 2048 * e**2) ) == 0")
 
     # a=9: v=3, deg(E)<=1, deg(g_l)<=37, and after q^6 is removed
     # the terminal cofactor G has degree <=13.
-    assert 30 - 3 * 9 == 3
-    assert 10 + 3 * 9 == 37
-    assert 37 - 6 * 4 == 13
+    _require(30 - 3 * 9 == 3, "30 - 3 * 9 == 3")
+    _require(10 + 3 * 9 == 37, "10 + 3 * 9 == 37")
+    _require(37 - 6 * 4 == 13, "37 - 6 * 4 == 13")
 
     # At a root of the squarefree factor s in E=s*u^2 and G=s*v^2,
     # h=v_s(G) is odd.  The terminal equation gives 2*v_s(sigma)=3+h.
@@ -48,11 +56,11 @@ def main() -> None:
     # its right side has order h.  Equality would require h=2, impossible.
     for h_order in range(1, 14, 2):
         sigma_order = (3 + h_order) // 2
-        assert 2 * sigma_order == 3 + h_order
-        assert sigma_order >= 2
+        _require(2 * sigma_order == 3 + h_order, "2 * sigma_order == 3 + h_order")
+        _require(sigma_order >= 2, "sigma_order >= 2")
         h5_orders = (2 * sigma_order, 2)
-        assert min(h5_orders) == 2 and h5_orders.count(2) == 1
-        assert h_order != min(3, 2)
+        _require(min(h5_orders) == 2 and h5_orders.count(2) == 1, "min(h5_orders) == 2 and h5_orders.count(2) == 1")
+        _require(h_order != min(3, 2), "h_order != min(3, 2)")
 
     # Hence E is a square; deg(E)<=1 makes E constant.  Then G is a square
     # and deg(sigma)<=6.  Verify the infinity domination for every degree.
@@ -63,12 +71,12 @@ def main() -> None:
             for f in range(5)
         ]
         # h5 has exact degree 18 from 2048*e^2: the other term is <=16.
-        assert 4 + 2 * deg_sigma <= 16 < 18
+        _require(4 + 2 * deg_sigma <= 16 < 18, "4 + 2 * deg_sigma <= 16 < 18")
         degrees.append(5 * 34 + 6 * deg_e + 18)
         degrees.append(6 * 34 + 3 * deg_e + 2 * deg_sigma)
         top = max(degrees)
         tops = [index for index, degree in enumerate(degrees) if degree == top]
-        assert tops == ([5] if deg_sigma <= 5 else [6])
+        _require(tops == ([5] if deg_sigma <= 5 else [6]), "tops == ([5] if deg_sigma <= 5 else [6])")
 
     print("a_t=9 geometric q-coprime T2: PASS")
     print("  nonconstant squarefree factor killed at level 5")

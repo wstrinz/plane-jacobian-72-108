@@ -38,6 +38,14 @@ import re
 from pathlib import Path
 import sympy as sp
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 ROOT = Path(__file__).resolve().parent
 NEG_INF = float("-inf")
 DEG_U = 4  # deg u = deg(c*q) = deg q, mirrors cascade_engine.DEG_U
@@ -47,12 +55,12 @@ t = y + 1
 qpoly = 2048*y**4 - 512*y**3 + 320*y**2 - 240*y + 195
 cconst = sp.Rational(-1, 6630)
 u = cconst*qpoly
-assert int(sp.degree(sp.Poly(u, y))) == DEG_U
+_require(int(sp.degree(sp.Poly(u, y))) == DEG_U, "int(sp.degree(sp.Poly(u, y))) == DEG_U")
 
 text = (ROOT / "f31_graded.txt").read_text(encoding="utf-8")
 pattern = r"h_(\d) \(weight \d+, dm1-power \d+\) = (.+)"
 hs = {int(m.group(1)): sp.sympify(m.group(2)) for m in re.finditer(pattern, text)}
-assert sorted(hs) == list(range(8))
+_require(sorted(hs) == list(range(8)), "sorted(hs) == list(range(8))")
 
 
 def deg_rat(expr) -> float:
@@ -82,11 +90,11 @@ E = rpoly(15 - a)                                # ehat, deg E <= 15-a = 3
 if E.subs(y, -1) == 0:
     E += 1
 deg_E = int(sp.degree(sp.Poly(E, y)))
-assert deg_E == 15 - a and E.subs(y, -1) != 0    # E a unit at t (t = y+1)
+_require(deg_E == 15 - a and E.subs(y, -1) != 0, "deg_E == 15 - a and E.subs(y, -1) != 0")    # E a unit at t (t = y+1)
 e_full = sp.expand(t**a * E)                     # dm1 = e = t^a E, deg e = 15
-assert int(sp.degree(sp.Poly(e_full, y))) == 15
+_require(int(sp.degree(sp.Poly(e_full, y))) == 15, "int(sp.degree(sp.Poly(e_full, y))) == 15")
 sigma = sp.expand(4*D0 - D2**2)
-assert int(sp.degree(sp.Poly(sigma, y))) == 12   # generic: no leading cancel
+_require(int(sp.degree(sp.Poly(sigma, y))) == 12, "int(sp.degree(sp.Poly(sigma, y))) == 12")   # generic: no leading cancel
 
 hval = {f: sp.expand(hs[f].subs({d2: D2, d1: D1, d0: D0, dm1: e_full}))
         for f in range(8)}
@@ -97,23 +105,23 @@ H = {f: (NEG_INF if sp.expand(hval[f]) == 0
 # 1. Flipped reduction orders and the surviving sub1 degree cap deg h_f<=60-6f.
 # ---------------------------------------------------------------------------
 orders = [30*f + a*(21-3*f) for f in range(8)]
-assert v < 0 and w == -v and 21*a + 7*v == 210
-assert orders[7] == min(orders) == 210
-assert all(orders[f] - 210 == (7-f)*w for f in range(8))
-assert all(H[f] <= 60 - 6*f for f in range(8))   # ALT_REGIME.md caps survive
+_require(v < 0 and w == -v and 21*a + 7*v == 210, "v < 0 and w == -v and 21*a + 7*v == 210")
+_require(orders[7] == min(orders) == 210, "orders[7] == min(orders) == 210")
+_require(all(orders[f] - 210 == (7-f)*w for f in range(8)), "all(orders[f] - 210 == (7-f)*w for f in range(8))")
+_require(all(H[f] <= 60 - 6*f for f in range(8)), "all(H[f] <= 60 - 6*f for f in range(8))")   # ALT_REGIME.md caps survive
 print("1. flipped orders (unique min f=7 ->210) and deg h_f<=60-6f       OK")
 
 # ---------------------------------------------------------------------------
 # 2. Reduction F = t^210 G' on the random window (mirrors alt_regime_verify 2).
 # ---------------------------------------------------------------------------
 phi_tilde = sp.expand(cconst*t**30*qpoly)
-assert sp.cancel(phi_tilde/(t**30*u)) == 1
+_require(sp.cancel(phi_tilde/(t**30*u)) == 1, "sp.cancel(phi_tilde/(t**30*u)) == 1")
 for f in range(8):
-    assert 30*f + a*(21-3*f) == 210 + (7-f)*w
+    _require(30*f + a*(21-3*f) == 210 + (7-f)*w, "30*f + a*(21-3*f) == 210 + (7-f)*w")
     left = phi_tilde**f * e_full**(21-3*f) * hval[f]
     right = t**(210+(7-f)*w) * u**f * E**(21-3*f) * hval[f]
     for sample in (-2, 0, 1, 3):
-        assert sp.cancel((left-right).subs(y, sample)) == 0
+        _require(sp.cancel((left-right).subs(y, sample)) == 0, "sp.cancel((left-right).subs(y, sample)) == 0")
 print("2. random a=12 window: F = t^210 G' term-by-term (deg t=1)        OK")
 
 # ---------------------------------------------------------------------------
@@ -126,17 +134,17 @@ r[6] = sp.cancel(hval[7] / T)                              # T r_6 = h_7
 for f in range(6, 0, -1):
     rhs = sp.expand(E**(3*(7-f))*hval[f]) + u*r[f]         # E^(3(7-f)) h_f + u r_f
     r[f-1] = sp.cancel(rhs / T)                            # = T r_{f-1}
-assert sp.cancel(T*r[6] - hval[7]) == 0
+_require(sp.cancel(T*r[6] - hval[7]) == 0, "sp.cancel(T*r[6] - hval[7]) == 0")
 for f in range(6, 0, -1):
-    assert sp.cancel(T*r[f-1] - (E**(3*(7-f))*hval[f] + u*r[f])) == 0
+    _require(sp.cancel(T*r[f-1] - (E**(3*(7-f))*hval[f] + u*r[f])) == 0, "sp.cancel(T*r[f-1] - (E**(3*(7-f))*hval[f] + u*r[f])) == 0")
 print("3. exact descending cascade (D_t) rebuilt as rational cofactors   OK")
 
 # ---------------------------------------------------------------------------
 # 4. Top anchor  T r_6 = h_7:  single term forces  w + deg r_6 = H_7.
 # ---------------------------------------------------------------------------
 R = {f: deg_rat(r[f]) for f in range(7)}
-assert deg_rat(T*r[6]) == H[7]           # unique achiever, no drop
-assert w + R[6] == H[7]                  # derived: deg r_6 = H_7 - w
+_require(deg_rat(T*r[6]) == H[7], "deg_rat(T*r[6]) == H[7]")           # unique achiever, no drop
+_require(w + R[6] == H[7], "w + R[6] == H[7]")                  # derived: deg r_6 = H_7 - w
 print(f"4. top anchor: w+deg r_6 = {int(w+R[6])} = H_7 (forced)              "
       "     OK")
 
@@ -149,20 +157,20 @@ dropcount = 0
 for f in range(6, 0, -1):
     term1 = 3*(7-f)*deg_E + H[f]                 # deg(E^(3(7-f)) h_f)
     term2 = DEG_U + R[f]                         # deg(u r_f)
-    assert term1 == deg_rat(E**(3*(7-f))*hval[f])
-    assert term2 == deg_rat(u*r[f])
+    _require(term1 == deg_rat(E**(3*(7-f))*hval[f]), "term1 == deg_rat(E**(3*(7-f))*hval[f])")
+    _require(term2 == deg_rat(u*r[f]), "term2 == deg_rat(u*r[f])")
     lhs = deg_rat(T*r[f-1])                       # deg(T r_{f-1}) = w + deg r_{f-1}
-    assert lhs == w + R[f-1]
+    _require(lhs == w + R[f-1], "lhs == w + R[f-1]")
     mx = max(term1, term2)
-    assert lhs <= mx                              # sum degree never exceeds max
+    _require(lhs <= mx, "lhs <= mx")                              # sum degree never exceeds max
     if lhs < mx:
-        assert term1 == term2                     # a drop REQUIRES a tie
+        _require(term1 == term2, "term1 == term2")                     # a drop REQUIRES a tie
         dropcount += 1
     if term1 != term2:
-        assert lhs == mx                          # unique max -> forced, no drop
+        _require(lhs == mx, "lhs == mx")                          # unique max -> forced, no drop
     derivedR[f-1] = mx - w                         # max-plus recursion
     if lhs == mx:
-        assert derivedR[f-1] == R[f-1]            # derived formula reproduces deg
+        _require(derivedR[f-1] == R[f-1], "derivedR[f-1] == R[f-1]")            # derived formula reproduces deg
 print(f"5. intermediate levels f=6..1: max-plus identities ({dropcount} drops) "
       "  OK")
 
@@ -173,16 +181,16 @@ print(f"5. intermediate levels f=6..1: max-plus identities ({dropcount} drops) "
 # ---------------------------------------------------------------------------
 term1_0 = 21*deg_E + H[0]
 term2_0 = DEG_U + R[0]
-assert term1_0 == deg_rat(E**21*hval[0])
-assert term2_0 == deg_rat(u*r[0])
+_require(term1_0 == deg_rat(E**21*hval[0]), "term1_0 == deg_rat(E**21*hval[0])")
+_require(term2_0 == deg_rat(u*r[0]), "term2_0 == deg_rat(u*r[0])")
 residual = sp.expand(E**21*hval[0] + u*r[0])
 dres = deg_rat(residual)
 mx0 = max(term1_0, term2_0)
-assert dres <= mx0
+_require(dres <= mx0, "dres <= mx0")
 if dres < mx0:
-    assert term1_0 == term2_0
+    _require(term1_0 == term2_0, "term1_0 == term2_0")
 # generic non-solution window: strictly dominant term -> nonzero residual.
-assert term1_0 != term2_0 and dres == mx0 and sp.expand(residual) != 0
+_require(term1_0 != term2_0 and dres == mx0 and sp.expand(residual) != 0, "term1_0 != term2_0 and dres == mx0 and sp.expand(residual) != 0")
 print(f"6. closing anchor: unique max deg={int(mx0)} -> residual != 0 "
       "(contradiction) OK")
 

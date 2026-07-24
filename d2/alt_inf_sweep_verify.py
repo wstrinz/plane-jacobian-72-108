@@ -32,6 +32,14 @@ import sympy as sp
 import cascade_engine as ce
 import cascade_signature as cs
 
+def _require(_cond, _msg):
+    """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
+    if not _cond:
+        import sys as _sys
+        print("FAIL: " + str(_msg))
+        _sys.exit(1)
+
+
 ROOT = Path(__file__).resolve().parent
 NEG_INF = ce.NEG_INF
 DEG_U = ce.DEG_U
@@ -41,14 +49,14 @@ d2s, d1s, d0s, dm1s, y = sp.symbols("d2 d1 d0 dm1 y")
 t = y + 1
 qpoly = 2048*y**4 - 512*y**3 + 320*y**2 - 240*y + 195
 u_expr = sp.Rational(-1, 6630) * qpoly
-assert int(sp.degree(sp.Poly(u_expr, y))) == DEG_U
+_require(int(sp.degree(sp.Poly(u_expr, y))) == DEG_U, "int(sp.degree(sp.Poly(u_expr, y))) == DEG_U")
 
 # h_f in source variables (d2,d1,d0,dm1) from f31_graded.txt.
 _txt = (ROOT / "f31_graded.txt").read_text(encoding="utf-8")
 _pat = r"h_(\d) \(weight \d+, dm1-power \d+\) = (.+)"
 H_SRC = {int(m.group(1)): sp.sympify(m.group(2))
          for m in re.finditer(_pat, _txt)}
-assert sorted(H_SRC) == list(range(8))
+_require(sorted(H_SRC) == list(range(8)), "sorted(H_SRC) == list(range(8))")
 
 LEVELS = cs.load_levels()   # for the independent monomial degree recompute
 
