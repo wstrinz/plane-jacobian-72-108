@@ -179,13 +179,62 @@ representatives of families `A_0 = (a0, 4*a0)` and `A_0 = (a0, 3*a0)` — the
   universally** — the negative-`r` regime is empty everywhere in `v11 <= 100`.
 - **`e = |m-n|+1` at the base pair:** heavy-tailed; `e=2` (adjacent `m,n`) is the
   single largest class (858), tail out past `e = 390`.
-- **Window-denominator law (the `5a-3` analogue).** For F2 the window
-  denominator is `5a-3 = t*a - (t-2) = t*a - kappa` (see `f2_family_verify.py`).
-  Computing `t*a - kappa` (reduced) for every family: it is **non-trivial (> 1)
-  for all 3995 families**, taking 193 distinct values. The F2 phenomenon is
-  generic — the per-step window position is essentially never an integer; the
-  integral `W_step = 12` at `(72,108)` is that corner's private coincidence, not
-  a family trait, exactly as `f2_family_verify.py` concluded for a=2.
+- **Window-denominator law.** See the dated correction in **Section 3f** below —
+  the proxy statistic `t*a - kappa` used here originally is superseded by the
+  exact invariant `q_window = M/gcd(M,H)`, which changes the conclusion about
+  `(72,108)`.
+
+### 3f. CORRECTION (2026-07-24): the exact window invariant `q_window` supersedes the `t*a-kappa` proxy
+
+> **This block replaces the proxy "window-denominator law" of Section 3e.** The
+> original census scored each family by the reduced denominator of the proxy
+> `t*a - kappa` (the F2 `5a-3` slope) and concluded that integrality of the
+> window was "`(72,108)`'s private coincidence, not a family trait." That proxy
+> is **not** the invariant that governs the bigraded window lattice, and the
+> conclusion it supported is **wrong**. The exact object is proved and censused
+> in `q_window_theorem.py` (checks appended to `chain_survey_verify.py`, block E).
+
+**The invariant.** For a family with fixed corner data `(t, kappa, q)` and a
+moving member `(a,b) = (m,n)(j)`,
+
+```
+q_window(a,b) = M / gcd(M, H),   M := t(a+b) - (kappa+1),   H := q(a+b) - 1.
+```
+
+**Identity (proved symbolically).** `t*H - q*M = q*(kappa+1) - t =: C`, a **fixed
+corner integer** (the `(a+b)` terms cancel identically). Under `kappa=t-2`,
+`C = q(t-1) - t`.
+
+**Divisibility lemma.** `gcd(M,H) | C`. Verified to hold on **all 3995** census
+family rows. Consequence — the **family-level statement**: along a fixed family
+`(a+b)` grows linearly in `j`, so `M` grows linearly while `gcd(M,H)` stays
+pinned to a divisor of the fixed `|C|`; hence **`q_window` grows ~linearly in
+`M`, with cancellation bounded by the fixed corner integer `C`.** For F2
+(`C=3`): `q_window = 7, 12, 17, 22, …` (step `5 = t(dm+dn)/gcd`).
+
+**Known cases (exact).** `(72,108)`: `t=4,kappa=2,q=7,(a,b)=(2,3)` → `M=17,
+H=34, gcd=17, q_window=1` (**integral**). `F2 a=2 (50,75)`: `M=21,H=9 → 7`;
+`F2 a=3 (75,125)`: `M=36,H=15 → 12`; `F9 (56,84)`: `M=29,H=9 → 29`.
+
+**The census verdict (what the proxy could not establish).** Evaluating
+`q_window` at each distinct family's derived base member `(a,b)=(m0,n0)`:
+
+| quantity | value |
+|---|---:|
+| distinct families (M=100) | 1848 |
+| **integral (`q_window=1`) families** | **51** |
+| distinct integral corner-shapes `(t,q,kappa,{a,b})` | **23** |
+| `(72,108)` among them | yes |
+| **`(72,108)` the UNIQUE integral case** | **NO** |
+
+**`(72,108)` is not unique — it is one member of an arithmetic lattice of
+integral windows.** The integral shapes fall into clean progressions, e.g. at
+`t=3`: `q = 8,11,14,17,20,23` with base `(2,3),(3,4),(4,5),(5,6),(6,7),(7,8)`;
+at `t=4`: `q = 7,11,15,18,19` — `(72,108)` sits at `(t=4,q=7,base{2,3})`. The
+proxy census (`t*a-kappa`) genuinely **could not** resolve this — it reduced
+against the wrong datum and read integrality as a coincidence. The exact
+`q_window` settles it: integrality is a **structured, non-unique** phenomenon
+governed by `M | H ⇔ M | C`.
 
 ---
 
@@ -245,6 +294,7 @@ is in fact routine at scale.
 | File | Role |
 |---|---|
 | `chain_survey.py` | the GGV5 enumerator + statistics + JSON export (`--sweep`, `--out`) |
-| `chain_survey_verify.py` | regression: published table reproduced + invariants (`--quiet`, exit 0) |
+| `q_window_theorem.py` | the exact `q_window = M/gcd(M,H)` invariant: identity + divisibility lemma (symbolic) + known-case table + census (Section 3f) |
+| `chain_survey_verify.py` | regression: published table reproduced + invariants + `q_window` theorem checks block E (`--quiet`, exit 0) |
 | `chain_survey_data.json` | full enumeration: per-M census + all 3995 family rows at M=100 |
 | `CHAIN_SURVEY.md` | this report |

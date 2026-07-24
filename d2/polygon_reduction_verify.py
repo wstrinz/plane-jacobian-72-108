@@ -149,7 +149,12 @@ def test_R3():
           and "UNCONDITIONAL at the polygon layer" in joined,
           "R3 'unreduced polygon' judgment DISCHARGED (unconditional at polygon layer)")
     check("honest boundary" in joined,
-          "R3 records the honest boundary (residual-gauge choice; here resolved)")
+          "R3 records the honest boundary (residual-gauge branch completeness; REOPENED 2026-07-24)")
+    # the reopened residual-gauge judgment must be present and must NOT be
+    # overstated as resolved (correction 2026-07-24: chart+kappa discharged;
+    # residual-divisor/gauge branch completeness reopened, not resolved).
+    check("REOPENED" in joined,
+          "R3 residual-gauge branch completeness is REOPENED (not claimed resolved)")
 
 
 # ---------------------------------------------------------------------------

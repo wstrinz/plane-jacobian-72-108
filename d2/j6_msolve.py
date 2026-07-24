@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """j6_msolve.py -- msolve pass on the 4 OPEN [J6] states of ALT_HUNT.md.
 
-ALT_HUNT (alt_hunt_depth2.py) killed 45/49 fully-forced HUNT states; the 4
+Lane C (alt_hunt_depth2.py) killed 45/49 fully-forced HUNT states; the 4
 survivors (2 windows x {a9_b1000_T1 deg-6-d1, a8_b1100_T1 deg-6-d1}) are the
 known [J6] grevlex blowup: sympy's Buchberger exceeds the wall on a single GB
 call.  BLOWUP_DIAGNOSIS.md's named cure for exactly this shape is msolve
 (F4 + multi-modular + rational reconstruction over Q).  This runner attacks
-EXACTLY the systems ALT_HUNT recorded:
+EXACTLY the systems Lane C recorded:
 
   - the split combo and reconstructed polys are read VERBATIM from
     alt_hunt_results.json (never re-derived);
   - alt_hunt_depth2.reconstruct_general(case, combo) is REPLAYED and its
     polys asserted string-identical to the recorded ones (replay guarantee --
     same code path, same reconstruction, or loud abort);
-  - where ALT_HUNT recorded accumulated master coefficients ('gens', the
+  - where Lane C recorded accumulated master coefficients ('gens', the
     sub1:a9 state at depth 2), the replayed walk is asserted to reproduce
     those exact strings before anything is handed to msolve;
   - the msolve system per depth n is gens[..n] + class relations +
@@ -147,7 +147,7 @@ def attack_state(st, case):
         target = top - n
         mc = sp.expand(eng.master_coefficient(target))
         if mc != 0:
-            if target in recorded:            # replay vs ALT_HUNT's record
+            if target in recorded:            # replay vs Lane C's record
                 if str(mc) != recorded[target] and \
                         sp.expand(mc - sp.sympify(recorded[target])) != 0:
                     return {'key': key, 'verdict': 'ERROR',

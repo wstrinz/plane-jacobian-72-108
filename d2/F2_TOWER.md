@@ -28,6 +28,41 @@ Everything below is exact (sympy). Independent checker `f2_tower_verify.py`
 
 ---
 
+## CORRECTION (2026-07-24): "incommensurate" → COPRIME / NONALIGNED (obstruction softened)
+
+> The word **"incommensurate lattices"** used below (Verdict, §2b, §3) is
+> **imprecise and overstates the obstruction.** Periods **7** and **12** are
+> `gcd(7,12)=1` **coprime**, hence the two window lattices `(1/7)Z` and
+> `(1/12)Z` are **finite-index sublattices of a common refinement** — they share
+> the refinement `(1/84)Z` (`lcm(7,12)=84`). They are therefore **commensurate**
+> (any two rank-1 rational lattices are); the correct descriptor is
+> **coprime / nonaligned periods**, not "incommensurate."
+
+**What the obstruction actually is, precisely.** The BLOCK-OBSTRUCTION verdict is
+an obstruction to a **period-PRESERVING block map** — a fixed five-block lift that
+carries the a=2 certificate's single period-7 window pattern onto the a=3 system
+**while keeping the period fixed at 7**. That fails because a=3's forcing slices
+populate the divisor classes `{2,3,4,6,12}` of period 12, which have **no image
+mod 7**. This is a genuine obstruction to the *fixed-block, period-locked*
+extension, and only to that.
+
+**What is NOT obstructed (the softening).** The obstruction says **nothing** about
+towers built after **refining to the common lattice**. Passing both rungs to the
+refinement `(1/84)Z` — or, equivalently, to the full two-coordinate window
+lattice `Z^2 (u-weight, y-order)` before projecting to any single period — makes
+the a=2 pattern and the a=3 pattern live on **one** lattice, and the block map is
+no longer required to preserve a period. **A refined-lattice tower remains OPEN**:
+nothing here rules it out. This refined-lattice / period-84 (equivalently
+bigraded `Z^2`) window compiler is precisely **the engine's target** — the object
+the "fresh period-12 window compiler" of §3 was gesturing at, now correctly stated
+as a common-refinement construction rather than an impossibility.
+
+*(Committed STATE.md history that records the old "incommensurate" language is
+left unchanged — it is a historical entry; this block is the standing
+correction.)*
+
+---
+
 ## 1. The a=2 certificate (GGV3 §5), reproduced exactly
 
 GGV3 (arXiv:1406.0886) §5 kills (50,75) in **two reduced charts** `γ=3, γ=2`

@@ -133,18 +133,23 @@ for mass, e in weak[:12]:
 
 out("")
 out("-- AUDIT-PRIORITY QUEUE (grouped node-evidence upgrades, by mass) --")
-# group 1: engine-killed branches at 'claimed'
-ek = defaultdict(int)
+# engine-killed branches split by evidence level after the cascade-audit JOIN
+ek = defaultdict(int)          # residual: engine-killed still at 'claimed'
+ek_aud = defaultdict(int)      # engine-killed promoted to >= independently-audited
 for n in DAG["nodes"]:
     if n["type"] == "branch" and n.get("window") in ("sub2", "sub1") \
             and n.get("cascade_status") not in (None, "survives"):
-        ek[n["window"]] += 1
+        if LRANK[n["level"]] >= LRANK["independently-audited"]:
+            ek_aud[n["window"]] += 1
+        else:
+            ek[n["window"]] += 1
 prio = []
 if ek:
     prio.append((sum(ek.values()),
-        "engine-killed branches @ claimed (sub2 %d, sub1 %d) -> upgrade via the "
-        "cascade spec-only audit (CURRENT_STATUS C18/C29/C43) to promote every "
-        "one to independently-audited" % (ek.get("sub2", 0), ek.get("sub1", 0))))
+        "engine-killed branches STILL @ claimed (sub2 %d, sub1 %d): killed only by "
+        "the t/inf layer, outside the depth-4 q-cascade auditor's scope -> join "
+        "audit_inf_cases.py (C43) to reach independently-audited" %
+        (ek.get("sub2", 0), ek.get("sub1", 0))))
 # group 2: exact-checked states (ledger 'AUDITED' = same-author) -> independent audit
 ec = Counter()
 for n in DAG["nodes"]:
@@ -192,38 +197,72 @@ def state_ge(window, level):
 dag_audit_sub2 = state_ge("sub2", "independently-audited")
 dag_audit_sub1 = state_ge("sub1", "independently-audited")
 
-# --- I1: FRONTIER "Killed (audited)" column vs DAG independently-audited ----
-m2 = re.search(r"\|\s*sub2\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|", FR)
-m1 = re.search(r"\|\s*sub1\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|", FR)
-if m2 and m1:
-    fr_aud2 = int(m2.group(2)); fr_aud1 = int(m1.group(2))
-    if fr_aud2 > dag_audit_sub2 or fr_aud1 > dag_audit_sub1:
-        inconsistency("FRONTIER-AUDITED-LABEL",
-            "FRONTIER_V2 'Killed (audited)' counts sub2=%d, sub1=%d, but those are "
-            "ledger-'AUDITED' = same-author EXACT-CHECKED, not independent audit. "
-            "The DAG reaches >=independently-audited for only sub2=%d, sub1=%d "
-            "(the alt-hunt census-verified kills). FRONTIER's 'audited' column "
-            "overstates the evidence grade by %d states."
-            % (fr_aud2, fr_aud1, dag_audit_sub2, dag_audit_sub1,
-               (fr_aud2 - dag_audit_sub2) + (fr_aud1 - dag_audit_sub1)))
-    else:
-        ok("FRONTIER-AUDITED-LABEL", "FRONTIER audited counts within DAG support")
+# --- I1: FRONTIER must SEPARATE same-author exact-checked from independently- ---
+#     audited (the DAG levels), not lump both under a single "audited" column.
+# (a) the misleading bare "Killed (audited)" header must be gone, replaced by the
+#     honest "exact-checked, same-author" label; (b) FRONTIER's evidence-grade
+#     table's ">= independently-audited" per-window counts must MATCH the DAG
+#     (a staleness / consistency guard).
+honest_label = ("Killed (exact-checked, same-author)" in FR
+                and "Killed (audited)" not in FR)
+gtab = FR.split("Killed-state evidence grade", 1)[-1] if \
+    "Killed-state evidence grade" in FR else ""
+grow = re.compile(r"\|\s*%s\s*\|\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s*(\d+)\s*\|")
+gm2 = re.search(grow.pattern % "sub2", gtab)
+gm1 = re.search(grow.pattern % "sub1", gtab)
+if not honest_label:
+    inconsistency("FRONTIER-AUDITED-LABEL",
+        "FRONTIER still labels same-author exact checks as 'Killed (audited)', "
+        "which reads as an independent audit. It must be split into "
+        "'exact-checked (same-author)' vs 'independently-audited' (the DAG levels).")
+elif not (gm2 and gm1):
+    inconsistency("FRONTIER-AUDITED-LABEL",
+        "FRONTIER lacks a parseable evidence-grade table with the DAG's "
+        "'>= independently-audited' per-window counts.")
+elif int(gm2.group(1)) != dag_audit_sub2 or int(gm1.group(1)) != dag_audit_sub1:
+    inconsistency("FRONTIER-AUDITED-LABEL",
+        "FRONTIER evidence-grade '>= independently-audited' counts (sub2=%s, "
+        "sub1=%s) disagree with the DAG (sub2=%d, sub1=%d) -- FRONTIER_V2.md is "
+        "stale; regenerate `python frontier_rollup.py` after `python proof_dag.py`."
+        % (gm2.group(1), gm1.group(1), dag_audit_sub2, dag_audit_sub1))
+else:
+    ok("FRONTIER-AUDITED-LABEL",
+       "FRONTIER separates same-author exact-checked from independently-audited; "
+       "its '>= independently-audited' counts (sub2=%d, sub1=%d) match the DAG."
+       % (dag_audit_sub2, dag_audit_sub1))
 
-# --- I2: CURRENT_STATUS independent-audit claims for branch (engine) kills ---
-ek_total = sum(ek.values())
+# --- I2: CURRENT_STATUS S1a cascade INDEPENDENT-AUDIT claim vs the DAG join ----
+# After the machine-join of audit_cascade_kills{,_sub1}.py, engine-killed branches
+# the auditor confirms are 'independently-audited'.  The doc (C18 '390 killed',
+# C29 '1899 killed', spec-only audited) is supported iff the DAG independently-
+# audits at least those counts.  (Branches killed only by the t/inf layer stay
+# 'claimed'; the doc does not count them under C18/C29, so they are not a shortfall.)
 c18 = re.search(r"390 killed", CS)
 c29 = re.search(r"1899 killed", CS)
-if (c18 or c29) and ek_total > 0:
+doc_sub2 = 390 if c18 else 0
+doc_sub1 = 1899 if c29 else 0
+dag_ek_ia_sub2 = ek_aud.get("sub2", 0)
+dag_ek_ia_sub1 = ek_aud.get("sub1", 0)
+shortfall = []
+if doc_sub2 and dag_ek_ia_sub2 < doc_sub2:
+    shortfall.append("sub2 (C18): doc %d, DAG independently-audited %d"
+                     % (doc_sub2, dag_ek_ia_sub2))
+if doc_sub1 and dag_ek_ia_sub1 < doc_sub1:
+    shortfall.append("sub1 (C29): doc %d, DAG independently-audited %d"
+                     % (doc_sub1, dag_ek_ia_sub1))
+if shortfall:
     inconsistency("CASCADE-BRANCH-AUDIT",
-        "CURRENT_STATUS S1a asserts INDEPENDENT AUDIT of the cascade branch kills "
-        "(C18 '390 killed', C29 '1899 killed'). The DAG, from the loaded sources, "
-        "rates all %d engine-killed branches at level 'claimed' (the "
-        "cascade_cones data self-labels them '*_pending_audit'); the audit artifact "
-        "(audit_cascade_kills*.py) is NOT machine-joined in v1. Doc claims "
-        "independently-audited; DAG supports only claimed. This is the top weakest "
-        "edge / audit priority." % ek_total)
+        "CURRENT_STATUS S1a claims spec-only INDEPENDENT AUDIT of the cascade "
+        "branch kills, but the DAG join supports fewer: %s. Re-run the auditors "
+        "with --emit-artifact and rebuild the DAG." % "; ".join(shortfall))
 else:
-    ok("CASCADE-BRANCH-AUDIT", "no cascade branch-audit over-claim detected")
+    ok("CASCADE-BRANCH-AUDIT",
+       "cascade branch kills machine-joined from audit_cascade_kills{,_sub1}.py: "
+       "DAG independently-audits sub2=%d (C18 claims %d), sub1=%d (C29 claims %d); "
+       "%d engine-killed branches remain 'claimed' (t/inf-layer-only kills, "
+       "audit_inf_cases.py/C43 scope)."
+       % (dag_ek_ia_sub2, doc_sub2, dag_ek_ia_sub1, doc_sub1,
+          sum(ek.values())))
 
 # --- I3: surviving-branch counts (should MATCH: consistency check) ----------
 open_sub2 = NODES["subcase:sub2"].get("branches_open")

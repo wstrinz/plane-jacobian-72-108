@@ -351,4 +351,4 @@ that would show f37 is entirely an artifact of the resultant.
 4. Bonus verified fact not previously in the notes: **`h37` is irreducible over
    `Q`** (145 terms, degree 19).
 
-File created: `d2/F37_FRONTIER.md`.
+File created: `C:\Users\wstri\dev\math-stuff\d2_plane_72_108\F37_FRONTIER.md`.

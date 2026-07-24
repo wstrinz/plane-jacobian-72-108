@@ -1,0 +1,5476 @@
+{
+ "branches": [
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    2
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    2
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    2
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    2
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    3,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    3,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    3,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    3,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    2
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    2
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    3,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    3,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    3,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    3,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    3,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    3,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    4,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    3,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    7,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 0,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    7,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    2
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    2
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    3,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    3,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    3,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    3,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    4,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    3,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    7,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 1,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    7,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    4,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    3,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    3,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 2,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    7,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    3,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 3,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    7,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    3,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 4,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    6,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 5,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    5,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 6,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    4,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 7,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 8,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 8,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 8,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 8,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 8,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 8,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 8,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "killed"
+  },
+  {
+   "a_t": 8,
+   "agreement": true,
+   "audit": "killed",
+   "b": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "killed"
+  },
+  {
+   "a_t": 9,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 9,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  },
+  {
+   "a_t": 9,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "branch": "T2",
+   "claim": "survives"
+  },
+  {
+   "a_t": 10,
+   "agreement": true,
+   "audit": "survives",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "branch": "T1",
+   "claim": "survives"
+  }
+ ],
+ "generator": "audit_cascade_kills.py",
+ "generator_sha256": "a98263fa297f715e644b4bdf79fff9323bfa2d28e543df17252204e3d69f7e18",
+ "schema": 1,
+ "summary": {
+  "agree": 420,
+  "audit_killed": 390,
+  "audit_survives": 30,
+  "audits": "cascade_cones.json (depth-4 q-place cascade)",
+  "disagreements": 0,
+  "total": 420
+ },
+ "window": "sub2"
+}

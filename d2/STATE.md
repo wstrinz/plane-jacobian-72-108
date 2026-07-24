@@ -2300,3 +2300,136 @@ arbitrary-k window caps are closed instances of slope laws their Gap 2
 leaves open — offered as proof strategy.
 Their audit discipline (self-flagged doc-ahead-of-proof rows) is itself
 an import. Files: EUMEMIC_MAP.md, eumemic_import_candidates.json.
+
+
+## 2026-07-24 — PROOF-DAG AUDIT ROUND v2 (Opus lane): all three inconsistencies resolved; report exits 0, wired into the suite
+The three real inconsistencies the DAG found on day one are now CLOSED
+(proof_dag_report.py VERDICT: 0 findings, exit 0):
+1. CASCADE AUDIT JOIN (the big one). audit_cascade_kills{,_sub1}.py gained
+   `--emit-artifact` (default behavior unchanged; suite still green); they
+   write per-branch verdicts (audit_cascade_kills{,_sub1}.json). proof_dag.py
+   joins them, promoting every engine-killed branch the auditor CONFIRMS
+   (audit=killed, agreement) to independently-audited and recording which
+   artifact supports it (node.audited_by / auditor_sha256). Census: 2289 of
+   2401 engine-killed branches now independently-audited (sub2 390, sub1 1899);
+   the residual 112 (sub2 4, sub1 108) are killed only by the t/inf layer —
+   outside the q-cascade auditors' scope — and honestly stay claimed (C43 join
+   is the next branch-layer upgrade).
+2. FRONTIER LABELING. frontier_rollup.py now reads proof_dag.json, renames the
+   misleading "Killed (audited)" column to "Killed (exact-checked, same-author)"
+   and adds a proof-DAG evidence-grade table separating same-author
+   exact-checked from independently-audited (sub2 >= indep-audited 34, sub1 25).
+   The report's FRONTIER-AUDITED-LABEL check verifies the split matches the DAG.
+3. ORPHAN CERTIFICATE resolved. harvest:a8_dd2-inf_dd10_dsig5 is an IN-universe
+   sub2 T1 state (a8 b0000 d2_zero, deg_d1=0, deg_e=8, deg_sigma=5), not out of
+   universe. Its recipe (d1=b0 free constant; E=gamma(y+1)^8) is a T1 signature;
+   the ledger's a8 resolver had hard-coded T2 (which forces d1==0), so ncand=0.
+   Fix: state_kill_ledger.py maps the a8 constant-E family to T1 with deg_e
+   pinned (scoped to the cert-backed triage exact-kill; the contested bridge_sweep
+   mod-p a8 dsig7,8 stay conservatively unmapped). sub2 killed 204->205,
+   ambiguous 31->30, the certificate now joins and promotes the state to
+   certified.
+S1a wording: unchanged — the cascade join makes C18 (390) / C29 (1899)
+DAG-supported exactly, so the tier-1 independent-audit claim is now backed.
+F6 (CHAIN_SURVEY erratum): phi_corner4{,_verify}.py + family_grammar{,_verify}.py
+carried GGV5's typo base pair (4,10) [gcd 2]; corrected to the coprime family
+(6j+7,16j+18) base (7,18) with dated notes. NO landed claim changed — phi_corner4
+already advanced j to the first coprime pair, and F6 has no derived Phi point
+(COFACTOR-classified by (t,a0,q); cofactor solve passes with corrected a=6j+7).
+Both verifiers green (40/40, 210/210).
+proof_dag_report.py --quiet is now wired into run_tests.sh (after
+chain_survey_verify.py; bash -n clean). proof_dag.json + FRONTIER_V2.md
+regenerate byte-identically. NOTE: commit the regenerated proof_dag.json,
+FRONTIER_V2.md, state_kill_ledger.json, and (optionally) the two audit artifacts
+so a clean clone sees the joined DAG.
+Files: proof_dag.py, proof_dag_report.py, PROOF_DAG.md, frontier_rollup.py,
+FRONTIER_V2.md, state_kill_ledger.py, audit_cascade_kills{,_sub1}.py,
+phi_corner4{,_verify}.py, family_grammar{,_verify}.py, run_tests.sh.
+
+
+## 2026-07-25 — Period-12 window functions (Opus lane): the (75,125) arithmetic layer derived; one premise pinned
+For the (75,125) window lattice: lower cap L(w) = ceil(67w/12) —
+quasipolynomial with alpha = 67 = 10a^2-8a+1, beta_m = 5m mod 12; upper
+cap U(w) = 14w AFFINE (deg_slope = 5a-1 integral for every a — only the
+LOWER cap is quasipolynomial; that is the exact content of the
+"quasipolynomial window cap"). Class-interaction: additive mod 12; beta
+is a 1-cocycle with carry in {0,1} = the ceiling superadditivity defect;
+generators occupy classes all-but-{1,11}; Phi class 0; skipped G10 class
+11. Controls: a=2 substitution (alpha=25, q=7, beta=(0,3,6,2,5,1,4))
+reproduces f2_tower's (50,75) window table EXACTLY; (72,108) integral
+limit degenerates to WINDOW_CAPS' affine ord>=12w, deg<=14w. Phi
+(504,201,101,202) sits at BOTH caps at equality (M=36=3*12 exact floor).
+Named premise (pinned, inherited from (72,108)'s "Phi at its caps"): the
+beta_m assume Phi realizes the extreme ray of the window cone; whether
+the cone dips below the 67/12 ray at a non-Phi weight needs the deeper
+Newton-polygon data only the bridge construction supplies.
+Checker: window_functions_75_125_verify.py (37/37) — wired into
+run_tests.sh. Files: WINDOW_FUNCTIONS_75_125.md,
+window_functions_75_125.py, window_functions_75_125_verify.py.
+Design notes for the engine (from GPT-Pro review 7, folded): ONE coupled
+Z/12-graded system (not 12 independent ideals); integral defect
+coordinate delta = 12*nu - 67*w; certificates = bihomogeneous forced-zero
+/ saturation identities selected by face functionals, with trace-form
+functionals over the residual root algebra for the Galois layer.
+
+
+## 2026-07-25 — AUDIT ROUND v2 + MILESTONE 0 land together: the trust graph is clean and the scope is repaired
+AUDIT ROUND v2 (all three DAG inconsistencies resolved, report exit 0,
+wired into the suite):
+1. Cascade-audit join: audit_cascade_kills{,_sub1}.py gained
+   --emit-artifact (default path unchanged); proof_dag.py joins the
+   artifacts — 2289 of 2401 engine-killed branches promoted claimed ->
+   INDEPENDENTLY-AUDITED (sub2 390 = C18, sub1 1899 = C29); the residual
+   112 are t/inf-layer kills outside the q-cascade auditors' scope,
+   honestly still claimed (audit_inf_cases/C43 the flagged next upgrade).
+2. FRONTIER label fixed: "Killed (audited)" -> "Killed (exact-checked,
+   same-author)" + a DAG evidence-grade table.
+3. ORPHAN CERTIFICATE RESOLVED — and it was a real mapping bug: the a8
+   resolver hard-coded branch T2, but harvest:a8_dd2-inf_dd10_dsig5 is a
+   T1 signature (constant E, deg_e=8). Fixed; the state now maps
+   uniquely, is CERTIFIED, and sub2 killed count 204 -> 205 (ambiguous
+   31 -> 30, 0 conflicts).
+F6 typo corrected in phi_corner4* and family_grammar* (no landed claim
+changed — phi_corner4 always advanced j past the non-coprime pair).
+S1a wording: now DAG-supported as written. proof_dag.json / FRONTIER_V2 /
+ledger regenerate byte-identically.
+MILESTONE 0 (GPT-Pro review 7 scope repairs, all applied):
+1. THE q_window THEOREM (q_window_theorem.py): identity tH - qM =
+   q(kappa+1) - t proved symbolically; divisibility lemma verified on all
+   3995 census rows; census RERUN with the exact formula. HEADLINE
+   SURPRISE: (72,108) is NOT the unique integral case — 51 integral
+   families across 23 corner-shapes, an arithmetic lattice of integral
+   windows (M | H iff M | C). The proxy census could not see this.
+2. F2_TOWER: "incommensurate" -> coprime/nonaligned; a refined-lattice /
+   period-84 tower REMAINS OPEN and is the engine's target.
+3. FAMILY_GRAMMAR rescoped: canonical forcing branches, not exhaustive
+   branch classification.
+4. POLYGON_REDUCTION R3: residual-gauge branch completeness REOPENED
+   (realizability != completeness); chart + kappa stay discharged.
+5. ENDPOINT_CONTRACT.md: the per-coefficient {required-nonzero |
+   forbidden | optional} contract, (50,75) fully instantiated — the kill
+   fires at c_{0,-10}; the annotator regression target is defined.
+All touched verifiers green: report 0-inconsistency, corner4 40/40,
+grammar 210/210, survey 26/26, polygon 57/57, tower 19/19, cascade-audit
+default path green, ledger 0 conflicts.
+
+
+## 2026-07-25 — Bigraded probe (Opus lane): DECOMPOSED-BUT-OPEN — but landed as PARTIAL/UNVERIFIED
+Direction: the R9 z=1 walled H-system DOES decompose under (u,y) window
+slicing — u-axis degenerate (3 values), y-axis gives ~125 slice equations
+with banded spare coupling; the extreme corner is 3 eqs / 2 unknowns,
+resultant-solvable in SECONDS where the scalar monolith timed out at
+300s, yielding the first new necessary constraint ever extracted from a
+walled state (non-unit product of two quintics in a4; satisfiable — no
+kill). Any window-depth contradiction must live in the saturated middle
+band, reachable by corner-inward propagation (the compiler direction).
+HONESTY GATE FIRED: the verifier's first end-to-end run FAILS — the
+claimed bandwidth-2 staircase breaks at slice 1 (4 new spares, not 2);
+reassembled scripts vs in-session findings disagree on the exact band
+structure. Landed as PARTIAL/UNVERIFIED with a status header; the
+Milestone-1 bigrade_annotator lane adjudicates the true lattice. The
+directional verdict (decomposition real, corners cheap, wall partly a
+projection artifact) is supported by the exact in-session corner
+computation; the quantitative staircase is NOT yet trustworthy.
+Files: BIGRADED_PROBE.md (headered), bigraded_probe.py,
+bigraded_probe_verify.py (currently failing — deliberately NOT wired).

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""case_compiler_verify.py — PASS/FAIL checker for the case-compiler pilot.
+"""case_compiler_verify.py — PASS/FAIL checker for the Lane I case-compiler pilot.
 
 Validates compiled dossiers against KNOWN LANDED VALUES hard-coded here from the
 source documents (STATE.md audited facts, PHI_75_125.md, PHI_CORNER4.md,

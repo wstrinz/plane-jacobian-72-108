@@ -126,7 +126,7 @@ only, a11 build+triage cut off) took the symbolic-`r` Singular route; the retry
 (`alt_bridge_retry.log` → `alt_bridge_results.json`) took the numeric-root
 mod-p + char-0 msolve route (the two engines that had beaten marked-root swell
 elsewhere). Both routes, both states: TIMEOUT. The last recorded event before
-the run died (API outage) was the `a11_b3100_T2` msolve TIMEOUT at 300.4 s,
+Lane N died (API outage) was the `a11_b3100_T2` msolve TIMEOUT at 300.4 s,
 written to `alt_bridge_results.json`; nothing was left genuinely mid-compute.
 
 **The load-bearing negative finding.** The **control** `a12_b1110_T2` deg d2=6

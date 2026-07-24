@@ -48,8 +48,13 @@ Ascending: `open < claimed < exact-checked < independently-audited < certified`.
   independent audit. (This is the crux of the `FRONTIER-AUDITED-LABEL`
   inconsistency the report raises.)
 - **independently-audited** -- a separately-authored, no-code-shared auditor
-  re-derived the kill. In v1 this is exactly the alt-hunt census
-  (`audit_alt_hunt_census.json`) `FULLY-VERIFIED` states (41 of them).
+  re-derived the kill. Two joins reach this level: (i) the alt-hunt census
+  (`audit_alt_hunt_census.json`) `FULLY-VERIFIED` states at the STATE layer;
+  (ii) **(audit round v2)** the depth-4 q-cascade branch audit
+  (`audit_cascade_kills{,_sub1}.py`, C18/C29) at the BRANCH layer -- each emits a
+  per-branch verdict artifact (`--emit-artifact`) which the DAG joins, promoting
+  every engine-killed branch the auditor confirms (audit=killed, agreement) and
+  recording WHICH artifact supports it (`node.audited_by`, `node.auditor_sha256`).
   `VERIFIED-DATA-ONLY` is treated as `exact-checked` (data verified, contradiction
   Groebner not independently re-run).
 - **certified** -- an object certificate with `status = CERTIFICATE-FOUND` (a lift
@@ -115,12 +120,17 @@ surface with a reason. `proof_dag.json.unmapped` and the report's tail carry:
 - **`ledger-ambiguous-map` (31)** -- the ledger's expected ambiguous
   secondary-source maps (a8/bridge labels not pinning `deg_e`/`deg_d1`). Surfaced
   as designed.
-- **`certificate-unresolved` (8)** -- 7 `NOT-YET-CERTIFICATED` harvest/msolve
+- **`certificate-unresolved` (7)** -- `NOT-YET-CERTIFICATED` harvest/msolve
   certs whose sup-index or `sub2_sNN` target is not on a tracked ladder (no
-  promotion impact), and **1 `CERTIFICATE-FOUND` orphan**
-  (`harvest:a8_dd2-inf_dd10_dsig5`) -- a *found* certificate whose kill is not
-  present in the ledger/universe join. This is a genuine coverage gap and is
-  raised as the `ORPHAN-CERTIFICATE` inconsistency.
+  promotion impact). **(audit round v2)** The former `CERTIFICATE-FOUND` orphan
+  `harvest:a8_dd2-inf_dd10_dsig5` is now RESOLVED: its recipe (d1=b0 a free
+  degree-0 constant; E=gamma*(y+1)^8 forcing deg_e=8; d2=0; deg_sigma=5) is the
+  T1 signature of the unique in-universe sub2 state
+  `sub2|8|(0,0,0,0)|T1|True|False|()|0|-inf|8|5`. The ledger's a8 resolver had
+  hard-coded branch T2 (which forces d1==0, deg_d1=-inf), so the constant-d1
+  state never matched (ncand=0, recorded ambiguous). The resolver now maps the a8
+  constant-E family to T1 with deg_e pinned, so the certificate joins its state
+  (promoting it to `certified`).
 - **`j6-msolve-audited-nostate` (4)** -- j6 msolve kills independently audited by
   the census but carrying no degrees in the loaded sources to join to a phase-D
   state.
@@ -142,12 +152,15 @@ python proof_dag_report.py     # census + weakest edges + inconsistencies
 python proof_dag_report.py --quiet   # CI gate: exit 0 iff no inconsistencies
 ```
 
-## v1 known limitations (named, not hidden)
+## known limitations (named, not hidden)
 
-- The cascade **branch-level independent audit** (`audit_cascade_kills*.py`,
-  C18/C29/C43) is **not machine-joined**; all 2401 engine-killed branches are
-  rated `claimed`. This is the single highest-leverage upgrade and the top
-  `CASCADE-BRANCH-AUDIT` finding.
+- **(RESOLVED in audit round v2)** The cascade **branch-level independent audit**
+  (`audit_cascade_kills{,_sub1}.py`, C18/C29) is now machine-joined: 2289 of the
+  2401 engine-killed branches (sub2 390, sub1 1899) are `independently-audited`.
+  The remaining 112 (sub2 4, sub1 108) are killed only by the t/inf layer -- OUT
+  of the q-cascade auditors' scope (they verdict such branches 'survives' at the
+  q level) -- and honestly stay `claimed` pending an `audit_inf_cases.py` (C43)
+  join, the next branch-layer upgrade.
 - The **27-branch alternate-regime** sweep (`alt_combined.json`) is not per-state
   joined; the alt layer is modeled as the 15 entirely-defect-0 families.
 - Cone-lemma branch completeness and the C0 case partition are judgment edges (by

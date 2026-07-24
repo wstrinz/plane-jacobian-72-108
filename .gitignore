@@ -15,3 +15,4 @@ _wolfram_link/
 # Lean build output
 lean/.lake/
 lean/build/
+release_gate.log

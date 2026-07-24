@@ -7,7 +7,7 @@ driver), `r9_valsplit_results.json` (machine record), logs
 `r9_valsplit_run.log`, `r9_valsplit_control.log`.
 
 The named continuation after the dm4 elimination (`R9_SYMBOLIC.md` §3c):
-R9_SYMBOLIC proved the deg_e = 10 wall survives dm4 elimination and localized it
+Lane B proved the deg_e = 10 wall survives dm4 elimination and localized it
 to the dm2/dm3 spare ansätze; this lane imposes the certified divisibility
 lemma's full valuation content, splitting each state into finitely many
 strictly smaller cases.
@@ -53,7 +53,7 @@ sympy expansion alone.
 
 The equivalent free route (`case_equations`): impose each case as **linear
 equations on the generic spare coefficients** of the CACHED dm4-eliminated
-build (`r9red_*.pkl`, validated by the R9_SYMBOLIC pass):
+build (`r9red_*.pkl`, validated by Lane B):
 
     v_{y+1}(p) ≥ m  ⟺  p(−1) = p′(−1) = … = p^{(m−1)}(−1) = 0   (char 0)
     v_{y−r}(p) ≥ 1  ⟺  p(r) = 0
@@ -62,7 +62,7 @@ Same case variety (A, B are exactly the generic coefficients modulo the
 linear system); zero re-expansion; Singular eliminates the linear rows
 instantly.  The base build's divisibility remainder rows stay (redundant
 under the split, still sound).  Attack ladder, budgets, orphan-proof WSL
-runner (timeout + ulimit -v 8G inside WSL): reused from the R9_SYMBOLIC pass verbatim.
+runner (timeout + ulimit -v 8G inside WSL): reused from Lane B verbatim.
 
 ## 3. Census (machine record `r9_valsplit_results.json`)
 
@@ -79,7 +79,7 @@ Exhaustiveness: **ALL PASS** (R9 shape (9,1): 5145 profiles; batch a=7/8/9:
 | R9 z=2, z=3; batch 8 states | NOT ATTEMPTED | honest truncation |
 
 Zero case kills, zero PROPER — every completed verdict is pure Gröbner
-cost, no survival signal anywhere (same asymmetric semantics as R9_SYMBOLIC).
+cost, no survival signal anywhere (same asymmetric semantics as Lane B).
 
 ## 4. Verdict
 
@@ -88,7 +88,7 @@ cutting the spare dimension 28 → 18 — does not move any attempted system
 across the mod-p feasibility boundary: uniform 45 s TIMEOUTs across edge
 (i=0,1) and middle (i=2,5) cases, and, decisively, the **structurally
 easiest case (9,1) times out at the 300 s control budget** on two primes —
-the same tier where the full bridge and R9_SYMBOLIC's dm4-eliminated systems
+the same tier where the full bridge and Lane B's dm4-eliminated systems
 failed.  This sharpens the localization: infeasibility persists even with
 10 of dm2's 13 coefficients forced, so the swell is driven by the generic
 dm3 tail coupled to the window-cap e — not by spare-dimension count.  Two

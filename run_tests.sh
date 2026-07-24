@@ -78,7 +78,10 @@ echo "### D2 — exact field-split proof checks"
   python3 polygon_reduction_verify.py --quiet &&
   python3 ml_restriction_check.py --quiet &&
   python3 case_compiler_verify.py --quiet &&
-  python3 window_caps_verify.py --quiet
+  python3 window_caps_verify.py --quiet &&
+  python3 window_functions_75_125_verify.py --quiet &&
+  python3 proof_dag_report.py --quiet &&
+  python3 phi_depth_criterion_verify.py --quiet
 ) || rc=1
 
 if [ "${SKIP_SLOW:-0}" = "1" ]; then

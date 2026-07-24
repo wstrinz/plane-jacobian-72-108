@@ -59,10 +59,20 @@ in the source):
 G1 = 3/2·d1·dm1² + 3·d2·dm1·dm2 + 3·dm1·dm4 + 3·dm2·dm3
 G2 = −3/2·d0·dm1² + 3/2·d2·dm2² + 3·dm2·dm4 + 3/2·dm3²
 G3 = −3·d0·dm1·dm2 − 3/2·d1·dm2² − 1/2·dm1³ + 3·dm3·dm4
-G5 = 2·Phi + G5body,   G5body = −3·d0·dm1·dm4 − 3·d0·dm2·dm3 − 3·d1·dm2·dm4
+G5 = Phi + G5body,     G5body = −3·d0·dm1·dm4 − 3·d0·dm2·dm3 − 3·d1·dm2·dm4
                                  − 3/2·d1·dm3² − 3·d2·dm3·dm4 − 3/2·dm1²·dm3
                                  − 3/2·dm1·dm2²
 ```
+
+> **ERRATUM (2026-07-24).** This block previously read `G5 = 2·Phi + G5body`,
+> contradicting the augmentation recipe below (`(G5body+Phi)`) and the canonical
+> loader `full_system_bridge.py` (`st["G5body"] + PHI`). The authority is the C11
+> membership certificate in `f37_sat_verify.py`, which verifies
+> `f31 == c1·G1 + c2·G2 + c3·G3 + c4·(G5body + Phi)`. Corrected to `Phi + G5body`.
+> The two forms differ by `Phi`, not by a nonzero scalar, so they are genuinely
+> different equations. `bigrade_annotator.py` transcribed the erroneous form; see
+> `FACE_KILL_SWEEP.md` §4 for the impact assessment (no landed kill changes; the
+> M1 R2 certificate VALUE was wrong, `−1024/3315` not `−2048/3315`).
 
 These are `(D~³)_{-1,-2,-3,-5}` after the `(D~²)` linear substitutions — exactly
 `regenerate_system.py`'s system, validated by `T6_SELECTION_AUDIT.md`.

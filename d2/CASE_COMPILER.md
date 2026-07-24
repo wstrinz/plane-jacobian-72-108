@@ -1,4 +1,4 @@
-# CASE_COMPILER — pilot (2026-07-23)
+# CASE_COMPILER — pilot (Lane I, 2026-07-23)
 
 **What this is.** The first working slice of the INDUCTIVE_PROGRAM.md
 architecture item: a compiler from GGV5/GGHV chain data to a normalized CASE
@@ -96,6 +96,6 @@ METHOD-ONLY: S-unit corner kills. Details + caveats in every dossier's
 1. **Instantiate a second case's deep structure** (the real T1/T2 test):
    build (75,125)'s C-series/D-transform from polygon data and fill the
    schematic fields — the dossier now states exactly which fields those are.
-2. **F7** flips the last conjectural regime row if it matches.
+2. **F7 (Lane H)** flips the last conjectural regime row if it matches.
 3. **Residue-layer analogue at one non-home case** would upgrade the Galois
    verdicts from CONDITIONAL and is the named blocker for layer-2 transfer.

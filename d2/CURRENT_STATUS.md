@@ -1,6 +1,6 @@
 # CURRENT STATUS — the (72,108) program (current truth)
 
-**As of:** 2026-07-24. This file states only what is *currently true*: proven and
+**As of:** 2026-07-23. This file states only what is *currently true*: proven and
 checker-enforced nodes, trusted published inputs, independently audited results,
 and the live open frontier. Engine kills that are **pending independent audit are
 not counted as progress** below. For the full historical claim graph (including
@@ -103,104 +103,6 @@ report large "killed (pending audit)" branch counts; those kills that have NOT
 been re-derived by a spec-only auditor are **excluded** from the proven/audited
 tables in §1 and are not counted as closed. The independently audited layers
 (C18/C20/C29/C31/C43/C44) are the ones reflected in §1a.
-
----
-
-## 3b. Structure layer — the corner law (added 2026-07-23; tier 2 unless noted)
-
-A new cross-family layer, developed on the GGV/GGHV corner data and checked by
-ten new suite verifiers (all exact sympy, wired into `run_tests.sh`):
-
-- **Corner law for the tower's last element Φ** (`PHI_75_125.md`,
-  `PHI_CORNER4.md`, `PHI_F14.md`, `PHI_F7.md`): twelve exact
-  derived/audited points across four regimes (t ∈ {3,4,5,7}, both gap
-  regimes), unified as a **μ-graded law** (`ZETA_TAIL.md`); the ramified and
-  unramified branch laws are its μ = dg and μ = 1 specializations.
-- **κ = t−2 chart theorem** (`PHI_CORNER4.md`, extended in
-  `COMPOSITE_CHARTS.md`): proven for the standard chart class and every
-  escape family (composite charts fuse to a single inversion); the true
-  boundary for A0′=(2,0) families is the ζ-defect model correction
-  (`ZETA_TAIL.md`), with surviving models enumerated.
-- **Prior-art audit** (`PRIOR_ART.md`): the corner-law claims checked against
-  the published GGV corpus (read, not searched). Novelty verdicts recorded
-  per claim, with required citations. Flagship check:
-  `prior_art_postdiction_verify.py` re-derives GGHV22 §4's printed
-  closed-form `f₁` and confirms the corner law **postdicts it with zero
-  fitting freedom** (12 checks).
-- **Galois-descent library** (`GALOIS_LIBRARY.md`): the 23-shape residue
-  library classified structurally; C08 and C20 are the exactly-two
-  quadratic-obstruction kills, with a two-line transfer criterion for any
-  family member.
-- **Case compiler** (`CASE_COMPILER.md`, three dossiers): corner data →
-  compiled case dossier, validated to reproduce the audited (72,108) facts
-  exactly; conjectural flags are data-driven per regime.
-- **Window caps k=6,7,8** (`WINDOW_CAPS.md`): the formerly flagged extension
-  is now recited and proven (81 checks); the corresponding [judgment] flags
-  in `FULL_SYSTEM_BRIDGE.md`/`BRIDGE_SWEEP.md` are retired.
-
-**Trust architecture (first end-to-end pass — see §3c for the 2026-07-24
-state).** A cofactor-certificate pipeline (`kill_certificate_tools.py` + the
-certificate-consuming spec auditor `audit_gb_kills.py`) extracts
-engine-free-checkable certificates `1 = Σ cᵢfᵢ` for saturated-Gröbner kills.
-As of 2026-07-24 the first full pass has landed: **20 of the 49 targeted kills
-carry a certificate (`CERTIFICATE-FOUND`); 29 remain `NOT-YET-CERTIFICATED`**
-(lift timeouts / open failures, all recorded honestly in
-`kill_certificates/status_log.json`). Separately, the s-unit BM-candidate
-residual layer is fully killed at engine level (`ALT_HUNT.md`, `J6_MSOLVE.md`:
-49/49 states, mod-p corroboration) and has now been re-derived by an
-independent spec-only auditor (`audit_alt_hunt_kills.py`, census
-`audit_alt_hunt_census.json`: **49/49, zero disagreements**). These layers
-are still labelled **PENDING AUDIT** in their own documents and per the rule
-above are NOT counted in §1 or in the frontier table yet.
-
----
-
-## 3c. Update 2026-07-24 (trust layer + transfer test; tier as noted)
-
-Same-author checker-enforced unless stated; published here for external review.
-
-- **Certificate architecture — first end-to-end pass.** The kill-certificate
-  pipeline now produces per-kill JSON certificates under `kill_certificates/`
-  (49 records), consumed by two independent readers: `audit_gb_kills.py`
-  (re-expands `1 = Σ cᵢfᵢ` from the certificate, no engine trust) and
-  `kill_certificate_tools.py` (producer/manifest, `kill_manifest.json`).
-  Census: **20 CERTIFIED, 29 not-yet-certificated**, failures logged, nothing
-  overclaimed.
-- **Independent 49-kill audit (0 disagreements).** `audit_alt_hunt_kills.py`
-  — a from-scratch, spec-only re-derivation with no access to the producer
-  code (`alt_hunt_depth2.py`, `j6_msolve.py` are neither imported nor read) —
-  re-checks all 49 forced HUNT/J6 state kills via isolated per-kill SymPy
-  Gröbner subprocesses. Result: **41 FULLY-VERIFIED + 8 VERIFIED-DATA-ONLY,
-  0 DISAGREEMENT, 0 UNPARSEABLE** (`audit_alt_hunt_census.json`, exit 0).
-- **f37-branch closure — independent CAS replay scripts.** `F37_REPLAY.md`
-  ships standalone Macaulay2 (`f37_replay_m2.m2`) and Sage
-  (`f37_replay_sage.py`) re-derivations of the C11 f37-artifact theorem, plus
-  a pure-Python construction self-test (`f37_replay_selftest.py`, 8/8) that
-  needs no external CAS.
-- **μ-ladder + parity theorem (dg = 2, 4).** `MU_RUNGS_F10.md` +
-  `mu_rungs_f10_verify.py` extend the μ-graded law (`ZETA_TAIL.md`) up the
-  ramified ladder and **prove the even-`dg` parity claim at `dg = 4` (F10)**:
-  the μ=1 rung is empty, matching dg=2. `REVIEW_ZETA_MU.md` +
-  `review_zeta_mu.py` are an adversarial re-derivation of the ζ/μ layer
-  (**31/31 confirmations hold**, F12 quartic re-obtained by a different
-  elimination route).
-- **Transfer test — phases 1–2 on (75,125).** The corner-law machinery is
-  exercised on a *second* family. Phase 1: the (75,125) C-series is built
-  from the polygon data and its tower length **N = 98 is DERIVED**, matching
-  the formula (`C_SERIES_75_125.md` + `c_series_75_125_verify.py`). Phase 2:
-  the associated G-system is built and its weight-integrality boundary
-  characterised — the quasipolynomial window-cap obstruction is located at
-  **a ≥ 3** (`G_SYSTEM_75_125.md` + `g_system_75_125_verify.py`).
-- **Cross-program corroboration (Alok).** `ALOK_CROSSCHECK.md` +
-  `alok_crosscheck.py` reconcile the (72,108) setup and the cascade/infinity
-  state artifacts against an independent parallel program: exact setup
-  corroboration, regime-disjointness quantified, **0 findings**.
-- **Alternate-bridge construction + honest wall.** `ALT_BRIDGE.md` +
-  `alt_bridge.py` and the R9 symbolic/valuation-split status docs
-  (`R9_SYMBOLIC.md`, `R9_VALSPLIT.md`, `r9_symbolic_elim.py`,
-  `r9_valsplit.py`) record the attempted state-level bridge kills and their
-  **honest negative outcome** (Gröbner cost wall survives; every completed
-  verdict is COST, no survival signal) — **PENDING AUDIT**, not counted in §1.
 
 ---
 

@@ -51,7 +51,7 @@ Aggregation
 
 READ-ONLY on every committed artifact.  Writes only proof_dag.json.
 """
-import json, os, re, sys, hashlib
+import json, os, re, sys, hashlib, subprocess
 from collections import defaultdict, Counter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -117,6 +117,39 @@ for fn in sorted(os.listdir(CERT_DIR)):
         CERTS.append(json.load(f))
     LOADED.append("kill_certificates/" + fn)
 load("kill_certificates/status_log.json", required=False)
+
+# ---------------------------------------------------------------------------
+# Independent cascade-audit artifacts (the branch-level spec-only audit).
+# audit_cascade_kills{,_sub1}.py exhaustively re-derive each depth-4 q-cascade
+# branch's kill/survival from scratch (no code shared with the engine) and emit
+# a per-branch verdict artifact.  We JOIN those verdicts here so every engine-
+# killed branch the auditor CONFIRMS (audit=killed, agreement) is promoted from
+# 'claimed' to 'independently-audited', recording WHICH artifact supports it.
+# If the artifact is absent we invoke the auditor to produce it (slow but exact);
+# normally it is present and just read (adding it to the provenance digest).
+# ---------------------------------------------------------------------------
+def load_audit_artifact(fn, script):
+    p = os.path.join(HERE, fn)
+    if not os.path.exists(p):
+        sys.stderr.write("proof_dag: %s missing; running %s --quiet "
+                         "--emit-artifact (exact, may take minutes)...\n" % (fn, script))
+        subprocess.run([sys.executable, os.path.join(HERE, script),
+                        "--quiet", "--emit-artifact", fn], cwd=HERE, check=True)
+    LOADED.append(fn)
+    with open(p) as f:
+        return json.load(f)
+
+CASCADE_AUDIT = {}       # (win, a_t, b_tuple, branch) -> verdict record
+AUDIT_ARTIFACTS = {}     # win -> dict(file, generator_sha256, summary)
+for _fn, _script in (("audit_cascade_kills.json", "audit_cascade_kills.py"),
+                     ("audit_cascade_kills_sub1.json", "audit_cascade_kills_sub1.py")):
+    _art = load_audit_artifact(_fn, _script)
+    AUDIT_ARTIFACTS[_art["window"]] = dict(
+        file=_fn, generator_sha256=_art.get("generator_sha256"),
+        summary=_art.get("summary"))
+    for _r in _art["branches"]:
+        CASCADE_AUDIT[(_art["window"], _r["a_t"], tuple(_r["b"]), _r["branch"])] = dict(
+            audit=_r["audit"], claim=_r["claim"], agreement=_r["agreement"], artifact=_fn)
 
 # ---------------------------------------------------------------------------
 # phase-D universe indices (canonical raw-state key -> exists) and case index
@@ -733,13 +766,33 @@ for bid, node in NODES.items():
         continue
     st = node["cascade_status"]
     if st != "survives":
-        # engine-killed branch: closed by the cascade engine; the data itself
-        # labels it *_pending_audit -> level 'claimed'.  Exhaustiveness edge
-        # survivor_case_count==0 is machine-checked (exact-checked) but does not
-        # raise the KILL evidence above the pending-audit 'claimed'.
+        # engine-killed branch.  JOIN the independent spec-only cascade audit:
+        # if the auditor artifact confirms this branch killed (audit=killed AND
+        # agreement), the kill is independently re-derived -> 'independently-
+        # audited'.  Otherwise it stays 'claimed' (cascade data self-labels it
+        # *_pending_audit).  Branches killed only by the t/inf layer are NOT
+        # covered by the q-cascade auditor (it verdicts them 'survives' at the
+        # q level) and honestly remain 'claimed'.
         node["closed"] = True
-        node["level"] = "claimed"
-        node["closure_basis"] = "cascade engine kill (pending independent audit)"
+        akey = (node["window"], node["a_t"], tuple(node["b"]), node["branch"])
+        aud = CASCADE_AUDIT.get(akey)
+        if aud is not None and aud["audit"] == "killed" and aud["agreement"]:
+            node["level"] = "independently-audited"
+            node["closure_basis"] = (
+                "cascade engine kill, INDEPENDENTLY AUDITED (spec-only "
+                "re-derivation agrees) by %s" % aud["artifact"])
+            node["audited_by"] = aud["artifact"]
+            node["auditor_sha256"] = AUDIT_ARTIFACTS[node["window"]]["generator_sha256"]
+        else:
+            node["level"] = "claimed"
+            node["closure_basis"] = "cascade engine kill (pending independent audit)"
+            if aud is not None:
+                node["audit_note"] = (
+                    "q-cascade auditor verdict=%s (agreement=%s): this branch's "
+                    "kill is not covered by the depth-4 q-cascade auditor "
+                    "(killed only by the t/inf layer)" % (aud["audit"], aud["agreement"]))
+            else:
+                node["audit_note"] = "no q-cascade auditor record for this branch key"
         node["exhaustiveness_ok"] = (node.get("survivor_case_count", 0) == 0)
     else:
         cells = CELLS_OF_BRANCH.get(bid, [])
@@ -829,9 +882,11 @@ out = {
         "cell/branch/subcase/target": "conjunctive: MIN over required children, "
             "folded with the exhaustiveness-edge level (>= exact-checked required "
             "to close above claimed)",
-        "engine_killed_branch": "level 'claimed' -- cascade data self-labels "
-            "*_pending_audit; independent audit (C18/C29/C43) is judgment-"
-            "referenced, not machine-joined in v1",
+        "engine_killed_branch": "level 'independently-audited' when the spec-only "
+            "cascade auditor (audit_cascade_kills{,_sub1}.py) artifact confirms the "
+            "kill (audit=killed, agreement); else 'claimed'.  Branches killed only "
+            "by the t/inf layer are outside the q-cascade auditor's scope and stay "
+            "'claimed' (see node.audit_note / audited_by).",
         "f37": "judgment-referenced leaf (C11); not recomputed here",
     },
     "provenance": {
@@ -839,6 +894,7 @@ out = {
                            "determinism",
         "source_sha256": _sources_sha256(LOADED),
         "source_files": sorted(set(LOADED)),
+        "cascade_audit_join": {w: AUDIT_ARTIFACTS[w] for w in sorted(AUDIT_ARTIFACTS)},
     },
     "counts": {
         "nodes": len(nodes_out),
@@ -855,6 +911,18 @@ out = {
         "certificates_found": n_cert_found,
         "certificates_resolved_to_target": n_cert_resolved,
         "unmapped": len(UNMAPPED),
+        "engine_killed_branches_independently_audited": {
+            w: sum(1 for n_ in nodes_out if n_["type"] == "branch"
+                   and n_.get("window") == w
+                   and n_.get("cascade_status") not in (None, "survives")
+                   and n_.get("level") == "independently-audited")
+            for w in ("sub2", "sub1")},
+        "engine_killed_branches_claimed": {
+            w: sum(1 for n_ in nodes_out if n_["type"] == "branch"
+                   and n_.get("window") == w
+                   and n_.get("cascade_status") not in (None, "survives")
+                   and n_.get("level") == "claimed")
+            for w in ("sub2", "sub1")},
     },
     "closure_census": {t: dict(nc) for t, nc in sorted(level_census.items())},
     "unmapped": sorted(UNMAPPED, key=lambda u: (u.get("kind", ""),
@@ -874,6 +942,9 @@ print("distinct killed states (phase-D):", out["counts"]["distinct_killed_states
       "| corner:", out["counts"]["corner_kills"])
 print("certificates: total %d found %d resolved %d" % (
     len(CERT_NODES), n_cert_found, n_cert_resolved))
+print("cascade-audit JOIN -> engine-killed branches independently-audited:",
+      out["counts"]["engine_killed_branches_independently_audited"],
+      "| still claimed:", out["counts"]["engine_killed_branches_claimed"])
 print("alt-hunt kills ingested:", n_alt_hunt)
 print("UNMAPPED bucket:", len(UNMAPPED))
 uk = Counter(u.get("kind") for u in UNMAPPED)

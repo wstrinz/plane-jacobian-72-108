@@ -19,6 +19,7 @@ Checks
 
 --quiet suppresses the per-check log; exit code 0 iff all checks pass.
 """
+import json
 import sys
 from math import gcd
 
@@ -155,6 +156,53 @@ check_invariants(recs55, "M=55")
 ok("D: M=55 enumeration is a superset of the 24 published chains",
    pub_keys.issubset(set((norm(r["A0"]), norm(r["A0p"]), tuple(r["final"]), r["k"])
                          for r in recs55)))
+
+# ---------------------------------------------------------------------------
+# E. THE q_window THEOREM  (q_window_theorem.py; added 2026-07-24)
+#
+#    q_window(a,b) = M/gcd(M,H),  M = t(a+b)-(kappa+1),  H = q(a+b)-1.
+#    IDENTITY:        t*H - q*M = q*(kappa+1) - t  =: C          (fixed corner int)
+#    DIVISIBILITY:    gcd(M,H) | C                               (Bezout lemma)
+#    These REPLACE the proxy window statistic `t*a - kappa` of CHAIN_SURVEY.md 3e.
+# ---------------------------------------------------------------------------
+import q_window_theorem as qwt
+
+# E1. the identity, proved symbolically (sympy) in (t,kappa,q,a,b)
+ok("E: identity t*H - q*M = q*(kappa+1) - t proved symbolically",
+   qwt.prove_identity_symbolically())
+
+# E2. the four known cases reproduce (M,H,gcd,q_window) exactly, incl. (72,108)->1
+known = qwt.check_known_cases()
+ok("E: all 4 known cases (72,108 / 50,75 / 75,125 / 56,84) exact",
+   all(good for (_, _, _, good) in known))
+ok("E: (72,108) window is INTEGRAL (q_window=1)",
+   qwt.q_window(4, 2, 7, 2, 3)[3] == 1)
+
+# E3. divisibility lemma gcd(M,H)|C holds on EVERY census family (M=100 rows),
+#     evaluated at the derived base member (a,b)=(m0,n0)
+_data = json.load(open("chain_survey_data.json"))
+_fam = _data["families_at_max_M"]
+_all_div = all(qwt.divisibility_holds(r["t"], r["kappa"], r["q"], r["m0"], r["n0"])
+               for r in _fam)
+ok("E: divisibility gcd(M,H)|C holds on all %d census family rows" % len(_fam),
+   _all_div)
+
+# E4. the census settles the review's open question: (72,108) is NOT unique.
+_cen = qwt.census()
+ok("E: census finds the integral windows (q_window=1); count reproduced",
+   _cen["n_integral_families"] == 51 and _cen["n_integral_shapes"] == 23)
+ok("E: (72,108) is present but NOT the unique integral case",
+   _cen["72_108_present"] and not _cen["72_108_unique"])
+
+# E5. family-level growth: along a fixed family q_window is linear and gcd(M,H)
+#     is pinned to a divisor of the fixed |C| (F2 witness)
+_C, _rows = qwt.family_growth(5, 3, 2, 2, 3, 1, 2)
+_qw = [row[5] for row in _rows]
+_gc = [row[4] for row in _rows]
+ok("E: F2 family q_window is linear (constant successive difference)",
+   len(set(_qw[i+1] - _qw[i] for i in range(len(_qw)-1))) == 1)
+ok("E: F2 family gcd(M,H) pinned to |C| across all swept members",
+   all(_C % g == 0 for g in _gc))
 
 print()
 if FAILS:

@@ -1,3 +1,90 @@
+# v0.3.0 — the audit wave: a clean trust graph, a new kill mechanism, two errata
+
+**Headline:** the machine-honesty layer that shipped "working but finding
+problems" in the last release now exits clean, and a new *cheap* kill mechanism
+lands 133 previously-unrecorded state kills. Both errata below were found by
+adversarial review of our own work, not by a checker passing.
+
+- **Proof-DAG audit round v2 — 0 inconsistencies (`PROOF_DAG.md`).** The three
+  real doc-vs-data inconsistencies the DAG found on day one are closed, and
+  `proof_dag_report.py --quiet` is now a suite gate (exit 0 iff no doc claim
+  exceeds what the DAG supports). The cascade branch audits are machine-joined:
+  **2289 of 2401 engine-killed branches are now `independently-audited`**
+  (sub2 390, sub1 1899); the residual 112 are t/inf-layer kills outside the
+  q-cascade auditors' scope and honestly stay `claimed`. One orphan certificate
+  turned out to be a real mapping bug (an `a8` resolver hard-coded branch T2 for
+  what is a T1 signature) — fixed, and that state is now `certified`.
+
+- **The q_window theorem (`q_window_theorem.py`) — and a surprise.** The identity
+  `t·H − q·M = q(κ+1) − t` is proved symbolically, the divisibility lemma
+  `gcd(M,H) | C` verified on all 3995 census rows, and the census re-run with the
+  exact formula rather than the old proxy. **(72,108) is NOT the unique integral
+  case:** there are **51 integral (`q_window = 1`) families across 23 corner
+  shapes** — an arithmetic lattice of integral windows that the proxy census
+  could not see.
+
+- **Period-12 window functions for (75,125) (`WINDOW_FUNCTIONS_75_125.md`).**
+  Lower cap `L(w) = ⌈67w/12⌉` is quasipolynomial (`α = 67 = 10a²−8a+1`,
+  `β_m = 5m mod 12`); the upper cap `U(w) = 14w` is **affine** — only the lower
+  cap is quasipolynomial, which is the exact content of "quasipolynomial window
+  cap". Controls: the `a=2` substitution reproduces the (50,75) window table
+  exactly, and the (72,108) limit degenerates to the known affine caps.
+
+- **NEW — the Φ-window-depth kill criterion (`FACE_KILL_SWEEP.md`).** `G5` is
+  u-weight-homogeneous of weight 17, so every term strips by exactly `y²⁰⁴` and
+  the stripped `G5` lives at y-degree ≤ 34; the stripped `Φ` has degree *exactly*
+  34 with `lc = −1024/3315 ≠ 0`. So whenever every `G5body` term stays below
+  degree 34 — even with all spares at their caps — the degree-34 coefficient is
+  `lc(Φ)` and the equation reads `−1024/3315 = 0`: **the state admits no spares.**
+  Being a pure degree argument it needs no symbolic expansion, giving an
+  O(1)-per-state test that sweeps all 52,005 states in seconds:
+  **sub2 195/7888, sub1 0/44117**. 62 were already in the ledger; **133 are new**,
+  and all 133 lie in still-open branches (branch-join discharged: every phase-D
+  case maps to a cascade branch marked `survives`). The limits are structural:
+  `a_t = 10` and *all* of sub1 are provably immune. Verifier
+  `phi_depth_criterion_verify.py` (36 checks) re-derives everything from
+  primitives and ties the closed form to the exact symbolic computation.
+  These 133 are same-author `claimed`, pending independent audit.
+
+- **ERRATUM 1 — `G5` normalisation.** The canonical generator is
+  `G5 = G5body + Φ` (`full_system_bridge.py`; the C11 membership certificate in
+  `f37_sat_verify.py` verifies `f31 == … + c4·(G5body + Φ)`).
+  `FULL_SYSTEM_BRIDGE.md` line 62 stated `2·Φ + G5body`, contradicting line 114
+  of the same file, and `bigrade_annotator.py` transcribed it. The two differ by
+  `Φ`, **not** by a nonzero scalar, so conclusions do not transfer automatically.
+  Both corrected with dated notes; no landed kill changes (the depth argument
+  uses only `deg Φ = 34` and `lc ≠ 0`), but emitted certificate *values* were
+  wrong. A fail-loud guard now prevents reintroduction.
+
+- **ERRATUM 2 — the "bandwidth-2 staircase" is refuted, and explained.**
+  `BIGRADED_PROBE.md` §2 claimed the walled system's spare coupling is a
+  bandwidth-2 staircase. Measured on the computable sub2 home G-system
+  (`window_band_probe.py`), the per-slice increment is **+3**, and it is not a
+  bandwidth at all — it is **the number of spare series** (`dm2,dm3,dm4` →
+  `R,S,T`; one new coefficient each per slice). The R9 system has `dm4`
+  eliminated, leaving two series, hence its `+2`. The probe measured a real
+  number and promoted it to a structural law it is not. What survives: the
+  decomposition direction, the exact top-corner equations, the extracted `a4`
+  constraint. What does not: every quantitative lattice claim in §2.
+
+- **Endpoint contract (`ENDPOINT_CONTRACT.md`)**: the per-coefficient
+  {required-nonzero | forbidden | optional} contract, with (50,75) fully
+  instantiated — the historical kill fires at `c_{0,−10}`, and that rediscovery
+  is now an automated regression.
+
+- **Frontier v2 (`FRONTIER_V2.md`)**: the misleading "Killed (audited)" column is
+  renamed "Killed (exact-checked, same-author)", with a separate proof-DAG
+  evidence-grade table. Same-author exact checks are no longer presentable as
+  independent audits.
+
+- Suite: **63 checkers**, `clean_clone_check` first (fails loudly if any checker
+  reads an untracked file), `proof_dag_report --quiet` as a consistency gate.
+
+**Scope, stated plainly.** C0 remains **OPEN**. The 133 new kills close **0 of
+220** sub2 flag-cases — closing a branch requires killing states at *all* degrees
+in it, and every mechanism we have is degree-limited. That gap is the honest
+description of where this program is stuck.
+
 # 2026-07-25 — the family wave
 
 - **Certificate-tower experiment (F2_TOWER.md)**: first machine reproduction of

@@ -9,7 +9,8 @@ RESULTS (details in ZETA_TAIL.md, checker zeta_tail_verify.py):
 
 1. RIGIDITY (one-slice theorem).  In the model
        P = x^zeta (C^a + tail),  Q = C^b + tail + F,  v(F) < 0,  [P,Q] = x^kappa,
-   the tail-tail bracket's top slice zeta*b*x^(zeta+(a+b)t-1) c^(a+b-1) c'
+   the head-head bracket's top slice zeta*b*x^(zeta+(a+b)t-1) c^(a+b-1) c'
+   (the tails contribute nothing at this slice; REVIEW_ZETA_MU.md item 1)
    is nonzero for zeta > 0, sits strictly above x^kappa, and nothing in the
    model can cancel it (an F-cross-term there would need v(F) >= bt > 0).
    The defect CANNOT be carried by the tail; it must enter the element.
@@ -37,7 +38,7 @@ RESULTS (details in ZETA_TAIL.md, checker zeta_tail_verify.py):
 5. THE mu-LADDER (new branch structure, corrects COMPOSITE_CHARTS Step 5).
    Indexing branches by mu = mult_{y+1}(g):
      eta=0 (standard family), F12: ALL THREE rungs are realized --
-       mu=1: COMPOSITE_CHARTS.md's two squarefree points        sig (814, 506, 102, 206)
+       mu=1: Lane J's two squarefree points        sig (814, 506, 102, 206)
        mu=2: g=(y+1)^2(y-beta), beta a root of
              195b^4+120b^3-40b^2+32b-80 (2 real)   sig (814, 506, 203, 105)
        mu=3: g=(y+1)^3,
@@ -94,7 +95,7 @@ rest = sp.expand(BB - top_claim)
 poly_test = sp.expand(rest.subs(t_s, 11))
 xdegs = {m.as_powers_dict().get(x, 0) for m in sp.Add.make_args(poly_test)}
 assert all(sp.simplify(d - (zeta_s + 65)) != 0 for d in xdegs)
-print("  top tail-tail slice = zeta*b * x^(zeta+(a+b)t-1) * c^(a+b-1) c'  "
+print("  top head-head slice = zeta*b * x^(zeta+(a+b)t-1) * c^(a+b-1) c'  "
       "(verified, (a,b)=(3,3) with full generic tails)")
 print("  slice sits at kappa + [zeta + 1 + (a+b-1)t] > kappa; an F-term there "
       "needs v(F) = (a+b-j)t >= bt > 0, contradicting v(F) < 0")
@@ -197,6 +198,15 @@ def sweep(F, etas):
                 om = (e - 1) * mu + 1
                 sub = Fraction(Kw * mu, Tw)
                 if sub.denominator == 1 and sub < om:
+                    # Sub-resonant evasion: this partition escapes the forced
+                    # minimum, which WEAKENS a DEAD-by-degree verdict.  On all
+                    # currently swept rows this never fires (verified
+                    # programmatically in REVIEW_ZETA_MU.md item 5); if a
+                    # future row trips it, refuse to conclude silently.
+                    print(f"    !! SUB-RESONANT EVASION fired (eta={eta}, "
+                          f"mu={mu}, partition={part}) — DEAD-by-degree "
+                          f"verdicts on this row are NOT trustworthy; "
+                          f"re-derive this row by hand")
                     ok = False
                 tot += om
             if ok:
@@ -373,7 +383,7 @@ for mu in (1, 2, 3):
     mult = mu * (e + N0) - (mu - 1)
     cof = 2 + 2 * (e + N0) - (mu - 1) * (e + N0 - 1)
     print(f"    mu={mu}: sig (814, 506, {mult}, {cof})"
-          + ("   [COMPOSITE_CHARTS.md's two squarefree points]" if mu == 1 else
+          + ("   [Lane J's two squarefree points]" if mu == 1 else
          "   [NEW this lane]"))
 print("  parity refinement: dg even kills mu=1 (PHI_F7 theorem); odd dg keeps "
       "mu=1 but does NOT exclude higher rungs.")

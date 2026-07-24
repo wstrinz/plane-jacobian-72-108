@@ -139,25 +139,51 @@ unconditional at the polygon layer.**
 
 **The honest boundary.** The one choice geometry alone does not pin is the
 common-root gauge of the residual cubic g (unramified `g=y³+1` vs a ramified
-double-root g). Here it is **resolved, not surviving**: deg g = 3 is odd, a cubic
-always has a real root, so the unramified gauge is realizable and selected
-(mirror of the PHI_F7 dg=2 obstruction; `composite_charts.py` STEP 5). No branch
-the published method leaves open remains at the polygon layer.
+double-root g).
+
+> **CORRECTION (2026-07-24): this gauge choice is REOPENED, not resolved.** The
+> previous text argued "deg g = 3 is odd, a cubic always has a real root, so the
+> unramified gauge is realizable and selected." **That implication does not hold:
+> realizability of the unramified branch does not establish branch
+> COMPLETENESS.** A repeated-root (ramified) branch can *coexist* with the
+> unramified one — the existence of a real root of `g` shows the unramified gauge
+> is *available*, not that it is *forced* or *unique*. Our own `dg=3` work
+> exhibits exactly such coexistence: multiplicities `mu=1,2,3` are simultaneously
+> realized (FAMILY_GRAMMAR.md §3, F12; MU_RUNGS / ZETA_TAIL μ-graded law). So the
+> residual-divisor / common-root gauge **branch completeness is REOPENED as a
+> standing judgment** at the forcing/residual layer.
+
+**What is discharged vs reopened at R3:**
+
+- **Chart + `κ` — DISCHARGED** (unchanged): identical chart to F2 j=0, and
+  `κ=l−2=3` forced by the fused-chart lemma. The polygon-layer "unreduced
+  polygon" judgment is retired.
+- **Selected multiplicity `q=2` — likely DISCHARGED by chain data**: fixed by the
+  chain-table row `A0=(5,20) → (7/5,2)`, `k=1` (GGV5 line 1679). This is a
+  chain-combinatorics selection, not a residual-gauge choice.
+- **Residual-divisor / common-root gauge branch completeness — REOPENED**: the
+  odd-degree real-root argument does not close it; a ramified double-root branch
+  is not excluded. This is a forcing-layer judgment, not a polygon-layer flag.
 
 ## Branch-manifest sizes
 
 | case | branches | options | followed | excluded | output shapes |
 |---|---|---|---|---|---|
 | (8,28) R1 | 4 | 12 | 8 | 4 | 2 (sub1, sub2) |
-| F2 j=0 R2 | 3 | 6 | 3 | 3 | 1 |
-| F2 j=1 R3 | 3 | 6 | 3 | 3 | 1 |
+| F2 j=0 R2 | 3 | 6 | 4 | 2 | 1 |
+| F2 j=1 R3 | 3 | 6 | 4 | 2 | 1 |
+
+(2026-07-24: the residual-gauge branch now keeps **both** the unramified and the
+ramified option OPEN — the ramified option is no longer marked EXCLUDED, since
+branch completeness is reopened. This raises followed 3→4, excluded 3→2 for R2/R3.)
 
 ## Judgments retired vs surviving
 
 | judgment | (8,28) | (50,75) | (75,125) |
 |---|---|---|---|
 | unreduced polygon (chart) | published (retired) | **retired** (GGV3-published corner) | **retired / discharged** (identical chart to j=0; κ=l−2 forced) |
-| residual-gauge choice | n/a | resolved (unramified) | resolved (unramified; odd-degree real root) |
+| selected multiplicity q | audited | fixed by chain row | **likely discharged** (chain-table row `(5,20)→(7/5,2)`, k=1) |
+| residual-gauge / branch completeness | n/a | **reopened** (see 2026-07-24 correction) | **REOPENED** (odd-degree real root does not force uniqueness; ramified branch not excluded) |
 | forcing-polynomial identification (corner-144 correspondence) | audited | **surviving** (forcing layer, not a polygon flag) | **surviving** (forcing layer, not a polygon flag) |
 
 The compiler retires the **polygon-layer** judgment for all three cases. What

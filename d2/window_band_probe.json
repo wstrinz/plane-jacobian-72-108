@@ -1,0 +1,454 @@
+{
+  "anchors": {
+    "max": {
+      "n_eqs": 1,
+      "n_spares": 3,
+      "nu": 238,
+      "spares": [
+        "R12",
+        "S14",
+        "T16"
+      ]
+    },
+    "min": {
+      "n_eqs": 1,
+      "n_spares": 3,
+      "nu": 156,
+      "spares": [
+        "R0",
+        "S0",
+        "T0"
+      ]
+    }
+  },
+  "global_band": {
+    "corners_per_gen": {
+      "G1": {
+        "n_eq": 1,
+        "nu": 182,
+        "unknowns": [
+          "R12",
+          "S14",
+          "T16"
+        ]
+      },
+      "G2": {
+        "n_eq": 1,
+        "nu": 196,
+        "unknowns": [
+          "R12",
+          "S14",
+          "T16"
+        ]
+      },
+      "G3": {
+        "n_eq": 1,
+        "nu": 210,
+        "unknowns": [
+          "R12",
+          "S14",
+          "T16"
+        ]
+      },
+      "G5": {
+        "n_eq": 1,
+        "nu": 238,
+        "unknowns": [
+          "R12",
+          "S14",
+          "T16"
+        ]
+      }
+    },
+    "gen_yorder_ranges": {
+      "G1": [
+        156,
+        182
+      ],
+      "G2": [
+        168,
+        196
+      ],
+      "G3": [
+        180,
+        210
+      ],
+      "G5": [
+        204,
+        238
+      ]
+    },
+    "global_top_corner": {
+      "n_eq": 1,
+      "nu": 238,
+      "unknowns": [
+        "R12",
+        "S14",
+        "T16"
+      ]
+    },
+    "increments_seen": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "staircase_head": [
+      [
+        156,
+        3,
+        3,
+        [
+          "R0",
+          "S0",
+          "T0"
+        ]
+      ],
+      [
+        157,
+        6,
+        3,
+        [
+          "R1",
+          "S1",
+          "T1"
+        ]
+      ],
+      [
+        158,
+        9,
+        3,
+        [
+          "R2",
+          "S2",
+          "T2"
+        ]
+      ],
+      [
+        159,
+        12,
+        3,
+        [
+          "R3",
+          "S3",
+          "T3"
+        ]
+      ],
+      [
+        160,
+        15,
+        3,
+        [
+          "R4",
+          "S4",
+          "T4"
+        ]
+      ],
+      [
+        161,
+        18,
+        3,
+        [
+          "R5",
+          "S5",
+          "T5"
+        ]
+      ]
+    ],
+    "staircase_tail": [
+      [
+        235,
+        12,
+        0,
+        []
+      ],
+      [
+        236,
+        9,
+        0,
+        []
+      ],
+      [
+        237,
+        6,
+        0,
+        []
+      ],
+      [
+        238,
+        3,
+        0,
+        []
+      ]
+    ],
+    "u_axis_values": [
+      13,
+      14,
+      15,
+      17
+    ]
+  },
+  "n_eqs": 122,
+  "n_vars": 45,
+  "per_generator": {
+    "G1": {
+      "head": [
+        {
+          "new": 3,
+          "nu": 156,
+          "present": 3
+        },
+        {
+          "new": 3,
+          "nu": 157,
+          "present": 6
+        },
+        {
+          "new": 3,
+          "nu": 158,
+          "present": 9
+        },
+        {
+          "new": 3,
+          "nu": 159,
+          "present": 12
+        },
+        {
+          "new": 3,
+          "nu": 160,
+          "present": 15
+        },
+        {
+          "new": 3,
+          "nu": 161,
+          "present": 18
+        }
+      ],
+      "increments_observed": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_slices": 27,
+      "nu_range": [
+        156,
+        182
+      ],
+      "tail": [
+        {
+          "new": 0,
+          "nu": 180,
+          "present": 9
+        },
+        {
+          "new": 0,
+          "nu": 181,
+          "present": 6
+        },
+        {
+          "new": 0,
+          "nu": 182,
+          "present": 3
+        }
+      ]
+    },
+    "G2": {
+      "head": [
+        {
+          "new": 3,
+          "nu": 168,
+          "present": 3
+        },
+        {
+          "new": 3,
+          "nu": 169,
+          "present": 6
+        },
+        {
+          "new": 3,
+          "nu": 170,
+          "present": 9
+        },
+        {
+          "new": 3,
+          "nu": 171,
+          "present": 12
+        },
+        {
+          "new": 3,
+          "nu": 172,
+          "present": 15
+        },
+        {
+          "new": 3,
+          "nu": 173,
+          "present": 18
+        }
+      ],
+      "increments_observed": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_slices": 29,
+      "nu_range": [
+        168,
+        196
+      ],
+      "tail": [
+        {
+          "new": 0,
+          "nu": 194,
+          "present": 9
+        },
+        {
+          "new": 0,
+          "nu": 195,
+          "present": 6
+        },
+        {
+          "new": 0,
+          "nu": 196,
+          "present": 3
+        }
+      ]
+    },
+    "G3": {
+      "head": [
+        {
+          "new": 3,
+          "nu": 180,
+          "present": 3
+        },
+        {
+          "new": 3,
+          "nu": 181,
+          "present": 6
+        },
+        {
+          "new": 3,
+          "nu": 182,
+          "present": 9
+        },
+        {
+          "new": 3,
+          "nu": 183,
+          "present": 12
+        },
+        {
+          "new": 3,
+          "nu": 184,
+          "present": 15
+        },
+        {
+          "new": 3,
+          "nu": 185,
+          "present": 18
+        }
+      ],
+      "increments_observed": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_slices": 31,
+      "nu_range": [
+        180,
+        210
+      ],
+      "tail": [
+        {
+          "new": 0,
+          "nu": 208,
+          "present": 9
+        },
+        {
+          "new": 0,
+          "nu": 209,
+          "present": 6
+        },
+        {
+          "new": 0,
+          "nu": 210,
+          "present": 3
+        }
+      ]
+    },
+    "G5": {
+      "head": [
+        {
+          "new": 3,
+          "nu": 204,
+          "present": 3
+        },
+        {
+          "new": 3,
+          "nu": 205,
+          "present": 6
+        },
+        {
+          "new": 3,
+          "nu": 206,
+          "present": 9
+        },
+        {
+          "new": 3,
+          "nu": 207,
+          "present": 12
+        },
+        {
+          "new": 3,
+          "nu": 208,
+          "present": 15
+        },
+        {
+          "new": 3,
+          "nu": 209,
+          "present": 18
+        }
+      ],
+      "increments_observed": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_slices": 35,
+      "nu_range": [
+        204,
+        238
+      ],
+      "tail": [
+        {
+          "new": 0,
+          "nu": 236,
+          "present": 9
+        },
+        {
+          "new": 0,
+          "nu": 237,
+          "present": 6
+        },
+        {
+          "new": 0,
+          "nu": 238,
+          "present": 3
+        }
+      ]
+    }
+  },
+  "spare_caps": {
+    "dm2": 12,
+    "dm3": 14,
+    "dm4": 16
+  },
+  "state": {
+    "deg_d1": 2,
+    "deg_d2": 4,
+    "deg_e": 10,
+    "deg_sigma": 8
+  }
+}

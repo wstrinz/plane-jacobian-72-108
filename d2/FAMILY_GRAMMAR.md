@@ -11,6 +11,25 @@ Derivation: `family_grammar.py`. Exact checker: `family_grammar_verify.py`
 `j` AND by direct full-ODE substitution at `j = 0,1,2,3`, every landed derived
 point reproduced exactly. Nothing existing edited; `run_tests.sh` untouched.
 
+## RESCOPE (2026-07-24): CANONICAL FORCING BRANCHES, not exhaustive classification
+
+> **What this theorem establishes is that every family has a CANONICAL MODELED
+> BRANCH** — a distinguished forcing-ODE solution branch that falls into one of
+> the three grammars (PURE / COFACTOR / RUNG-STRUCTURED), selected by the
+> corner-data dichotomy on `(gap, r)` and the root-shift gauge. It does **NOT**
+> establish an **exhaustive classification of every solution branch** of every
+> family's forcing system. A genuine exhaustive statement would require primary
+> decomposition of the forcing ideal and root-partition completeness of the
+> residual divisor (which repeated-root / coexisting-multiplicity branches can
+> violate — cf. the `mu=1,2,3` coexistence at `dg=3`, POLYGON_REDUCTION.md R3
+> reopening, and the `dg`-even complex-branch caveat in §3's complex-scope
+> discipline). Those are **not** ruled out here; the canonical branch is the
+> representative we derive and check, not the only branch.
+>
+> **Read every "IRREGULAR 0" / "zero irregular" statement below as "zero families
+> LACKING a canonical modeled branch"** — i.e. the grammar covers every family
+> with a modeled branch, not "every family's every branch is one of these."
+
 ## 1. The one theorem behind the whole grammar
 
 Corner data `(t, kappa=t-2, a0, q)` is **fixed** within a family; only the pair
@@ -89,7 +108,10 @@ ZETA_TAIL.md); F4/F6/F11 are `k=2` (N-formula unverified upstream). RUNG rows
 have no clean `W_step` (the residual is fully ramified, not a graded unit).
 
 **Census (length-1): CLOSED-FORM 8 (PURE 3 + COFACTOR 5), RUNG-STRUCTURED 9,
-IRREGULAR 0.**
+families LACKING a canonical modeled branch: 0.** (Per the 2026-07-24 rescope:
+this counts canonical modeled branches, one per family — not an exhaustive
+enumeration of all solution branches. The `gap<0` IRREGULAR cell is empty among
+the length-1 families and appears only among the composite escapes, F22.)
 
 ## 3. Per-family closed forms
 

@@ -403,9 +403,44 @@ def audit_claims(claims, monomial_data, quiet):
             )
     return results
 
+def emit_artifact(path: str, window: str, results: list, summary: dict) -> None:
+    """Write per-branch audit verdicts so the coverage proof-DAG can machine-join
+    this independent audit.  Deterministic (sorted keys, no timestamps)."""
+    import hashlib
+    src = Path(__file__).read_bytes()
+    id_re = re.compile(r"a=(\d+);b=([\d,]+);(T\d)")
+    recs = []
+    for r in results:
+        m = id_re.match(r["id"])
+        recs.append({
+            "a_t": int(m.group(1)),
+            "b": [int(x) for x in m.group(2).split(",")],
+            "branch": m.group(3),
+            "claim": r["claim"], "audit": r["audit"],
+            "agreement": r["agreement"],
+        })
+    recs.sort(key=lambda r: (r["a_t"], r["b"], r["branch"]))
+    out = {
+        "schema": 1,
+        "generator": Path(__file__).name,
+        "generator_sha256": hashlib.sha256(src).hexdigest(),
+        "window": window,
+        "summary": summary,
+        "branches": recs,
+    }
+    target = path if Path(path).is_absolute() else str(HERE / path)
+    with open(target, "w") as f:
+        json.dump(out, f, indent=1, sort_keys=True)
+    print(f"emitted audit artifact: {target} ({len(recs)} branches)")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--quiet", action="store_true", help="omit the 2178-row table")
+    parser.add_argument("--emit-artifact", nargs="?",
+                        const="audit_cascade_kills_sub1.json", default=None,
+                        metavar="PATH",
+                        help="write per-branch audit verdicts as JSON (for the proof-DAG join)")
     args = parser.parse_args()
     started = time.perf_counter()
 
@@ -519,6 +554,13 @@ def main() -> int:
     elapsed = time.perf_counter() - started
     print(f"runtime_seconds: {elapsed:.3f}")
     failed = terminal_disagreements or disagreements or cap_discrepancies or subset_violations
+    if args.emit_artifact:
+        emit_artifact(args.emit_artifact, "sub1", results, {
+            "total": len(results), "agree": agreements,
+            "disagreements": len(disagreements),
+            "audit_killed": audit_kills, "audit_survives": 2178 - audit_kills,
+            "audits": "cascade_cones_sub1_depth4.json (depth-4 q-place cascade, standard regime)",
+        })
     return 1 if failed else 0
 
 if __name__ == "__main__":

@@ -11,17 +11,17 @@ New files (uncommitted): `j6_msolve.py` (runner), `j6_msolve_results.json`
 (full record incl. mod-p corroboration), this doc. READ-ONLY on every
 existing artifact; nothing committed.
 
-## 1. What was attacked — exactly what ALT_HUNT recorded
+## 1. What was attacked — exactly what Lane C recorded
 
 The 4 OPEN states of `alt_hunt_results.json` (2 windows × {`a9_b1000_T1`
 deg-6-d1 #state3, `a8_b1100_T1` deg-6-d1 #state0}, each with exactly one
 admissible split after Galois dedup). Replay guarantees, enforced by
 assertion before any msolve call:
 
-- `reconstruct_general(case, combo)` (ALT_HUNT's own committed code path) was
+- `reconstruct_general(case, combo)` (Lane C's own committed code path) was
   replayed on the recorded combo and its polys asserted **string-identical**
   to the recorded `polys` — 4/4 verbatim matches;
-- where ALT_HUNT recorded accumulated master coefficients (`sub1:a9` depth 2),
+- where Lane C recorded accumulated master coefficients (`sub1:a9` depth 2),
   the replayed walk was asserted to reproduce those exact strings;
 - the generator set per depth n is gens[..n] + class relations +
   `w·Π(scalars)−1` — identical to `alt_hunt_depth2.kill_test_record`; only
@@ -38,7 +38,7 @@ assertion before any msolve call:
 
 msolve `[-1]` = no solution in the algebraic closure of Q — the saturated
 system is empty, so **no Galois assignment of the admissible split
-survives**: the same soundness statement as ALT_HUNT's unit-ideal kills.
+survives**: the same soundness statement as Lane C's unit-ideal kills.
 
 ## 3. Cell accounting
 
@@ -56,7 +56,7 @@ The depth-2 truncations are **genuinely satisfiable** — msolve returns a
 0-dimensional parametrization (isolated solutions) at depth 2 for all four
 states. So sympy/Singular were not slow at detecting a unit ideal; they were
 computing a full nontrivial Gröbner basis of a satisfiable system — the
-expensive case. The depth-3 master coefficient is the killer. (ALT_HUNT's
+expensive case. The depth-3 master coefficient is the killer. (Lane C's
 depth cap was never the issue; its engine never got past depth 2's GB.)
 
 ## 5. Cross-engine corroboration (recorded in the results JSON)

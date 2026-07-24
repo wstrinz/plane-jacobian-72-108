@@ -399,18 +399,24 @@ def case_f2(j) -> Reduction:
                 "EXCLUDED: fixed by the chain table row (A0=(5,20) -> (7/5,2)).")],
             "GGV5 line 1679"),
         Branch(
-            "common-root gauge for the residual cubic g (deg g = a0-q = 3)",
+            "common-root gauge for the residual cubic g (deg g = a0-q = 3) "
+            "-- REOPENED (2026-07-24): branch completeness not established",
             "how is the free resonant coefficient of g fixed?",
             [BranchOption("g(-1)=0, monic  =>  g = y^3+1 (unramified)", True,
-                "FOLLOWED: the standard unramified common-root gauge; the "
-                "forcing ODE forces g_1=g_2=0 and leaves the top coefficient "
-                "resonant, fixed to monic; g(-1)=0 selects the (y+1) common "
-                "root.  g = y^3+1 = (y+1)(y^2-y+1) is separable (avoids 0,-1)."),
-             BranchOption("ramified gauge (double root in g)", False,
-                "EXCLUDED here: dg=3 is ODD, a cubic always has a real root, so "
-                "the UNRAMIFIED gauge is realizable (mirror of PHI_F7 dg=2); "
-                "no ramified branch is forced (cf. composite_charts.py STEP 5).")],
-            "phi_75_125.py; composite_charts.py STEP 5"),
+                "FOLLOWED (the canonical modeled branch): the standard unramified "
+                "common-root gauge; the forcing ODE forces g_1=g_2=0 and leaves "
+                "the top coefficient resonant, fixed to monic; g(-1)=0 selects the "
+                "(y+1) common root.  g = y^3+1 = (y+1)(y^2-y+1) is separable.  "
+                "This is REALIZABLE (deg g=3 odd => a real root exists) -- but "
+                "realizability is NOT completeness."),
+             BranchOption("ramified gauge (double root in g)", True,
+                "OPEN, NOT EXCLUDED (correction 2026-07-24): the odd-degree "
+                "real-root argument shows the unramified branch is available, NOT "
+                "that it is forced or unique.  A ramified double-root branch can "
+                "COEXIST (cf. the mu=1,2,3 coexistence at dg=3, FAMILY_GRAMMAR.md "
+                "sec.3 F12 / MU_RUNGS).  Residual-gauge branch COMPLETENESS is "
+                "reopened as a forcing-layer judgment; this is not a polygon flag.")],
+            "phi_75_125.py; FAMILY_GRAMMAR.md sec.3 (mu-graded coexistence)"),
     ]
 
     # forcing-layer residual divisor (recovered exactly)
@@ -453,12 +459,16 @@ def case_f2(j) -> Reduction:
             "The fused-chart lemma forces kappa=l-2=3 unconditionally.  Hence the "
             "'unreduced polygon' judgment of PHI_75_125 (item 2) is DISCHARGED: "
             "the (75,125) model is UNCONDITIONAL at the polygon layer.",
-            "[honest boundary] the ONE residue choice the published method does "
-            "not pin by geometry alone is the common-root gauge of the residual "
-            "cubic g (unramified g=y^3+1 vs a ramified double-root g).  Here it "
-            "is RESOLVED, not surviving: dg=3 is odd, a real root always exists, "
-            "so the unramified gauge is realizable and selected (composite_charts "
-            "STEP 5).  No branch the method leaves open remains.",
+            "[honest boundary -- REOPENED 2026-07-24] the residue choice the "
+            "published method does not pin by geometry alone is the common-root "
+            "gauge of the residual cubic g (unramified g=y^3+1 vs a ramified "
+            "double-root g).  This is NOT resolved: dg=3 odd => a real root exists "
+            "makes the unramified gauge REALIZABLE, but realizability is not branch "
+            "COMPLETENESS -- a ramified double-root branch can coexist (mu=1,2,3 "
+            "coexistence at dg=3; FAMILY_GRAMMAR.md sec.3).  The selected "
+            "multiplicity q=2 is separately (likely) discharged by the chain-table "
+            "row (5,20)->(7/5,2), k=1.  Residual-gauge branch completeness is "
+            "REOPENED as a forcing-layer judgment.",
             "[surviving, forcing layer only] forcing-polynomial identification "
             "(corner-144 correspondence, audited only for (72,108)) is a "
             "SEPARATE, non-polygon judgment and is untouched by this compiler."]
