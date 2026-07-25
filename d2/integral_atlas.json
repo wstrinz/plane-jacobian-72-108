@@ -1,0 +1,912 @@
+{
+  "n_chart_precondition": 8,
+  "n_generated": 6,
+  "n_integral": 51,
+  "n_law_violations": 0,
+  "rows": [
+    {
+      "C": 29,
+      "H": 29,
+      "M": 29,
+      "a0": 7,
+      "b0": 42,
+      "base": [
+        3,
+        2
+      ],
+      "chart_precondition": true,
+      "deg_g": 4,
+      "dg": 1,
+      "disc_sqfree": "29",
+      "galois": "PermutationGroup([\n    (0 1 2 3),\n    (3)(0 1)])",
+      "kappa": 5,
+      "law_holds": true,
+      "law_predicted": "29",
+      "marked_poly": "2401*y**4 - 343*y**3 + 196*y**2 - 140*y + 110",
+      "motif": "(7,42)",
+      "q": 6,
+      "t": 7
+    },
+    {
+      "C": 29,
+      "H": 29,
+      "M": 29,
+      "a0": 7,
+      "b0": 42,
+      "base": [
+        2,
+        3
+      ],
+      "chart_precondition": true,
+      "deg_g": 4,
+      "dg": 1,
+      "disc_sqfree": "29",
+      "galois": "PermutationGroup([\n    (0 1 2 3),\n    (3)(0 1)])",
+      "kappa": 5,
+      "law_holds": true,
+      "law_predicted": "29",
+      "marked_poly": "2401*y**4 - 343*y**3 + 196*y**2 - 140*y + 110",
+      "motif": "(7,42)",
+      "q": 6,
+      "t": 7
+    },
+    {
+      "C": 17,
+      "H": 34,
+      "M": 17,
+      "a0": 8,
+      "b0": 88,
+      "base": [
+        3,
+        2
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 2,
+      "motif": "(8,88)",
+      "q": 7,
+      "t": 4
+    },
+    {
+      "C": 13,
+      "H": 39,
+      "M": 13,
+      "a0": 9,
+      "b0": 90,
+      "base": [
+        2,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 1,
+      "motif": "(9,90)",
+      "q": 8,
+      "t": 3
+    },
+    {
+      "C": 55,
+      "H": 55,
+      "M": 55,
+      "a0": 9,
+      "b0": 72,
+      "base": [
+        5,
+        2
+      ],
+      "chart_precondition": true,
+      "deg_g": 6,
+      "dg": 1,
+      "disc_sqfree": "-55",
+      "galois": "PermutationGroup([\n    (0 1 2 3 4 5),\n    (5)(0 1)])",
+      "kappa": 7,
+      "law_holds": true,
+      "law_predicted": "-55",
+      "marked_poly": "4782969*y**6 - 531441*y**5 + 295245*y**4 - 207765*y**3 + 161595*y**2 - 132867*y + 113183",
+      "motif": "(9,72)",
+      "q": 8,
+      "t": 9
+    },
+    {
+      "C": 55,
+      "H": 55,
+      "M": 55,
+      "a0": 9,
+      "b0": 72,
+      "base": [
+        4,
+        3
+      ],
+      "chart_precondition": true,
+      "deg_g": 6,
+      "dg": 1,
+      "disc_sqfree": "-55",
+      "galois": "PermutationGroup([\n    (0 1 2 3 4 5),\n    (5)(0 1)])",
+      "kappa": 7,
+      "law_holds": true,
+      "law_predicted": "-55",
+      "marked_poly": "4782969*y**6 - 531441*y**5 + 295245*y**4 - 207765*y**3 + 161595*y**2 - 132867*y + 113183",
+      "motif": "(9,72)",
+      "q": 8,
+      "t": 9
+    },
+    {
+      "C": 55,
+      "H": 55,
+      "M": 55,
+      "a0": 9,
+      "b0": 72,
+      "base": [
+        3,
+        4
+      ],
+      "chart_precondition": true,
+      "deg_g": 6,
+      "dg": 1,
+      "disc_sqfree": "-55",
+      "galois": "PermutationGroup([\n    (0 1 2 3 4 5),\n    (5)(0 1)])",
+      "kappa": 7,
+      "law_holds": true,
+      "law_predicted": "-55",
+      "marked_poly": "4782969*y**6 - 531441*y**5 + 295245*y**4 - 207765*y**3 + 161595*y**2 - 132867*y + 113183",
+      "motif": "(9,72)",
+      "q": 8,
+      "t": 9
+    },
+    {
+      "C": 55,
+      "H": 55,
+      "M": 55,
+      "a0": 9,
+      "b0": 72,
+      "base": [
+        2,
+        5
+      ],
+      "chart_precondition": true,
+      "deg_g": 6,
+      "dg": 1,
+      "disc_sqfree": "-55",
+      "galois": "PermutationGroup([\n    (0 1 2 3 4 5),\n    (5)(0 1)])",
+      "kappa": 7,
+      "law_holds": true,
+      "law_predicted": "-55",
+      "marked_poly": "4782969*y**6 - 531441*y**5 + 295245*y**4 - 207765*y**3 + 161595*y**2 - 132867*y + 113183",
+      "motif": "(9,72)",
+      "q": 8,
+      "t": 9
+    },
+    {
+      "C": 31,
+      "H": 62,
+      "M": 31,
+      "a0": 10,
+      "b0": 90,
+      "base": [
+        5,
+        2
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 3,
+      "motif": "(10,90)",
+      "q": 9,
+      "t": 5
+    },
+    {
+      "C": 31,
+      "H": 62,
+      "M": 31,
+      "a0": 10,
+      "b0": 90,
+      "base": [
+        3,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 3,
+      "motif": "(10,90)",
+      "q": 9,
+      "t": 5
+    },
+    {
+      "C": 71,
+      "H": 71,
+      "M": 71,
+      "a0": 10,
+      "b0": 90,
+      "base": [
+        5,
+        3
+      ],
+      "chart_precondition": true,
+      "dg": 1,
+      "kappa": 8,
+      "motif": "(10,90)",
+      "q": 9,
+      "t": 10
+    },
+    {
+      "C": 71,
+      "H": 71,
+      "M": 71,
+      "a0": 10,
+      "b0": 90,
+      "base": [
+        3,
+        5
+      ],
+      "chart_precondition": true,
+      "dg": 1,
+      "kappa": 8,
+      "motif": "(10,90)",
+      "q": 9,
+      "t": 10
+    },
+    {
+      "C": 13,
+      "H": 39,
+      "M": 13,
+      "a0": 12,
+      "b0": 84,
+      "base": [
+        2,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 4,
+      "kappa": 1,
+      "motif": "(12,84)",
+      "q": 8,
+      "t": 3
+    },
+    {
+      "C": 19,
+      "H": 76,
+      "M": 19,
+      "a0": 12,
+      "b0": 84,
+      "base": [
+        3,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 1,
+      "motif": "(12,84)",
+      "q": 11,
+      "t": 3
+    },
+    {
+      "C": 17,
+      "H": 34,
+      "M": 17,
+      "a0": 12,
+      "b0": 84,
+      "base": [
+        3,
+        2
+      ],
+      "chart_precondition": false,
+      "dg": 5,
+      "kappa": 2,
+      "motif": "(12,84)",
+      "q": 7,
+      "t": 4
+    },
+    {
+      "C": 29,
+      "H": 87,
+      "M": 29,
+      "a0": 12,
+      "b0": 84,
+      "base": [
+        5,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 2,
+      "motif": "(12,84)",
+      "q": 11,
+      "t": 4
+    },
+    {
+      "C": 49,
+      "H": 98,
+      "M": 49,
+      "a0": 12,
+      "b0": 84,
+      "base": [
+        7,
+        2
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 4,
+      "motif": "(12,84)",
+      "q": 11,
+      "t": 6
+    },
+    {
+      "C": 49,
+      "H": 98,
+      "M": 49,
+      "a0": 12,
+      "b0": 84,
+      "base": [
+        5,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 4,
+      "motif": "(12,84)",
+      "q": 11,
+      "t": 6
+    },
+    {
+      "C": 13,
+      "H": 39,
+      "M": 13,
+      "a0": 15,
+      "b0": 75,
+      "base": [
+        2,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 7,
+      "kappa": 1,
+      "motif": "(15,75)",
+      "q": 8,
+      "t": 3
+    },
+    {
+      "C": 19,
+      "H": 76,
+      "M": 19,
+      "a0": 15,
+      "b0": 75,
+      "base": [
+        3,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 4,
+      "kappa": 1,
+      "motif": "(15,75)",
+      "q": 11,
+      "t": 3
+    },
+    {
+      "C": 25,
+      "H": 125,
+      "M": 25,
+      "a0": 15,
+      "b0": 75,
+      "base": [
+        4,
+        5
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 1,
+      "motif": "(15,75)",
+      "q": 14,
+      "t": 3
+    },
+    {
+      "C": 31,
+      "H": 62,
+      "M": 31,
+      "a0": 15,
+      "b0": 75,
+      "base": [
+        5,
+        2
+      ],
+      "chart_precondition": false,
+      "dg": 6,
+      "kappa": 3,
+      "motif": "(15,75)",
+      "q": 9,
+      "t": 5
+    },
+    {
+      "C": 31,
+      "H": 62,
+      "M": 31,
+      "a0": 15,
+      "b0": 75,
+      "base": [
+        3,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 6,
+      "kappa": 3,
+      "motif": "(15,75)",
+      "q": 9,
+      "t": 5
+    },
+    {
+      "C": 51,
+      "H": 153,
+      "M": 51,
+      "a0": 15,
+      "b0": 75,
+      "base": [
+        8,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 3,
+      "motif": "(15,75)",
+      "q": 14,
+      "t": 5
+    },
+    {
+      "C": 51,
+      "H": 153,
+      "M": 51,
+      "a0": 15,
+      "b0": 75,
+      "base": [
+        5,
+        6
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 3,
+      "motif": "(15,75)",
+      "q": 14,
+      "t": 5
+    },
+    {
+      "C": 51,
+      "H": 153,
+      "M": 51,
+      "a0": 15,
+      "b0": 75,
+      "base": [
+        2,
+        9
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 3,
+      "motif": "(15,75)",
+      "q": 14,
+      "t": 5
+    },
+    {
+      "C": 17,
+      "H": 34,
+      "M": 17,
+      "a0": 16,
+      "b0": 80,
+      "base": [
+        3,
+        2
+      ],
+      "chart_precondition": false,
+      "dg": 9,
+      "kappa": 2,
+      "motif": "(16,80)",
+      "q": 7,
+      "t": 4
+    },
+    {
+      "C": 29,
+      "H": 87,
+      "M": 29,
+      "a0": 16,
+      "b0": 80,
+      "base": [
+        5,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 5,
+      "kappa": 2,
+      "motif": "(16,80)",
+      "q": 11,
+      "t": 4
+    },
+    {
+      "C": 41,
+      "H": 164,
+      "M": 41,
+      "a0": 16,
+      "b0": 80,
+      "base": [
+        7,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 2,
+      "motif": "(16,80)",
+      "q": 15,
+      "t": 4
+    },
+    {
+      "C": 41,
+      "H": 164,
+      "M": 41,
+      "a0": 16,
+      "b0": 80,
+      "base": [
+        3,
+        8
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 2,
+      "motif": "(16,80)",
+      "q": 15,
+      "t": 4
+    },
+    {
+      "C": 13,
+      "H": 39,
+      "M": 13,
+      "a0": 18,
+      "b0": 81,
+      "base": [
+        2,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 10,
+      "kappa": 1,
+      "motif": "(18,81)",
+      "q": 8,
+      "t": 3
+    },
+    {
+      "C": 19,
+      "H": 76,
+      "M": 19,
+      "a0": 18,
+      "b0": 81,
+      "base": [
+        3,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 7,
+      "kappa": 1,
+      "motif": "(18,81)",
+      "q": 11,
+      "t": 3
+    },
+    {
+      "C": 25,
+      "H": 125,
+      "M": 25,
+      "a0": 18,
+      "b0": 72,
+      "base": [
+        4,
+        5
+      ],
+      "chart_precondition": false,
+      "dg": 4,
+      "kappa": 1,
+      "motif": "(18,72)",
+      "q": 14,
+      "t": 3
+    },
+    {
+      "C": 31,
+      "H": 186,
+      "M": 31,
+      "a0": 18,
+      "b0": 72,
+      "base": [
+        5,
+        6
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 1,
+      "motif": "(18,72)",
+      "q": 17,
+      "t": 3
+    },
+    {
+      "C": 17,
+      "H": 34,
+      "M": 17,
+      "a0": 20,
+      "b0": 80,
+      "base": [
+        3,
+        2
+      ],
+      "chart_precondition": false,
+      "dg": 13,
+      "kappa": 2,
+      "motif": "(20,80)",
+      "q": 7,
+      "t": 4
+    },
+    {
+      "C": 29,
+      "H": 87,
+      "M": 29,
+      "a0": 20,
+      "b0": 80,
+      "base": [
+        5,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 9,
+      "kappa": 2,
+      "motif": "(20,80)",
+      "q": 11,
+      "t": 4
+    },
+    {
+      "C": 41,
+      "H": 164,
+      "M": 41,
+      "a0": 20,
+      "b0": 80,
+      "base": [
+        7,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 5,
+      "kappa": 2,
+      "motif": "(20,80)",
+      "q": 15,
+      "t": 4
+    },
+    {
+      "C": 41,
+      "H": 164,
+      "M": 41,
+      "a0": 20,
+      "b0": 80,
+      "base": [
+        3,
+        8
+      ],
+      "chart_precondition": false,
+      "dg": 5,
+      "kappa": 2,
+      "motif": "(20,80)",
+      "q": 15,
+      "t": 4
+    },
+    {
+      "C": 50,
+      "H": 125,
+      "M": 25,
+      "a0": 20,
+      "b0": 80,
+      "base": [
+        2,
+        5
+      ],
+      "chart_precondition": false,
+      "dg": 2,
+      "kappa": 2,
+      "motif": "(20,80)",
+      "q": 18,
+      "t": 4
+    },
+    {
+      "C": 53,
+      "H": 265,
+      "M": 53,
+      "a0": 20,
+      "b0": 80,
+      "base": [
+        9,
+        5
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 2,
+      "motif": "(20,80)",
+      "q": 19,
+      "t": 4
+    },
+    {
+      "C": 13,
+      "H": 39,
+      "M": 13,
+      "a0": 21,
+      "b0": 63,
+      "base": [
+        2,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 13,
+      "kappa": 1,
+      "motif": "(21,63)",
+      "q": 8,
+      "t": 3
+    },
+    {
+      "C": 19,
+      "H": 76,
+      "M": 19,
+      "a0": 21,
+      "b0": 63,
+      "base": [
+        3,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 10,
+      "kappa": 1,
+      "motif": "(21,63)",
+      "q": 11,
+      "t": 3
+    },
+    {
+      "C": 25,
+      "H": 125,
+      "M": 25,
+      "a0": 21,
+      "b0": 63,
+      "base": [
+        4,
+        5
+      ],
+      "chart_precondition": false,
+      "dg": 7,
+      "kappa": 1,
+      "motif": "(21,63)",
+      "q": 14,
+      "t": 3
+    },
+    {
+      "C": 31,
+      "H": 186,
+      "M": 31,
+      "a0": 21,
+      "b0": 63,
+      "base": [
+        5,
+        6
+      ],
+      "chart_precondition": false,
+      "dg": 4,
+      "kappa": 1,
+      "motif": "(21,63)",
+      "q": 17,
+      "t": 3
+    },
+    {
+      "C": 37,
+      "H": 259,
+      "M": 37,
+      "a0": 21,
+      "b0": 63,
+      "base": [
+        6,
+        7
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 1,
+      "motif": "(21,63)",
+      "q": 20,
+      "t": 3
+    },
+    {
+      "C": 13,
+      "H": 39,
+      "M": 13,
+      "a0": 24,
+      "b0": 72,
+      "base": [
+        2,
+        3
+      ],
+      "chart_precondition": false,
+      "dg": 16,
+      "kappa": 1,
+      "motif": "(24,72)",
+      "q": 8,
+      "t": 3
+    },
+    {
+      "C": 19,
+      "H": 76,
+      "M": 19,
+      "a0": 24,
+      "b0": 72,
+      "base": [
+        3,
+        4
+      ],
+      "chart_precondition": false,
+      "dg": 13,
+      "kappa": 1,
+      "motif": "(24,72)",
+      "q": 11,
+      "t": 3
+    },
+    {
+      "C": 25,
+      "H": 125,
+      "M": 25,
+      "a0": 24,
+      "b0": 72,
+      "base": [
+        4,
+        5
+      ],
+      "chart_precondition": false,
+      "dg": 10,
+      "kappa": 1,
+      "motif": "(24,72)",
+      "q": 14,
+      "t": 3
+    },
+    {
+      "C": 31,
+      "H": 186,
+      "M": 31,
+      "a0": 24,
+      "b0": 72,
+      "base": [
+        5,
+        6
+      ],
+      "chart_precondition": false,
+      "dg": 7,
+      "kappa": 1,
+      "motif": "(24,72)",
+      "q": 17,
+      "t": 3
+    },
+    {
+      "C": 37,
+      "H": 259,
+      "M": 37,
+      "a0": 24,
+      "b0": 72,
+      "base": [
+        6,
+        7
+      ],
+      "chart_precondition": false,
+      "dg": 4,
+      "kappa": 1,
+      "motif": "(24,72)",
+      "q": 20,
+      "t": 3
+    },
+    {
+      "C": 43,
+      "H": 344,
+      "M": 43,
+      "a0": 24,
+      "b0": 72,
+      "base": [
+        7,
+        8
+      ],
+      "chart_precondition": false,
+      "dg": 1,
+      "kappa": 1,
+      "motif": "(24,72)",
+      "q": 23,
+      "t": 3
+    }
+  ],
+  "schema": "d2-integral-atlas-v1"
+}

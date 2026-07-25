@@ -11,6 +11,52 @@ Derivation: `family_grammar.py`. Exact checker: `family_grammar_verify.py`
 `j` AND by direct full-ODE substitution at `j = 0,1,2,3`, every landed derived
 point reproduced exactly. Nothing existing edited; `run_tests.sh` untouched.
 
+## F9 RESOLVED (2026-07-24): a formal row whose parameters are NOT the geometric ones
+
+> **`("F9", 0) -> "(56,84)"` is a correct statement about the FORMAL model with
+> the census parameters, and those parameters do not describe the geometry of
+> (56,84).** The row must not be cited as a geometric result.
+
+**The identification is exact.** F9 = (56,84), and GGHV22's case table lists the
+row `A_0 = (7,21)`, `(m,n) = (2,3)`, max degree 84. Since
+`(deg P, deg Q) = (m,n) * v_{1,1}(A_0)` and `7 + 21 = 28`, that row is
+`(2*28, 3*28) = (56,84)`. **Same case.**
+
+**The parameters disagree.** Reading GGHV's own reduction for it (tex 1395,
+1826, 1833, 1958):
+
+| quantity | census (`chain_survey.py:447`) | GGHV, read from the reduction |
+|---|---:|---:|
+| `t` | 7 (= GGV5 `l_final`) | **3** (Laurent chart `phi(y) = x^3 y`) |
+| `kappa` | 5 | **1** (`[P,Q] = x`) |
+| `q` | 2 | **1** (`= ord_y C`) |
+| `deg C` | 7 | **1** (`C = y`, a MONOMIAL) |
+
+The cause is now established (see `CORNER_RESOLVENT.md` §5.1): GGV5's
+final-corner `l` is a **Laurent/ramification index**, while GGHV's chart exponent
+is an **edge slope**; GGV1 §8 works in `L^(1)` while charting with exponent 3,
+proving inside one section that the two need not agree.
+
+**Geometrically, F9 is degenerate.** Its `A_0` sits on the axis, so the
+`(-1,3)`-edge runs from `(21,7)` to `(0,0)` rather than to `(0,1)`, `ell_{1,0}`
+collapses, and `C = y` is a monomial with `q = a = 1`. Consequently `c | a` fails
+(`3 | 1` is false) and the marked-polynomial generator produces **nothing** for
+it — there is no marked quartic, and the row's `y^5+1`, `H = Phi10 (C4)` data
+describes the formal model, not the (56,84) reduction.
+
+**Scope of the damage — deliberately narrow.** `family_grammar_verify.py` still
+passes 210/210 and nothing is withdrawn: the checker proves the formal forcing
+equation *once parameters are supplied*, and that proof is untouched. What fails
+is the mapping from the GGV chain to those parameters. The same caveat applies to
+**F10, F11, F12, F13**, which likewise fail the chart precondition
+`b_0 = l(a_0 - 1)` (F9/F10/F11: `21/6`; F12: `24/7`; F13: `21/8`).
+
+**The epistemic lesson, stated plainly:** a formal ecosystem can be classified
+perfectly while being the wrong ecosystem. Every row here is a theorem about the
+modelled ODE at the supplied parameters; only rows whose parameters are
+independently grounded in an explicit reduction (the home case, and `F2` whose
+chart is published) carry geometric force.
+
 ## RESCOPE (2026-07-24): CANONICAL FORCING BRANCHES, not exhaustive classification
 
 > **What this theorem establishes is that every family has a CANONICAL MODELED

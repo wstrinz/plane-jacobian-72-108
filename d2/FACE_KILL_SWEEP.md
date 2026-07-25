@@ -167,6 +167,30 @@ layer, the infinity layer, the residue kills and the T2 squeeze.
   safe side, but it does assume no further structural constraint *lowers* the
   reachable degree in a way that would kill even more states.
 
+## 5.3 Per-state symbolic sweep — partial run, stopped deliberately
+
+`face_kill_sweep.py` (the full symbolic path, as distinct from the O(1)
+criterion) was run over `kill_manifest.json` and **stopped at 26 of 49 entries**
+after 4 hours. Census of what completed: **10 KILL, 7 NO-FACE-CERTIFICATE,
+9 SKIPPED**.
+
+This is a deliberate stop, not a crash, and the discarded remainder is
+*informationally* cheap:
+
+* every **sub2** entry completed — those are the ones the criterion can decide;
+* every remaining entry is alt-layer or phase, i.e. **sub1 caps**, and sub1 is
+  structurally immune to the Phi-depth kill (§2: `dm1*dm2^2 >= deg e + 36 > 34`
+  for every sub1 state);
+* the completed sub1-cap entries all returned NO-FACE-CERTIFICATE, consistent
+  with that;
+* the remaining entries average ~45 min each (66 spare unknowns vs 45), i.e.
+  ~17 further hours.
+
+The 7 NO-FACE-CERTIFICATE results are the useful negative datum: the detector
+**discriminates** rather than firing on everything — notably
+`harvest:sub2T2_a7_b3000_dd2{0,1}_dsig7`, where the larger sigma lifts `deg d0`
+enough for `G5body` to reach degree 34.
+
 ## 6. The secondary product: an evidence-grade upgrade path
 
 The 62 overlapping states are killed in the ledger by "triage/bridge exact GB
@@ -178,6 +202,44 @@ upgrade those states `PENDING → independently-audited`.
 
 Given that the program's stated moat is audited state rather than throughput,
 this may be the more valuable output of the two.
+
+## 6.1 COMPLETENESS: the face detector's reach is exactly the Phi-depth criterion
+
+The five bigrade functionals cannot find anything the Phi-depth criterion misses,
+and the `--escalate` parameter-form branch is **unreachable in this
+construction**. This is structural, not empirical:
+
+* **Every one of the seven `G5body` terms contains at least one spare**
+  (`dm2`, `dm3` or `dm4`). So the degree-34 coefficient of `G5` is either
+  `lc(Phi)` ALONE (no `G5body` term reaches 34 -> a rational constant -> sound
+  KILL) or it carries spare symbols (-> not spare-free -> nothing to classify).
+  **Binary. There is no parameter-form case at the top face.**
+* **`G1`, `G2`, `G3` can never present a spare-free face equation**, because each
+  has a PURE-SPARE product sitting exactly at its cap:
+  `dm2*dm3 = 12+14 = 26` (G1 cap), `dm2*dm4 = 12+16 = 28` and `dm3^2 = 28`
+  (G2 cap), `dm3*dm4 = 14+16 = 30` (G3 cap). Both factors are at their own caps,
+  so the product's leading coefficient (`R12*S14` etc.) is always present as a
+  symbol.
+
+Empirical confirmation over six sub2 states spanning the degree range
+(`escalate_probe.log`):
+
+| state | unknown-free face eqs | values |
+|---|---:|---|
+| small (Phi-depth KILL) | 2 | both CONSTANT `-1024/3315` |
+| small-mid | 2 | both CONSTANT `-1024/3315` |
+| mid | 2 | both CONSTANT `-1024/3315` |
+| near-cap | **0** | (none) |
+| full cap (all maximal) | **0** | (none) |
+| high-degree | **0** | (none) |
+
+**Consequence — this lane is CLOSED.** The face-detector milestone yields the
+Phi-depth criterion and nothing else; there is no further kill hiding in the
+other four functionals, and no reason to keep mining it. The `--escalate`
+machinery below is correct and would matter for a construction with a
+forced-inhomogeneous term in more than one generator, but for the (72,108)
+G-system it is vacuous — which retroactively makes "off by default" the right
+call for a stronger reason than caution.
 
 ## 7. Optional (c)-escalation — off by default
 

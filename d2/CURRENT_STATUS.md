@@ -1,6 +1,37 @@
 # CURRENT STATUS — the (72,108) program (current truth)
 
-**As of:** 2026-07-23. This file states only what is *currently true*: proven and
+> **CORRECTIONS (2026-07-24) — read before the body below, which predates them.**
+>
+> 1. **"51 integral families" must be read as 51 FORMAL CHAIN-CENSUS ROWS**, not
+>    51 realized integral window systems. The `q_window` identity
+>    `t*H - q*M = q(kappa+1) - t` is valid and unaffected. But the census supplies
+>    `t` from GGV5's final-corner `l`, which is a **Laurent/ramification index**,
+>    not the Laurent-**chart** exponent (an edge slope). GGV1 §8 works in `L^(1)`
+>    while charting with exponent 3, proving inside one section that the two need
+>    not agree. Only **3 of 39** distinct integral corner shapes satisfy the chart
+>    precondition `b_0 = t(a_0-1)`. See `CORNER_RESOLVENT.md` §5.1.
+> 2. **F9–F13 lack a verified geometric chart dictionary.** F9 = (56,84) is
+>    GGHV's `(7,21)` row; its true reduction has `t=3, kappa=1, q=1, deg C=1`
+>    (`C = y`, a monomial) against the census's `t=7, q=2`. The landed
+>    `("F9",0)` grammar point is a statement about the FORMAL model at the
+>    supplied parameters. See `FAMILY_GRAMMAR.md`, "F9 RESOLVED".
+> 3. **No general chain-to-chart dictionary exists in the literature.** GGV1
+>    §8 is hard-coded to one polygon and its Remark 8.13 states the reduction
+>    cannot always be obtained. A general family compiler would require new
+>    geometry, not just implementation.
+> 4. **The home (72,108) case and `F2` are unaffected** — their chart and divisor
+>    data come from explicit published reductions, not from the census.
+> 5. **Frontier counts:** the 224-part figure below and the 209 open nodes in the
+>    operational handoff are *different representations*, not competing totals —
+>    209 uses the defect-0 alt-layer representation (12 surviving families after
+>    3 pending closures) while the 27-branch alt sweep remains separately
+>    unjoined. Neither is a correction of the other.
+> 6. **New since:** the Phi-window-depth criterion (133 new state-level kills,
+>    0 of 220 flag-cases closed — see `FACE_KILL_SWEEP.md`), the face-detector
+>    completeness result, and the marked-polynomial discriminant **theorem**
+>    (`CORNER_RESOLVENT.md` §2.5).
+
+**As of:** 2026-07-23 (body; see corrections above). This file states only what is *currently true*: proven and
 checker-enforced nodes, trusted published inputs, independently audited results,
 and the live open frontier. Engine kills that are **pending independent audit are
 not counted as progress** below. For the full historical claim graph (including
