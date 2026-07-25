@@ -38,6 +38,16 @@ under multiplication and the window floor of a weight-`w` symbol is `y^{12w}`,
 | `dm1·dm2²` | 5+6+6 = 17 | 60+72+72 = 204 |
 | `Φ` | 17 | 204 |
 
+> **Justification note (2026-07-24, from `monomial_lens.py`).** The seven
+> `G5body` monomials **alone do not pin these weights**: their exponent lattice
+> leaves a 1-dimensional null grading
+> `{d0:-5, d1:-8, d2:-11, dm1:-2, dm2:1, dm3:4, dm4:7}`, so weight 17 is not
+> forced by `G5` in isolation. Adding `G1,G2,G3` cuts the grading space to
+> dimension 1, and its primitive generator is exactly the documented assignment
+> — `(d0,d1,d2,dm1,dm2,dm3,dm4) = (4,3,2,5,6,7,8)`, `Phi = 17`, generator
+> weights `13/14/15/17`. **The numbers below are confirmed; only their
+> justification needed the wider generator set.**
+
 so comparing them on one y-degree axis is legitimate — this is exactly the
 `_symbol_homogeneity_and_cone` invariant, and it is re-derived from the symbol
 weights in the verifier rather than assumed.
@@ -240,6 +250,34 @@ machinery below is correct and would matter for a construction with a
 forced-inhomogeneous term in more than one generator, but for the (72,108)
 G-system it is vacuous — which retroactively makes "off by default" the right
 call for a stronger reason than caution.
+
+## 6.2 CORRECTION (2026-07-24): the stratum-union objection was wrong
+
+This file previously recorded that collapsing a flag-case's exact-degree strata
+into one system is unpromising, on the grounds that "the relaxed system is less
+constrained, hence a priori more likely consistent". **That reasoning applies to
+the wrong object and is withdrawn.**
+
+The union of the degree strata is NOT the relaxed affine variety `V(I)`. For a
+residual polynomial written at its cap, `R = r_0 + r_1 y + ... + r_D y^D`, the
+strata are `{r_D != 0}`, `{r_D = 0, r_{D-1} != 0}`, ... and their union is
+exactly `{(r_0,...,r_D) != 0}` -- i.e. `R` not identically zero. That is a
+**quasi-affine saturated locus** `V(I) \ V(B)`, tested by the saturation
+`I : B^inf`, where `B` is the irrelevant / endpoint ideal. It preserves precisely
+the open conditions that the per-state Rabinowitsch variables currently enforce;
+it does not discard them.
+
+So the correct formulation is a SATURATED flag-case scheme, and the objection
+recorded here does not apply to it. The separate finding that the sub2 system has
+a single 45-variable SCC still stands, but it bears on *triangularisation*, not on
+whether the saturated union is decidable.
+
+Two implementation caveats, worth stating before anyone builds it:
+* it must be constructed BEFORE any state-specific division by a leading
+  coefficient -- such a division is a chart condition whose zero branch must
+  remain present;
+* the right pilot is a small MIXED cell containing both killed and unresolved
+  strata, not the largest cell.
 
 ## 7. Optional (c)-escalation — off by default
 

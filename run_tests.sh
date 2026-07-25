@@ -82,7 +82,8 @@ echo "### D2 — exact field-split proof checks"
   python3 window_functions_75_125_verify.py --quiet &&
   python3 proof_dag_report.py --quiet &&
   python3 phi_depth_criterion_verify.py --quiet &&
-  python3 marked_polynomial.py --quiet
+  python3 marked_polynomial.py --quiet &&
+  python3 serializer_roundtrip_verify.py --quiet
 ) || rc=1
 
 if [ "${SKIP_SLOW:-0}" = "1" ]; then

@@ -1,5 +1,45 @@
 # CORNER_RESOLVENT — the marked-polynomial generator and an arithmetic corner law
 
+> # !! THE DISCRIMINANT IDENTITY IS **NOT NEW** (2026-07-25, verified) !!
+>
+> **The family is a Jacobi polynomial** on the degenerate line `alpha+beta = -n`:
+> ```
+> g  =  L * P_n^(-n-1/c, 1/c) (1 + 2y)
+> ```
+> Verified for `(a,c) = (12,2),(9,3),(8,4),(7,7),(10,2),(6,6),(9,9)`: the ratio
+> `g / P_n(1+2y)` is a constant, and that constant is exactly the `L` computed
+> independently in §2.5.1.
+>
+> **And Szego's classical Jacobi discriminant (6.71.5), restricted to
+> `alpha+beta = -n`, reproduces the §2.5 identity exactly** — sign, powers and
+> all (verified symbolically in `c` for `n = 2..8` plus 49 numeric points). On
+> that line the fourth product `prod (n+j+alpha+beta)^(n-j)` collapses to
+> `prod j^(n-j)` and merges into the first, which is *why* the neighbour table in
+> §2.5.1 mistakenly judged Szego "different". **That verdict was wrong.**
+>
+> **MY REASONING WAS BACKWARDS.** §2.5.3 argued this could not be a Jacobi
+> polynomial because a Jacobi `2F1` has second parameter `n+alpha+beta+1` which
+> "grows with n", while ours is the constant `1`. But on `alpha+beta = -n` that
+> parameter is `n - n + 1 = 1` — the degenerate line is PRECISELY where it
+> collapses to our constant. The observation that should have raised the
+> suspicion was used to dismiss it.
+>
+> **WHAT SURVIVES as prospectively new:** only the ROUTE — the inhomogeneous
+> first-order ODE as a *generator* for the family, and the one-linear-factor
+> normal form on this slice. The discriminant identity itself is a specialisation
+> of a published formula and must be presented that way.
+>
+> Two upstream corrections that follow: Filaseta-Moy's truncated binomial is not
+> a *neighbour* but a **sub-line** of this family (`c = -1/m`), and the truncated
+> logarithm is its **`c -> infinity` boundary**. §2.5.1's neighbour table is wrong
+> on both counts.
+>
+> **Still open (a library question, not a computation):** whether the
+> `alpha+beta = -n` slice is named anywhere. Searches were inconclusive;
+> `arXiv:2304.12658` and `math/0409523` cover the integer-exponent sub-line but
+> contain neither the Jacobi identification nor a discriminant formula.
+
+
 > **PRIOR-ART CORRECTION (2026-07-24, verified against primary sources).** Two of
 > the three ingredients here are **NOT new** and must be presented as
 > reinterpretation, not discovery:
@@ -132,6 +172,156 @@ identity itself, all with zero residual.
 Note `Delta = cn+1` makes the corner integer a trivial function of the ODE
 parameters, which is consistent with §5's finding that it is GGV's published
 `bl - a` rather than a deep invariant.
+
+### 2.5.1 PRIOR-ART VERDICT and a required framing correction (2026-07-24)
+
+**Verdict: NO PRIOR ART FOUND for this identity.** Independently re-verified by
+solving the ODE exactly for `n = 1..8`. But two things must be stated correctly
+before any write-up, or a referee from the adjacent community will press on them.
+
+**The leading coefficient has a closed form** (verified here on all seven cases):
+
+```
+L = (-1)^(n-1) * (n!/2) * c^n / prod_{k=1..n} (k*c + 1)
+```
+
+**So the "single linear factor" property is RELATIVE TO `L`.** Expanding it
+reintroduces a product:
+
+```
+disc(g) = +- 2^(2-n) * (cn+1) * (n!/2)^n * c^(n(n-1)) / prod_{k=1..n}(kc+1)^n
+```
+
+The honest claim is *"a compact form: one linear factor times a power of the
+leading coefficient"* — **not** "unprecedented factor structure". The novelty
+case must rest on the **inhomogeneous first-order ODE** derivation, which is the
+part with no precedent found.
+
+**Internal consistency worth noting:** for `(a,c) = (8,4)`, `L = -1024/3315` —
+exactly `lc(Phi~)`, the constant in the Phi-window-depth kill
+(`FACE_KILL_SWEEP.md` §1). Not a coincidence: `Phi~ = c*t^30*q` with
+`c = -1/6630`, and the marked polynomial IS `q`, so
+`lc(Phi~) = c*lc(q) = -2048/6630 = L`. The day's two independent results meet at
+the same rational number.
+
+**Neighbours checked, all NON-equivalent:**
+
+| family | formula shape | verdict |
+|---|---|---|
+| **Truncated binomial** (Filaseta-Moy, arXiv:1803.02754 Lemma 3) | `r+1` distinct linear factors in `n` | **does NOT subsume ours** (one factor vs many) |
+| Truncated exponential (Coleman) | `(-1)^(n choose 2)(n!)^n` | different |
+| Bessel / Laguerre (Hajir; Schur 1931) | two nested products | different |
+| Classical Jacobi (Szego 6.71.5) | quadruple product over `j` | different |
+| Truncated logarithmic (arXiv:2401.14138) | no closed form; explicitly intractable | different — and it attributes tidy discriminants to **second-order Sturm-Liouville** structure, indirect evidence that the first-order niche is unoccupied |
+
+**Closest neighbour — CITE IT, do not be surprised by it.** Sawa-Uchida,
+*"Discriminants of classical quasi-orthogonal polynomials"*, arXiv:1802.00605
+(JMSJ 71, 2019). Their Thm 4.1 produces results of exactly our *shape* —
+constant x `c^n` x [polynomial at one rational point] — and linear-in-`cn`
+factors do appear. But their hypothesis is a **homogeneous two-term structure
+relation** (ours has RHS `1/2`), those factors sit in **denominators** rather
+than being the whole nonconstant content, and every formula retains explicit
+products over `k`. No specialisation collapses to `(cn+1)` alone. Same verdict
+for Matsumura (arXiv:2303.15934 Thm 4.1) and Mahlburg-Ono (Acta Arith. 113).
+
+**Residual risk, unchecked:** *"Some new polynomial discriminant formulas"*,
+Lithuanian Math. J., doi 10.1007/s10986-021-09540-x — paywalled, title
+uncomfortably on-point. Worth a library pull before publishing.
+
+**Also relevant:** arXiv:1310.8249 (Valqui-Guccione-Guccione) reduces the `B=16`
+case to an **Abel equation of the second kind** — a related-but-distinct ODE,
+computing no discriminant. It is the precedent for "GGV reduces a case to an
+ODE", so cite it for context.
+
+### 2.5.3 THE FAMILY IDENTIFIED: a hypergeometric closed form
+
+Integrating the reduced ODE directly identifies the family. Partial fractions
+give `(c*n*y + c*n + 1)/(c*y(y+1)) = (n + 1/c)/y - (1/c)/(y+1)`, so the
+integrating factor is `mu = y^-(n+1/c) * (y+1)^(1/c)` and the remaining integral
+`int y^(alpha-1) (1+y)^beta dy` is an incomplete beta. Hence:
+
+> **CLOSED FORM (terminating -- the clean one).**
+> ```
+> g  =  -1/(2(c*n+1))  *  2F1( -n , 1 ; 1 - n - 1/c ; -y )
+> ```
+> equivalently `g = -1/(2*Delta) * sum_{k=0}^{n} [ (-n)_k / (gamma)_k ] (-y)^k`
+> with `gamma = 1 - n - 1/c`, since `(1)_k = k!`.
+>
+> An equivalent non-terminating form, its Pfaff transform, is
+> ```
+> g = -(y+1)^(-1/c) / (2(c*n+1)) * 2F1( 1 - 1/c , -n - 1/c ; 1 - n - 1/c ; -y )
+> ```
+> which is how it first fell out of the integrating factor; the two agree, and
+> that is why the prefactor-times-nonterminating-series was polynomial.
+
+**Verified exactly** (ODE residual 0, correct degree, correct `g(0)`) for
+`(c,n) = (2,3), (3,4), (4,4), (2,4), (7,4)` — with `g(0) = -1/(2*Delta)` coming
+out as `-1/14, -1/26, -1/34, -1/18, -1/58` for `Delta = 7, 13, 17, 9, 29`.
+
+Two structural consequences:
+
+* **`Delta` enters as the hypergeometric prefactor** `-1/(2(cn+1))`, which is
+  exactly why it is the sole surviving arithmetic factor in the discriminant.
+* The `2F1` **terminates only when `1/c` is an integer** (`b = -n - 1/c` a
+  negative integer), yet the product with `(y+1)^(-1/c)` is a polynomial for
+  every admissible `c`. That tension is the structural reason the family exists.
+
+**PARAMETER SHAPE -- decisive for which literature applies.** A classical Jacobi
+polynomial is `2F1(-n, n+alpha+beta+1; alpha+1; .)`, whose SECOND parameter grows
+with `n`. Ours is the constant **1**. So this is the family
+`2F1(-n, 1; gamma; z)` with `gamma = 1 - n - 1/c`, which is **not** a Jacobi
+polynomial — and Szego 6.71.5 and the quasi-Jacobi discriminants of Sawa-Uchida
+may therefore simply not cover it. That is a sharper novelty position than the
+earlier framing suggested, and it is the specific thing to check.
+
+**This is the decisive handle for the novelty question.** The family is a
+hypergeometric/Jacobi-type object, so the discriminant question becomes: *is the
+discriminant of `(y+1)^(-1/c) * 2F1(1-1/c, -n-1/c; 1-n-1/c; -y)` published?*
+That is a far more precise search than "polynomials from an ODE", and it should
+be run against the Jacobi-discriminant literature (Szego 6.71.5), the
+quasi-orthogonal work (Sawa-Uchida arXiv:1802.00605), and Matsumura
+arXiv:2303.15934 before any novelty claim.
+
+### 2.5.2 THE BEST FRAMING: a deformation of a classical discriminant
+
+**At `c = 1` the family degenerates to the cyclotomic quotient.** Solving the
+reduced ODE at `c = 1` gives, monically, exactly the alternating sums
+
+```
+n=2: y^2 - y + 1          n=4: y^4 - y^3 + y^2 - y + 1
+n=3: y^3 - y^2 + y - 1    n=7: y^7 - y^6 + ... - 1
+```
+
+i.e. `(y^(n+1) +- 1)/(y +- 1)`, whose monic discriminants are the classical
+`+-(n+1)^(n-1)` — **verified here for `n = 2..7`** (`-3, -16, 125, 1296, -16807,
+-262144`).
+
+Since `Delta = cn+1` becomes `n+1` at `c = 1`, the theorem is precisely a
+**one-parameter deformation of a textbook discriminant**, with `Delta`
+deforming `n+1`.
+
+This is the framing to lead with:
+
+* it **explains** why a single linear factor survives — it is the deformed
+  classical one, not a coincidence of this family;
+* it is the **strongest novelty signal**: the deformation itself appears
+  unwritten;
+* it is also the **clearest residual collision risk**, and names exactly where
+  to look — anyone who studied `disc(p + c*q)` for `p,q` a cyclotomic-quotient
+  pair. The two closest hits (Matsumura arXiv:2303.15934, Sawa-Uchida
+  arXiv:1802.00605) both study `disc(p + c*q)` but obtain `c`-dependence that is
+  a product, not one linear factor, and neither frames it via an ODE.
+
+Independent corroboration of the mechanism: the coefficient ratios are
+`a_k/a_0 = (-1)^k (n!/(n-k)!) c^k / prod_{j=n-k}^{n-1}(jc+1)` with
+`a_n = -c*a_{n-1}`, so `prod(jc+1)` lives entirely in `L`'s denominator and
+**`Delta = cn+1` is the only factor surviving in the numerator** — the identity
+is exactly the statement that all arithmetic of `disc(g)` is carried by that one
+new factor.
+
+**Unclosed prior-art gaps** (PDF-only, would not text-extract): Sawa-Uchida §4
+full formulas, and arXiv:2401.14138. Those two are the remaining reads before
+any claim of novelty.
 
 **Scope, unchanged:** this is a theorem about the marked-polynomial ODE family.
 Only geometrically grounded cases inherit it. The ODE and `Delta` are prior art

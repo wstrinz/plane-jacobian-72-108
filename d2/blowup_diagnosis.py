@@ -124,16 +124,27 @@ def emit_program(gens, ring_vars, char, sat_factors=None, minpoly_gens=None,
 def sing_poly_intcoeff(expr, gens):
     """Exact integer-coefficient Singular string over Q (clear a global rational
     denominator; number-field vars r/r1/r2 kept as ring variables)."""
-    expr = sp.cancel(sp.sympify(expr))
+    # NOTE (2026-07-24): sp.cancel() must NOT be used here.  Under
+    # sympy 1.14 + python-flint 0.9.0, sp.cancel(x/2 + 1/3) returns the
+    # expression UNCHANGED with denominator 1, so the clearing step below became
+    # a no-op and the int(coeff) further down silently TRUNCATED every rational
+    # coefficient -- e.g. a degree-4 polynomial serialised as just its leading
+    # term.  sp.together() reports the true common denominator.  See
+    # SERIALIZER_BUG.md.
+    expr = sp.sympify(expr)
     if expr == 0:
         return '0'
-    num, den = sp.fraction(expr)
+    num, den = sp.fraction(sp.together(expr))
     poly = sp.Poly(sp.expand(num), *gens)
     denp = sp.Poly(sp.expand(den), *gens)
     if denp.total_degree() != 0:
         raise ValueError(f'non-constant denominator {den}')
     terms = []
     for monom, coeff in poly.terms():
+        if not sp.sympify(coeff).is_Integer:
+            raise ValueError(
+                'non-integer coefficient %s after denominator clearing -- '
+                'refusing to truncate (see SERIALIZER_BUG.md)' % coeff)
         c = int(coeff)
         if c == 0:
             continue

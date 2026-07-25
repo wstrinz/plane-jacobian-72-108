@@ -47,10 +47,14 @@ SING_TIMEOUT = 60.0
 #  Singular integer-coefficient string.  Denominators must be invertible mod p.
 # --------------------------------------------------------------------------
 def poly_to_singular_modp(expr: sp.Expr, gens: list[sp.Symbol], p: int) -> str:
-    expr = sp.cancel(sp.sympify(expr))
+    # NOTE (2026-07-24): sp.cancel() is UNSAFE here -- see the note in
+    # blowup_diagnosis.sing_poly_intcoeff and SERIALIZER_BUG.md.  Under
+    # sympy 1.14 + python-flint it leaves rational coefficients in place with
+    # denominator 1, and the int(coeff) below then truncates them silently.
+    expr = sp.sympify(expr)
     if expr == 0:
         return '0'
-    num, den = sp.fraction(expr)
+    num, den = sp.fraction(sp.together(expr))
     poly = sp.Poly(sp.expand(num), *gens)
     # a single global denominator (rational constant) is typical after cancel
     den_poly = sp.Poly(sp.expand(den), *gens)
@@ -62,6 +66,10 @@ def poly_to_singular_modp(expr: sp.Expr, gens: list[sp.Symbol], p: int) -> str:
     den_inv = pow(den_val % p, -1, p)
     terms = []
     for monom, coeff in poly.terms():
+        if not sp.sympify(coeff).is_Integer:
+            raise ValueError(
+                'non-integer coefficient %s after denominator clearing -- '
+                'refusing to truncate (see SERIALIZER_BUG.md)' % coeff)
         c = int(coeff)
         if c % p == 0:
             continue
