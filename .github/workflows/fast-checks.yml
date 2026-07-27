@@ -10,7 +10,20 @@ permissions:
 jobs:
   fast-checks:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # Raised 15 -> 40 at v1.0.0.  That release took the public suite from 81 to
+    # 114 checkers, and the clean-clone guard traces EVERY one of them for file
+    # opens, waiting out an 8s quiescence window per checker: measured 741s
+    # (12m21s) locally for the guard alone, against a former whole-job budget of
+    # 15m.  The guard PASSES -- it is slow, not broken -- so the fix is budget,
+    # not a revert.  ubuntu-latest runners are typically slower than the machine
+    # that measured this, hence the wide margin.
+    #
+    # The real fix is upstream: the guard's stopping rule is a quiescence
+    # heuristic, which is both the reason it is slow AND a soundness gap (a
+    # CPU-starved checker can look quiet while about to open another file -- a
+    # missed open is a false PASS). Explicit completion signalling would fix
+    # both. Tracked as infrastructure debt; not attempted at release time.
+    timeout-minutes: 40
 
     steps:
       - name: Check out repository
