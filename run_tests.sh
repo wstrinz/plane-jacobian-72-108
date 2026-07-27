@@ -85,6 +85,11 @@ echo "### D2 — exact field-split proof checks"
   python3 corner_atlas_toric_34.py --quiet &&
   python3 gamma_from_corner_verify.py --quiet &&
   python3 monomial_window_law.py --quiet &&
+  python3 lambda_two_objects.py --quiet &&
+  python3 g3_gate_defect.py --quiet &&
+  python3 bridge_generality.py --quiet &&
+  python3 weight_free_transfer.py --quiet &&
+  python3 yplace_transfer.py --quiet &&
   python3 ml_restriction_check.py --quiet &&
   python3 case_compiler_verify.py --quiet &&
   python3 window_caps_verify.py --quiet &&

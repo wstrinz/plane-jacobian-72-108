@@ -391,23 +391,44 @@ def part_D(verbose):
     X, Y = x ** -1, x ** ls * y
     Jchart = sp.simplify(sp.diff(X, x) * sp.diff(Y, y) - sp.diff(X, y) * sp.diff(Y, x))
     chart_ok = sp.simplify(Jchart - (-x ** (ls - 2))) == 0
+    # 2026-07-27 CHART REPAIR (PASSPORT_75_125_REPAIR.md; polygon_reduction sec.0b).
+    # The VERDICT of this part is INAPPLICABLE for every row and is independent of
+    # which l the chart uses -- the argument only needs [p,q] to be a monomial and
+    # the corner leading forms to be proportional powers of the common root, both
+    # of which hold for any l.  So no conclusion here moves.  What DID need fixing
+    # is the printed REASON: it quoted GGV5's final-corner denominator l_final as
+    # the chart exponent, which is wrong at 11 of the 17 rows (the corner does not
+    # retract there, and l_chart = ceil(b0/a0) != l_final).  A row whose stated
+    # reason names the wrong exponent is a label-integrity defect even when the
+    # verdict is right, so l is now DERIVED through the guard.
+    import polygon_reduction as _pr
     verdicts = []
     for row in FAMILIES_LEN1:
         name, A0, A0p, p, l, q, k = row[0], row[1], row[2], row[3], row[4], row[5], row[6]
+        l_chart = _pr.chart_exponent(A0[0], A0[1])
+        retracts = _pr.has_retraction(A0[0], A0[1], l_chart)
         # bracket in reduced coords is -x^(l-2), a monomial (or a unit if l=2).
-        bracket_monomial = True
         # corner leading forms are proportional powers of the common root => J=0.
         verdict = "INAPPLICABLE"
         reason = ("[p,q]=-x^(%d-2) monomial; corner forms are powers of the "
                   "common root C=x^%d c (J(p_lead,q_lead)=0) -> J(rho,tau)=rho "
-                  "never holds" % (l, l))
+                  "never holds%s"
+                  % (l_chart, l_chart,
+                     "" if retracts else
+                     "  [l_chart=%d DERIVED; GGV5's l_final=%d is NOT the chart "
+                     "exponent here -- corner does not retract]" % (l_chart, l)))
         verdicts.append((name, verdict, reason))
         if verbose:
-            print("   %-4s A0=%s A0'=%s l=%d q=%d  [%s]  %s"
-                  % (name, A0, A0p, l, q, verdict, reason))
+            print("   %-4s A0=%s A0'=%s l_chart=%d (l_final=%d) q=%d retracts=%s "
+                  " [%s]  %s"
+                  % (name, A0, A0p, l_chart, l, q, retracts, verdict, reason))
     if verbose:
         print("   chart Jacobian identity -x^(l-2) verified: %s" % chart_ok)
-        print("   => the lemma does NOT constrain the 17-family table.")
+        print("   => the lemma does NOT constrain the 17-family table, for ANY l:")
+        print("      the verdict needs only that [p,q] is a monomial and that the")
+        print("      corner forms are proportional powers of the common root, and")
+        print("      both hold for every l.  So the 2026-07-27 chart repair moves")
+        print("      the stated exponents but not one verdict in this part.")
         print()
     return verdicts, chart_ok
 

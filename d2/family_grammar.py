@@ -87,9 +87,19 @@ ESCAPES = [
 LANDED = {
     # PURE (gap=0)
     # 2026-07-26 REPAIR (PASSPORT_75_125_REPAIR.md): the (5,20) corner has t=4, kappa=2, C=y (deg C=ord C=1), NOT t=5, kappa=3, C=y^2(y^3+1).  GGV5's final chain corner (7\\5,2) is chart data only on the retraction shape b0=l(a0-1), which (5,20) fails; l = ceil(20/5) = 4.  Both F2 rows below move: (75,125) N 98->77, sig (504,201,101,202)->(80,80,0,0), lc -1/9->1/3; (50,75) N 36->28, sig (189,75,38,76)->(30,30,0,0), lc -1/6->1/2.  The guard lives in polygon_reduction.py sec.0b.
+    # 2026-07-27 SECOND CHART REPAIR.  The guard refuses NINE more rows; three of
+    # them carry landed points, and all three move.  Each repaired ord_y agrees
+    # with the PROVED bridge identity a*q*M - H (BRIDGE_GENERALITY.md), and
+    # bridge_generality.py MUT F independently displaces two of them (51<-205 at
+    # F1, 22<-107 at F9) by a wholly separate route.
+    #   F9  (56,84)  at (7,21): N 52 -> 20,  (377,107,54,216) -> (22,22,0,0).
+    #     (7,21) is refuted IN PRINT: GGHV22 2204.14178.tex:1394 publishes the
+    #     chart phi_3(y) = y x^3 with [P,Q] = x, i.e. l = 3 against l_final = 7.
+    #   F1  (48,64)  at (4,12): N 67 -> 49,  (275,205,69,1) -> (51,51,0,0).
+    #   F10 (196,112) at (7,21): N 270 -> 110, (1917,820,1093,4) -> (114,114,0,0).
     ("F2", 0): ("(50,75)",  28, (30, 30, 0, 0)),      # REPAIRED 2026-07-26
     ("F2", 1): ("(75,125)", 77, (80, 80, 0, 0)),      # REPAIRED 2026-07-26
-    ("F9", 0): ("(56,84)",  52, (377, 107, 54, 216)),
+    ("F9", 0): ("(56,84)",  20, (22, 22, 0, 0)),      # REPAIRED 2026-07-27
     ("F14", 0): ("(66,231)", 36, (375, 165, 42, 168)),
     # CHART-DEGENERATE (dg=0), same corner (5,20) as F2 -- see REPAIRS["F3"]
     # 2026-07-26 (second repair): F3 j=0 is (75,50), the (m,n)-SWAP of F2 j=0's
@@ -99,21 +109,32 @@ LANDED = {
     # sig (189,112,75,2) -> (30,30,0,0).  Verified three independent ways in
     # family_grammar_verify.py A10.
     ("F3", 0): ("(75,50)",  28, (30, 30, 0, 0)),      # REPAIRED 2026-07-26
-    # COFACTOR (r=0)
-    ("F1", 0): ("(48,64)",  67, (275, 205, 69, 1)),
+    ("F1", 0): ("(48,64)",  49, (51, 51, 0, 0)),       # REPAIRED 2026-07-27
+    ("F10", 0): ("(196,112)", 110, (114, 114, 0, 0)),  # REPAIRED 2026-07-27
+    # COFACTOR (r=0).  2026-07-27: F1 LEFT this class -- its corner is refused, so
+    # it has no residual and no unit cofactor.  These two REPLACE it, on corners
+    # that DO retract, at two distinct gap values (4 and 2):
+    ("F17", 0): ("(66,99)",  20, (195, 169, 22, 4)),   # NEW 2026-07-27, gap=4
+    ("F8", 0): ("(63,147)",  70, (448, 371, 75, 2)),   # NEW 2026-07-27, gap=2
     # RUNG mu=dg ramified (PHI_F7)
     ("F7", 0): ("(42,147)", 36, (250, 165, 83, 2)),
-    ("F10", 0): ("(196,112)", 270, (1917, 820, 1093, 4)),
     ("F16", 0): ("(99,165)", 56, (528, 407, 117, 4)),
+    # 2026-07-27: F15 REPLACES F10 as the dg=4 ramified point (F10's corner (7,21)
+    # is refused, so it has no residual to ramify).  Corner (9,24) RETRACTS.
+    ("F15", 0): ("(99,231)", 70, (672, 371, 297, 4)),  # NEW 2026-07-27, dg=4
 }
 
-# explicit landed f-polynomials (PHI_F7 / MU_RUNGS) for direct ODE re-check
+# explicit landed f-polynomials (PHI_F7 / PHI_F14) for direct ODE re-check
 LANDED_F = {
     "F7":  sp.Rational(1, 10)   * y**21 * (y + 1)**11 * (9*y**2 + 3*y - 1),
-    "F10": sp.Rational(1, 3740) * y**10 * (y + 1)**13 *
-           (2401*y**4 + 5831*y**3 + 4165*y**2 + 595*y - 85),
     "F16": sp.Rational(1, 330)  * y**15 * (y + 1)**5  *
            (243*y**4 + 81*y**3 - 27*y**2 + 15*y - 10),
+    # 2026-07-27 replacements, both on RETRACTING corners:
+    "F15": -sp.Rational(1, 105)  * y**21 * (y + 1)**17 *
+           (243*y**4 + 405*y**3 + 135*y**2 - 15*y + 5),
+    "F17": -sp.Rational(1, 910)  * y**9  * (y + 1)**2  *
+           (243*y**4 - 81*y**3 + 54*y**2 - 42*y + 35),
+    "F8":  -sp.Rational(1, 42)   * y**21 * (y + 1)**5  * (9*y**2 - 3*y + 2),
 }
 
 # 2026-07-26.  F3's PHI_F7 rung polynomial (phi_f7.py:32) is NOT retired as a
@@ -123,13 +144,41 @@ LANDED_F = {
 # does not solve the resulting ODE.  Kept here, labelled, so the discriminating
 # check in family_grammar_verify.py A10d has something to run against; deleting
 # it would make the repair unfalsifiable.
+# 2026-07-27: F10's rung polynomial joins F3's here, for the same reason.  It
+# exactly solves the mu=4 ramified ODE of the corner data (t,kappa,q,dg) =
+# (7,5,3,4) -- correct arithmetic -- but the corner (7,21) does not HAVE that
+# chart data.  Its chart is (3,1,1,1), where C = y and there is no residual at
+# all.  GGHV22 2204.14178.tex:1394 publishes l = 3 and [P,Q] = x at (7,21), so
+# this is refuted in print, not merely unproved.
 SUPERSEDED_F = {
     "F3":  sp.Rational(1, 42)   * y**4  * (y + 1)**3  * (25*y**2 + 15*y - 3),
+    "F10": sp.Rational(1, 3740) * y**10 * (y + 1)**13 *
+           (2401*y**4 + 5831*y**3 + 4165*y**2 + 595*y - 85),
 }
 
-# F12 mu-rungs at eta=0 (ZETA_TAIL) and F10 all real rungs (MU_RUNGS)
-MU_RUNGS = {
-    # (family, eta, mu) : signature
+# ---------------------------------------------------------------------------
+# THE mu-LADDER LOSES ITS ONLY TWO LANDED WITNESSES.  2026-07-27, stated as a
+# LOSS rather than quietly dropped.
+#
+# The mu-ladder is the grading by the multiplicity mu of (y+1) inside the
+# residual g, running 1 <= mu <= dg.  Both published witnesses sat on corners the
+# retraction guard REFUSES, where dg = 0 and there is NO residual g -- so there is
+# nothing for (y+1) to divide and the ladder is VACUOUS, not merely unverified:
+#
+#   F12 eta=0, mu=1,2,3  (ZETA_TAIL.md)     corner (8,24): ceil(24/8)=3, 3*7=21!=24
+#   F10 eta=0, mu=2,4    (MU_RUNGS_F10.md)  corner (7,21): ceil(21/7)=3, 3*6=18!=21
+#
+# The mu=dg END of the ladder survives, on retracting corners: F7 and F16 at dg=2
+# and F15 at dg=4 (PHI_F7.md).  What is GONE is every INTERMEDIATE rung
+# (1 < mu < dg) -- there is now no landed witness for one anywhere.  We do NOT
+# substitute the mu-graded law's own values for F15's mu=2 rung: that would be
+# validating the law against itself, which is the failure this repair exists to
+# remove.  family_grammar_verify.py A11a-A11c is the TRIPWIRE: it asserts the
+# ladder is still witnessless, so the next person must state a verified target.
+MU_RUNGS = {}
+
+SUPERSEDED_MU_RUNGS = {
+    # (family, eta, mu) : signature -- retired, corner guard-REFUSED
     ("F12", 0, 1): (814, 506, 102, 206),
     ("F12", 0, 2): (814, 506, 203, 105),
     ("F12", 0, 3): (814, 506, 304, 4),
@@ -189,12 +238,83 @@ MU_RUNGS = {
 #         from the same (P_1,Q_1)), so they are not specific to one GGV5 row, and
 #         F3(3,2)/75 is that same case with P and Q exchanged: [Q_1,P_1] = -x^2,
 #         degrees (15,10).  Either reading forces kappa = 2, hence l = 4.
+#
+# 2026-07-27, THE REPAIR COMPLETED AND HANDED TO THE GUARD.
+#
+# The 2026-07-26 pass repaired F2 and F3 by HAND, one row at a time, and A10f
+# recorded that eight downstream modules were left known-suspect.  Both halves of
+# that are now closed:
+#
+#   * REPAIRS is no longer a hand-written table of constants.  It is DERIVED, per
+#     family, from polygon_reduction.corner_chart_data -- so a corner that stops
+#     retracting, or a family row added later, is repaired automatically instead
+#     of silently keeping the refused dictionary's numbers.  This is the
+#     "prefer the guard over new constants" discipline: the only literals below
+#     are the CORNERS transcription, which is GGV5 chain data, not chart data.
+#   * every one of the eleven refused rows is repaired, not just the two at
+#     (5,20).  See A10f in family_grammar_verify.py for the updated scope note.
+#
+# What made the completion legitimate rather than a wider guess is that an
+# INDEPENDENT target now exists: the bridge identity
+#     ord_y(Phi) = a*q*M - H,   M = t(a+b)-(kappa+1),  H = q(a+b)-1,
+# PROVED in bridge_generality.py.  Every repaired row's ord_y is checked against
+# it (see bridge_ord below and the LANDED cross-check at the end of main), so no
+# repaired row is validated only against numbers this file produced itself.
 MISMATCHES = []
 
-REPAIRS = {
-    "F2": dict(t=4, degC=1, ordC=1, gap0=0),
-    "F3": dict(t=4, degC=1, ordC=1, gap0=0),
+# GGV5 chain data per family: (A_0, l_final, b_final).  A_0 is the CORNER; the
+# other two are the final chain corner A_1 = (p\l_final, b_final) and are CHAIN
+# data -- they are chart data only on the retraction shape.  Transcribed from the
+# GGV5 v11<=35 tables exactly as in phi_corner4.py.
+CORNERS = {
+    "F1":  ((4, 12), 4, 3),  "F2":  ((5, 20), 5, 2),  "F3":  ((5, 20), 5, 3),
+    "F4":  ((5, 20), 5, 3),  "F5":  ((5, 20), 5, 4),  "F6":  ((5, 20), 5, 4),
+    "F7":  ((6, 15), 3, 4),  "F8":  ((6, 15), 3, 5),  "F9":  ((7, 21), 7, 2),
+    "F10": ((7, 21), 7, 3),  "F11": ((7, 21), 7, 3),  "F12": ((8, 24), 4, 5),
+    "F13": ((9, 21), 3, 7),  "F14": ((9, 24), 3, 4),  "F15": ((9, 24), 3, 5),
+    "F16": ((9, 24), 3, 7),  "F17": ((9, 24), 3, 8),
 }
+
+
+def bridge_ord(a, b, t, kappa, ordC):
+    """ord_y(Phi) = a*q*M - H.  PROVED in BRIDGE_GENERALITY.md; an INDEPENDENT
+    target, computed from (a,b,t,kappa,ord C) and nothing this file derives."""
+    s = a + b
+    return a * ordC * (t * s - (kappa + 1)) - (ordC * s - 1)
+
+
+def _build_repairs():
+    """DERIVE the per-family chart repairs from polygon_reduction's guard.
+
+    A row is 'repaired' exactly when its corner FAILS the retraction shape
+    b0 == ceil(b0/a0)*(a0-1); there the final-corner dictionary is refused, there
+    is no vertical top face, and C is the MONOMIAL y (deg C = ord C = 1).
+
+    gap0 = 0 records the EFFECTIVE gap, not the raw one: at a monomial corner the
+    raw gap is (ordC-1) - degC/t = -1/t < 0, so gap_effective = 0 and the pure
+    ansatz is exact (deg f = rho).  Recording 0 keeps family_data's arithmetic in
+    integers; the raw value is printed by the report.
+    """
+    import polygon_reduction as _pr
+    out = {}
+    for _nm, (_A0, _lf, _bf) in CORNERS.items():
+        cd = _pr.corner_chart_data(_A0[0], _A0[1], l_final=_lf, b_final=_bf,
+                                   who="family_grammar %s" % _nm)
+        if cd["retraction"]:
+            continue                      # dictionary VALID: historical defaults
+        out[_nm] = dict(t=cd["t"], degC=cd["deg_C"], ordC=cd["ord_C"], gap0=0)
+    return out
+
+
+REPAIRS = _build_repairs()
+# Sanity: the refused set must be the eleven rows phi_corner4.py's survey and
+# bridge_generality.py's A5b agree on, and the six retracting rows must be
+# untouched.  A literal here would defeat the point, so this asserts the DERIVED
+# set against the one independent statement of it in the repo.
+assert set(REPAIRS) == {"F1", "F2", "F3", "F4", "F5", "F6",
+                        "F9", "F10", "F11", "F12", "F13"}, sorted(REPAIRS)
+assert all(v == dict(t=v["t"], degC=1, ordC=1, gap0=0) for v in REPAIRS.values()), \
+    "a refused corner must give the MONOMIAL chart deg C = ord C = 1"
 
 
 def lin(coef, jj):
@@ -481,7 +601,7 @@ if __name__ == "__main__":
               f"{'OK' if ok else 'MISMATCH vs %s' % (sig,)}")
 
     print("\n" + BAR)
-    print("mu-RUNG signatures (ZETA_TAIL F12 eta=0; MU_RUNGS_F10) via mu-graded law")
+    print("mu-RUNG signatures -- BOTH LANDED WITNESSES RETIRED 2026-07-27")
     print(BAR)
     for (nm, eta, mu), sig in MU_RUNGS.items():
         D = data[nm]
@@ -489,6 +609,20 @@ if __name__ == "__main__":
         got = tuple(int(sp.Integer(v.subs(j, 0))) for v in signature(D, Nval, mu))
         print(f"   {nm} eta={eta} mu={mu}: law={got}  published={sig}  "
               f"{'OK' if got == sig else 'MISMATCH'}")
+    if not MU_RUNGS:
+        print("   (empty by construction -- see the SUPERSEDED_MU_RUNGS comment)")
+    for (nm, eta, mu), sig in SUPERSEDED_MU_RUNGS.items():
+        D = data[nm]
+        print(f"   RETIRED  {nm} eta={eta} mu={mu}: published={sig};  corner "
+              f"{CORNERS[nm][0]} is guard-REFUSED, so deg C = ord C = 1, dg = "
+              f"{D['dg']} and there is NO residual g for (y+1) to divide -- the "
+              f"rung is VACUOUS, not unverified.")
+    print("   SURVIVING: the mu=dg END of the ladder only, on RETRACTING corners")
+    print("   -- F7 and F16 at dg=2, F15 at dg=4 (PHI_F7.md).  NO landed witness")
+    print("   remains for any INTERMEDIATE rung 1 < mu < dg.  We deliberately do")
+    print("   NOT fill that with the mu-graded law's own F15 mu=2 value: that")
+    print("   would validate the law against itself.  TRIPWIRE: A11a-A11c in")
+    print("   family_grammar_verify.py assert the ladder is still witnessless.")
 
     print("\n" + BAR)
     print("LENGTH-2 ESCAPES (composite charts underived -- CONDITIONAL)")

@@ -27,70 +27,66 @@
   "v11": 28
  },
  "corner_signature": {
-  "N": 52,
+  "N": 20,
   "a": 2,
-  "a0": 7,
+  "a0": 1,
   "b": 3,
-  "dg": 5,
+  "dg": 0,
   "e": 2,
-  "gap": 0,
-  "gap_den": 1,
-  "gap_num": 0,
-  "kappa": 5,
-  "q": 2,
-  "r": 4,
-  "t": 7
+  "gap": null,
+  "gap_den": 3,
+  "gap_num": -1,
+  "kappa": 1,
+  "q": 1,
+  "r": -1,
+  "t": 3
  },
  "galois_transfer": {
   "forcing_candidate": {
-   "degree": 4,
-   "poly": "y**4 - y**3 + y**2 - y + 1",
-   "rationale": "computed: residual H = (y^dg+1)/(y+1) \u2014 the forcing-polynomial correspondence of INDUCTIVE_PROGRAM.md (disc-17 quartic at (72,108); 10th cyclotomic at (108,144))"
+   "poly": null,
+   "rationale": "VACUOUS: deg g = deg C - ord C = 0, so C is a monomial and there is NO residual polynomial -- the forcing-polynomial / Galois-descent layer has no input at this corner.  This is not a gap in the derivation; it is the absence of the object.  [2026-07-26; PASSPORT_75_125_REPAIR.md]"
   },
-  "galois": {
-   "degree": 4,
-   "disc": "125",
-   "disc_class": 5,
-   "irreducible": true,
-   "label": "C4",
-   "method": "one rational resolvent root; factors over Q(sqrt(5)) -> C4",
-   "quadratic_subfield_classes": [
-    5
-   ]
-  },
-  "rule": "kill transfers iff Galois label in {S4,C4,A4} (or any label whose splitting field misses sqrt(Delta)) and disc class avoids {105, 170}; D4/V4 witness-decided",
-  "status": "CONDITIONAL: rule assumes the case's residue layer reproduces the (72,108) shape library on its free torus (GALOIS_LIBRARY sec.4 + judgment G1); the residue analogue is underived off (72,108)",
+  "galois": null,
+  "rule": "GALOIS_LIBRARY.md sec.4",
+  "status": "VACUOUS",
   "verdicts": {
-   "C08": "KILLS",
-   "C20": "KILLS"
+   "C08": "VACUOUS (no residual polynomial exists)",
+   "C20": "VACUOUS (no residual polynomial exists)"
   }
  },
  "judgment": [
-  "[judgment] unreduced polygon: the corner's explicit reduction is performed in no paper; standard type-II.b root shift + Laurent chart assumed (t=l, kappa=l-2, deg C=a0) \u2014 PHI_75_125/PHI_CORNER4/PHI_F14 shared conditional boundary",
+  "[REPAIRED 2026-07-27] corner (7, 21) does NOT satisfy the retraction shape b0 == l_chart*(a0-1) (l_chart = ceil(b0/a0) = 3, so l_chart*(a0-1) = 18 != 21), so GGV5's final-corner dictionary (t, deg C, ord C) = (l_final, a0, b_final) = (7,7,2) is REFUSED by polygon_reduction.final_corner_dictionary.  Chart data DERIVED instead: t = 3, kappa = 1, and (no vertical top face) C = y is a MONOMIAL with deg C = ord C = 1.  The repaired ord_y(Phi) is checked against the PROVED bridge identity ord_y(Phi) = a*q*M - H (BRIDGE_GENERALITY.md), which this compiler does not compute.  This corner is refuted IN PRINT: GGHV22 2204.14178.tex:1394 publishes the chart phi_3(y) = y x^3 with [P,Q] = x here, i.e. l = 3 and kappa = 1, against GGV5's l_final = 7.  See PASSPORT_75_125_REPAIR.md.",
+  "[note 2026-07-26] gap = -1/3 is non-integral but NEGATIVE, so gap_effective = 0: the resonance does not sit at or above the pure-ansatz degree of f, no extra unit factor appears, and the law applies with gap 0.  At a MONOMIAL corner (deg C = 1) this is forced: gap = -1/t always, and the ODE's unique polynomial solution is f = (1/a) y^e of degree exactly rho = e.  Confirmed independently at (5,20) by phi_75_125_verify.py sec.E (f = (1/3) y^3) and at every refused corner by the generic solve in phi_corner4.derive.",
+  "[judgment] unreduced polygon: the corner's explicit reduction is performed in no paper; standard type-II.b root shift + ONE Laurent chart assumed, with t = l_chart = ceil(b0/a0) [INFERRED rule], kappa = l-2 [DERIVED from the fused-chart Jacobian], and deg C = a0 ONLY on the retraction shape b0 = l(a0-1) \u2014 off it deg C = 1.  (2026-07-27: this clause used to read 't=l, kappa=l-2, deg C=a0' with l = GGV5's l_final, which is the dictionary polygon_reduction now REFUSES.) PHI_75_125/PHI_CORNER4/PHI_F14 shared conditional boundary",
   "[judgment] N-formula: (b-1)/a is integral, so the corner-144 forcing-slice picture transfers verbatim (less-conditional class)",
   "[judgment] forcing-polynomial identification for non-audited cases follows the INDUCTIVE_PROGRAM.md correspondence; only (72,108) is audited"
  ],
  "phi_prediction": {
+  "bridge_check": {
+   "formula": "a*q*M - H, M = t(a+b)-(kappa+1), H = q(a+b)-1",
+   "ord_y_bridge": 22,
+   "status": "PROVED (BRIDGE_GENERALITY.md); computed independently of this compiler's corner law"
+  },
   "conjectural": false,
   "conjectural_reasons": [],
   "derived_reference": {
    "signature": [
-    377,
-    107,
-    54,
-    216
+    22,
+    22,
+    0,
+    0
    ],
-   "source": "PHI_CORNER4.md"
+   "source": "PHI_CORNER4.md [REPAIRED 2026-07-27]"
   },
-  "regime": "gap0_r_pos",
-  "regime_evidence": "derived: (108,144), (75,125), F9 (56,84), F2 j=0 (50,75), F14 (66,231) \u2014 PHI_75_125/PHI_CORNER4/PHI_F14, all MATCH",
+  "regime": "monomial_corner",
+  "regime_evidence": "forced, not fitted: at deg C = ord C = 1 the forcing ODE collapses to a*A*(t-kappa-1) = a*A = 1, so f = (1/a) y^e and Phi = (1/a) y^(e+N) with signature (e+N, e+N, 0, 0).  Derived at (75,125), (50,75) [GGV3-controlled at that corner], F9 (56,84) [GGHV22 publishes l=3 at (7,21)] and F1 (48,64); every one agrees with the PROVED bridge identity a*q*M - H",
   "regime_grounded": true,
   "signature": {
-   "branch": "unramified (simple root at -1; all seven derived points)",
-   "cofactor_deg": 216,
-   "deg": 377,
-   "mult_y_plus_1": 54,
-   "ord_y": 107
+   "branch": "residual-free (deg g = deg C - ord C = 0, so C is a monomial: no (y+1) place, no residual H2, and the common-root gauge branch is vacuous)",
+   "cofactor_deg": 0,
+   "deg": 22,
+   "mult_y_plus_1": 0,
+   "ord_y": 22
   }
  },
  "presentations": {
@@ -106,14 +102,14 @@
    "master_identity_shape": "f_D = sum_{f=0}^{F} Phi^f * e^(E - s*f) * h_f == 0 in Q[y]",
    "parameters": null,
    "phi_normalized": {
-    "H": "y**4 - y**3 + y**2 - y + 1",
+    "H": "1",
     "H_note": null,
-    "deg_u_gap": 0,
+    "deg_u_gap": null,
     "form": "Phi_stripped = Phi_full / (lc * y^ord) = t^mult * u_gap * H^mult, t = y+1, deg u_gap = gap, H = (y^dg+1)/(y+1)",
-    "lc": "-1/10",
-    "mult": 54,
+    "lc": "1/2",
+    "mult": 0,
     "note": "instantiated from the corner law; the underlying Phi_full = f*C^N",
-    "total_stripped_degree": 270
+    "total_stripped_degree": 0
    },
    "purpose": "tropical / infinity / discovery layers (window-generic engines)",
    "schematic_note": "the tower data (D,F,E,s) requires the case's cascade construction; no f31-analogue exists off (72,108) (corner-144 recurrence: skeleton yes, numerics no \u2014 INDUCTIVE_PROGRAM.md T2). No numeric guess is offered; building the case's C-series/D-transform is the instantiating computation."

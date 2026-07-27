@@ -33,7 +33,7 @@ Notation: `t` = chart exponent, `κ = t-2` (the standard class, and what
 
 | # | statement | status |
 |---|---|---|
-| **A** | `ord_y(Φ) = a·q·M − H` — an **exact identity**, so `denom(ord_y Φ / M) = q_window`. The analytic window denominator IS the combinatorial corner invariant. | **PROVED** from the repo's `ρ`, `N` formulas (whose generality is **INFERRED**, §6) |
+| **A** | `ord_y(Φ) = a·q·M − H` — an **exact identity**, so `denom(ord_y Φ / M) = q_window`. The analytic window denominator IS the combinatorial corner invariant. | **PROVED.** (Upgraded 2026-07-27: the `ρ`/`N` generality this rests on is no longer INFERRED — `ρ` is proved outright, `N` modulo the Φ-identification, and `205` at `(8,28)/(3,4)/144` was independently confirmed. `BRIDGE_GENERALITY.md`, §6 row 2.) |
 | **B** | Monomial `C` (`q = 1`) with `κ = t−2` forces the Bezout corner integer to `−1`, hence `gcd(M,H) = 1` and **`q_window = M`, maximal, at every corner and every family member**. | **PROVED** |
 | **C** | `q_window = 1` requires `ord_y C ≥ t` (given `a+b > t−2`, true on all 34 rows). A monomial has `ord_y C = 1`. So the `(72,108)` regime is **arithmetically impossible** at a monomial corner, not merely unobserved. | **PROVED** |
 | **D** | Therefore the ord-side **carry obstruction is TOTAL** at every monomial corner: *every* split of `M`, every `k`, carry `∈ [1, k−1]`, never `0` — decided with **no split enumeration and no `w(e)` datum**. | **PROVED** (carry arithmetic) + **EXACT-CHECKED** on 9337 splits |
@@ -286,7 +286,7 @@ The **class of nine** (`t = 4`, retraction fails): eight rows at `M = 17`, and
 | item | status |
 |---|---|
 | Bridge identity `ord_y(Φ) = a·q·M − H` as an algebraic consequence of `ρ = q(b−a)+1`, `N = a·M − 2b`, `ord_y Φ = ρ + N·q` | **PROVED** (symbolic) |
-| **that those three formulas hold at a general corner** | **INFERRED.** `window_functions_75_125` states them inside the F2-family block (`ORD_C = 1`). They are confirmed at `(72,108)` (`q = 7`, `b−a = 1`, reproducing the published `204`) and across F2 rungs `a = 2..8` (`q = 1`, `b−a = a−1` varying) — i.e. on a 1-dimensional slice in each variable **separately**. The joint `(q, b−a)` dependence is untested. **This is the load-bearing soft spot of the whole writeup.** |
+| **that those three formulas hold at a general corner** | **DISCHARGED 2026-07-27 — see `BRIDGE_GENERALITY.md` / `bridge_generality.py` (59/59).** `ρ = q(b−a)+1` is now **PROVED** unconditionally (a local triangular recursion at `y=0`; the only excluded locus is `t = q(κ+1)`, whose sole standard-class point `(t,κ,q)=(2,0,2)` is off every published row) and is **branch-independent**. `N = a·M−2b` is **PROVED** from the D-transform exponent `a·w−1`, itself derived from the `a`-th-root expansion, plus slice-sum additivity — modulo the unchanged identification of `Φ` with the cleared slice-`M` object. The decisive test passed: `ord_y(Φ) = 205` at `(8,28)/(3,4)/144`, derived with **neither** formula, matching `a·q·M − H`. The joint `(q,b−a)` direction is now tested at five corners and swept abstractly over `q ∈ 1..8 × b−a ∈ 1..6`. *Was:* "**INFERRED** … the load-bearing soft spot of the whole writeup." |
 | `q = 1, κ = t−2 ⟹ gcd(M,H) = 1 ⟹ q_window = M` | **PROVED** |
 | `q_window = 1` impossible at a monomial corner; `q_window = 1 ∧ a+b > t−2 ⟹ q ≥ t` | **PROVED** |
 | Total-carry lemma (carry `∈ [1,k−1]`, never 0, when `gcd(α,M)=1`) | **PROVED**; exact-checked on 9337 splits |
@@ -420,11 +420,16 @@ kill. Marked **CLAIMED, NOT CHECKED** in §6 deliberately.
   `F_3(3,2)/75`, and every other `(a,b) = (2,3)`, `t = 4` row — **eight of the nine**.
   Only weight-normalised consequences fail to transfer. **This is the strongest
   surviving lead and it was not visible before.**
-* **The `ρ`/`N` generality gap (§6) is unresolved** and is the one place this
-  writeup could be wrong in a way that matters. A single further corner with an
-  independently derived `ord_y(Φ)` — `(8,28)/(3,4)/144`, where the bridge predicts
-  `205` — would settle it. `PHI_KNOWN` in `corner_atlas.py` has one entry; a
-  second would turn the bridge from INFERRED to CHECKED-in-two-directions.
+* ~~**The `ρ`/`N` generality gap (§6) is unresolved**~~ — **CLOSED 2026-07-27,
+  `BRIDGE_GENERALITY.md`.** The predicted `205` at `(8,28)/(3,4)/144` was derived
+  independently (generic linear solve for `f`, built D-transform tower for `N`)
+  and **confirmed**. Better than checked-in-two-directions: `ρ = q(b−a)+1` is now
+  **PROVED** at every corner, so the slice worry is dissolved rather than
+  outvoted. `PHI_KNOWN`'s one entry is superseded by independent derivations at
+  **all 15** chart signatures / **all 34** rows, including all six non-monomial
+  ones. Consequence for this writeup: §0 row **A**, §4's TOTAL CARRY application,
+  §4's 31 `G5` resolutions and §9's class-wide Φ-divisor closure no longer inherit
+  an inferred premise on the `ρ`/`N` side.
 * **`(8,32)` remains the outlier.** `gamma_from_corner.py` finds no surviving
   branch there at all; nothing here changes that, and its window arithmetic
   (`M = 17`, `q_window = 17`, `α = 30`) is *identical* to `(50,75)`'s, so the

@@ -96,12 +96,32 @@ REGIME_STATUS = {
                          evidence="no such length-1 survey row uses it alone; "
                                   "covered by the unified law's gap=0 limit"),
     (False, True):  dict(name="gap0_r_pos", grounded=True,
-                         evidence="derived: (108,144), (75,125), F9 (56,84), "
-                                  "F2 j=0 (50,75), F14 (66,231) — PHI_75_125/"
-                                  "PHI_CORNER4/PHI_F14, all MATCH"),
+                         evidence="derived: (108,144), F14 (66,231) — "
+                                  "PHI_75_125/PHI_F14, all MATCH.  [2026-07-27: "
+                                  "(75,125), (50,75) and F9 (56,84) LEFT this "
+                                  "regime — their corners are guard-refused, so "
+                                  "they are monomial, not gap0_r_pos]"),
     (True,  False): dict(name="resonance_gap_r0", grounded=True,
-                         evidence="audited (72,108) + derived F1 (48,64) "
-                                  "(PHI_F14.md: unit cofactor of degree gap)"),
+                         evidence="audited (72,108) gap=4 + derived F17 (66,99) "
+                                  "gap=4 and F8 (63,147) gap=2 (PHI_F14.md: unit "
+                                  "cofactor of degree exactly gap), all on "
+                                  "RETRACTING corners.  [2026-07-27: F1 (48,64) "
+                                  "LEFT this regime — corner (4,12) is refused, "
+                                  "its repaired gap is -1/3, and F17/F8 replace "
+                                  "it at two distinct gap values]"),
+    # 2026-07-27.  The regime the retraction guard forces at a REFUSED corner:
+    # C = y a monomial, deg C = ord C = 1, dg = 0, gap = -1/t < 0.  There is no
+    # residual g, hence no (y+1) place and no cofactor, and Phi is a monomial.
+    "monomial":     dict(name="monomial_corner", grounded=True,
+                         evidence="forced, not fitted: at deg C = ord C = 1 the "
+                                  "forcing ODE collapses to a*A*(t-kappa-1) = "
+                                  "a*A = 1, so f = (1/a) y^e and Phi = (1/a) "
+                                  "y^(e+N) with signature (e+N, e+N, 0, 0).  "
+                                  "Derived at (75,125), (50,75) [GGV3-controlled "
+                                  "at that corner], F9 (56,84) [GGHV22 publishes "
+                                  "l=3 at (7,21)] and F1 (48,64); every one "
+                                  "agrees with the PROVED bridge identity "
+                                  "a*q*M - H"),
     (True,  True):  dict(name="gap_pos_r_pos", grounded=True,
                          evidence="derived RAMIFIED law at F7 (42,147), F3, "
                                   "F10, F16 (PHI_F7.md): the old conjecture "
@@ -117,26 +137,54 @@ REGIME_STATUS = {
 }
 
 # Known derived/audited corner-law points: tag -> (signature, source).
+# 2026-07-26 REPAIR (PASSPORT_75_125_REPAIR.md): the (5,20) corner has t=4, kappa=2, C=y (deg C=ord C=1), NOT t=5, kappa=3, C=y^2(y^3+1).  GGV5's final chain corner (7\\5,2) is chart data only on the retraction shape b0=l(a0-1), which (5,20) fails; l = ceil(20/5) = 4.  Both F2 rows below move: (75,125) N 98->77, sig (504,201,101,202)->(80,80,0,0), lc -1/9->1/3; (50,75) N 36->28, sig (189,75,38,76)->(30,30,0,0), lc -1/6->1/2.  The guard lives in polygon_reduction.py sec.0b.
 KNOWN_POINTS = {
     "GGHV_72_108":   ((238, 204, 30, 4),   "STATE.md (audited) / PHI_F14.md"),
     "GGHV_108_144":  ((550, 205, 69, 276), "PHI_75_125.md / corner-144"),
-    "F2_j1_75_125":  ((504, 201, 101, 202), "PHI_75_125.md"),
-    "F9_j0_56_84":   ((377, 107, 54, 216), "PHI_CORNER4.md"),
-    "F2_j0_50_75":   ((189, 75, 38, 76),   "PHI_CORNER4.md"),
+    "F2_j1_75_125":  ((80, 80, 0, 0),      "PHI_75_125.md [REPAIRED 2026-07-26]"),
+    # 2026-07-27 SECOND CHART REPAIR.  The guard refuses every corner except
+    # (6,15), (8,28) and (9,24), so the two rows below move as well:
+    #   F9 j=0 (56,84) at (7,21): t 7->3, deg C 7->1, ord C 2->1, N 52->20,
+    #     signature (377,107,54,216) -> (22,22,0,0), lc -1/10 -> 1/2.  (7,21) is
+    #     refuted IN PRINT -- GGHV22 2204.14178.tex:1394 publishes l=3, [P,Q]=x.
+    #   F1 j=0 (48,64) at (4,12): t 4->3, deg C 4->1, ord C 3->1, N 67->49,
+    #     signature (275,205,69,1) -> (51,51,0,0), lc 1/15 -> 1/3, and the unit
+    #     cofactor 4y-1 disappears (there is no residual at a monomial corner).
+    # Both repaired ord_y values agree with the PROVED bridge identity a*q*M - H
+    # (22 and 51), which bridge_generality.py MUT F independently displaces from
+    # the stale 107 and 205.
+    "F9_j0_56_84":   ((22, 22, 0, 0),      "PHI_CORNER4.md [REPAIRED 2026-07-27]"),
+    "F2_j0_50_75":   ((30, 30, 0, 0),      "PHI_CORNER4.md [REPAIRED 2026-07-26]"),
     "F14_j0_66_231": ((375, 165, 42, 168), "PHI_F14.md"),
-    "F1_j0_48_64":   ((275, 205, 69, 1),   "PHI_F14.md"),
+    "F1_j0_48_64":   ((51, 51, 0, 0),      "PHI_F14.md [REPAIRED 2026-07-27]"),
+    # replacement points derived on RETRACTING corners (PHI_F14.md / PHI_F7.md,
+    # 2026-07-27), so the gap>0 regimes no longer rest on refused corners:
+    "F17_j0_66_99":  ((195, 169, 22, 4),   "PHI_F14.md [NEW 2026-07-27: r=0, gap=4]"),
+    "F8_j0_63_147":  ((448, 371, 75, 2),   "PHI_F14.md [NEW 2026-07-27: r=0, gap=2]"),
+    "F15_j0_99_231": ((672, 371, 297, 4),  "PHI_F7.md [NEW 2026-07-27: dg=4 ramified]"),
 }
 
 # Known forcing polynomials (gap-regime unit cofactors) and leading constants,
 # from the landed derivations.  Registry, not derivation.
 KNOWN_FORCING = {
     "GGHV_72_108": "2048*y**4 - 512*y**3 + 320*y**2 - 240*y + 195",
-    "F1_j0_48_64": "4*y - 1",
+    # RETIRED 2026-07-27: "F1_j0_48_64": "4*y - 1".  At the repaired (4,12) chart
+    # C = y is a monomial, gap = -1/3 < 0, and there is no unit cofactor at all --
+    # so there is no forcing polynomial to register.  The gap>0/r=0 regime's
+    # cofactors now come from F17 (deg 4) and F8 (deg 2), both retracting.
+    "F17_j0_66_99": "243*y**4 - 81*y**3 + 54*y**2 - 42*y + 35",
+    "F8_j0_63_147": "9*y**2 - 3*y + 2",
 }
 KNOWN_LC = {
-    "GGHV_72_108": "-1/6630", "F2_j1_75_125": "-1/9", "F9_j0_56_84": "-1/10",
-    "F2_j0_50_75": "-1/6", "F14_j0_66_231": "-1/10", "F1_j0_48_64": "1/15",
+    "GGHV_72_108": "-1/6630", "F2_j1_75_125": "1/3", "F9_j0_56_84": "1/2",
+    "F2_j0_50_75": "1/2", "F14_j0_66_231": "-1/10", "F1_j0_48_64": "1/3",
+    "F17_j0_66_99": "-1/910", "F8_j0_63_147": "-1/42",
+    "F15_j0_99_231": "-1/105",
 }
+# Every MONOMIAL-corner leading constant is A = 1/a exactly, because C = y makes
+# the forcing ODE collapse to a*A*(t*e - coef) = a*A*(t - kappa - 1) = a*A = 1.
+# That is why F2 j=0 and F9 j=0 both read 1/2 (a=2) and F2 j=1 and F1 j=0 both
+# read 1/3 (a=3): at a monomial corner the constant sees nothing but a.
 
 KILL_CLASSES = {"C08": 105, "C20": 170}   # GALOIS_LIBRARY.md census
 
@@ -306,9 +354,26 @@ def transfer_verdicts(label, disc_class):
 # Corner signature + law
 # ---------------------------------------------------------------------------
 
+def bridge_ord(a, b, t, kappa, ordC):
+    """ord_y(Phi) = a*q*M - H  --  the INDEPENDENT target (BRIDGE_GENERALITY.md).
+
+    PROVED there, not fitted anywhere: rho := ord_y(f) = q(b-a)+1 by the local
+    triangular recursion at y=0 (unique excluded locus t = q(kappa+1), whose only
+    standard-class point is (t,kappa,q) = (2,0,2), off every published row), and
+    N = a*M - 2b from the built D-transform tower.  q here is ord_y(C).
+    """
+    s = a + b
+    return a * ordC * (t * s - (kappa + 1)) - (ordC * s - 1)
+
+
 def corner_signature(a, b, t, a0, q):
     """(a,b,t,kappa,a0,q,e,r,gap,dg,N) with kappa = t-2 (structural,
-    PHI_CORNER4.md) and the PHI_F14.md mini-lemmas."""
+    PHI_CORNER4.md) and the PHI_F14.md mini-lemmas.
+
+    2026-07-27: `a0` and `q` here mean deg_y(C) and ord_y(C).  They equal the
+    corner coordinate a0 and GGV5's b_final ONLY on the retraction shape; every
+    caller must obtain them from polygon_reduction.corner_chart_data.
+    """
     kappa = t - 2
     e = b - a + 1
     r = a0 - q - 1
@@ -321,17 +386,61 @@ def corner_signature(a, b, t, a0, q):
                 dg=dg, N=N)
 
 
+# ---------------------------------------------------------------------------
+# 2026-07-26 corner-law generalizations (PASSPORT_75_125_REPAIR.md).  See the
+# patch note in the repair doc; both are forced by the (5,20) corner, which is
+# the first case with C a MONOMIAL (deg g = 0) and with a non-integral gap.
+# ---------------------------------------------------------------------------
+def gap_effective(gap):
+    """The resonance gap AS AN EXTRA UNIT-FACTOR DEGREE.
+
+    gap = (q-1) - a0/t is the resonant degree minus the pure-ansatz degree of f.
+    It contributes an extra factor only when it is a POSITIVE INTEGER ((72,108):
+    gap = 4).  Negative or non-integral gap means the resonance does not sit at
+    or above the ansatz degree, no extra factor appears, and the pure ansatz is
+    exact -- effective gap 0.  At the repaired (5,20) corner gap = -1/4 and the
+    independent ODE solve confirms deg f = rho exactly.
+    """
+    from fractions import Fraction as _F
+    g = _F(gap)
+    return int(g) if (g.denominator == 1 and g > 0) else 0
+
+
+def mult_and_cofactor(e, N, a0, q, gap):
+    """(mult_(y+1), cofactor_deg) with the residual-free branch dg = a0-q = 0.
+
+    dg > 0 : g = y^dg + 1 contributes (y+1)^(e+N) and a residual H2 = g/(y+1) of
+             degree dg-1, so mult = e+N and cof = gap + (dg-1)*(e+N).
+    dg == 0: C is a MONOMIAL.  There is NO g, hence no (y+1) place and no
+             residual: mult = 0 and cof = gap.
+    """
+    ge = gap_effective(gap)
+    dg = a0 - q
+    if dg == 0:
+        return 0, ge
+    return e + N, ge + (dg - 1) * (e + N)
+
+
 def law_signature(sig):
     """Corner law.  deg/ord hold on every branch (PHI_F7.md); mult/cofactor
     split by regime: unramified (PHI_F14.md, seven points) vs the ramified
     gap>0,r>0 regime (PHI_F7.md, four points, ramified-branch selection).
     Requires integral gap."""
-    assert sig["gap_den"] == 1, "non-integral gap: law prediction undefined"
-    g, e, N, a0, q, r = sig["gap"], sig["e"], sig["N"], sig["a0"], sig["q"], sig["r"]
+    from fractions import Fraction as _F
+    _graw = _F(sig["gap_num"], sig["gap_den"])
+    g = gap_effective(_graw)          # 2026-07-26: extra factor only if a POS INT
+    e, N, a0, q, r = sig["e"], sig["N"], sig["a0"], sig["q"], sig["r"]
     dg = sig["dg"]
     deg = (e * a0 - q + 1) + g + N * a0
     ordy = (e - 1) * q + 1 + N * q
-    if g > 0 and r > 0:
+    if dg == 0:
+        # 2026-07-26: C is a MONOMIAL (the repaired (5,20) corner).  No residual
+        # g, hence no (y+1) place and no residual cofactor.
+        mult, cof = 0, g
+        branch = ("residual-free (deg g = deg C - ord C = 0, so C is a monomial: "
+                  "no (y+1) place, no residual H2, and the common-root gauge "
+                  "branch is vacuous)")
+    elif g > 0 and r > 0:
         mult = dg * (e + N) - (dg - 1)
         cof = g + r
         branch = ("ramified (g has a forced double root at -1; selected by "
@@ -445,16 +554,32 @@ def build_galois_section(tag, sig):
     elif gap_int == 0 and dg == 1:
         poly = sp.Integer(1)
         rationale = "trivial residual (dg=1) and gap=0: no forcing candidate"
+    elif dg == 0:
+        # 2026-07-26.  C is a MONOMIAL: there is no residual polynomial at all,
+        # so the Galois-transfer layer is VACUOUS here -- not "unknown pending an
+        # ODE solve", but empty by construction.  At the repaired (5,20) corner
+        # this replaces a residual H2 = y^2-y+1 (label C2, disc class -3) that
+        # only existed because deg C was wrongly 5.
+        poly = None
+        rationale = ("VACUOUS: deg g = deg C - ord C = 0, so C is a monomial and "
+                     "there is NO residual polynomial -- the forcing-polynomial "
+                     "/ Galois-descent layer has no input at this corner.  This "
+                     "is not a gap in the derivation; it is the absence of the "
+                     "object.  [2026-07-26; PASSPORT_75_125_REPAIR.md]")
     else:
         poly = None
         rationale = ("UNKNOWN: gap>0 unit cofactor not in registry (requires "
                      "the case's ODE solve)" if (gap_int is None or gap_int > 0)
                      else "UNKNOWN: dg even — residual mechanism underived")
     if poly is None:
+        _vac = rationale.startswith("VACUOUS")
         return dict(forcing_candidate=dict(poly=None, rationale=rationale),
-                    galois=None, verdicts={k: "UNKNOWN (no forcing candidate)"
-                                           for k in KILL_CLASSES},
-                    rule="GALOIS_LIBRARY.md sec.4", status="UNKNOWN")
+                    galois=None,
+                    verdicts={k: ("VACUOUS (no residual polynomial exists)"
+                                  if _vac else "UNKNOWN (no forcing candidate)")
+                              for k in KILL_CLASSES},
+                    rule="GALOIS_LIBRARY.md sec.4",
+                    status=("VACUOUS" if _vac else "UNKNOWN"))
     glab = galois_label(poly)
     verd = transfer_verdicts(glab["label"], glab["disc_class"])
     status = ("AUDITED (this is the home case: kills C08+C20 are proved here)"
@@ -485,6 +610,7 @@ def compile_case(name, j=None):
         scd = SPECIAL_CASES[name]
         a, b = scd["pair"]
         t, a0, q = scd["t"], scd["a0"], scd["q"]
+        q_chart = q          # special cases carry chart data directly
         tag = name
         case_block = dict(
             tag=tag, family=None, j=None, m=a, n=b, a=a, b=b,
@@ -506,7 +632,75 @@ def compile_case(name, j=None):
         v11 = A0[0] + A0[1]
         degrees = (v11 * m, v11 * n)
         a, b = sorted((m, n))
-        a0, t = A0[0], l
+        # 2026-07-26 (PASSPORT_75_125_REPAIR.md).  `a0, t = A0[0], l` IS the
+        # broken dictionary: it reads GGV5's final chain corner (p\l,q) as chart
+        # data (t = l_final, deg C = a0, ord C = b_final).  That is valid only on
+        # the RETRACTION SHAPE b0 == l_chart*(a0-1) with l_chart = ceil(b0/a0).
+        # We now consult the guard.  Scope discipline: this lane REPAIRS the
+        # (5,20) corner, where GGV3's published reduction of (50,75) pins
+        # l_chart = 4; every OTHER corner that fails the shape is FLAGGED here and
+        # left numerically as-is, because changing it would move landed
+        # signatures (F9 at (7,21) etc.) that this lane has no mandate over.
+        #
+        # 2026-07-27.  The "(5,20) only, everything else FLAGGED" scope of the
+        # 2026-07-26 patch is CLOSED: every refused corner is now repaired
+        # through the guard.  What made that possible is an INDEPENDENT target
+        # that did not exist on 2026-07-26 -- the bridge identity
+        #     ord_y(Phi) = a*q*M - H,   M = t(a+b)-(kappa+1), H = q(a+b)-1,
+        # PROVED in bridge_generality.py (rho = q(b-a)+1 by a local triangular
+        # recursion at y=0; N = a*M-2b from the built D-transform tower).  So a
+        # repaired row is no longer "changed on our own authority": it is checked
+        # against a number this file does not compute.  See bridge_ord() below.
+        import polygon_reduction as _pr
+        _l_chart = _pr.chart_exponent(A0[0], A0[1])
+        _retracts = _pr.has_retraction(A0[0], A0[1], _l_chart)
+        _cd = _pr.corner_chart_data(A0[0], A0[1], l_final=l, b_final=q,
+                                    who="case_compiler %s" % fam)
+        a0, t, q_chart = _cd["deg_C"], _cd["t"], _cd["ord_C"]
+        if _retracts:
+            assert (t, a0, q_chart) == (l, A0[0], q), \
+                ("retraction shape holds but the dictionary disagrees", fam)
+        else:
+            _extra = ""
+            if tuple(A0) == (5, 20):
+                _extra = ("  External control: GGV3 1406.0886 sec.5 "
+                          "(tex:1723-1727) reduces the sibling (50,75) at this "
+                          "corner to [P_1,Q_1] = x^2, deg(P_1) = 10, "
+                          "deg(Q_1) = 15 -- three published integers, all "
+                          "reproduced by l=4 and all contradicted by l=5.")
+            elif tuple(A0) == (7, 21):
+                _extra = ("  This corner is refuted IN PRINT: GGHV22 "
+                          "2204.14178.tex:1394 publishes the chart "
+                          "phi_3(y) = y x^3 with [P,Q] = x here, i.e. l = 3 and "
+                          "kappa = 1, against GGV5's l_final = 7.")
+            judgment.append(
+                "[REPAIRED 2026-07-27] corner %s does NOT satisfy the retraction "
+                "shape b0 == l_chart*(a0-1) (l_chart = ceil(b0/a0) = %d, so "
+                "l_chart*(a0-1) = %d != %d), so GGV5's final-corner dictionary "
+                "(t, deg C, ord C) = (l_final, a0, b_final) = (%d,%d,%d) is "
+                "REFUSED by polygon_reduction.final_corner_dictionary.  Chart "
+                "data DERIVED instead: t = %d, kappa = %d, and (no vertical top "
+                "face) C = y is a MONOMIAL with deg C = ord C = 1.  The repaired "
+                "ord_y(Phi) is checked against the PROVED bridge identity "
+                "ord_y(Phi) = a*q*M - H (BRIDGE_GENERALITY.md), which this "
+                "compiler does not compute.%s  See PASSPORT_75_125_REPAIR.md."
+                % (tuple(A0), _l_chart, _l_chart * (A0[0] - 1), A0[1],
+                   l, A0[0], q, t, t - 2, _extra))
+            if A0p != (1, 0):
+                judgment.append(
+                    "[CONDITIONAL, chart_exponent scope] A0' = %s != (1,0).  The "
+                    "rule l = ceil(b0/a0) is [INFERRED] and is validated only "
+                    "against A0'=(1,0) published reductions, so this row's "
+                    "repaired t is CLAIMED, not exact-checked.  It is still "
+                    "strictly better than the refused dictionary's, which is "
+                    "known-invalid off the retraction shape.%s"
+                    % (A0p, "  Corner (9,21) additionally has NO corroborating "
+                            "row in corner_atlas.json."
+                       if tuple(A0) == (9, 21) else
+                       "  Corner (8,24) IS corroborated by corner_atlas.json rows "
+                       "F_22(2,3)/96 and F_24(3,4)/128 (t=3, deg C = ord C = 1)."))
+        # NOTE q stays the CHAIN quantity b_final (the Diophantine identity and
+        # the A1 label are chain facts); q_chart is the CHART's ord_y(C).
         dio = (m + n) * q * k - n * (q * l - p)
         assert dio == k, "%s: Diophantine identity failed" % fam
         tag = "%s_j%d_%d_%d" % (fam, j, degrees[0], degrees[1])
@@ -537,21 +731,70 @@ def compile_case(name, j=None):
             judgment.append("[conjectural] k = %d != 1: N-formula unverified "
                             "at k=2 (phi_corner4.py survey note)" % k)
 
-    sig = corner_signature(a, b, t, a0, q)
-    regime_key = ((sig["gap"] is None or sig["gap"] > 0), sig["r"] > 0)
+    sig = corner_signature(a, b, t, a0, q_chart)
+    # 2026-07-27 LABEL-INTEGRITY FIX.  The old key was
+    #     ((gap is None or gap > 0), r > 0)
+    # which sent every MONOMIAL corner to "resonance_gap_r0": at deg C = 1 the gap
+    # is -1/t (non-integral, hence `None`) and r = dg - 1 = -1, so the first
+    # component was True and the second False.  That is exactly the failure mode
+    # this repair exists to remove -- a case whose numbers do not describe the
+    # regime its label names.  A monomial corner has NO resonance (gap < 0, so
+    # gap_effective = 0) and NO residual, so it gets its own regime.
+    if sig["dg"] == 0:
+        regime_key = "monomial"
+    else:
+        _graw0 = Fraction(sig["gap_num"], sig["gap_den"])
+        regime_key = (gap_effective(_graw0) > 0, sig["r"] > 0)
     regime = REGIME_STATUS[regime_key]
     conjectural_reasons = [jt for jt in judgment if jt.startswith("[conjectural]")]
     if not regime["grounded"]:
         conjectural_reasons.append(
             "[conjectural] regime %s has no derived point: %s"
             % (regime["name"], regime["evidence"]))
-    if sig["gap"] is None:
+    # 2026-07-26: a non-integral gap is no longer a dead end.  gap = (q-1)-a0/t
+    # is the resonant degree minus the pure-ansatz degree of f; it produces an
+    # extra unit factor only when it is a POSITIVE INTEGER.  Negative or
+    # non-integral gap means no resonance at or above the ansatz degree, so the
+    # pure ansatz is exact and gap_effective = 0 -- the law IS defined.  Only a
+    # POSITIVE non-integral gap would leave it genuinely undefined.
+    from fractions import Fraction as _Fr
+    _g = _Fr(sig["gap_num"], sig["gap_den"])
+    if sig["gap"] is None and _g > 0:
         conjectural_reasons.append(
-            "[conjectural] gap = %d/%d is non-integral: the law's degree "
-            "formula is undefined as stated" % (sig["gap_num"], sig["gap_den"]))
+            "[conjectural] gap = %d/%d is POSITIVE and non-integral: the law's "
+            "degree formula is undefined as stated"
+            % (sig["gap_num"], sig["gap_den"]))
         law = None
     else:
+        if sig["gap"] is None:
+            judgment.append(
+                "[note 2026-07-26] gap = %d/%d is non-integral but NEGATIVE, so "
+                "gap_effective = 0: the resonance does not sit at or above the "
+                "pure-ansatz degree of f, no extra unit factor appears, and the "
+                "law applies with gap 0.  At a MONOMIAL corner (deg C = 1) this "
+                "is forced: gap = -1/t always, and the ODE's unique polynomial "
+                "solution is f = (1/a) y^e of degree exactly rho = e.  Confirmed "
+                "independently at (5,20) by phi_75_125_verify.py sec.E "
+                "(f = (1/3) y^3) and at every refused corner by the generic "
+                "solve in phi_corner4.derive."
+                % (sig["gap_num"], sig["gap_den"]))
         law = law_signature(sig)
+    # 2026-07-27: the law's ord_y component must equal the PROVED bridge identity
+    # for EVERY compiled case, landed or not.  This is the check whose absence let
+    # a superseded model be validated against superseded targets: the law and the
+    # targets were produced by the same chart dictionary, so agreement proved
+    # nothing.  bridge_ord() is computed from (a,b,t,kappa,ord C) alone.
+    if law is not None:
+        _bord = bridge_ord(a, b, sig["t"], sig["kappa"], sig["q"])
+        assert law["ord_y"] == _bord, \
+            ("ord_y(Phi) disagrees with the PROVED bridge identity a*q*M - H at "
+             "%s: law %s vs bridge %s" % (tag, law["ord_y"], _bord))
+        phi_bridge = dict(ord_y_bridge=int(_bord),
+                          formula="a*q*M - H, M = t(a+b)-(kappa+1), H = q(a+b)-1",
+                          status="PROVED (BRIDGE_GENERALITY.md); computed "
+                                 "independently of this compiler's corner law")
+    else:
+        phi_bridge = None
     known = KNOWN_POINTS.get(tag)
     if known is not None and law is not None:
         lawtuple = (law["deg"], law["ord_y"], law["mult_y_plus_1"],
@@ -563,9 +806,15 @@ def compile_case(name, j=None):
     if tag != "GGHV_72_108":
         judgment.append("[judgment] unreduced polygon: the corner's explicit "
                         "reduction is performed in no paper; standard type-II.b "
-                        "root shift + Laurent chart assumed (t=l, kappa=l-2, "
-                        "deg C=a0) — PHI_75_125/PHI_CORNER4/PHI_F14 shared "
-                        "conditional boundary")
+                        "root shift + ONE Laurent chart assumed, with "
+                        "t = l_chart = ceil(b0/a0) [INFERRED rule], kappa = l-2 "
+                        "[DERIVED from the fused-chart Jacobian], and deg C = a0 "
+                        "ONLY on the retraction shape b0 = l(a0-1) — off it "
+                        "deg C = 1.  (2026-07-27: this clause used to read "
+                        "'t=l, kappa=l-2, deg C=a0' with l = GGV5's l_final, "
+                        "which is the dictionary polygon_reduction now REFUSES.) "
+                        "PHI_75_125/PHI_CORNER4/PHI_F14 shared conditional "
+                        "boundary")
         slice_ok = (b - 1) % a == 0
         judgment.append("[judgment] N-formula: (b-1)/a %s integral, so the "
                         "corner-144 forcing-slice picture %s"
@@ -580,6 +829,7 @@ def compile_case(name, j=None):
 
     phi_block = dict(
         signature=law,
+        bridge_check=phi_bridge,
         regime=regime["name"], regime_grounded=regime["grounded"],
         regime_evidence=regime["evidence"],
         conjectural=bool(conjectural_reasons),

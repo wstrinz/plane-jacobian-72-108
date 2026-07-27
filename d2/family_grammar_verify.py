@@ -72,38 +72,63 @@ LANDED = {
     # and 98/(504,201,101,202) off the superseded (5,20) chart.
     ("F2", 0): (28, (30, 30, 0, 0)),
     ("F2", 1): (77, (80, 80, 0, 0)),
-    ("F9", 0): (52, (377, 107, 54, 216)),
+    # 2026-07-27 SECOND CHART REPAIR (nine more rows refused).  Three landed
+    # points move; each repaired ord_y agrees with the PROVED bridge identity
+    # a*q*M - H, and bridge_generality.py MUT F displaces two of them by a wholly
+    # independent route (F1 51<-205, F9 22<-107).
+    ("F9", 0): (20, (22, 22, 0, 0)),
     ("F14", 0): (36, (375, 165, 42, 168)),
-    ("F1", 0): (67, (275, 205, 69, 1)),
+    ("F1", 0): (49, (51, 51, 0, 0)),
     ("F7", 0): (36, (250, 165, 83, 2)),
+    # replacements derived on RETRACTING corners, so the gap>0 regimes no longer
+    # rest on a refused corner (PHI_F14.md / PHI_F7.md, 2026-07-27):
+    ("F17", 0): (20, (195, 169, 22, 4)),
+    ("F8", 0): (70, (448, 371, 75, 2)),
+    ("F15", 0): (70, (672, 371, 297, 4)),
     # F3 j=0 REPAIRED 2026-07-26 (second (5,20) repair); was 36/(189,112,75,2).
     # (75,50) is the (m,n)-swap of F2 j=0's (50,75) at the SAME corner (5,20), so
     # the reduced pair {min,max} = {2,3} and the chart (4,2,1,1) coincide and the
     # two rows MUST agree.  Independently derived in A10a-A10c below.
     ("F3", 0): (28, (30, 30, 0, 0)),
-    ("F10", 0): (270, (1917, 820, 1093, 4)),
+    ("F10", 0): (110, (114, 114, 0, 0)),
     ("F16", 0): (56, (528, 407, 117, 4)),
 }
 
 # explicit PHI_F7 ramified f-polynomials (for direct full-ODE substitution)
 LANDED_F = {
     "F7":  sp.Rational(1, 10)   * y**21 * (y + 1)**11 * (9*y**2 + 3*y - 1),
-    "F10": sp.Rational(1, 3740) * y**10 * (y + 1)**13 *
-           (2401*y**4 + 5831*y**3 + 4165*y**2 + 595*y - 85),
     "F16": sp.Rational(1, 330)  * y**15 * (y + 1)**5  *
            (243*y**4 + 81*y**3 - 27*y**2 + 15*y - 10),
+    # 2026-07-27 replacements, all on RETRACTING corners:
+    "F15": -sp.Rational(1, 105)  * y**21 * (y + 1)**17 *
+           (243*y**4 + 405*y**3 + 135*y**2 - 15*y + 5),
+    "F17": -sp.Rational(1, 910)  * y**9  * (y + 1)**2  *
+           (243*y**4 - 81*y**3 + 54*y**2 - 42*y + 35),
+    "F8":  -sp.Rational(1, 42)   * y**21 * (y + 1)**5  * (9*y**2 - 3*y + 2),
 }
 
 # F3's PHI_F7 polynomial, moved out of LANDED_F on 2026-07-26.  It is a correct
 # solution of the ODE of the corner data (t,kappa,q,dg) = (5,3,3,2) -- the
 # computation was never wrong -- but (5,20) does not HAVE that corner data, so it
 # is not a fact about F3.  A10d checks both halves of that sentence.
+# 2026-07-27: F10's rung polynomial joins F3's, for the same reason.  It exactly
+# solves the mu=4 ramified ODE of the corner data (t,kappa,q,dg) = (7,5,3,4), so
+# the arithmetic was never wrong -- but the corner (7,21) does not HAVE that chart
+# data.  Its chart is (3,1,1,1): C = y, no residual.  GGHV22 2204.14178.tex:1394
+# PUBLISHES l = 3 and [P,Q] = x at (7,21), so this one is refuted in print.
 SUPERSEDED_F = {
     "F3":  sp.Rational(1, 42)   * y**4  * (y + 1)**3  * (25*y**2 + 15*y - 3),
+    "F10": sp.Rational(1, 3740) * y**10 * (y + 1)**13 *
+           (2401*y**4 + 5831*y**3 + 4165*y**2 + 595*y - 85),
 }
 
-# published mu-rung signatures (ZETA_TAIL F12 eta=0; MU_RUNGS_F10)
-MU_RUNGS = {
+# 2026-07-27: BOTH published mu-rung witnesses are RETIRED -- see the A11 TRIPWIRE.
+# F12's rungs (ZETA_TAIL.md) sit at (8,24) and F10's (MU_RUNGS_F10.md) at (7,21);
+# both corners are guard-REFUSED, so dg = 0 and there is no residual g for (y+1)
+# to divide.  The rungs are VACUOUS, not unverified.
+MU_RUNGS = {}
+
+SUPERSEDED_MU_RUNGS = {
     ("F12", 1): (814, 506, 102, 206),
     ("F12", 2): (814, 506, 203, 105),
     ("F12", 3): (814, 506, 304, 4),
@@ -125,10 +150,41 @@ MU_RUNGS = {
 # CORNER property: F3 gets the identical (4,2,1,1).  The old table's disagreement
 # -- ord C = 2 for F2 but ord C = 3 for F3 at one corner -- was itself proof the
 # per-row datum b_final was being misread as chart data.  See A10a-A10f.
-REPAIRS = {
-    "F2": dict(t=4, degC=1, ordC=1, gap0=0),
-    "F3": dict(t=4, degC=1, ordC=1, gap0=0),
+#
+# 2026-07-27: the hand-written table is replaced by a DERIVATION from the guard,
+# built here from this file's OWN corner transcription (so it remains an
+# independent copy -- check A9b still compares it to family_grammar.py's).  Every
+# row whose corner fails the retraction shape is repaired, not just the two at
+# (5,20).  What licensed completing it is the PROVED bridge identity
+# ord_y(Phi) = a*q*M - H (BRIDGE_GENERALITY.md): each repaired row now has a
+# target this file does not compute.  See A10f for the updated scope note.
+import polygon_reduction as _prg                                 # noqa: E402
+
+# (A_0, l_final, b_final) per family -- GGV5 CHAIN data, transcribed here
+# independently of family_grammar.CORNERS.
+CORNERS = {
+    "F1":  ((4, 12), 4, 3),  "F2":  ((5, 20), 5, 2),  "F3":  ((5, 20), 5, 3),
+    "F4":  ((5, 20), 5, 3),  "F5":  ((5, 20), 5, 4),  "F6":  ((5, 20), 5, 4),
+    "F7":  ((6, 15), 3, 4),  "F8":  ((6, 15), 3, 5),  "F9":  ((7, 21), 7, 2),
+    "F10": ((7, 21), 7, 3),  "F11": ((7, 21), 7, 3),  "F12": ((8, 24), 4, 5),
+    "F13": ((9, 21), 3, 7),  "F14": ((9, 24), 3, 4),  "F15": ((9, 24), 3, 5),
+    "F16": ((9, 24), 3, 7),  "F17": ((9, 24), 3, 8),
 }
+
+REPAIRS = {}
+for _nm, (_A0, _lf, _bf) in CORNERS.items():
+    _cd = _prg.corner_chart_data(_A0[0], _A0[1], l_final=_lf, b_final=_bf,
+                                 who="family_grammar_verify " + _nm)
+    if not _cd["retraction"]:
+        REPAIRS[_nm] = dict(t=_cd["t"], degC=_cd["deg_C"], ordC=_cd["ord_C"],
+                            gap0=0)
+
+
+def bridge_ordy(a, b, t, kappa, ordC):
+    """ord_y(Phi) = a*q*M - H.  PROVED in BRIDGE_GENERALITY.md -- an INDEPENDENT
+    target: nothing in this file or in family_grammar.py derives it."""
+    s_ = a + b
+    return a * ordC * (t * s_ - (kappa + 1)) - (ordC * s_ - 1)
 
 
 def data(name, t, a0, q, ac, bc, A0p, k, degC=None, ordC=None, gap0=None):
@@ -264,22 +320,39 @@ census = {"PURE": [], "COFACTOR": [], "RUNG": [], "IRREGULAR": [],
 for nm, D in DAT.items():
     census[D["cls"]].append(nm)
 census.setdefault("CHART-DEGENERATE", [])
-ok("census PURE = {F9,F14} -- F2 LEFT this class on 2026-07-26",
-   set(census["PURE"]) == {"F9", "F14"})
-ok("census CHART-DEGENERATE = {F2,F3}: BOTH sit at (5,20), which does not retract, "
-   "so C = y is a monomial, dg = deg C - ord C = 0, and the pure closed form "
-   "f = -1/(a*dg) y^rho (y^dg+1)^e is UNDEFINED there (A = -1/(a*0)).  The landed "
-   "signatures still reproduce -- section E -- but the closed-form MECHANISM does "
-   "not exist and is no longer claimed.  Deriving what replaces it is open work. "
-   "The class is exactly the set of corners in this table off the retraction shape.",
-   set(census["CHART-DEGENERATE"]) == {"F2", "F3"})
-ok("census COFACTOR = {F1,F5,F6,F8,F17}",
-   set(census["COFACTOR"]) == {"F1", "F5", "F6", "F8", "F17"})
-ok("census RUNG (8 families) -- F3 LEFT this class on 2026-07-26; its 'ramified "
-   "rung' presupposed dg = 2, i.e. deg C = 5 and ord C = 3, which (5,20) does not "
-   "have",
-   set(census["RUNG"]) == {"F4", "F7", "F10", "F11", "F12", "F13", "F15", "F16"})
+# 2026-07-27: the census is REDRAWN by the completed repair.  Every one of the
+# eleven guard-refused rows is CHART-DEGENERATE (C = y, dg = 0), which leaves the
+# three genuine mechanism classes populated only by rows whose corner RETRACTS --
+# exactly the rows where those mechanisms describe an existing residual.
+ok("census PURE = {F14} only.  F2 left on 2026-07-26 and F9 on 2026-07-27, both "
+   "because their corners are guard-refused; F14's corner (9,24) retracts, so it "
+   "is the sole surviving family for which the pure closed form "
+   "f = -1/(a*dg) y^rho (y^dg+1)^e is a statement about an existing residual",
+   set(census["PURE"]) == {"F14"})
+ok("census CHART-DEGENERATE = the ELEVEN guard-refused rows {F1-F6, F9-F13}: every "
+   "one sits on a corner off the retraction shape, so C = y is a monomial, "
+   "dg = deg C - ord C = 0, and the pure closed form is UNDEFINED there "
+   "(A = -1/(a*0)).  The landed signatures still reproduce -- section E -- but the "
+   "closed-form MECHANISM does not exist and is not claimed.  The class is exactly "
+   "the set of corners in this table off the retraction shape, and equals REPAIRS",
+   set(census["CHART-DEGENERATE"]) == {"F1", "F2", "F3", "F4", "F5", "F6",
+                                       "F9", "F10", "F11", "F12", "F13"}
+   and set(census["CHART-DEGENERATE"]) == set(REPAIRS))
+ok("census COFACTOR = {F8,F17} -- F1, F5 and F6 left on 2026-07-27 (refused "
+   "corners (4,12) and (5,20)).  Both survivors retract, and F17 (gap=4) and F8 "
+   "(gap=2) are the two fresh derivations that replace F1 in this regime",
+   set(census["COFACTOR"]) == {"F8", "F17"})
+ok("census RUNG = {F7,F15,F16} -- F3 left on 2026-07-26 and F4, F10, F11, F12, F13 "
+   "on 2026-07-27, all for one reason: a 'ramified rung' presupposes a residual g "
+   "of degree dg >= 1, and a refused corner has dg = 0.  All three survivors "
+   "retract; F15 (dg=4) is the fresh derivation replacing F10",
+   set(census["RUNG"]) == {"F7", "F15", "F16"})
 ok("census: no length-1 IRREGULAR", census["IRREGULAR"] == [])
+ok("census: the three mechanism classes together are EXACTLY the six retracting "
+   "rows, and the degenerate class is exactly the eleven refused ones -- so class "
+   "membership is now a function of the CORNER, as it must be",
+   set(census["PURE"]) | set(census["COFACTOR"]) | set(census["RUNG"])
+   == {"F7", "F8", "F14", "F15", "F16", "F17"})
 
 # ---------------------------------------------------------------------------
 # A10. F3 IS NOW REPAIRED (2026-07-26, second (5,20) repair).
@@ -437,16 +510,85 @@ ok("A10d(2) and it does NOT solve the REPAIRED (5,20) ODE (t=4, C=y, e=2, "
    and full_ode_residual(DAT["F3"], 0, y**2 / 2) == 0)
 
 # A10f.  Scope of this repair, stated honestly.
-_DOWNSTREAM_UNREPAIRED_F3 = (
+# 2026-07-27.  The 2026-07-26 note recorded eight downstream modules as
+# KNOWN-SUSPECT for F3.  That list is now DISCHARGED -- all eight were swept in the
+# same pass that completed this file's repair -- and keeping it would leave a FALSE
+# statement inside a green checker, which is exactly the failure mode the A9/A10
+# blocks exist to prevent.  Replaced by an assertion of the NEW state, as a test
+# rather than as prose: the 2026-07-26 incident was a scope note going stale.
+_DOWNSTREAM_SWEPT = (
     "phi_f7.py", "phi_f7_verify.py", "phi_corner4.py", "phi_corner4_verify.py",
     "phi_f14.py", "phi_f14_verify.py", "case_compiler.py",
-    "ml_restriction_check.py",
+    "case_compiler_verify.py", "ml_restriction_check.py",
 )
-ok("A10f SCOPE: this repair covers family_grammar.py and this file only.  These "
-   "modules still carry F3 at (5,20) with l_final=5/b_final=3 used AS chart data "
-   "and are now KNOWN-SUSPECT for F3 (they were repaired for F2 only): %s"
-   % ", ".join(_DOWNSTREAM_UNREPAIRED_F3),
-   len(_DOWNSTREAM_UNREPAIRED_F3) == 8 and "F3" in REPAIRS)
+_swept_bad = []
+for _mod in _DOWNSTREAM_SWEPT:
+    try:
+        with open(_mod, encoding="utf-8") as _fh:
+            _src = _fh.read()
+    except OSError:
+        _swept_bad.append(_mod + " (missing)")
+        continue
+    if "corner_chart_data" not in _src and "chart_exponent" not in _src:
+        _swept_bad.append(_mod + " (no guard call)")
+ok("A10f SCOPE, 2026-07-27: the eight modules recorded on 2026-07-26 as "
+   "KNOWN-SUSPECT for F3 are all SWEPT -- each now obtains chart data through "
+   "polygon_reduction guard calls rather than from GGV5's final chain corner.  "
+   "Offenders: %s" % (_swept_bad or "none"),
+   not _swept_bad and "F3" in REPAIRS)
+ok("A10g SCOPE, and the repair is no longer per-row: REPAIRS is DERIVED from the "
+   "guard over the whole family table, so all ELEVEN refused rows are covered "
+   "(F1-F6, F9-F13), not just the two at (5,20).  The previously circulated "
+   "affected set {F1,F2,F3,F5,F9,F10} is INCOMPLETE -- it is the refused subset of "
+   "the twelve rows bridge_generality.py transcribes, not of these seventeen",
+   set(REPAIRS) == {"F1", "F2", "F3", "F4", "F5", "F6",
+                    "F9", "F10", "F11", "F12", "F13"})
+_bord_bad = []
+for _nm, (_A0, _lf, _bf) in CORNERS.items():
+    _D = DAT[_nm]
+    _av = int(sp.Integer(_D["a"].subs({j: 0})))
+    _bv = int(sp.Integer(_D["b"].subs({j: 0})))
+    _Nv = int(_D["N"].subs({j: 0}))
+    _ordy = int(sp.Integer(sig(_D, _Nv, 1)[1].subs({j: 0})))
+    if _ordy != bridge_ordy(_av, _bv, _D["t"], _D["kappa"], _D["ordC"]):
+        _bord_bad.append(_nm)
+ok("A10h THE INDEPENDENT TARGET: ord_y(Phi) from the grammar equals the PROVED "
+   "bridge identity a*q*M - H on ALL 17 families at j=0 (BRIDGE_GENERALITY.md; "
+   "rho = q(b-a)+1 by local recursion, N = a*M-2b by the built tower).  Before the "
+   "repair the grammar was checked only against targets the same chart dictionary "
+   "produced.  Violations: %s" % (_bord_bad or "none"), not _bord_bad)
+
+# ---------------------------------------------------------------------------
+# A11. TRIPWIRE -- the mu-LADDER HAS NO SURVIVING LANDED WITNESS.
+#
+# DECLINED, with the reason stated.  The two published intermediate-rung witnesses
+# (F12 eta=0 mu=1,2,3 from ZETA_TAIL.md; F10 eta=0 mu=2 from MU_RUNGS_F10.md) sit
+# on corners (8,24) and (7,21), both guard-REFUSED.  At a refused corner dg = 0 and
+# there is no residual g at all, so there is nothing for (y+1) to divide: the rung
+# is VACUOUS, not merely unverified.  We do NOT substitute the mu-graded law's own
+# value for, say, F15's mu=2 rung -- that would validate the law against itself,
+# the exact failure this repair removes.
+#
+# So the next person must state a VERIFIED target for an intermediate rung on a
+# corner that retracts.  These checks fail the moment MU_RUNGS is re-populated
+# without one.  (Pattern: the retired A10a-A10f tripwire.)
+# ---------------------------------------------------------------------------
+ok("A11a TRIPWIRE: MU_RUNGS is EMPTY -- no intermediate mu-rung (1 < mu < dg) has "
+   "a landed witness on a retracting corner.  Re-populating it requires a target "
+   "derived independently of the mu-graded law",
+   MU_RUNGS == {})
+ok("A11b and both retired witnesses really are on guard-REFUSED corners, so their "
+   "rungs are VACUOUS (dg = 0: no residual g for (y+1) to divide) rather than "
+   "unverified: F12 at (8,24), F10 at (7,21)",
+   {nm for nm, _mu in SUPERSEDED_MU_RUNGS} == {"F12", "F10"}
+   and all(not _prg.has_retraction(*CORNERS[nm][0]) and DAT[nm]["dg"] == 0
+           for nm, _mu in SUPERSEDED_MU_RUNGS))
+ok("A11c and what SURVIVES is only the mu = dg END of the ladder, on retracting "
+   "corners: F7 and F16 at dg=2, F15 at dg=4.  Every landed RUNG row uses mu = dg, "
+   "never an intermediate value",
+   all(DAT[nm]["dg"] >= 1 and _prg.has_retraction(*CORNERS[nm][0])
+       for nm in ("F7", "F15", "F16"))
+   and sorted({DAT[nm]["dg"] for nm in ("F7", "F15", "F16")}) == [2, 4])
 
 # ---------------------------------------------------------------------------
 # A9. DRIFT GUARD -- the two independent LANDED tables must AGREE.
@@ -594,6 +736,70 @@ for nm in census["RUNG"]:
            D["dg"] % 2 == 0)
 
 # ===========================================================================
+# D'. CHART-DEGENERATE: the mechanism that DOES hold at a monomial corner.
+#
+# 2026-07-27, and this section exists so that the completed repair does not merely
+# DELETE coverage.  Nine rows left the PURE / COFACTOR / RUNG classes today, which
+# withdrew their closed-form-mechanism checks from sections B, C and D -- correctly,
+# because those checks asserted the existence of a residual g that a refused corner
+# does not have, i.e. they asserted the very dictionary the corner refutes.  But a
+# repair whose only visible effect is a lower check count is indistinguishable from
+# a repair that quietly stopped testing something.  So the eleven refused rows are
+# verified POSITIVELY here instead:
+#
+#   at deg C = ord C = 1 the ODE  a{t c f' - coef c' f} = c^e  with c = y reads
+#       a*t*y*f' - a*coef*f = y^e,
+#   and f = A y^e gives  a*A*(t*e - coef) = a*A*(t - kappa - 1) = a*A = 1,
+#   so A = 1/a EXACTLY and f = (1/a) y^e -- with NO free parameter, NO residual to
+#   shape and NO root to place.  Phi = f*C^N is then the monomial (1/a) y^(e+N).
+# ===========================================================================
+for nm in census["CHART-DEGENERATE"]:
+    D = DAT[nm]
+    ok("%s degenerate: t*e - coef = t - kappa - 1 = 1 identically in j (the "
+       "identity that collapses the ODE at a monomial corner)" % nm,
+       sp.expand(D["t"] * D["e"] - D["coef"] - 1) == 0)
+    for jv in range(3):
+        av = int(sp.Integer(D["a"].subs({j: jv})))
+        bv = int(sp.Integer(D["b"].subs({j: jv})))
+        ev = bv - av + 1
+        f = sp.Rational(1, av) * y**ev
+        resid0 = full_ode_residual(D, jv, f, g=sp.Integer(1)) == 0
+        # UNIQUENESS, without assuming the shape: a fully generic linear solve.
+        Dmax = ev + 3
+        fc = sp.symbols("dg0:%d" % (Dmax + 1))
+        fgen = sum(fc[i] * y**i for i in range(Dmax + 1))
+        rg = full_ode_residual(D, jv, fgen, g=sp.Integer(1))
+        sols = sp.solve(sp.Poly(sp.expand(rg), y).all_coeffs(), fc, dict=True)
+        uniq = len(sols) == 1 and sp.expand(fgen.subs(sols[0]) - f) == 0
+        # and Phi is the MONOMIAL (1/a) y^(e+N), whose ord_y is the bridge value
+        Nv = int(D["N"].subs({j: jv}))
+        Phi = sp.expand(f * y**Nv)
+        monomial = len(sp.Poly(Phi, y).monoms()) == 1
+        ordy = min(m[0] for m in sp.Poly(Phi, y).monoms())
+        bridged = ordy == bridge_ordy(av, bv, D["t"], D["kappa"], D["ordC"])
+        ok("%s degenerate at j=%d: f = (1/%d) y^%d is the UNIQUE polynomial "
+           "solution (generic solve, no ansatz), Phi = (1/%d) y^%d is a MONOMIAL, "
+           "and its ord_y equals the PROVED bridge value %d"
+           % (nm, jv, av, ev, av, ev + Nv, ordy),
+           resid0 and uniq and monomial and bridged)
+    # and the withdrawn mechanism must genuinely FAIL here, not merely be unused:
+    # g = y^dg+1 with dg = 0 is the constant 2, which is not monic and is not a
+    # residual at all, so the pure closed form A = -1/(a*dg) does not even exist.
+    ok("%s degenerate: dg = 0, so the pure closed form's constant -1/(a*dg) is "
+       "UNDEFINED and the collapse identity y g' - dg g = -dg reads 0 = 0 -- the "
+       "mechanism is absent, which is why its checks are withdrawn rather than "
+       "failing" % nm,
+       D["dg"] == 0 and sp.expand(y * sp.diff(y**0 + 1, y) - 0 * (y**0 + 1)) == 0)
+
+ok("D': coverage bookkeeping -- the rows whose PURE/COFACTOR/RUNG mechanism checks "
+   "were WITHDRAWN on 2026-07-27 are exactly the guard-refused rows, and every one "
+   "of them is verified positively above instead.  Withdrawn: F1, F4, F5, F6, F9, "
+   "F10, F11, F12, F13 (F2 and F3 were already withdrawn on 2026-07-26)",
+   set(census["CHART-DEGENERATE"]) == set(REPAIRS)
+   and {"F1", "F4", "F5", "F6", "F9", "F10", "F11", "F12", "F13"}
+   <= set(census["CHART-DEGENERATE"]))
+
+# ===========================================================================
 # E. mu-graded corner law: landed points + published mu-rungs; identities
 # ===========================================================================
 for (nm, jv), (Nl, s) in LANDED.items():
@@ -617,7 +823,12 @@ for (nm, mu), s in MU_RUNGS.items():
 # dictionary the row refutes.  F7 is a RUNG row where the dictionary holds, so the
 # algebra is tested on the class it actually describes.
 Nn, mm = sp.symbols("Nn mm")
-for nm in ["F7", "F10", "F12", "F16"]:
+# 2026-07-27: F10 and F12 REPLACED BY F15 and F17.  As with F3 on 2026-07-26,
+# these identities are stated in terms of (a0, q, rho = (e-1)q+1, r = a0-q-1) and
+# so presuppose the final-corner dictionary; asserting them for a CHART-DEGENERATE
+# row would assert the very dictionary that row refutes.  F15 (RUNG, dg=4) and F17
+# (COFACTOR, r=0) both sit on the retracting corner (9,24).
+for nm in ["F7", "F15", "F16", "F17"]:
     D = DAT[nm]
     e, a0, q, rho, gap, r = D["e"], D["a0"], D["q"], D["rho"], D["gap"], D["r"]
     pure = e * a0 - q + 1

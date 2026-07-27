@@ -33,6 +33,16 @@ import sympy as sp
 from fractions import Fraction
 from math import gcd
 
+import polygon_reduction as pr
+
+
+def bridge(a, b, t, kappa, ordC):
+    """ord_y(Phi) = a*q*M - H.  PROVED in BRIDGE_GENERALITY.md; computed here by
+    neither phi_f14.py nor this file's own machinery -- an INDEPENDENT target."""
+    s = a + b
+    return a * ordC * (t * s - (kappa + 1)) - (ordC * s - 1)
+
+
 def _require(_cond, _msg):
     """Proof-critical check: fails loudly and exits nonzero, unaffected by python -O."""
     if not _cond:
@@ -66,13 +76,27 @@ def signature(Phi):
         Q, mult = q2, mult + 1
     return (deg, ordy, mult, deg - ordy - mult)
 
+# phi_f14.py is a REPORT: importing it runs its whole derivation and prints it.
+# Swallow that stream so this checker's own PASS/FAIL lines -- and any FAIL --
+# cannot be lost in it.  (Masking OUTPUT is fine; masking an EXIT CODE is the
+# trap, and nothing here touches exit codes.)
+import contextlib as _ctx, io as _io                        # noqa: E402
+_pf14_report = _io.StringIO()
+with _ctx.redirect_stdout(_pf14_report):
+    from phi_f14 import mult_and_cofactor, gap_effective    # noqa: E402
+
+
 def law(a, b, t, a0, q, gap):
-    """Unified law, kappa = t-2 eliminated (PHI_CORNER4 sec.2)."""
-    e, r = b - a + 1, a0 - q - 1
+    """Unified law, kappa = t-2 eliminated (PHI_CORNER4 sec.2).
+
+    2026-07-26: gap enters via gap_effective, mult/cofactor via the
+    residual-free branch (deg g = a0-q = 0 => mult = 0, cof = gap)."""
+    e = b - a + 1
     N = a * (t * (a + b - 1) + 1) - 2 * b
     rho = (e - 1) * q + 1
-    return N, ((e * a0 - q + 1) + gap + N * a0, rho + N * q,
-               e + N, gap + r * (e + N))
+    ge = gap_effective(gap)
+    mult, cof = mult_and_cofactor(e, N, a0, q, gap)
+    return N, ((e * a0 - q + 1) + ge + N * a0, rho + N * q, mult, cof)
 
 # ---------------------------------------------------------------- A. corner data
 FAMS = [  # (name, A0, p, l, q, k, m0, dm, n0, dn)   [GGV5 v11<=35, length-1]
@@ -90,24 +114,55 @@ ok((3+4)*3*1 - 4*(3*4-7) == 1, "A: F1 j=0 Diophantine = k = 1")
 ok(33*2 == 66 and 33*7 == 231, "A: F14 degrees v11*(m,n) = (66,231)")
 ok(16*3 == 48 and 16*4 == 64,  "A: F1 degrees v11*(m,n) = (48,64)")
 
-lem_gap, lem_dg = True, True
+# 2026-07-27: the mini-lemma is now stated in the GUARDED variables (deg C,
+# ord C) instead of (a0, b_final).  Pre-repair BOTH sides of the identity used
+# the same substitution, so it "held" on all 15 rows without saying anything
+# about any corner.  Chart data comes from polygon_reduction.corner_chart_data --
+# the one routine no consumer re-implements.
+lem_gap, lem_dg, REFUSED, RETRACT = True, True, [], []
+CHART = {}
 for name, A0, p, l, q, k, m0, dm, n0, dn in FAMS:
     j = 0
     while gcd(m0 + dm * j, n0 + dn * j) != 1:
         j += 1
     m, n = m0 + dm * j, n0 + dn * j
     a_, b_ = sorted((m, n))
-    t_, kap_, a0_ = l, l - 2, A0[0]
+    cd = pr.corner_chart_data(A0[0], A0[1], l_final=l, b_final=q,
+                              who="phi_f14_verify " + name)
+    t_, kap_, degC_, ordC_ = cd["t"], cd["kappa"], cd["deg_C"], cd["ord_C"]
+    CHART[name] = dict(cd, a=a_, b=b_, A0=A0, l_final=l, b_final=q)
     e_ = b_ - a_ + 1
     coef_ = t_ * (b_ - a_) + kap_ + 1
-    res_ = Fraction(coef_ * a0_, t_)
-    gap_ = res_ - (e_ * a0_ - q + 1)
-    lem_gap &= (gap_ == Fraction(q - 1) - Fraction(a0_, t_))
-    lem_dg &= (a0_ - q >= 1)
-ok(lem_gap, "A: mini-lemma gap = (q-1) - a0/t on all 15 standard-chart families")
-ok(lem_dg, "A: dg = a0-q >= 1 on all 15 (residual g = y^(a0-q)+1 well-defined)")
-ok(9 == 3 * (4 - 1), "A: F14 satisfies a0 = t(q-1)  <=>  gap = 0 (resonance exact)")
-ok(Fraction(3-1) - Fraction(4, 4) == 1, "A: F1 gap = (q-1) - a0/t = 1 > 0 (resonance broken)")
+    res_ = Fraction(coef_ * degC_, t_)
+    gap_ = res_ - (e_ * degC_ - ordC_ + 1)
+    lem_gap &= (gap_ == Fraction(ordC_ - 1) - Fraction(degC_, t_))
+    (RETRACT if cd["retraction"] else REFUSED).append(name)
+    lem_dg &= (degC_ - ordC_ >= 1) == cd["retraction"]
+ok(lem_gap, "A: mini-lemma gap = (ordC-1) - degC/t on all 15 standard-chart "
+            "families, in the GUARDED variables")
+ok(lem_dg, "A: dg = degC-ordC >= 1 EXACTLY on the retracting rows; at a refused "
+           "corner C is the monomial y and dg = 0 (no residual g at all)")
+ok(set(REFUSED) == {"F1", "F2", "F3", "F4", "F5", "F6", "F9", "F10", "F11"}
+   and set(RETRACT) == {"F7", "F8", "F14", "F15", "F16", "F17"},
+   "A: the guard REFUSES 9 of these 15 rows (F1-F6, F9-F11) and accepts 6 "
+   "(F7,F8,F14-F17).  F12/F13 are not in this table; phi_corner4_verify.py "
+   "covers the full 17 (11 refused)")
+ok(sorted({cd["t"] for cd in CHART.values()}) == [3, 4],
+   "A: t-census: every DERIVED chart exponent here is in {3,4}; t in {5,7} came "
+   "only from reading t = l_final at refused corners")
+ok(9 == 3 * (4 - 1) and CHART["F14"]["deg_C"] == 9 and CHART["F14"]["ord_C"] == 4,
+   "A: F14 satisfies degC = t(ordC-1)  <=>  gap = 0 (resonance exact), and its "
+   "corner (9,24) RETRACTS so the dictionary is valid there")
+ok(Fraction(8 - 1) - Fraction(9, 3) == 4 and CHART["F17"]["retraction"],
+   "A: F17 gap = (ordC-1) - degC/t = 4 > 0 (resonance broken) at a RETRACTING "
+   "corner -- the replacement for F1, whose corner (4,12) is refused")
+ok(Fraction(5 - 1) - Fraction(6, 3) == 2 and CHART["F8"]["retraction"],
+   "A: F8 gap = 2 > 0, r = 0, also retracting -- a SECOND gap value in the "
+   "r=0 regime, so it is no longer tested at one gap only")
+ok(not CHART["F1"]["retraction"] and CHART["F1"]["deg_C"] == 1
+   and Fraction(1 - 1) - Fraction(1, 3) < 0,
+   "A: and F1's repaired chart has deg C = 1, gap = -1/3 < 0 -- so (4,12) is NOT "
+   "in the gap>0/r=0 regime the pre-repair file probed there")
 
 # --------------------------------------------- B. residual identity, generic g
 a_, t_, kap_, a0_, q_ = 2, 3, 1, 9, 4          # F14
@@ -167,44 +222,74 @@ ok(sig14 == (375, 165, 42, 168),
 ok(sig14 == law14, f"D: F14 signature = law prediction {law14}  ==> MATCH")
 ok(sp.expand(Phi14 - sp.Rational(-1, 10) * y**165 * (y**5 + 1)**42) == 0,
    "D: closed form Phi = -(1/10) y^165 (y^5+1)^42")
+ok(sig14[1] == bridge(2, 7, 3, 1, 4) == 165,
+   "D: and ord_y(Phi) = 165 equals the PROVED bridge identity a*q*M - H "
+   "(BRIDGE_GENERALITY.md) -- a target neither module computes")
 
-# --------------------------------------------- E. F1: gap>0 / r=0 fresh solve
-a1, b1, t1, a01, q1 = 3, 4, 4, 4, 3
-e1, r1 = b1 - a1 + 1, a01 - q1 - 1
-coef1 = t1 * (b1 - a1) + (t1 - 2) + 1
-rho1 = (e1 - 1) * q1 + 1
-gap1 = Fraction(coef1 * a01, t1) - (e1 * a01 - q1 + 1)
-ok(r1 == 0 and gap1 == 1, "E: F1 is r=0 with gap = 1")
-c1 = y**q1 * (y + 1)
-res_deg1 = e1 * a01 - q1 + 1 + int(gap1)
-fv = sp.symbols(f"v0:{res_deg1 + 3}")
-f_v = sum(fv[i] * y**i for i in range(res_deg1 + 3))
-resid_v = sp.expand(a1 * t1 * c1 * sp.diff(f_v, y)
-                    - a1 * coef1 * sp.diff(c1, y) * f_v - c1**e1)
-sols_v = sp.solve(sp.Poly(resid_v, y).all_coeffs(), fv, dict=True)
-ok(len(sols_v) == 1, "E: F1 ODE 12cf' - 21c'f = c^2 has a UNIQUE polynomial solution"
-                     " (degree allowed 2 past resonant)")
-f1s = sp.expand(f_v.subs(sols_v[0]))
-ok(sp.degree(f1s, y) == res_deg1 == 7,
-   "E: deg f = 7 = resonant degree (pure ansatz degree 6 is NOT attained)")
-ok(sp.expand(f1s - sp.Rational(1, 15) * y**4 * (y + 1)**2 * (4 * y - 1)) == 0,
-   "E: f = (1/15) y^4 (y+1)^2 (4y-1)")
-u1 = sp.cancel(f1s / (y**rho1 * (y + 1)**e1))
-ok(sp.degree(u1, y) == 1 and u1.subs(y, 0) != 0 and u1.subs(y, -1) != 0,
-   "E: cofactor u = (4y-1)/15: deg = gap = 1, u(0) != 0, u(-1) != 0 (UNIT)")
-N1, law1 = law(a1, b1, t1, a01, q1, int(gap1))
-ok(N1 == 67, "E: N = 67 for F1 (same N as (108,144): same (a,b,t,q), different a0)")
-sig1 = signature(f1s * c1**N1)
-ok(sig1 == (275, 205, 69, 1) and sig1 == law1,
-   f"E: F1 signature (275,205,69,1) = amended-law prediction {law1}  ==> MATCH")
+# --------------------------- E. the gap>0 / r=0 regime, on RETRACTING corners
+# 2026-07-27: this section used to probe F1 (48,64) at the corner (4,12), which
+# the retraction guard REFUSES -- the repaired chart there is C = y, dg = 0,
+# gap = -1/3, so (4,12) is not in this regime at all.  Two replacements, both on
+# corners that retract, and at two DIFFERENT gap values so the regime is not
+# pinned by a single point:
+#     F17 (66,99)  at (9,24): gap = 4 -- the same gap as the audited (72,108)
+#     F8  (63,147) at (6,15): gap = 2
+def probe_r0(tag, a1, b1, t1, degC1, ordC1, want_f, want_sig, want_N):
+    e1, r1 = b1 - a1 + 1, degC1 - ordC1 - 1
+    coef1 = t1 * (b1 - a1) + (t1 - 2) + 1
+    rho1 = (e1 - 1) * ordC1 + 1
+    gap1 = Fraction(coef1 * degC1, t1) - (e1 * degC1 - ordC1 + 1)
+    ok(r1 == 0 and gap1 > 0, f"E: {tag} is r=0 with gap = {gap1} > 0")
+    c1 = y**ordC1 * (y + 1)
+    res_deg1 = e1 * degC1 - ordC1 + 1 + int(gap1)
+    fv = sp.symbols(f"vv_{tag}_0:{res_deg1 + 3}")
+    f_v = sum(fv[i] * y**i for i in range(res_deg1 + 3))
+    resid_v = sp.expand(a1 * t1 * c1 * sp.diff(f_v, y)
+                        - a1 * coef1 * sp.diff(c1, y) * f_v - c1**e1)
+    sols_v = sp.solve(sp.Poly(resid_v, y).all_coeffs(), fv, dict=True)
+    ok(len(sols_v) == 1, f"E: {tag} ODE {a1*t1}cf' - {a1*coef1}c'f = c^{e1} has a "
+                         f"UNIQUE polynomial solution (degree allowed 2 past "
+                         f"resonant)")
+    f1s = sp.expand(f_v.subs(sols_v[0]))
+    ok(sp.degree(f1s, y) == res_deg1,
+       f"E: {tag} deg f = {res_deg1} = resonant degree (pure-ansatz degree "
+       f"{res_deg1 - int(gap1)} is NOT attained)")
+    ok(sp.expand(f1s - want_f) == 0, f"E: {tag} f = {sp.factor(want_f)}")
+    u1 = sp.cancel(f1s / (y**rho1 * (y + 1)**e1))
+    ok(sp.degree(sp.expand(u1), y) == int(gap1) and u1.subs(y, 0) != 0
+       and u1.subs(y, -1) != 0,
+       f"E: {tag} cofactor u: deg = gap = {gap1}, u(0) != 0, u(-1) != 0 (UNIT)")
+    N1, law1 = law(a1, b1, t1, degC1, ordC1, int(gap1))
+    ok(N1 == want_N, f"E: {tag} N = {want_N}")
+    sig1 = signature(f1s * c1**N1)
+    ok(sig1 == want_sig and sig1 == law1,
+       f"E: {tag} signature {want_sig} = amended-law prediction {law1}  ==> MATCH")
+    ok(sig1[1] == bridge(a1, b1, t1, t1 - 2, ordC1),
+       f"E: {tag} ord_y(Phi) = {sig1[1]} equals the PROVED bridge identity")
+    return sig1
+
+sig17 = probe_r0("F17", 2, 3, 3, 9, 8,
+                 -sp.Rational(1, 910) * y**9 * (y + 1)**2
+                 * (243 * y**4 - 81 * y**3 + 54 * y**2 - 42 * y + 35),
+                 (195, 169, 22, 4), 20)
+sig8 = probe_r0("F8", 3, 7, 3, 6, 5,
+                -sp.Rational(1, 42) * y**21 * (y + 1)**5 * (9 * y**2 - 3 * y + 2),
+                (448, 371, 75, 2), 70)
+ok(sig17[3] == 4 and sig8[3] == 2,
+   "E: the r=0 cofactor equals gap on BOTH new points (4 and 2), so the "
+   "'unit cofactor of degree exactly gap' story is tested at two gap values on "
+   "two distinct corners -- not at one point as before")
 
 # ------------------------------------------------------------------ F. controls
 def force_and_sign(a_, b_, t_, a0_, q_):
-    """Re-derive a gap=0 corner end to end; return signature."""
+    """Re-derive a gap=0 corner end to end; return signature.
+
+    2026-07-26: dg_ == 0 means C is a MONOMIAL, so g = 1 is forced (a monic
+    constant -- no free coefficient to gauge and no root to place)."""
     e_, dg_ = b_ - a_ + 1, a0_ - q_
     coef_ = t_ * (b_ - a_) + (t_ - 2) + 1
     rho_ = (e_ - 1) * q_ + 1
-    g_ = y**dg_ + 1
+    g_ = sp.Integer(1) if dg_ == 0 else y**dg_ + 1
     c_ = y**q_ * g_
     A_ = sp.Rational(1, a_ * (t_ * rho_ - coef_ * q_))
     f_ = sp.expand(A_ * y**rho_ * g_**e_)
@@ -213,30 +298,143 @@ def force_and_sign(a_, b_, t_, a0_, q_):
     N_ = a_ * (t_ * (a_ + b_ - 1) + 1) - 2 * b_
     return signature(f_ * c_**N_), A_
 
-CONTROLS = [  # (label, a, b, t, a0, q, audited signature, audited lc)
+CONTROLS = [  # (label, a, b, t, degC, ordC, audited signature, audited lc)
     ("(108,144)", 3, 4, 4, 8, 3, (550, 205, 69, 276), sp.Rational(-1, 15)),
-    ("(75,125)",  3, 5, 5, 5, 2, (504, 201, 101, 202), sp.Rational(-1, 9)),
-    ("(56,84)",   2, 3, 7, 7, 2, (377, 107, 54, 216), sp.Rational(-1, 10)),
-    ("(50,75)",   2, 3, 5, 5, 2, (189, 75, 38, 76),  sp.Rational(-1, 6)),
+    # REPAIRED 2026-07-26: t=4, kappa=2, deg C=ord C=1, C=y (a monomial).
+    ("(75,125)",  3, 5, 4, 1, 1, (80, 80, 0, 0), sp.Rational(1, 3)),
+    # REPAIRED 2026-07-27: corner (7,21) is REFUSED (GGHV22 publishes l=3 there,
+    # 2204.14178.tex:1394), so t=3 and C=y -- not t=7, deg C=7, ord C=2.
+    ("(56,84)",   2, 3, 3, 1, 1, (22, 22, 0, 0),  sp.Rational(1, 2)),
+    ("(50,75)",   2, 3, 4, 1, 1, (30, 30, 0, 0),  sp.Rational(1, 2)),
+    # REPAIRED 2026-07-27: corner (4,12) is REFUSED, so t=3 and C=y.
+    ("(48,64)",   3, 4, 3, 1, 1, (51, 51, 0, 0),  sp.Rational(1, 3)),
 ]
-for lbl, ca, cb, ct, ca0, cq, csig, clc in CONTROLS:
-    s_, A_ = force_and_sign(ca, cb, ct, ca0, cq)
+for lbl, ca, cb, ct, cdC, coC, csig, clc in CONTROLS:
+    s_, A_ = force_and_sign(ca, cb, ct, cdC, coC)
     ok(s_ == csig and A_ == clc,
        f"F: control {lbl}: re-derived signature {s_} and lc {A_} match audited values")
+    ok(s_[1] == bridge(ca, cb, ct, ct - 2, coC),
+       f"F: control {lbl}: ord_y = {s_[1]} equals the PROVED bridge identity")
 ok(law(2, 3, 4, 8, 7, 4)[1] == (238, 204, 30, 4),
    "F: (72,108) audited signature (238,204,30,4) obeys the amended law with gap = 4")
+ok(all(clc == sp.Rational(1, ca) for lbl, ca, cb, ct, cdC, coC, csig, clc
+       in CONTROLS if cdC == 1),
+   "F: at every MONOMIAL control the leading constant is exactly 1/a -- forced, "
+   "because C = y collapses the ODE to a*A*(t - kappa - 1) = a*A = 1")
 
 # ------------------------------------------------------------------- G. census
-SEVEN = [("(72,108)", 2, 3, 4, 8, 7, 4, 28), ("(108,144)", 3, 4, 4, 8, 3, 0, 67),
-         ("(75,125)", 3, 5, 5, 5, 2, 0, 98), ("(56,84)", 2, 3, 7, 7, 2, 0, 52),
-         ("(50,75)", 2, 3, 5, 5, 2, 0, 36), ("(66,231)", 2, 7, 3, 9, 4, 0, 36),
-         ("(48,64)", 3, 4, 4, 4, 3, 1, 67)]
-ok(all(law(sa, sb, st, sa0, sq, sg)[0] == sN
-       for _, sa, sb, st, sa0, sq, sg, sN in SEVEN),
-   "G: reduced N-formula N = a[t(a+b-1)+1] - 2b reproduces N at all SEVEN points")
-ok(sorted({st for _, sa, sb, st, sa0, sq, sg, sN in SEVEN}) == [3, 4, 5, 7]
-   and sorted({sb - sa + 1 for _, sa, sb, st, sa0, sq, sg, sN in SEVEN}) == [2, 3, 6],
-   "G: coverage census t in {3,4,5,7}, e in {2,3,6}")
+POINTS = [  # (label, a, b, t, degC, ordC, gap, N)  -- ALL through the guard
+    ("(72,108)",  2, 3, 4, 8, 7, 4, 28), ("(108,144)", 3, 4, 4, 8, 3, 0, 67),
+    ("(75,125)",  3, 5, 4, 1, 1, 0, 77), ("(50,75)",   2, 3, 4, 1, 1, 0, 28),
+    ("(66,231)",  2, 7, 3, 9, 4, 0, 36), ("(56,84)",   2, 3, 3, 1, 1, 0, 20),
+    ("(48,64)",   3, 4, 3, 1, 1, 0, 49), ("(66,99)",   2, 3, 3, 9, 8, 4, 20),
+    ("(63,147)",  3, 7, 3, 6, 5, 2, 70), ("(99,231)",  3, 7, 3, 9, 5, 1, 70),
+]
+ok(all(law(sa, sb, st, sdC, soC, sg)[0] == sN
+       for _, sa, sb, st, sdC, soC, sg, sN in POINTS),
+   "G: reduced N-formula N = a[t(a+b-1)+1] - 2b reproduces N at all TEN points")
+ok(all(law(sa, sb, st, sdC, soC, sg)[1][1] == bridge(sa, sb, st, st - 2, soC)
+       for _, sa, sb, st, sdC, soC, sg, sN in POINTS),
+   "G: and the law's ord_y equals the PROVED bridge identity a*q*M - H at all ten "
+   "-- the census is no longer validated only against targets it produced itself")
+ok(sorted({st for _, sa, sb, st, sdC, soC, sg, sN in POINTS}) == [3, 4],
+   "G: coverage census t in {3,4}.   [2026-07-26: t=5 left -- the two t=5 points "
+   "were both at (5,20), which is t=4.  2026-07-27: t=7 left too -- (56,84) is at "
+   "(7,21), where GGHV22 PUBLISHES l=3.  No corner in GGV5's v11<=35 length-1 "
+   "tables has a derived t outside {3,4}: phi_corner4.py STEP 1b]")
+ok(sorted({sb - sa + 1 for _, sa, sb, st, sdC, soC, sg, sN in POINTS})
+   == [2, 3, 5, 6],
+   "G: e coverage {2,3,5,6} -- e=5 is NEW (F8/F15 at (a,b)=(3,7)), contributed by "
+   "the replacement points the repair required")
+ok(sorted({sg for _, sa, sb, st, sdC, soC, sg, sN in POINTS if sg > 0})
+   == [1, 2, 4]
+   and len([1 for _, sa, sb, st, sdC, soC, sg, sN in POINTS if sg > 0]) == 4,
+   "G: gap coverage in the resonance regime is {1,2,4} on FOUR points ((72,108) 4, "
+   "F17 4, F8 2, F15 1); pre-repair it was {1,4} on two, one of which (F1, gap=1) "
+   "sat at a refused corner")
+
+# ===========================================================================
+# H.  THE CHART REPAIR: drift guard + mutation controls
+# ===========================================================================
+import contextlib, io                                            # noqa: E402
+_rep = io.StringIO()
+with contextlib.redirect_stdout(_rep):
+    import phi_f14 as pf14                                       # noqa: E402
+
+ok(set(pf14.SUPERSEDED) == {"F1"},
+   "H1 DRIFT GUARD: phi_f14.SUPERSEDED holds exactly the retired row F1, and the "
+   "retired polynomial is kept LABELLED so the retirement stays falsifiable")
+_st, _sdC, _soC, _sN, _ssig, _sf = pf14.SUPERSEDED["F1"]
+ok((_st, _sdC, _soC) == (4, 4, 3),
+   "H1b and its stale (t,deg C,ord C) really IS the dictionary output "
+   "(l_final, a0, b_final) = (4,4,3) at (4,12) -- so H3 mutates the OLD model, "
+   "not a straw man")
+ok(_sN == 67 and _ssig == (275, 205, 69, 1),
+   "H1c and the stale N and signature are the ones PHI_F14.md published")
+
+# H2: the guard refuses (4,12), and the retired f is right-ODE/wrong-corner.
+_raised = False
+try:
+    pr.final_corner_dictionary(4, 12, 4, 3, who="F1")
+except pr.FinalCornerDictionaryError:
+    _raised = True
+ok(_raised and pr.chart_exponent(4, 12) == 3 and not pr.has_retraction(4, 12),
+   "H2 final_corner_dictionary RAISES at (4,12): ceil(12/4) = 3 and 3*(4-1) = 9 "
+   "!= 12, so the retraction shape fails")
+_c_stale = y**3 * (y + 1)
+ok(sp.expand(3 * 4 * _c_stale * sp.diff(_sf, y)
+             - 3 * (4 * 1 + 2 + 1) * sp.diff(_c_stale, y) * _sf - _c_stale**2) == 0,
+   "H2b the retired f = (1/15)y^4(y+1)^2(4y-1) DOES solve the ODE at the STALE "
+   "parameters (t,kappa,q,dg) = (4,2,3,1) -- retired as a claim about (4,12), not "
+   "withdrawn as arithmetic")
+_c_rep = y
+ok(sp.expand(3 * 3 * _c_rep * sp.diff(_sf, y)
+             - 3 * (3 * 1 + 1 + 1) * sp.diff(_c_rep, y) * _sf - _c_rep**2) != 0,
+   "H2c and it does NOT solve the REPAIRED corner ODE (t=3, C=y, e=2): the two are "
+   "different equations, so the two claims are genuinely incompatible")
+
+# H3: MUTATION CONTROL.  Reinstating the dictionary must move ord_y and must
+# break the bridge identity at the guarded chart.  Shape copied from
+# bridge_generality.py MUT F (51->205, 30->112, 22->107).
+MUT = {  # row: (a, b, t_stale, degC_stale, ordC_stale, t_good, ord_good, ord_stale)
+    "F1": (3, 4, 4, 4, 3, 3, 51, 205),
+    "F9": (2, 3, 7, 7, 2, 3, 22, 107),
+    "F2": (2, 3, 5, 5, 2, 4, 30,  75),
+}
+_moved, _straw = [], []
+for nm, (ma, mb, mt, mdC, moC, gt, gord, sord) in sorted(MUT.items()):
+    stale = law(ma, mb, mt, mdC, moC, Fraction(moC - 1) - Fraction(mdC, mt))[1][1]
+    good = law(ma, mb, gt, 1, 1, Fraction(0) - Fraction(1, gt))[1][1]
+    stale_bridge = bridge(ma, mb, mt, mt - 2, moC)
+    good_bridge = bridge(ma, mb, gt, gt - 2, 1)
+    # The stale numbers are INTERNALLY consistent -- they satisfy the bridge
+    # identity at their OWN stale chart -- which is exactly why they passed for
+    # months.  What refutes them is that their chart is refused.
+    if (stale == sord == stale_bridge and good == gord == good_bridge
+            and stale != good_bridge):
+        _moved.append((nm, gord, sord))
+    else:
+        _straw.append((nm, stale, sord, stale_bridge, good, gord, good_bridge))
+ok(len(_moved) == 3 and not _straw,
+   "H3 MUT: reinstating the refused dictionary reproduces the SUPERSEDED ord_y "
+   "exactly and then contradicts the guarded chart bridge value -- "
+   + "; ".join("%s %d<-%d" % m for m in _moved))
+ok([m for m in _moved if m[0] == "F1"] == [("F1", 51, 205)]
+   and [m for m in _moved if m[0] == "F9"] == [("F9", 22, 107)],
+   "H3b and the displacements match bridge_generality.py MUT F exactly "
+   "(F1 51<-205, F9 22<-107), computed there by a wholly independent route")
+ok(all(law(ma, mb, mt, mdC, moC,
+           Fraction(moC - 1) - Fraction(mdC, mt))[1][2] > 0
+       for ma, mb, mt, mdC, moC, _, _, _ in MUT.values()),
+   "H3c and every stale signature claims mult_(y+1) > 0 -- a (y+1) place a "
+   "monomial C cannot have; the repaired ones all have mult = cof = 0")
+
+# H4: the repair must be TARGETED -- retracting corners bit-identical.
+ok(force_and_sign(2, 7, 3, 9, 4)[0] == (375, 165, 42, 168)
+   and force_and_sign(3, 4, 4, 8, 3)[0] == (550, 205, 69, 276)
+   and law(2, 3, 4, 8, 7, 4)[1] == (238, 204, 30, 4),
+   "H4 F14 at (9,24), (108,144) and (72,108) at (8,28) are BIT-IDENTICAL pre- and "
+   "post-repair: their corners retract, so the repair is targeted, not a rewrite")
 
 print()
 if _fail:

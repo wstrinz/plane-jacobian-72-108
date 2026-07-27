@@ -31,10 +31,43 @@ And the classification is driven by **one integer test**:
 
 > **28 of the 34 rows fail the retraction shape `b_0 = t·(a_0 − 1)` at `A_0`.**
 > At such a corner `C` is a monomial, so `deg C = ord C = 1`; that single fact
-> simultaneously (a) refuses GGV5's final-corner dictionary, (b) forces
-> `lam = (deg_y Φ − ord_y Φ)/M = N·(deg C − ord C)/M ≡ 0`, killing the slice
-> cascade with no case-specific input at all, and (c) empirically empties the
-> Belyi sweep. **One test, three mechanisms, 28 rows.**
+> simultaneously (a) refuses GGV5's final-corner dictionary and (b) empirically
+> empties the Belyi sweep. **One test, two mechanisms here, 28 rows.**
+>
+> ### ⚠ CORRECTED 2026-07-27 — this claim used to say THREE mechanisms
+>
+> The withdrawn third was "forces `lam = 0`, killing the slice cascade with no
+> case-specific input at all". **That was wrong**, and it was wrong in a way that
+> inflated this very headline. Gate `G3` computed `lam = (deg_y Φ − ord_y Φ)/M` —
+> the **strip** object — and tested it against `D5`, whose `lam` is the **cap**
+> object (the D-transform slope difference; `contact_lemma.py:539/545`).
+> `lambda_two_objects.py` (9/9) proves `cap ≥ strip`, so a strip-based `FAIL` is
+> **not** a cap-based `FAIL`: the substitution could only ever declare our own
+> mechanism void where it is in fact available. See `g3_gate_defect.py` (16/16).
+>
+> Consequences, all now in the shipped artifact:
+>
+> * `G3` reads `{FAIL: 2, PASS: 3, UNKNOWN: 29}`. Twenty-nine rows are honestly
+>   **UNKNOWN** — they need a computed reduced polygon, which exists in-repo only
+>   at `(8,28)` and `(5,20)`.
+> * Two `(5,20)` rows flip `FAIL → PASS`: **`F_2(2,3)/75`** and **`F_3(3,2)/75`**
+>   (both `a = 2`, cap `2 ≥ 2`). The slice cascade **is** available there and we
+>   had written it off.
+> * `(75,125)` is **unaffected** — at `a = 3` the gate fails on the correct object
+>   too. The flagship open case never moved.
+> * The clustering LOOSENS: 6 → **8** signatures, top two 82% → **74%**. Part of
+>   the old concentration was an artifact — a gate that wrongly answers `FAIL`
+>   merges rows not actually known to behave alike.
+>
+> Independently corroborated: `yplace_transfer.py` (57/57) recomputed the cascade
+> at a class row's `y`-place, levels 2→12, reproducing `PROOF` §6.1's exact shape.
+> **The cascade does transfer.**
+>
+> A different third mechanism *does* survive, found the same day: monomiality also
+> forces `dg = deg C − ord C = 0`, which makes the F2-family closed form
+> `f = −1/(a·dg)·y^ρ(y^dg+1)^e` **undefined** (`−1/(a·0)`). So it remains "one
+> test, three mechanisms" — but the third is the family closed form, not the slice
+> cascade.
 
 Only **18 distinct `A_0` corners** carry the 34 rows, and only **four** of them
 retract: `(6,15)`, `(8,28)`, `(9,24)`, `(12,33)`. Of those four, **only `(8,28)`

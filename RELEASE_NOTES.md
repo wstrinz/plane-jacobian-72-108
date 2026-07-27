@@ -1,3 +1,148 @@
+# v0.4.1 — three corrections, all in the conservative direction; and the v0.4.0 atlas headline shrinks
+
+A correctness release, shipped the day after v0.4.0. Every defect below was found
+by our own adversarial review, and every one errs toward **under-claiming** — none
+produces a false kill. Two of them are mine, introduced in the v0.4.0 cycle.
+
+## 1. Gate `G3` tested the wrong `lambda` — and the atlas headline was inflated by it
+
+`corner_atlas.py`'s slice-cascade gate computed
+`lam = (deg_y Phi - ord_y Phi)/M` — the **strip** object — and cited
+`contact_lemma.py`'s D5 as its authority. **D5's `lam` is a different object**:
+the D-transform slope difference (`lam = 3` sub1 / `2` sub2, from
+`D_j = C_j*C4^(7-2j)`), and `CONTACT_LEMMA.md` says outright that for `(3,5)` it
+is *"an unknown input ... `lam in {2,3}`"*.
+
+`lambda_two_objects.py` (9/9, new) proves **`cap >= strip`**, with equality only
+where `Phi` attains both caps — which it does at `(72,108)` in sub2 (zero slack,
+`17*2 = 34 = deg Phi - ord Phi`) and does **not** at a monomial corner, where
+`Phi` sits strictly inside the cone. So the gate was testing a *lower bound* for
+the quantity it needed, and the error is **one-sided**: it could only ever declare
+our own mechanism VOID where it is in fact AVAILABLE. It cannot manufacture a
+kill, and `CORNER_ATLAS.md` §1 already states that no row is eliminated as a
+counterexample by the atlas — so **no case-level claim moves.**
+
+Repaired (`g3_gate_defect.py`, 18/18, new): `G3` now consumes the **cap** object
+where it is exact-checked — `(8,28)` from `PROOF` §2.6(iii), `(5,20)` from
+computed hulls — and reports **UNKNOWN, never FAIL**, where no reduced polygon
+exists in-repo. Every verdict now carries `lam_object` and `lam_provenance`.
+
+```
+G3 over 34 rows:  {UNKNOWN: 29, PASS: 3, FAIL: 2}
+
+F_2(2,3)/75      FAIL -> PASS      the cascade IS available; we had written it off
+F_3(3,2)/75      FAIL -> PASS      likewise
+F_2(3,5)/125     FAIL -> FAIL      a = 3; fails on the correct object too
+```
+
+**`(75,125)` never moved** — the flagship open case fails the gate on the correct
+object as well.
+
+### The v0.4.0 headline was partly an artifact — read this if you cited it
+
+v0.4.0 and `CORNER_ATLAS.md` said: *"one test, **three** mechanisms, 28 rows."*
+The third was "forces `lam = 0`, killing the slice cascade with no case-specific
+input." **That mechanism is withdrawn.** Consequences:
+
+* clustering **loosens**: 6 -> **8** signatures, top two 82% -> **74%**;
+* check `C3`'s concentration threshold moves 80% -> 70%, with the reason recorded
+  in the source: *a gate that wrongly answers FAIL merges rows that are not
+  actually known to behave alike*, so part of the old concentration was the defect
+  inflating it.
+
+A different third mechanism does survive, found the same day: monomiality also
+forces `dg = deg C - ord C = 0`, which makes the F2-family closed form
+`-1/(a*dg) * y^rho * (y^dg+1)^e` **undefined**. So it remains "one test, three
+mechanisms" — but the third is the family closed form, not the slice cascade.
+
+Corroborated independently and in advance: `yplace_transfer.py` (57/57)
+recomputed the cascade at a class row's `y`-place, levels 2 -> 12, reproducing
+`PROOF` §6.1's exact shape. **The cascade does transfer.**
+
+## 2. Pre-repair chart data in the Phi survey — ELEVEN rows, not six
+
+`phi_corner4.py` and siblings read GGV5's final-corner dictionary at corners that
+do **not** retract, i.e. exactly where `polygon_reduction.final_corner_dictionary()`
+now raises. Routing all 17 GGV5 rows through the guard gives the affected set as
+**`{F1,F2,F3,F4,F5,F6,F9,F10,F11,F12,F13}`** — eleven. An earlier circulated list
+of six was the refused subset of the *twelve* rows one module transcribes, not of
+the seventeen. Only two of the seven distinct corners retract (`(6,15)`, `(9,24)`),
+so F7, F8, F14–F17 are bit-identical pre/post-repair, and `(8,28)` — the audited
+`(72,108)` and `(108,144)` — is untouched.
+
+`PASSPORT_75_125_REPAIR.md`'s claim that `phi_corner4.py` had been swept was
+**false**: the survey table and both `derive()` calls read the refused dictionary
+directly.
+
+All 17 rows now agree with the independently derived `ord_y(Phi) = a*q*M - H`;
+repaired rows all take the monomial signature `(D,D,0,0)`. Examples: F1
+`205 -> 51`, F2 `75 -> 30`, F3 `112 -> 30`, F9 `107 -> 22`, F10 `820 -> 114`.
+
+Withdrawn with it: `phi_corner4`'s headline claim (GGHV22 *publishes* `l = 3` at
+`(7,21)`, contradicting its premise — every GGV5 length-1 corner has `t` in
+`{3,4}`), and F9's cyclotomic/label/discriminant attribution, which was an
+artifact of `deg C = a0 = 7` and is now vacuous. The cyclotomic itself is not
+lost — it is F14's, at the retracting `(9,24)`.
+
+Also caught: `case_compiler`'s regime key sent every monomial corner to a
+resonance regime, labelling as a resonance a case that has none.
+
+## 3. The `contact_lemma` `lam` conflation (mine)
+
+On 2026-07-26 I "repaired" `contact_lemma.py`'s `(3,5)` row to `lam = 0` on the
+monomial-`C` strip argument — in the one file whose own documentation says that
+value is an unknown in `{2,3}`. On 2026-07-27 I then *proved* the two `lambda`s
+are distinct, **without going back to check whether I had already conflated
+them.** I built the guard after walking through the gap. The `(3,5)` verdict
+survives (`2 < 3`), so nothing downstream moved — but it survived for the wrong
+reason, and that is now a check rather than a comment.
+
+## Research landing alongside
+
+* **`rho = q(b-a)+1` is PROVED**, not inferred (`bridge_generality.py`, 59/59).
+  The forcing ODE localises to a triangular recursion whose pivot can only die
+  below `rho_0` if `t | q(kappa+1)` **and** `q(kappa+1) < t` — a positive multiple
+  of `t` smaller than `t`. Unconditional for every residual with `g(0) != 0`. The
+  bridge identity `ord_y(Phi) = a*q*M - H` is confirmed independently at a second
+  corner (`205` at `(8,28)/(3,4)/144`, by a fully generic 18-unknown ODE solve
+  using neither `rho` nor `N`), and all 34 atlas rows now have independently
+  derived `ord_y(Phi)`.
+* **The eleven proof steps split 3 weight-free / 5 mixed / 3 lost**
+  (`weight_free_transfer.py`, 58/58), with the transferable core of each mixed
+  step named. The K-syzygy re-derives at `(50,75)`'s own generators, so all of §3
+  transfers to the **eight** rows sharing `(a,b,t) = (2,3,4)`.
+* **The class of nine is 8 + 1.** `(75,125)` = `(3,5,4)` is inconsistent for
+  u-homogeneous cofactors (rank 18 vs 19, with a working positive control at
+  `(2,3,4)`), so it inherits **neither** the K-syzygy nor `6WZ = e^5`.
+* **All three upgrade routes are REFUTED**, not merely unfinished
+  (`yplace_transfer.py`, 57/57). An explicit family `h_k = c_k*y^(2k-1)` satisfies
+  every slice condition and both polygon caps while violating what all three
+  routes need. The obstruction reduces to one integer: Cor 8.5 needs
+  `deg q >= 4`; `(72,108)` has exactly 4 (the zero margin §0.4 flags) and a class
+  row has 0. **You cannot have the cascade without losing `q`.**
+* **`(72,108)`'s `t`-place is itself a monomial-type place** — window data
+  `(alpha, M, q_window) = (30, 17, 17)`, the class rows' `y`-place signature, and
+  the one such place backed by a proof rather than a premise. There the cascade
+  profile `2k-1` *equals* the floor at `k = 5..8` and is exactly **one unit below**
+  at `k = 1..4`; with `v_t(Phi) = 30` the floor route gives `31 > 30` (immediate
+  contradiction at §3) and the profile route gives `30` (survives). **The entire
+  §§4-11 apparatus bridges a one-unit gap at four weights.**
+
+## The transferable lesson, again
+
+Every defect in this release is the same shape: **two objects that should agree,
+never compared.** Two `lambda`s sharing a name; a module and its verifier each
+holding a private copy of the landed data; a survey table and a guard disagreeing
+about a chart. In each case both halves were internally consistent and the suite
+was green.
+
+The fixes that stick are cross-checks between the two halves, not more assertions
+about one of them. This release adds three: `lambda_two_objects` (the two
+`lambda`s), `A9`/`A4` (duplicate landed tables), and `g3_gate_defect` (gate input
+vs gate authority).
+
+---
+
 # v0.4.0 — RETRACTION: the period-12 window functions for (75,125) are withdrawn
 
 **Read this section before any other part of this tree.** This release exists
