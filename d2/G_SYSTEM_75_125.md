@@ -1,3 +1,34 @@
+> ## !! SUPERSEDED IN PART -- 2026-07-26 REPAIR !!
+>
+> The `(5,20)` corner data this document consumes is **wrong**, and every number
+> derived from it below has moved.  The chart exponent is `l = ceil(b0/a0) = 4`,
+> **not** the denominator `5` of GGV5's final chain corner `(7\5,2)`: the
+> dictionary `(t, q) = (l_final, b_final)` is valid only on the **retraction
+> shape** `b0 = l*(a0-1)`, and `(5,20)` fails it (`20 != 4*4 = 16`).
+>
+> | quantity | this document | CORRECT |
+> |---|---|---|
+> | `l` = `t` | 5 | **4** |
+> | `kappa` | 3 | **2** |
+> | `C` | `y^2(y^3+1)`, `deg C = 5` | **`y`**, a monomial, `deg C = 1` |
+> | `q = ord_y C` | 2 | **1** |
+> | `N` (75,125) | 98 | **77** |
+> | `Phi` (75,125) | `-(1/9) y^201 (y^3+1)^101` | **`(1/3) y^80`** |
+> | signature | `(504,201,101,202)` | **`(80,80,0,0)`** |
+> | `N` (50,75) | 36 | **28** |
+> | signature (50,75) | `(189,75,38,76)` | **`(30,30,0,0)`** |
+> | `q_window` | `5a-3` (7, 12) | **`12a-7`** (17, 29) |
+>
+> Decisive external evidence: GGV3 `1406.0886` sec.5 (`paper_src/
+> 1406.0886_GGV3.tex:1723-1727`) performs this very reduction on the sibling
+> `(50,75)` and publishes `[P_1,Q_1] = x^2`, `deg(P_1) = 10`, `deg(Q_1) = 15`.
+> `l = 4` reproduces all three; `l = 5` contradicts all three.
+>
+> The root cause is now **guarded**: `polygon_reduction.final_corner_dictionary()`
+> raises off the retraction shape.  Read **`PASSPORT_75_125_REPAIR.md`** for what
+> survived, what changed, and what is undetermined, and treat the corresponding
+> `*.py` (which has been repaired) as authoritative over this prose.
+
 # The (75,125) D-transform G-system: built, with a characterised a=3 boundary
 
 ## Verdict

@@ -10,6 +10,13 @@ C_SERIES_75_125, G_SYSTEM_75_125) carries the same standing judgment:
     chart reduction is ASSUMED (t=l, kappa=l-2, deg C=a0); it is written out in
     no paper except the published (8,28) reduction of GGHV22.
 
+2026-07-26 REPAIR.  The clause "deg C = a0" above is only true on the
+RETRACTION SHAPE b0 = l*(a0-1), and the l fed to it must be the CHART exponent
+ceil(b0/a0) -- NOT the denominator of GGV5's final chain corner.  Conflating the
+two put (t,kappa,C,q) = (5,3,y^2(y^3+1),2) into this repo for the (5,20) corner
+where the truth is (4,2,y,1).  Section 0b below derives l and GUARDS the
+dictionary; see PASSPORT_75_125_REPAIR.md.
+
 This module converts that ASSUMPTION into a DERIVATION.  Given a GGV-chain case
 (A0, A0', chain/(m,n) data) it emits the COMPLETE reduction:
 
@@ -34,10 +41,13 @@ This module converts that ASSUMPTION into a DERIVATION.  Given a GGV-chain case
 REGRESSION CONTRACT (checked by polygon_reduction_verify.py):
   R1  reproduce the PUBLISHED (72,108)/(8,28) reduction EXACTLY
       (matches paper_src/upstream_facts.json sub1/sub2 and [P,Q]=x^2).
-  R2  reproduce F2 j=0 = (50,75) with the landed signature
-      (t=5, kappa=3, a0=5, q=2, c=y^2(y^3+1)), consistent with GGV3.
-  R3  derive F2 j=1 = (75,125) WITHOUT a judgment flag, or record the exact
-      surviving branch as the honest boundary.
+  R2  reproduce F2 j=0 = (50,75) with the REPAIRED signature
+      (t=4, kappa=2, deg C=1, ord C=1, c=y) and reproduce GGV3 sec.5's THREE
+      published integers for it: [P_1,Q_1]=x^2, deg(P_1)=10, deg(Q_1)=15.
+  R3  derive F2 j=1 = (75,125) with the same chart and COMPUTED reduced
+      polygons N(P)=3*Delta', N(Q)=5*Delta', Delta'={(0,0),(3,0),(4,1),(0,5)}.
+  RG  the RETRACTION GUARD: final_corner_dictionary() must RAISE at (5,20) and
+      (7,21) and must return (l_final,b_final) at (8,28) and (9,24).
 
 Sources (line numbers = local paper_src copies, sha pinned in upstream_facts.json):
   GGHV22 paper_src/2204.14178.tex : Case (8,28) Prop lines 1000-1311; final
@@ -98,6 +108,122 @@ def invert_vertex(v, l):
 
 def invert_polygon(vertices, l):
     return sorted({invert_vertex(v, l) for v in vertices})
+
+
+# ---------------------------------------------------------------------------
+# 0b.  THE CHART EXPONENT, AND THE GUARD ON GGV5's FINAL-CORNER DICTIONARY.
+#
+#      ROOT CAUSE of the 2026-07-26 (5,20) repair (PASSPORT_75_125_REPAIR.md).
+#      This repo derived chart data from GGV5's FINAL CHAIN CORNER
+#      A_1 = (a\l_final, b_final) by the dictionary  (t, q) = (l_final, b_final).
+#      That dictionary is valid EXACTLY on the RETRACTION SHAPE
+#
+#            b0 == l_chart * (a0 - 1)
+#
+#      i.e. exactly when A_0 sits on the integer-slope ray through A_0' = (1,0),
+#      so the edge {(0,1),(b0,a0)} of the flipped polygon collapses to a
+#      VERTICAL face under the inversion.  Checked on all four rows where both
+#      sides are independently known (PASSPORT_75_125.md P6):
+#
+#        corner   A_1        l_final  l_chart   b_final  ord C   dictionary
+#        (8,28)   (11\4,7)      4       4         7       7      VALID   (shape holds)
+#        (9,24)   (11\3,8)      3       3         8       8      VALID   (shape holds)
+#        (7,21)   (11\7,2)      7       3         2       1      BROKEN  (shape fails)
+#        (5,20)   (7\5,2)       5       4         2       1      BROKEN  (shape fails)
+#
+#      (7,21) is the PUBLISHED counterexample: GGV5 gives l_final = 7, while
+#      GGHV22 publishes the chart phi_3(y) = y x^3 (2204.14178.tex:1394) and
+#      [P,Q] = x, i.e. l_chart = 3, kappa = 1.  (5,20) is the same family shape
+#      (F_2 vs F_9: both k=1, both b_final=2, both (m,n)=(j+2,2j+3)), and GGV3's
+#      own published reduction of the sibling (50,75) AT THIS CORNER
+#      (paper_src/1406.0886_GGV3.tex:1723-1727 -- "[P_1,Q_1]=x^2, deg(P_1)=10
+#      and deg(Q_1)=15") forces l_chart = 4, kappa = 2.  Three published
+#      integers, all three reproduced by l=4 and all three contradicted by l=5.
+#
+#      So the dictionary is not retired -- it is GUARDED.  Any consumer that
+#      wants (t,q) out of a chain row must come through
+#      final_corner_dictionary(), which RAISES off the precondition instead of
+#      silently returning a wrong pair.
+# ---------------------------------------------------------------------------
+class FinalCornerDictionaryError(AssertionError):
+    """(t,q) = (l_final,b_final) was applied off its retraction precondition."""
+
+
+def chart_exponent(a0, b0):
+    """l_chart -- the Laurent denominator of the final chart (x^-1, x^l y + shears).
+
+    RULE  l = ceil(b0/a0), the minimal integer with l*a0 >= b0 (the
+    first-quadrant condition on the inversion).
+
+    [INFERRED]  Validated on all five published GGHV22 reductions and pinned at
+    (5,20) by GGV3's published (50,75) reduction, but located in NO published
+    proposition in this form -- CORNER_RESOLVENT.md sec.5.1 correctly records
+    that no general dictionary exists in the literature.  Do not cite as
+    published.  See PASSPORT_75_125.md N1.
+    """
+    a0, b0 = int(a0), int(b0)
+    assert a0 > 0 and b0 > 0, (a0, b0)
+    return -(-b0 // a0)                      # ceil for positive ints
+
+
+def has_retraction(a0, b0, l=None):
+    """The RETRACTION SHAPE test  b0 == l*(a0-1),  l = chart_exponent by default.
+
+    Geometry: the edge {(0,1),(b0,a0)} retracts to a VERTICAL face under the
+    inversion (a,b) -> (l*b - a, b) exactly on this equality; off it the reduced
+    polygon has no vertical top face.
+
+    *** NOTE THE QUANTIFIER -- this is the whole trap. ***  The test is the
+    equality for the l that will ACTUALLY BE USED, not "does SOME integer l
+    satisfy it".  At (5,20) some l does -- l = 5 gives 5*(5-1) = 20 -- and that
+    coincidence is precisely how l = 5 entered this repo.  With the correct
+    l = ceil(20/5) = 4 one has 4*(5-1) = 16 != 20 and the test FAILS, which is
+    the right answer.  Never re-derive l from this equality.
+    """
+    if l is None:
+        l = chart_exponent(a0, b0)
+    return int(b0) == int(l) * (int(a0) - 1)
+
+
+def final_corner_dictionary(a0, b0, l_final, b_final, who=""):
+    """GUARDED  (t, q) = (l_final, b_final).  Raises off the retraction shape.
+
+    The ONLY sanctioned way to turn a GGV5 chain row's final corner
+    (a\\l_final, b_final) into chart data (t, q).  See the block comment above
+    for the four-row validity table and the two published counterexamples.
+    """
+    l = chart_exponent(a0, b0)
+    if not has_retraction(a0, b0, l):
+        raise FinalCornerDictionaryError(
+            "(t,q) = (l_final,b_final) = (%s,%s) REFUSED at A_0=(%s,%s)%s.  The "
+            "retraction precondition b0 == l_chart*(a0-1) FAILS: %s != %s*(%s-1) "
+            "= %s.  GGV5's final chain corner therefore does NOT carry this "
+            "corner's chart data.  Correct chart data: l_chart = ceil(b0/a0) = "
+            "%s, kappa = l-2 = %s, and (no vertical top face) C is a MONOMIAL.  "
+            "Published instances of exactly this failure: (7,21) [l_final = 7 vs "
+            "GGHV22's published chart l = 3] and (5,20) [l_final = 5 vs GGV3's "
+            "(50,75) reduction forcing l = 4]."
+            % (l_final, b_final, a0, b0, (" for " + who) if who else "",
+               b0, l, a0, l * (a0 - 1), l, l - 2))
+    return int(l_final), int(b_final)
+
+
+def corner_chart_data(a0, b0, l_final=None, b_final=None, who=""):
+    """The corner signature primitives (t, kappa, deg_C, ord_C) for one corner.
+
+    On the retraction shape the vertical top face survives, deg C = a0, and the
+    selected root multiplicity ord C is GGV5's b_final -- taken through the
+    guard.  Off it there is no vertical top face, so deg C = 1 and C is a
+    MONOMIAL (PASSPORT_75_125.md Q5/S2; the same shape GGHV22 publishes at
+    (7,21), where FAMILY_GRAMMAR.md sec.1 already records C = y).
+    """
+    l = chart_exponent(a0, b0)
+    if has_retraction(a0, b0, l):
+        _, q = final_corner_dictionary(a0, b0, l_final, b_final, who=who)
+        return dict(t=l, kappa=l - 2, deg_C=int(a0), ord_C=q, monomial=False,
+                    retraction=True)
+    return dict(t=l, kappa=l - 2, deg_C=1, ord_C=1, monomial=True,
+                retraction=False)
 
 
 # ---------------------------------------------------------------------------
@@ -303,28 +429,47 @@ def case_8_28() -> Reduction:
 def _f2_forcing_divisor(a, b, t, kappa, a0, q):
     """Solve the corner-144 forcing ODE to recover the residual divisor c(y).
 
-    a { t c f' - [t(b-a)+kappa+1] c' f } = c^(b-a+1),  c = y^q g, deg g = a0-q,
-    g(-1)=0 monic (unramified common-root gauge).  Returns (c, g, f, A, sig).
+    a { t c f' - [t(b-a)+kappa+1] c' f } = c^(b-a+1),  c = y^q g, deg g = a0-q.
+
+    TWO REGIMES (2026-07-26 repair).  deg g = a0 - q:
+      dg > 0  -- residual g present; the ODE forces g_1..g_{dg-1} = 0, leaves the
+                 top coefficient resonant (fixed monic), and g(-1) = 0 selects
+                 the (y+1) common root:  g = y^dg + 1.
+      dg == 0 -- NO residual at all.  c = y^q is a MONOMIAL, g = 1 is FORCED
+                 (monic constant), and the whole common-root-gauge branch is
+                 VACUOUS -- there is no free coefficient to gauge and no root to
+                 place.  This is the (5,20) regime: deg C = 1, q = 1, C = y.
+    Returns (c, g, f, A, N, sig).
     """
     e = b - a + 1
     coef = t * (b - a) + kappa + 1
     rho = (e - 1) * q + 1
     dg = a0 - q
-    gc = sp.symbols("g0:%d" % (dg + 1))
+    assert dg >= 0, ("deg g = a0 - q must be >= 0", a0, q)
     A = sp.symbols("A")
-    g = sum(gc[i] * y**i for i in range(dg + 1))
-    c = y**q * g
-    f = A * y**rho * g**e
-    resid = sp.expand(a * t * c * sp.diff(f, y) - a * coef * sp.diff(c, y) * f - c**e)
-    quo = sp.expand(sp.factor(resid) / (y**(e * q) * g**(e - 1)))
-    # forced: g_1..g_{dg-1}=0, g_dg resonant (free) -> monic, g(-1)=0 -> g0=g_dg
-    g_sol = y**dg + 1
-    subs = {gc[i]: sp.Poly(g_sol, y).coeff_monomial(y**i) for i in range(dg + 1)}
-    A_sol = sp.solve(sp.expand(quo.subs(subs)).coeff(y, 0), A)[0]
+    if dg == 0:
+        g_sol = sp.Integer(1)                 # FORCED: monic constant, no gauge
+    else:
+        g_sol = y**dg + 1
     c_sol = y**q * g_sol
-    f_sol = sp.expand(A_sol * y**rho * g_sol**e)
+    f_gen = A * y**rho * g_sol**e
+    resid = sp.expand(a * t * c_sol * sp.diff(f_gen, y)
+                      - a * coef * sp.diff(c_sol, y) * f_gen - c_sol**e)
+    A_sols = sp.solve(sp.Poly(resid, y).all_coeffs(), A)
+    A_sol = A_sols[A] if isinstance(A_sols, dict) else A_sols[0]
+    f_sol = sp.expand(f_gen.subs(A, A_sol))
     assert sp.expand(a * t * c_sol * sp.diff(f_sol, y)
                      - a * coef * sp.diff(c_sol, y) * f_sol - c_sol**e) == 0
+    # INDEPENDENT uniqueness check: solve the ODE with a general polynomial
+    # ansatz (no f = A y^rho g^e shape assumed) and confirm the same f.
+    D = e * a0 + rho + 4
+    ai = sp.symbols("aa0:%d" % (D + 1))
+    fgen2 = sum(ai[i] * y**i for i in range(D + 1))
+    r2 = sp.Poly(sp.expand(a * t * c_sol * sp.diff(fgen2, y)
+                           - a * coef * sp.diff(c_sol, y) * fgen2 - c_sol**e), y)
+    sols2 = sp.solve(r2.all_coeffs(), list(ai), dict=True)
+    assert len(sols2) == 1, ("polynomial solution not unique", len(sols2))
+    assert sp.expand(fgen2.subs(sols2[0]) - f_sol) == 0, "ansatz != general solve"
     # Phi = f * C^N signature
     N = a * (t * (a + b) - (kappa + 1)) - 2 * b
     Phi = sp.expand(f_sol * c_sol**N)
@@ -341,137 +486,192 @@ def _f2_forcing_divisor(a, b, t, kappa, a0, q):
 
 
 def case_f2(j) -> Reduction:
-    """F2 = family F_2 of GGV5 (corner A0=(5,20), A0'=(1,0), final (7/5,2), l=5).
-    j=0 -> (m,n)=(2,3) -> (50,75) [R2];  j=1 -> (m,n)=(3,5) -> (75,125) [R3]."""
-    A0, A0p, l = (5, 20), (1, 0), 5
+    """F2 = family F_2 of GGV5 (corner A0=(5,20), A0'=(1,0), GGV5 final (7\\5,2)).
+    j=0 -> (m,n)=(2,3) -> (50,75) [R2];  j=1 -> (m,n)=(3,5) -> (75,125) [R3].
+
+    2026-07-26 REPAIR.  l is now DERIVED (chart_exponent(5,20) = 4), not read off
+    GGV5's final corner denominator (which is 5 and is NOT the chart exponent --
+    see the block comment at 0b).  Consequently kappa = 2, C = y is a monomial,
+    deg C = 1 and ord C = 1.  The reduced Newton polygons are now COMPUTED (the
+    corner is no longer a "no vertex list" case).
+    """
+    A0, A0p = (5, 20), (1, 0)
+    GGV5_FINAL = (7, 5, 2)                      # A_1 = (p\l_final, b_final), k=1
+    l = chart_exponent(*A0)                     # = 4  DERIVED, never literal
+    cd = corner_chart_data(*A0, l_final=GGV5_FINAL[1], b_final=GGV5_FINAL[2],
+                           who="F2 corner (5,20)")
+    assert not cd["retraction"] and cd["monomial"], cd
+    t, kappa = cd["t"], cd["kappa"]
+    a0, q = cd["deg_C"], cd["ord_C"]            # deg C = 1, ord C = 1  => C = y
+    assert (l, t, kappa, a0, q) == (4, 4, 2, 1, 1), (l, t, kappa, a0, q)
+    mu = (A0[1] - 1) // A0[0]                   # = 3 : root-shift depth, Pred (1,-mu)
+    assert mu + 1 == l, (mu, l)
+
     if j == 0:
         mn, degs, tag = (2, 3), (50, 75), "F2_j0_50_75"
-        title = "F2 j=0 = (50,75)  [R2: consistent with GGV3 sec.5]"
+        title = "F2 j=0 = (50,75)  [R2: GGV3 sec.5's own reduction of this corner]"
     else:
         mn, degs, tag = (3, 5), (75, 125), "F2_j1_75_125"
         title = "F2 j=1 = (75,125)  [R3: the target model]"
     a, b = sorted(mn)                          # reduced pair
-    t = l
-    kappa = l - 2
-    a0, q = A0[0], 2                           # deg C = 5 ; selected mult q=2
 
     red = Reduction(tag=tag, title=title, A0=A0, A0p=A0p, mn=mn, l=l)
     red.transforms = [
         Transform("phi1  (flip)", "x <-> y",
                   "Jacobian -1 : bracket constant preserved up to sign",
                   "GGV1 Cor 7.4 setup; same flip as GGHV22 line 1012"),
-        Transform("phi2  (root shift)",
-                  "y -> y + lambda x^(-2)   (clears the lower edge to the foot "
-                  "(-2,0); leading form x^{..}(y-lambda x^-2)^{2m} of GGV1 7.4)",
+        Transform("phi2  (root shift, depth mu=%d)" % mu,
+                  "y -> y + lambda x^(-%d)   (Pred_P(1,0) = (1,-%d), read off the "
+                  "flipped lower edge (5,0)--(20,5) of direction 5*(3,1); foot "
+                  "(-%d,0))" % (mu, mu, mu),
                   "Jacobian 1 : bracket-preserving",
-                  "GGV1 Cor 7.4 / Prop 8.2 (as in GGHV22 (7,21) line 1392)"),
+                  "GGV1 Cor 7.4 / Prop 8.2; PASSPORT_75_125.md r4"),
         Transform("phi  (FINAL Laurent inversion)",
-                  "x -> x^-1,  y -> x^5 y   (the ONE inversion; l=5)",
-                  "Jacobian -x^3 : [phiP,phiQ] = -[P,Q] x^3  => [P,Q]=x^3",
+                  "x -> x^-1,  y -> x^%d y   (the ONE inversion; l = "
+                  "chart_exponent(5,20) = ceil(20/5) = %d)" % (l, l),
+                  "Jacobian -x^%d : [phiP,phiQ] = -[P,Q] x^%d  => [P,Q]=x^%d"
+                  % (kappa, kappa, kappa),
                   "fused-chart lemma, composite_charts.py; cf. GGHV22 line 1229"),
     ]
 
-    # branch manifest.  For the single-Laurent A0'=(1,0) length-1 class the flip
-    # + one root-shift + inversion is FORCED by the fused-chart lemma; the only
-    # residual choice is the selected multiplicity q along the reduced edge.
     red.branches = [
+        Branch(
+            "chart exponent l  --  THE REPAIRED BRANCH (2026-07-26)",
+            "where does the Laurent denominator l come from?",
+            [BranchOption("l = chart_exponent(5,20) = ceil(20/5) = 4", True,
+                "FOLLOWED.  l is the minimal integer with l*a0 >= b0 (INFERRED "
+                "rule; validated on all five published GGHV22 reductions).  It "
+                "reproduces GGV3's THREE published integers for the sibling "
+                "(50,75) at this same corner ([P_1,Q_1]=x^2, deg 10, deg 15; "
+                "1406.0886_GGV3.tex:1723-1727)."),
+             BranchOption("l = l_final = 5, read off GGV5's final corner (7\\5,2)",
+                False,
+                "EXCLUDED, and this is the error this file used to make.  The "
+                "dictionary (t,q) = (l_final,b_final) holds only on the "
+                "retraction shape b0 == l*(a0-1), which FAILS here (20 != 4*4); "
+                "final_corner_dictionary() now raises on it.  l = 5 predicts "
+                "[P,Q] = x^3 and reduced degrees (20,30) for (50,75), "
+                "contradicting all three of GGV3's published integers.  The same "
+                "dictionary is refuted in print at (7,21): l_final = 7 vs "
+                "GGHV22's published chart l = 3.")],
+            "polygon_reduction.py sec.0b; PASSPORT_75_125.md S7-S10, P6"),
+        Branch(
+            "retraction / vertical top face",
+            "does the edge {(0,1),(20,5)} retract to a vertical face?",
+            [BranchOption("NO retraction: 20 != 4*(5-1) = 16", True,
+                "FOLLOWED (a computation, not a choice): has_retraction(5,20) is "
+                "False for l = 4.  Hence no vertical top face, hence deg C = 1, "
+                "hence C = y is a MONOMIAL with ord C = 1.  Same shape as "
+                "(7,21), where GGHV22 publishes exactly this."),
+             BranchOption("retraction (deg C = a0 = 5, ord C = b_final = 2)", False,
+                "EXCLUDED: that is the (8,28)/(9,24) shape.  It was assumed here "
+                "before 2026-07-26 and is what produced C = y^2(y^3+1).")],
+            "PASSPORT_75_125.md Q5 / S2"),
         Branch(
             "chart class",
             "is the reduction chart determined?",
-            [BranchOption("standard single-Laurent chart (X,Y)=(x^-1, x^5 y + shears)",
+            [BranchOption("standard single-Laurent chart (X,Y)=(x^-1, x^4 y + shears)",
                 True,
                 "FOLLOWED and FORCED: A0'=(1,0), length-1 chain => exactly one "
                 "inversion; composite_charts.py proves Jacobian -x^(l-2) for ANY "
-                "shears, so kappa=l-2=3 is not a choice.  This is the SAME chart "
-                "class GGHV22 uses for (8,28)/(9,27)/(7,21) and GGV3 uses for "
-                "F2 j=0."),
+                "shears, so kappa = l-2 = 2 is not a choice once l is fixed.  "
+                "Same chart class GGHV22 uses for (8,28)/(9,27)/(7,21)."),
              BranchOption("double-inversion chart (kappa=l2-l1)", False,
                 "EXCLUDED: would require a second inversion the length-1 chain "
                 "never performs (composite_charts.py STEP 2, heuristic killed).")],
             "composite_charts.py STEP 2; phi_corner4.py STEP 2"),
         Branch(
-            "selected root multiplicity q on the reduced edge",
-            "which multiplicity does the final edge carry?",
-            [BranchOption("q=2 (final corner (7/5,2), k=1)", True,
-                "FOLLOWED: GGV5 line 1679 records the F_2 final corner (7/5,2), "
-                "q=2, k=1; Diophantine-checked in phi_corner4.py."),
-             BranchOption("q!=2", False,
-                "EXCLUDED: fixed by the chain table row (A0=(5,20) -> (7/5,2)).")],
-            "GGV5 line 1679"),
+            "two-factor split corner",
+            "can the leading form carry two distinct linear factors?",
+            [BranchOption("single factor: gcd(5,20)=5, a0/gcd = 1", True,
+                "FOLLOWED: the GGV1 Cor-7.4 multiplicity is gcd(a0,b0) = 5 and "
+                "en(R) = (b0,a0)/5 = (4,1) is primitive, so R has z-degree "
+                "a0/5 = 1 -- R = x(x^3 y - alpha) has ONE linear factor."),
+             BranchOption("two distinct factors (the (8,28) case-c branch)", False,
+                "EXCLUDED: z-degree 1 admits no second factor, so the "
+                "(8,28)-style extra intermediate corner does not exist here.")],
+            "PASSPORT_75_125.md Q4 / S3 / R-rule"),
         Branch(
-            "common-root gauge for the residual cubic g (deg g = a0-q = 3) "
-            "-- REOPENED (2026-07-24): branch completeness not established",
+            "common-root gauge for the residual g  --  now VACUOUS",
             "how is the free resonant coefficient of g fixed?",
-            [BranchOption("g(-1)=0, monic  =>  g = y^3+1 (unramified)", True,
-                "FOLLOWED (the canonical modeled branch): the standard unramified "
-                "common-root gauge; the forcing ODE forces g_1=g_2=0 and leaves "
-                "the top coefficient resonant, fixed to monic; g(-1)=0 selects the "
-                "(y+1) common root.  g = y^3+1 = (y+1)(y^2-y+1) is separable.  "
-                "This is REALIZABLE (deg g=3 odd => a real root exists) -- but "
-                "realizability is NOT completeness."),
-             BranchOption("ramified gauge (double root in g)", True,
-                "OPEN, NOT EXCLUDED (correction 2026-07-24): the odd-degree "
-                "real-root argument shows the unramified branch is available, NOT "
-                "that it is forced or unique.  A ramified double-root branch can "
-                "COEXIST (cf. the mu=1,2,3 coexistence at dg=3, FAMILY_GRAMMAR.md "
-                "sec.3 F12 / MU_RUNGS).  Residual-gauge branch COMPLETENESS is "
-                "reopened as a forcing-layer judgment; this is not a polygon flag.")],
-            "phi_75_125.py; FAMILY_GRAMMAR.md sec.3 (mu-graded coexistence)"),
+            [BranchOption("deg g = a0 - q = 1 - 1 = 0  =>  g = 1 FORCED", True,
+                "FOLLOWED.  There is no residual polynomial: g is a monic "
+                "constant, so there is NO free coefficient to gauge and NO root "
+                "to place.  The gauge branch that was REOPENED on 2026-07-24 "
+                "(unramified g = y^3+1 vs a ramified double-root g) is not "
+                "resolved -- it is DISSOLVED: it presupposed deg g = 3, which "
+                "came from deg C = a0 = 5, which came from the retracted-shape "
+                "assumption that this corner does not satisfy."),
+             BranchOption("ramified / unramified gauge on a cubic g", False,
+                "EXCLUDED: presupposes deg g = 3.  With C = y a monomial there "
+                "is no g to ramify.")],
+            "polygon_reduction.py sec.0b; PASSPORT_75_125.md Q5"),
     ]
 
     # forcing-layer residual divisor (recovered exactly)
     c_sol, g_sol, f_sol, A_sol, N, phi_sig = _f2_forcing_divisor(a, b, t, kappa, a0, q)
+    assert sp.expand(c_sol - y) == 0, ("C must be the monomial y", c_sol)
     red.signature = dict(t=t, kappa=kappa, a0=a0, q=q,
                          c_of_y=str(sp.factor(c_sol)),
                          g=str(sp.factor(g_sol)),
                          reduced_pair=(a, b), degs=degs,
-                         N=int(N), phi_signature=tuple(int(s) for s in phi_sig))
+                         N=int(N), phi_signature=tuple(int(s) for s in phi_sig),
+                         ggv5_final_corner="(%d\\%d,%d) k=1  [CHAIN data; NOT the "
+                                           "chart -- see sec.0b]" % GGV5_FINAL,
+                         chart_exponent_rule="l = ceil(b0/a0) = %d  [INFERRED]" % l)
 
-    # pre-inversion polygon (single retained shape for this class).  The reduced
-    # edge {A0=(5,20)->flip->(20,5)} shifts to the foot (-2,0); far corner (7/5,2)
-    # scales by (m,n).  We record the reduced (post-inversion) polygon directly
-    # via the map from the pre-inversion foot/far vertices.
-    # pre-inversion (a,b): foot (-1,0)&(0,0) type + far corner scaled.
-    # For the length-1 F2 chart the pre-inversion P,Q feet mirror GGHV (7,21):
-    #   after flip+shift:  {(-2,0),(0,0),(a0-... )}; the map (a,b)->(5b-a,b)
-    #   returns the corner (7/5,2)-scaled polygon.  We expose the corner data;
-    #   the exact reduced vertex list is (m,n)-scaled {(0,0),(a0-q,0)? ...}.
-    # The load-bearing, checkable outputs are kappa and the corner signature.
-    red.pre_inversion = {}          # corner-signature case (no published vertex list)
+    # ---- pre-inversion polygon (now EXPLICIT; PASSPORT_75_125.md sec.2) -------
+    #   Delta  = {(0,0),(1,0),(5,20),(0,5)}                            [r1]
+    #   flip   = {(0,0),(0,1),(20,5),(5,0)}                            [r3]
+    #   lower edge (5,0)--(20,5) has direction 5*(3,1) => Pred (1,-3), foot (-3,0)
+    #   pre-inversion = {(-3,0),(0,0),(0,1),(20,5)}                     [r7]
+    #   inversion (i,j) -> (4j - i, j)  =>  Delta' = {(0,0),(3,0),(4,1),(0,5)}
+    #   Prop 8.2(2) en-split EXCLUDED (Q3) => PROPORTIONAL: N(P)=m*Delta',
+    #   N(Q)=n*Delta'.
+    core = [(-mu, 0), (0, 0), (0, 1), (A0[1], A0[0])]
+    red.pre_inversion = {
+        "standard (proportional, Prop 8.2(1))": {
+            "P": [(mn[0] * i, mn[0] * jj) for i, jj in core],
+            "Q": [(mn[1] * i, mn[1] * jj) for i, jj in core]},
+    }
     red = compile_reduction(red)
 
+    # the reduced polygons must be the (m,n)-scaled Delta'
+    Dp = [(0, 0), (3, 0), (4, 1), (0, 5)]
+    got = red.reduced["standard (proportional, Prop 8.2(1))"]
+    assert set(got["P"]) == {(mn[0] * i, mn[0] * jj) for i, jj in Dp}, got["P"]
+    assert set(got["Q"]) == {(mn[1] * i, mn[1] * jj) for i, jj in Dp}, got["Q"]
+
     # judgment resolution
+    common = [
+        "[RETIRED at the polygon layer] the chart is the standard "
+        "single-Laurent A0'=(1,0) chart and l is DERIVED (l = ceil(b0/a0) = 4), "
+        "not read off GGV5's final corner.  kappa = l-2 = 2 follows from the "
+        "fused-chart Jacobian, so it is derived, not assumed.  The reduced "
+        "Newton polygons are COMPUTED: N(P) = m*{(0,0),(3,0),(4,1),(0,5)}, "
+        "N(Q) = n*{(0,0),(3,0),(4,1),(0,5)}.",
+        "[DISSOLVED, was REOPENED 2026-07-24] the residual common-root gauge is "
+        "no longer a branch: deg g = a0 - q = 0, so g = 1 is forced and C = y is "
+        "a monomial.  The reopened unramified-vs-ramified question presupposed a "
+        "cubic g, which presupposed deg C = 5, which presupposed the retracted "
+        "shape this corner does not have.",
+        "[surviving, forcing layer only] forcing-polynomial identification "
+        "(corner-144 correspondence, audited only for (72,108)) is a SEPARATE, "
+        "non-polygon judgment and is untouched by this compiler.",
+    ]
     if j == 0:
-        red.judgment = [
-            "[RETIRED at the polygon layer] the chart is the standard "
-            "single-Laurent A0'=(1,0) chart; GGV3 sec.5 discards this exact "
-            "(50,75) case with this reduction, so the reduction is published for "
-            "the corner.  kappa=t-2=3 derived, not assumed.",
-            "[surviving, forcing layer only] identification of the forcing "
-            "polynomial follows the corner-144 correspondence (audited only for "
-            "(72,108)); this is NOT a polygon-reduction flag."]
+        red.judgment = common + [
+            "[EXTERNAL CONTROL] GGV3 sec.5 performs this exact reduction and "
+            "publishes [P_1,Q_1] = x^2, deg(P_1) = 10, deg(Q_1) = 15 "
+            "(1406.0886_GGV3.tex:1723-1727).  All three are reproduced here; all "
+            "three are contradicted by the superseded l = 5."]
     else:
-        red.judgment = [
-            "[RETIRED at the polygon layer] F2 j=1 uses the IDENTICAL chart as "
-            "F2 j=0: same corner A0=(5,20), same A0'=(1,0), same length-1 chain, "
-            "same final map (x^-1, x^5 y).  Only the (m,n) multiplier changes "
-            "(2,3)->(3,5), which scales the polygon but does NOT touch the chart. "
-            "The fused-chart lemma forces kappa=l-2=3 unconditionally.  Hence the "
-            "'unreduced polygon' judgment of PHI_75_125 (item 2) is DISCHARGED: "
-            "the (75,125) model is UNCONDITIONAL at the polygon layer.",
-            "[honest boundary -- REOPENED 2026-07-24] the residue choice the "
-            "published method does not pin by geometry alone is the common-root "
-            "gauge of the residual cubic g (unramified g=y^3+1 vs a ramified "
-            "double-root g).  This is NOT resolved: dg=3 odd => a real root exists "
-            "makes the unramified gauge REALIZABLE, but realizability is not branch "
-            "COMPLETENESS -- a ramified double-root branch can coexist (mu=1,2,3 "
-            "coexistence at dg=3; FAMILY_GRAMMAR.md sec.3).  The selected "
-            "multiplicity q=2 is separately (likely) discharged by the chain-table "
-            "row (5,20)->(7/5,2), k=1.  Residual-gauge branch completeness is "
-            "REOPENED as a forcing-layer judgment.",
-            "[surviving, forcing layer only] forcing-polynomial identification "
-            "(corner-144 correspondence, audited only for (72,108)) is a "
-            "SEPARATE, non-polygon judgment and is untouched by this compiler."]
+        red.judgment = common + [
+            "[UNCONDITIONAL at the polygon layer] F2 j=1 uses the IDENTICAL chart "
+            "as F2 j=0: same corner, same A0'=(1,0), same length-1 chain, same "
+            "final map (x^-1, x^4 y).  Only the (m,n) multiplier changes "
+            "(2,3)->(3,5), which scales the polygon but does not touch the chart. "
+            "So the j=0 external control (GGV3) transfers to j=1."]
     return red
 
 

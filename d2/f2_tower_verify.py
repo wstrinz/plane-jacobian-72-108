@@ -3,7 +3,7 @@
 
 EXACT checker for THE CERTIFICATE-TOWER EXPERIMENT (f2_tower.py / F2_TOWER.md):
 the first direct attack on (75,125) by extending the (50,75) [a=2] kill up the
-F2 family to a=3 = (75,125), through the fixed five-row/five-column block rule of
+F2 family to a=3 = (75,125), through the fixed block rule of
 the D-transform G-system.
 
 What is checked (all exact sympy; --quiet; exit 0 iff every check passes):
@@ -23,20 +23,36 @@ What is checked (all exact sympy; --quiet; exit 0 iff every check passes):
      4a^3-8=0, hence C_1 homogeneous of y-degree -1, hence its y^-10 coefficient
      e_{-10}=0 -- contradicting corner primitivity (b6): e_{-10} != 0 (as C_0=0).
      Same WINDOW-DEPTH flavour as B.
-  D. The five-block G-system growth (our D-transform t=5 chart, builder in the
-     landed g_system_75_125.py): a=2 has 5 generators / 4 spares; a=3 has 10 / 9;
-     the step adds EXACTLY 5 forcing generators and 5 spare window unknowns; the
-     Phi u-slice deepens M: 21 -> 36.
-  E. The forcing recurrence Phi_{a+1} = (a/(a+1)) C^{30a+3} Phi_a (exact, a=2..4).
+  D. The block G-system growth (our D-transform t=4 chart, builder in the
+     landed g_system_75_125.py): a=2 has 4 generators / 3 spares; a=3 has 8 / 7;
+     the step adds EXACTLY 4 forcing generators and 4 spare window unknowns; the
+     Phi u-slice deepens M: 17 -> 29.  (This docstring read "21 -> 36" until
+     2026-07-26 -- the pre-repair numbers -- while check D below has asserted
+     17 -> 29 since the repair.  The CODE was right and the prose was stale.)
+  E. The forcing recurrence Phi_{a+1} = (a/(a+1)) C^{24a+2} Phi_a (exact, a=2..4).
   F. The generator nesting: the a=2 generator G1 is the leading (d0^2) block of
      the a=3 generator G1 -- coeff_{d0^2}(G1^{a=3}) = (10/3) * G1^{a=2}. The
      algebraic block genuinely nests.
   G. THE OBSTRUCTION (why the tower does NOT extend by the fixed block rule): the
-     window-denominator invariant q_window = denom(ord_y(Phi)/M) = 5a-3 jumps
-     7 -> 12 with gcd(7,12)=1 (incommensurate window lattices), and the y-order
-     fractional-denominator set of the forcing slices fragments from {1,7} at a=2
-     to {1,2,3,4,6,12} at a=3. The kill of A-C lives entirely in this y-order /
-     window-cap layer, which is NOT preserved by the five-block rule.
+     window-denominator invariant q_window = denom(ord_y(Phi)/M) = 12a-7 jumps
+     17 -> 29 with gcd(17,29)=1 (incommensurate window lattices), and the y-order
+     fractional-denominator set of the forcing slices moves from {1,17} at a=2
+     to {1,29} at a=3 -- both periods PRIME, so the superseded "divisor lattice"
+     / {2,3,4,6,12} fragmentation claim is REFUTED.
+
+     *** WHAT G DOES NOT ESTABLISH (2026-07-26). ***  This docstring used to end
+     "The kill of A-C lives in this y-order / window-cap layer, which is NOT
+     preserved by the five-block rule."  That sentence is NOT CHECKED by G, or
+     by anything else here, and it is the load-bearing step of the
+     BLOCK-OBSTRUCTION verdict.  Checks A-C (the kill) and check G (the period)
+     share no variable: A-C touch C_0, g_{-2}, g_{-5}, e_{-10}, c_{0,-10} and
+     never mention q_window, W_step, M or ordPhi; G touches q_window, W_step and
+     the denominator sets and never mentions the kill unknowns.  The join
+     between them is an assertion, not a computation -- in f2_tower.py it is
+     literally a print statement.  Treat the REASON for BLOCK-OBSTRUCTION as
+     `claimed`; its arithmetic inputs are exact, its join is not.  See
+     F2_TOWER.md's "THE BRIDGE IS UNVERIFIED" banner.  (Also: the rule is
+     four-block, not five -- t moved 5 -> 4 in the repair.)
 """
 import sys
 import sympy as sp
@@ -177,24 +193,39 @@ def check_C():
 def check_DEFG():
     from g_system_75_125 import build_gsystem, Phi
 
+    T, KAPPA, QC = 4, 2, 1
+    Cy = y**QC                                 # C = y, a MONOMIAL  [REPAIRED]
+
+    def ordPhi(a):
+        return 12 * a**2 - 10 * a + 2
+
     def sysfor(a):
         b = 2 * a - 1
-        return build_gsystem(a, b, 5, 2, 30 * a**2 - 24 * a + 3)
+        return build_gsystem(a, b, T, QC, ordPhi(a))
+
+    # the corner inputs must come from the retraction guard
+    import polygon_reduction as pr
+    _cd = pr.corner_chart_data(5, 20, l_final=5, b_final=2, who="f2_tower_verify")
+    ok("D: corner inputs come from the guard: (t,kappa,ord C) = (4,2,1), C a MONOMIAL",
+       (_cd["t"], _cd["kappa"], _cd["ord_C"]) == (T, KAPPA, QC) and _cd["monomial"])
 
     r2, r3 = sysfor(2), sysfor(3)
-    # D: five-block growth
-    ok("D: a=2 has 5 generators, 4 spares", len(r2["Gs"]) == 5 and len(r2["spares"]) == 4)
-    ok("D: a=3 has 10 generators, 9 spares", len(r3["Gs"]) == 10 and len(r3["spares"]) == 9)
-    ok("D: step adds EXACTLY 5 forcing generators + 5 spare window unknowns",
-       len(r3["Gs"]) - len(r2["Gs"]) == 5 and len(r3["spares"]) - len(r2["spares"]) == 5)
-    ok("D: Phi u-slice deepens M: 21 -> 36", (r2["M"], r3["M"]) == (21, 36))
+    # D: block growth
+    ok("D: a=2 has 4 generators, 3 spares", len(r2["Gs"]) == 4 and len(r2["spares"]) == 3)
+    ok("D: a=3 has 8 generators, 7 spares", len(r3["Gs"]) == 8 and len(r3["spares"]) == 7)
+    ok("D: step adds EXACTLY 4 forcing generators + 4 spare window unknowns (= t)",
+       len(r3["Gs"]) - len(r2["Gs"]) == T and len(r3["spares"]) - len(r2["spares"]) == T)
+    ok("D: counts follow the closed laws a*t-kappa-2 and (a-1)t-1",
+       all(len(sysfor(a)["Gs"]) == a * T - KAPPA - 2
+           and len(sysfor(a)["spares"]) == (a - 1) * T - 1 for a in (2, 3)))
+    ok("D: Phi u-slice deepens M: 17 -> 29", (r2["M"], r3["M"]) == (17, 29))
 
     # E: Phi recurrence
     def phi(a):
-        return -sp.Rational(1, 3 * a) * y**(2 * a - 1) * g**a * C**(15 * a**2 - 13 * a + 2)
+        return sp.Rational(1, a) * y**ordPhi(a)
     for a in (2, 3, 4):
-        ok("E: Phi recurrence Phi_{%d+1}=(%d/%d) C^{%d} Phi_%d" % (a, a, a + 1, 30 * a + 3, a),
-           sp.simplify(phi(a + 1) - sp.Rational(a, a + 1) * C**(30 * a + 3) * phi(a)) == 0)
+        ok("E: Phi recurrence Phi_{%d+1}=(%d/%d) C^{%d} Phi_%d" % (a, a, a + 1, 24 * a + 2, a),
+           sp.simplify(phi(a + 1) - sp.Rational(a, a + 1) * Cy**(24 * a + 2) * phi(a)) == 0)
 
     # F: generator nesting  coeff_{d0^2}(G1^{a3}) = (10/3) G1^{a2}
     d0 = sp.Symbol("d0")
@@ -204,24 +235,30 @@ def check_DEFG():
     ok("F: a=2 G1 is the leading d0^2 block of a=3 G1 (coeff = (10/3) G1^{a2})",
        sp.expand(lead - sp.Rational(10, 3) * G1a2) == 0)
 
-    # G: window-denominator invariant + fractional-denominator fragmentation
+    # G: window-denominator invariant + fractional-denominator structure
     def qwin(a):
         b = 2 * a - 1
-        M = b * 5 + (5 * a - 4)
-        return sp.denom(sp.Rational(30 * a**2 - 24 * a + 3, M))
-    ok("G: q_window = 5a-3 jumps 7 -> 12, gcd(7,12)=1 (incommensurate lattices)",
-       qwin(2) == 7 and qwin(3) == 12 and sp.gcd(qwin(2), qwin(3)) == 1)
+        M = b * T + (a * T - KAPPA - 1)
+        return sp.denom(sp.Rational(ordPhi(a), M))
+    ok("G: q_window = 12a-7 jumps 17 -> 29, gcd(17,29)=1 (incommensurate lattices)",
+       qwin(2) == 17 and qwin(3) == 29 and sp.gcd(qwin(2), qwin(3)) == 1)
+    ok("G: q_window = 12a-7 for a=2..8, and equals M = b*t+jphi at every rung",
+       all(qwin(a) == 12 * a - 7 == (2 * a - 1) * T + (a * T - KAPPA - 1)
+           for a in range(2, 9)))
+    ok("G: BOTH periods are PRIME (17, 29), so the superseded 'divisor lattice of "
+       "the period' / {2,3,4,6,12} class fragmentation is REFUTED",
+       sp.isprime(17) and sp.isprime(29))
 
     def fracdenoms(a):
         b = 2 * a - 1
-        t = 5
-        jphi = 5 * a - 4
-        M = b * t + jphi
-        ordphi = 30 * a**2 - 24 * a + 3
+        jphi = a * T - KAPPA - 1
+        M = b * T + jphi
+        ordphi = ordPhi(a)
         js = [j for j in range(1, jphi + 1) if j != jphi - 1]
-        return sorted(set(sp.denom(sp.Rational(ordphi * (b * t + j), M)) for j in js))
-    ok("G: y-order fractional denominators fragment {1,7} (a=2) -> {1,2,3,4,6,12} (a=3)",
-       fracdenoms(2) == [1, 7] and fracdenoms(3) == [1, 2, 3, 4, 6, 12])
+        return sorted(set(sp.denom(sp.Rational(ordphi * (b * T + j), M)) for j in js))
+    ok("G: y-order fractional denominators move {1,17} (a=2) -> {1,29} (a=3): two "
+       "classes each, because the period is prime",
+       fracdenoms(2) == [1, 17] and fracdenoms(3) == [1, 29])
 
 
 def main():

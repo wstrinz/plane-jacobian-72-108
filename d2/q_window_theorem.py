@@ -44,9 +44,24 @@ first few rungs of any family and generically never again.
 
 KNOWN CASES (verified exactly, see TABLE below):
   (72,108)  t=4,kappa=2,q=7,(a,b)=(2,3):  M=17, H=34 -> gcd 17 -> q_window=1  (INTEGRAL)
-  F2 a=2 = (50,75)  t=5,kappa=3,q=2:       M=21, H= 9 -> gcd  3 -> q_window=7
-  F2 a=3 = (75,125) t=5,kappa=3,q=2:       M=36, H=15 -> gcd  3 -> q_window=12
+  F2 a=2 = (50,75)  t=4,kappa=2,q=1:       M=17, H= 4 -> gcd  1 -> q_window=17
+  F2 a=3 = (75,125) t=4,kappa=2,q=1:       M=29, H= 7 -> gcd  1 -> q_window=29
   F9 a=2 = (56,84)  t=7,kappa=5,q=2:       M=29, H= 9 -> gcd  1 -> q_window=29
+
+*** 2026-07-26.  The THEOREM q_window = M/gcd(M,H) is untouched -- it is exact for
+any (t,kappa,q,a,b).  What changed is the F2 INPUTS: the (5,20) corner has t=4,
+kappa=2, q=ord C=1, not t=5, kappa=3, q=2.  GGV5's final chain corner (7\\5,2) is
+chart data only on the retraction shape b0=l(a0-1), which (5,20) fails
+(20 != 4*4); see polygon_reduction.py sec.0b for the guard.
+
+*** OPEN, FLAGGED, NOT FIXED HERE: the F9 row above has the SAME defect.  F9's
+corner is (7,21), where l_chart = ceil(21/7) = 3 and the retraction shape also
+fails (21 != 3*6) -- GGHV22 publishes the chart phi_3(y) = y x^3 and [P,Q] = x,
+i.e. t=3, kappa=1, C=y a monomial, ord C = 1.  So t=7, kappa=5, q=2 is wrong for
+F9 too, and (7,21) is the PUBLISHED counterexample to the dictionary.  Repairing
+F9 is out of scope for the (75,125) lane; FAMILY_GRAMMAR.md sec.1 already records
+C = y there.  The row is left as-is so that the census numbers below remain
+reproducible, and flagged here so nobody reads it as verified. ***
 
 THE CENSUS.  `census()` rereads chain_survey_data.json, DERIVES (t,kappa,q) and
 the base member (a,b)=(m0,n0) from each family row's own data (never assumed),
@@ -112,9 +127,12 @@ def divisibility_holds(t, kappa, q, a, b):
 # (tag, t, kappa, q, a, b, expected (M,H,gcd,q_window))
 KNOWN_CASES = [
     ("(72,108) GGHV (8,28)", 4, 2, 7, 2, 3, (17, 34, 17, 1)),
-    ("F2 a=2 = (50,75)",     5, 3, 2, 2, 3, (21,  9,  3, 7)),
-    ("F2 a=3 = (75,125)",    5, 3, 2, 3, 5, (36, 15,  3, 12)),
-    ("F9 a=2 = (56,84)",     7, 5, 2, 2, 3, (29,  9,  1, 29)),
+    ("F2 a=2 = (50,75)",     4, 2, 1, 2, 3, (17,  4,  1, 17)),   # REPAIRED
+    ("F2 a=3 = (75,125)",    4, 2, 1, 3, 5, (29,  7,  1, 29)),   # REPAIRED
+    # F9 row retains the SUPERSEDED (t,kappa,q) -- see the module docstring:
+    # (7,21) has the same broken dictionary and is out of this lane's scope.
+    ("F9 a=2 = (56,84) [t,kappa,q SUPERSEDED, see docstring]",
+                             7, 5, 2, 2, 3, (29,  9,  1, 29)),
 ]
 
 def check_known_cases():
@@ -214,8 +232,8 @@ def main():
         print(f"    {tag:24s} {M:5d} {H:5d} {g:4d} {str(qw):>6}  "
               f"{str(expected):>18}  {'OK' if ok else 'FAIL'}")
 
-    print("\n[FAMILY-LEVEL GROWTH]  F2 (t=5,kappa=3,q=2), base (2,3) step (1,2):")
-    C, rows = family_growth(5, 3, 2, 2, 3, 1, 2)
+    print("\n[FAMILY-LEVEL GROWTH]  F2 (t=4,kappa=2,q=1), base (2,3) step (1,2):")
+    C, rows = family_growth(4, 2, 1, 2, 3, 1, 2)
     print(f"    fixed corner integer C = q(kappa+1)-t = {C}")
     print(f"    {'j':>2} {'a+b':>4} {'M':>5} {'H':>5} {'gcd':>4} {'q_window':>8}")
     for (j, s, M, H, g, qw) in rows:

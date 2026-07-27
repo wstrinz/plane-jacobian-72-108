@@ -19,18 +19,32 @@ C_SERIES_75_125.md, which fixed forcing window = S^b, linear window = S^a):
 
 For (72,108): a,b,t = 2,3,4 -> linear S^2, forcing S^3, cubic generators
 G1,G2,G3,(G5body+Phi) -- exactly regenerate_system.py / FULL_SYSTEM_BRIDGE.md.
-For (75,125): a,b,t = 3,5,5 -> linear S^3, forcing S^5, QUINTIC generators.
+For (75,125): a,b,t = 3,5,4 -> linear S^3, forcing S^5, QUINTIC generators.
+
+*** REPAIRED 2026-07-26 (PASSPORT_75_125_REPAIR.md).  t was 5 and q was 2, read
+off GGV5's final chain corner (7\\5,2) via the dictionary (t,q)=(l_final,b_final).
+That dictionary holds only on the retraction shape b0 = l(a0-1), which (5,20)
+fails; the chart exponent is ceil(20/5) = 4.  The (75,125) build is now
+build_gsystem(3, 5, 4, 1, 80) and its inputs come through
+polygon_reduction.corner_chart_data(), which RAISES rather than returning the
+wrong pair.  Downstream: 8 generators (was 10), 7 spares dm2..dm8 (was 9,
+dm2..dm10), M = 29 (was 36), W_step = 80/29 (was 201/36 = 67/12).  Both the
+"structure transfers" conclusion and the "physical weight normalisation does NOT"
+conclusion SURVIVE -- but every number in them changed, and the specific
+period-12 / divisor-lattice content of the old story is refuted: 29 is prime. ***
 
 Two structural facts this script establishes and the verifier re-checks:
   (1) The recipe transfers as an algebraic construction: the (75,125) G-system
       EXISTS, is weight-homogeneous under the intrinsic u-grading, and has a
       well-defined spare inventory.
   (2) The PHYSICAL (y-valuation) weight normalisation does NOT transfer cleanly:
-      W_step := ord_y(Phi)/M is 12 (integer) at (72,108) but 201/36 = 67/12
-      (NON-integral) at (75,125) -- the a=3 boundary CORNER_144_COMPARISON.md
-      sec.5 predicted as a quasipolynomial window cap (ceil(w/5) there; the
-      denominator here is 12).  The clean integer y^W stripping of the (72,108)
-      bridge does not carry over; the grading is rational.
+      W_step := ord_y(Phi)/M is 12 (integer) at (72,108) but 80/29 (NON-integral)
+      at (75,125).  The clean integer y^W stripping of the (72,108) bridge does
+      not carry over; the grading is rational.  NOTE the repaired shape of this
+      obstruction: because C = y is a monomial, ord_y(Phi) = deg_y(Phi) = 80, so
+      the ord-slope and deg-slope COINCIDE (both 80/29) instead of being the two
+      distinct slopes 67/12 and 14 of the superseded model.  q_window = 29 is
+      PRIME, so the "divisor lattice of the period" story attached to 12 is gone.
 
 Emits g_system_75_125.json (canonical, documented variable order) for the case
 compiler to consume.  Independent checker: g_system_75_125_verify.py.
@@ -220,8 +234,14 @@ def emit_json(r, path):
     dossier = dict(
         schema="g-system-v1",
         case=dict(tag="F2_j1_75_125", degrees=[75, 125],
-                  corner="(5,20)->(7/5,2)", a=a, b=b, t=t, kappa=r["kappa"],
-                  q=r["q"], e=r["e"], s=r["s"]),
+                  corner="(5,20)  [GGV5 chain final corner (7\\5,2); NOT the chart]",
+                  a=a, b=b, t=t, kappa=r["kappa"],
+                  q=r["q"], e=r["e"], s=r["s"],
+                  chart_exponent_rule="t = l = ceil(b0/a0) = ceil(20/5) = 4 "
+                                      "[INFERRED rule, guarded in "
+                                      "polygon_reduction.py sec.0b]",
+                  repaired="2026-07-26: t 5->4, kappa 3->2, q 2->1, C "
+                           "y^2(y^3+1)->y; see PASSPORT_75_125_REPAIR.md"),
         recipe=dict(
             linear_window="S^a = S^%d  (slices [u^(a t + k)], linear in dm_{(a-1)t+k})" % a,
             forcing_window="S^b = S^%d  (slices [u^(b t + j)], degree-%d generators)" % (b, b),
@@ -282,23 +302,37 @@ def emit_json(r, path):
                   "CORNER_144_COMPARISON.md sec.5 (quasipolynomial window cap "
                   "ceil(w/5) for (108,144), denominator 5; denominator %d here)."
                   % (str(W), W.q, W.q))),
+        deg_slope=dict(
+            note=("Whether the y-DEGREE cap is affine depends on deg_y(Phi)/M "
+                  "being an integer.  When C is a monomial, deg_y(Phi) = "
+                  "ord_y(Phi) and the deg-slope equals W_step, so it is affine "
+                  "only when W_step is -- i.e. never in this family.  The "
+                  "(72,108) picture of TWO distinct slopes (ord 12, deg 14) has "
+                  "no counterpart here."),
+            deg_equals_ord=True),
         window_caps=dict(
-            pattern=("ord y quasi-affine: physical step 201/36 = 67/12 per window "
-                     "unit -> quasipolynomial caps with quasi-period 12 (analogue "
-                     "of CORNER_144 8w+ceil(w/5)); NOT the affine 12k/15k/14k of "
-                     "(72,108)"),
-            status="OBSTRUCTED: affine window-cap slopes do not exist (a=3, "
-                   "non-integral W_step); the caps are quasipolynomial",
+            pattern=("ord y quasi-affine: physical step %d/%d = %s per window unit "
+                     "-> quasipolynomial caps with quasi-period %d; NOT the affine "
+                     "12k/15k/14k of (72,108).  And since C is a monomial the "
+                     "y-DEGREE cap coincides with the y-order cap (same slope), so "
+                     "there is no affine upper cap either."
+                     % (r["ordPhi"], r["M"], str(W), W.q)),
+            quasi_period=int(W.q),
+            quasi_period_is_prime=bool(sp.isprime(W.q)),
+            status="OBSTRUCTED: affine window-cap slopes do not exist "
+                   "(non-integral W_step); the caps are quasipolynomial",
         ),
         phi_consistency=dict(
             verdict="CONSISTENT (intrinsic grading)",
             detail=("Phi enters the deepest forcing generator G%d at u-slice "
                     "M=%d with the homogeneity-forced weight %d, matching phase-1's "
-                    "tower slice (C_SERIES_75_125.md: Phi = f*C^98 is the u^36 slice "
-                    "of S^5, clear = a*M-b = 103, N = 98).  ord_y(Phi)=201=W_step*M "
+                    "tower slice (C_SERIES_75_125.md: Phi = f*C^%d is the u^%d slice "
+                    "of S^%d, clear = a*M-b = %d, N = %d).  ord_y(Phi)=%d=W_step*M "
                     "holds as a rational identity; the departure from (72,108) is "
                     "only the non-integral physical normalisation."
-                    % (r["jphi"], r["M"], r["M"])),
+                    % (r["jphi"], r["M"], r["M"],
+                       a * r["M"] - 2 * b, r["M"], b, a * r["M"] - b,
+                       a * r["M"] - 2 * b, r["ordPhi"])),
         ),
         bridge=("~%d quintic generator equations (before y-coefficient expansion); "
                 "%d spare window unknowns dm2..dm%d + Phi over the state "
@@ -306,11 +340,14 @@ def emit_json(r, path):
                 % (len(r["Gs"]), len(r["spares"]), (a - 1) * t)),
         obstruction=("Structure transfers (slice equations, %d-generator forcing "
                      "system, %d-spare inventory, u-grading AP of weights). The "
-                     "PHYSICAL weight normalisation does not: W_step = 201/36 = "
-                     "67/12 is non-integral, so the affine window caps and exact "
+                     "PHYSICAL weight normalisation does not: W_step = %d/%d = %s "
+                     "is non-integral, so the affine window caps and exact "
                      "y-stripping of (72,108) are replaced by a quasipolynomial "
-                     "(quasi-period 12) window layer -- the a=3 boundary."
-                     % (len(r["Gs"]), len(r["spares"]))),
+                     "(quasi-period %d) window layer.  Because C is a monomial the "
+                     "y-degree cap coincides with the y-order cap, so unlike "
+                     "(72,108) there is no affine upper slope at all."
+                     % (len(r["Gs"]), len(r["spares"]), r["ordPhi"], r["M"],
+                        str(W), W.q)),
     )
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(json.dumps(dossier, sort_keys=True, indent=1) + "\n")
@@ -339,11 +376,26 @@ def main():
     print("  physical weights = [156,168,180,204]  MATCH known G-weights")
 
     # ---- the target: (75,125) ----
-    print("\n[target] (75,125)  a,b,t = 3,5,5  q=2  ord_y(Phi)=201")
-    r = build_gsystem(3, 5, 5, 2, 201, verbose=True)
+    # inputs DERIVED through the retraction guard, never transcribed
+    import polygon_reduction as pr
+    _cd = pr.corner_chart_data(5, 20, l_final=5, b_final=2, who="g_system_75_125")
+    assert not _cd["retraction"] and _cd["monomial"], _cd
+    _t, _q = _cd["t"], _cd["ord_C"]
+    _a, _b = 3, 5
+    _N = _a * (_t * (_a + _b) - (_cd["kappa"] + 1)) - 2 * _b
+    _rho = (_b - _a + 1 - 1) * _q + 1
+    _ordPhi = _rho + _N * _q                       # Phi = (1/a) y^(rho + N q)
+    assert (_t, _q, _N, _ordPhi) == (4, 1, 77, 80), (_t, _q, _N, _ordPhi)
+    print("\n[target] (75,125)  a,b,t = 3,5,%d  q=%d  ord_y(Phi)=%d   [REPAIRED: t "
+          "was 5 and q was 2, from GGV5's final corner; the retraction guard now "
+          "refuses that]" % (_t, _q, _ordPhi))
+    r = build_gsystem(_a, _b, _t, _q, _ordPhi, verbose=True)
     uw = [r["b"] * r["t"] + j for j in sorted(r["Gs"])]
     print("  generators:", ["G%d" % j for j in sorted(r["Gs"])],
           "(quintic; slice j=1..%d skip %d)" % (r["jphi"], r["jphi"] - 1))
+    print("  count law: #generators = jphi-1 = a*t-kappa-2 = %d;  #spares = "
+          "(a-1)t-1 = %d  (both increment by t per rung, so t=4 gives +4/+4 where "
+          "the superseded t=5 gave +5/+5)" % (r["jphi"] - 1, (r["a"] - 1) * r["t"] - 1))
     print("  spare inventory (%d):" % len(r["spares"]),
           [str(s) for s in r["spares"]], "= d_-2 .. d_-%d" % ((r["a"] - 1) * r["t"]))
     for j in sorted(r["Gs"]):
@@ -351,8 +403,11 @@ def main():
     print("  every generator is u-grading homogeneous; weights (AP):", uw)
     print("  Phi u-weight:", r["M"], " forcing slice M = b*t + jphi =", r["M"])
     W = r["W_step"]
-    print("  physical normalisation  W_step = ord_y(Phi)/M = 201/36 =", W,
-          "(integral: %s)" % (W.q == 1))
+    print("  physical normalisation  W_step = ord_y(Phi)/M = %d/%d ="
+          % (r["ordPhi"], r["M"]), W, "(integral: %s)" % (W.q == 1))
+    print("  because C = y is a monomial, deg_y(Phi) = ord_y(Phi) = %d, so the "
+          "deg-slope EQUALS the ord-slope: there is no second, affine cap."
+          % r["ordPhi"])
     print("  ->", "clean stripping transfers" if W.q == 1 else
           "NON-INTEGRAL: exact y-stripping does NOT transfer (a=3 boundary; "
           "quasi-period %d window caps)" % W.q)
@@ -361,7 +416,7 @@ def main():
     clear = r["a"] * r["M"] - r["b"]
     N = clear - r["b"]
     print("  phase-1 slice-sum: clear = a*M - b =", clear, " N = clear - b =", N,
-          "(matches C_SERIES_75_125.md N=98:", N == 98, ")")
+          "(matches C_SERIES_75_125.md N=77:", N == 77, ")")
 
     out = "g_system_75_125.json"
     emit_json(r, out)
@@ -369,9 +424,11 @@ def main():
 
     print("\n" + "=" * 78)
     print("VERDICT: G-system BUILT (structure transfers) with a characterised")
-    print("physical-weight OBSTRUCTION (W_step = 67/12 non-integral, a=3 boundary).")
-    print("  spares: 9  (dm2..dm10)   generators: 10 (quintic)")
-    print("  u-grading weights: 26..36 (skip 35)   Phi-consistency: CONSISTENT")
+    print("physical-weight OBSTRUCTION (W_step = %s non-integral)." % r["W_step"])
+    print("  spares: %d  (dm2..dm%d)   generators: %d (quintic)"
+          % (len(r["spares"]), (r["a"] - 1) * r["t"], len(r["Gs"])))
+    print("  u-grading weights: %s   Phi-consistency: CONSISTENT"
+          % [r["b"] * r["t"] + j for j in sorted(r["Gs"])])
     print("=" * 78)
 
 

@@ -82,8 +82,26 @@ killed at exactly the offending `(s, j)`.
 ## 3. Worked example — (50,75), the γ=3 chart, fully instantiated
 
 Source: F2_TOWER.md §1 (γ=3 window-depth kill), `f2_tower.py` / `f2_tower_verify.py`
-§B (exact, PASS). Corner `(5,20) → (7/5,2)`: `t=5, kappa=3, a0=5, q=2`; reduced
-pair `(a,b)=(2,3)`.
+§B (exact, PASS). Corner `(5,20)`: `t = ceil(20/5) = 4`, `kappa = 2`, `C = y` a
+**monomial** so `q = ord_y C = 1`; reduced pair `(a,b) = (2,3)`.
+
+> **REPAIRED 2026-07-26.** This line read ``Corner `(5,20) → (7/5,2)`:
+> `t=5, kappa=3, a0=5, q=2` `` — the pre-repair signature, obtained by reading
+> GGV5's final chain corner `(7\5,2)` as chart data via the dictionary
+> `(t,q) = (l_final, b_final)`. That dictionary is valid **only** on the
+> retraction shape `b_0 = t(a_0-1)`, and `(5,20)` fails it (`20 != 4*4`), so
+> `polygon_reduction.final_corner_dictionary()` now raises here. See
+> `PASSPORT_75_125_REPAIR.md`.
+>
+> **What does NOT move, and why that is the interesting part.** Every number in
+> the rest of this section — the caps `C_{-1} = a y^3`, `C_{-2} = b y^4`, the
+> forced floor `j_min(0) = -6`, the required-nonzero `c_{0,-10}` — is
+> **unchanged**. Those live in GGV3 §5's own reduced γ-chart coordinates, which
+> are supplied by GGV3's conditions (a1)–(a6), not by our polygon bookkeeping.
+> That is precisely why the γ-chart kill survived a repair that moved `t`,
+> `kappa`, `C`, `N`, `Phi` and `q_window`: the depth ledger and the u-weight
+> window cone are **different objects**. Cf. F2_TOWER.md's "THE BRIDGE IS
+> UNVERIFIED" banner, which is the same distinction seen from the other side.
 
 **Window caps (a5).** The corner fixes the two leading deep window coefficients:
 

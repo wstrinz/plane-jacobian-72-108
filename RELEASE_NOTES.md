@@ -1,3 +1,284 @@
+# v0.4.0 — RETRACTION: the period-12 window functions for (75,125) are withdrawn
+
+**Read this section before any other part of this tree.** This release exists
+primarily to correct published mathematics, not to add features. If you cited or
+built on the (75,125) window material from v0.3.0, it was wrong, and the corrected
+statement is below.
+
+## The retraction
+
+v0.3.0 shipped a section headed *"Period-12 window functions for (75,125)"*, and
+`d2/WINDOW_FUNCTIONS_75_125.md` was titled *"The period-12 window functions for
+(75,125), derived exactly."* It claimed:
+
+| v0.3.0 claimed | actually |
+|---|---|
+| `q_window = 12`, period 12 | **`q_window = 29`** |
+| `W_step = ord_y(Phi)/M = 201/36 = 67/12` | **`80/29`** |
+| `alpha = 67 = 10a^2-8a+1`, `beta_m = 5m mod 12` | `alpha = 80`; the `beta` law is void as stated |
+| upper cap `U(w) = 14w` is **affine** | **there is no affine upper cap** — `deg_slope = 80/29` is not an integer |
+| family law `q_window = 5a-3` in `{7,12,17,...}` | **`12a-7` in `{17,29,41,...}`**, and both `17` and `29` are prime |
+| `N` at (75,125) `= 98`; at (50,75) `= 36` | **`77`** and **`28`** |
+| `Phi = -(1/9) y^201 (y^3+1)^101` | **`(1/3) y^80`** — a monomial |
+
+**Root cause.** The `(5,20)` corner does not satisfy the retraction shape
+`b0 = t(a0-1)`: `20 != 4*4`. GGV5's final-corner dictionary
+`(t,q) = (l_final, b_final)`, which we used to read chart data off the published
+final chain corner, is valid **only** on that shape. The correct chart exponent is
+`t = ceil(b0/a0) = 4`, not `5`, and `C = y` is a **monomial**, so
+`deg C = ord C = 1` rather than `5` and `2`.
+
+**Decisive external check.** GGV3 (`arXiv:1406.0886`) section 5 performs this very
+reduction on the sibling `(50,75)` and publishes `[P_1,Q_1] = x^2`,
+`deg P_1 = 10`, `deg Q_1 = 15`. `t = 4` reproduces all three; `t = 5` contradicts
+all three.
+
+**The corrected reading is stronger, not weaker.** Because `q_window = 29 = M`
+*exactly*, no split with `1 <= w < M` is a multiple of the period, so the carry
+obstruction is `1` on **every** admissible split and there is no weight at which it
+could vanish. Under the superseded `67/12` against `M = 36` it would have vanished
+at `w` in `{12,24}`. So (75,125) is *more* firmly obstructed by this mechanism than
+v0.3.0 claimed.
+
+The root cause is now **guarded in code**:
+`polygon_reduction.final_corner_dictionary()` raises off the retraction shape, so
+this class of error cannot recur silently.
+
+## Second retraction: the F2 family closed form
+
+`FAMILY_GRAMMAR.md` classified the F2 family as `CLOSED-FORM (pure)` with
+`f = -1/(a*dg) * y^rho * (y^dg+1)^e`. Under the corrected chart,
+`dg = deg C - ord C = 0`, so that normalising constant is `-1/(a*0)` —
+**undefined** — and the collapse identity `y g' - dg*g = -dg` degenerates to
+`0 = 0`, constraining nothing.
+
+**F2 has no closed form of this shape.** It is reclassified `CHART-DEGENERATE`, and
+the census of pure families drops from `{F2,F9,F14}` to `{F9,F14}`. The landed
+derived points still reproduce exactly and symbolically in `j`
+(`N = (3j+4)(4j+7)`, `deg = ord = 2(2j+3)(3j+5)`), and independently agree with
+`window_functions_75_125.family()`. What is withdrawn is the *mechanism*, not the
+data. Deriving what replaces it is open.
+
+**`F3` is repaired too — and the repair carries its own two-sided proof.** `F3`
+sits at the same `(5,20)` corner and carried the same unrepaired `t = 5`. An
+earlier draft of these notes said no corrected target existed for it, so no fix
+would be verifiable. That was too conservative:
+
+- **Chart data is a property of the corner, not the family.** `chart_exponent`,
+  `kappa`, and the test deciding whether `C` is a monomial are functions of `A_0`
+  alone. `corner_chart_data(5,20, b_final=2)` and `(..., b_final=3)` return
+  bit-identical results.
+- **The old table's own inconsistency is the proof.** `ord_y(C)` is a corner
+  invariant, yet the table asserted `q = 2` for F2 and `q = 3` for F3 at the *same*
+  corner. That contradiction is visible without consulting any paper, and it is
+  exactly the fingerprint of reading `q` off GGV5's per-row `b_final`.
+- **Two-sided cross-check.** `F3 j=0` is `(75,50)`, which is `(50,75)` with
+  `P` and `Q` exchanged at the same corner — the same reduction. So F2 `j=0` and
+  F3 `j=0` must agree, and they do: both give `N = 28` and signature
+  `(30,30,0,0)`. They are reached from *different* `(m,n)` laws whose `N`
+  polynomials in `j` are genuinely different — `12j²+37j+28` versus
+  `84j²+99j+28` — coinciding only at `j = 0`. That is independent confirmation,
+  not a tautology.
+- **Published anchor.** GGV3 §5's `[P₁,Q₁] = x²`, `deg P₁ = 10`, `deg Q₁ = 15` are
+  obtained *before* the paper's `γ ∈ {2,3}` branch, so they are not the property of
+  one row's `b_final`; and `F_3(3,2)/75` is that case with `P,Q` exchanged. Either
+  reading forces `kappa = 2`, `l = 4`.
+
+`F3` is therefore also `CHART-DEGENERATE`, and its closed form is withdrawn on the
+same grounds as F2's. The `A10` tripwire was **replaced, not deleted**: `A10a`–`A10f`
+now assert the new state and its evidence, and `A10d` *discriminates* the two charts
+rather than relabelling — F3's `PHI_F7` polynomial does solve the superseded ODE
+(that computation was never wrong) and does **not** solve the repaired one, so the
+repair stays falsifiable. New check `A9c` cross-checks the two independent copies.
+
+**Known-suspect, and shipping in this tree.** Eight modules still transcribe `F3`'s
+`(5,20)` data with `l_final = 5` / `b_final = 3` used **as chart data**:
+`phi_f7.py`, `phi_f7_verify.py`, `phi_corner4.py`, `phi_corner4_verify.py`,
+`phi_f14.py`, `phi_f14_verify.py`, `case_compiler.py`, `ml_restriction_check.py`.
+Each keeps its own transcription, so each is internally consistent and all stay
+green — which is precisely why they are dangerous. Check `A10f` names them so the
+front cannot be mistaken for closed. Treat any `F3` chart quantity from those
+eight as suspect until repaired.
+
+A latent bug surfaced during this work and is fixed: `full_ode_residual` built
+`g = y**dg + 1 = 2` at `dg = 0` instead of the forced monic constant `1`. It had
+never been exercised, because no `dg = 0` row had ever reached that line.
+
+## How these survived — and what changed structurally
+
+Both retractions were found by adversarial review, and in both cases the test
+suite was green throughout. Three distinct mechanisms allowed that:
+
+1. **A module printed `MISMATCH` and exited 0.** `family_grammar.py` detected the
+   contradiction between its repaired targets and its unrepaired derivation, said
+   so on stdout, and returned success. It is now **fatal on mismatch**
+   (mutation-tested).
+2. **A checker kept its own private copy of the answer.** `family_grammar_verify.py`
+   held a second `LANDED` table, still stale, and so verified a stale copy against a
+   stale derivation — passing 210/210. New check `A9` **cross-checks the two
+   independent tables against each other.** Independence between a module and its
+   checker is worth nothing if both keep private copies and never compare them.
+3. **Gated checks described the wrong case self-consistently.** `minimal_core.py`
+   F0/F3 computed with `(201, 36, 504)` and `carry(6,30,67,12)` under a label
+   reading "(75,125)". The arithmetic was internally consistent, so nothing failed.
+   Now pinned to the corrected `(80,29)`.
+
+The general lesson, stated because it cost three separate defects: **a retrodiction
+test confirms that a tool still finds what you already knew, and is structurally
+incapable of noticing capability you have lost.** Every fix that stuck was a
+*cross-check between two things that should agree*, not another assertion about one
+thing.
+
+## New in this release
+
+- **`PROOF_72_108.md`** — the (72,108) proof written out (~40 pages including
+  setup; the mathematical core is 15-20). All five `C0` subcases are
+  `exact-checked`, and **no step is irreducibly machine work**:
+  `support_certificates.py` retired the last one, reducing the marked-support test
+  over all 40 `(k,z)` pairs to five Bezout identities of degree at most 6 plus
+  degree and valuation bookkeeping — no Groebner engine, no irreducibility, no
+  field theory.
+- **`CORNER_ATLAS.md` + `corner_atlas.py`** — GGV5's 34 published candidate
+  counterexamples run through five gates. They collapse to **six signatures**, and
+  **28 of the 34 are driven by one integer test**: retraction failure at `A_0` makes
+  `C` a monomial, which simultaneously refuses the chart dictionary, forces
+  `lambda = 0` (killing the slice cascade), and empties the Belyi sweep. As of this
+  release it is *four* mechanisms — the F2 closed form is the fourth casualty of the
+  same integer fact.
+  **No row in the atlas is eliminated as a counterexample by the atlas.** The gates
+  are on *our mechanisms*, not on the cases.
+- **`gamma_from_corner.py`** — derives the chart exponent gamma from the corner
+  `A_0` instead of reading it off a paper, calibrated on **28 published data points**
+  across GGV1 Tables 1-3. **Result: the corner does not pin gamma.** At `(5,20)`,
+  gamma is in `{2,3,4}`; GGV3 section 5 asserts `{2,3}` and says outright *"We do
+  not provide proofs for this first part."* Both halves of GGV1's dichotomy fail to
+  separate them: Prop 'case II' is **inapplicable** (`gcd(a,b) = 1` for all three)
+  and Prop 'extremosfinales' is **non-exclusive** (an admissible `k` exists for all
+  three). This is a **located obligation, not a refutation** — GGV1 carries
+  machinery not mechanised here, and check `E1` keeps a standing witness of that
+  incompleteness. The gap is **class-wide** across the nine atlas rows with
+  `b0 = 4*a0`.
+- **`CONTACT_LEMMA.md`** — the cascade is a theorem with three previously hidden
+  hypotheses (`gcd(m,n)=1`, `lambda >= m`, `N_Q >= D_P+D_Q`); the general profile
+  bound is `v_t(h_k) >= m*k-1`, not `2k-1`, and the cokernel is `m*k-n`, not `2n-3`.
+- **`TORIC_SYZYGY.md` / `TORIC_GENERAL.md`** — `6WZ = e^5` on every bare G-point,
+  using no `Phi`, no caps and no slices; and the toric exponent condition
+  `(t+1) | (4t+9)` if and only if `t = 4`, uniquely.
+- **`PASSPORT_75_125_REPAIR.md`** — the full 34-file account of the chart repair.
+
+## NEW RESULT — the bridge identity, and monomiality is TWO defects
+
+`MONOMIAL_WINDOW_LAW.md` + `monomial_window_law.py` (56/56).
+
+**An exact identity linking the analytic and combinatorial window invariants.**
+From `rho = q(b-a)+1` and `N = a*M - 2b`:
+
+```
+ord_y(Phi)  =  a*q*M  -  H,        H := q(a+b) - 1
+```
+
+Exact, not a congruence. Hence `gcd(M, ord_y Phi) = gcd(M, H)`, so the **analytic**
+window denominator `denom(ord_y Phi / M)` — the quantity the carry obstruction
+actually consumes — **is** the **combinatorial** corner invariant
+`q_window = M/gcd(M,H)`. These were previously two objects that happened to agree
+on four tabulated cases.
+
+This dissolves a flagged negative. `MINIMAL_CORE.md` §4 recorded a "negative I
+could not overcome": no family-wide `q_window` sweep was possible because
+`ord_y Phi` is published only at `(8,28)`. The identity supplies it from corner
+data alone — at `(72,108)`, `2*7*17 - 34 = 204`, which the disjoint `f1`-ODE route
+independently confirms. The atlas now carries `ord_y Phi` for all 34 rows.
+
+**Monomiality is two orthogonal defects, not one bias.** This corrects the framing
+that motivated the lane. All four previously documented deaths (`lambda`, the
+window cone, the toric identity, the F2 closed form) consume **thinness**,
+`deg C - ord C = 0`. The `q_window` behaviour consumes **shallowness**,
+`ord C = 1`, and has *zero* `deg C` dependence. All four quadrants are realised:
+`C = y^8` at `t=3` is a **monomial with an integral window** (`q_window = 1`), and
+`C = y(y+1)` has `lambda != 0` with `q_window = M`. So restoring a residual is not
+a repair for `q_window`, deepening `C` is not a repair for `lambda`, and two
+independent repairs are needed rather than one.
+
+**Monomial rigidity (PROVED).** At `q = ord_y C = 1` with `kappa = t-2`, the Bezout
+corner integer is exactly `-1`, so `gcd(M,H) = 1` and `q_window = M` — maximal, at
+every corner and every rung. The total-carry lemma then applies: for every split of
+`M` and every `k`, the carry lies in `[1, k-1]` and is **never 0**. So the
+Phi-divisor carry obstruction is **total at all 28 monomial rows**, decided with no
+split enumeration and no `w(e)` datum. This resolves **31 UNKNOWN verdicts at atlas
+gate `G5`**, leaving an escape at exactly the 6 non-monomial rows. Corollary:
+`q_window = 1` is *impossible* at a monomial corner, since it requires
+`ord_y C >= t`.
+
+**Consequence — a lane closes.** The Phi-divisor / K-syzygy route is now provably
+dead **class-wide** under the unchanged extreme-ray premise, not merely at
+`(75,125)`. The K-syzygy should not be ported to the class of nine. Reviving that
+route requires `ord_y C >= t`, which only the retraction shape supplies — so the
+route is coextensive with the six retracting rows, one of which is already closed.
+
+**The discriminating pair.** `(50,75)` and `(72,108)` share `(a,b,t) = (2,3,4)` and
+`M = 17`, and `build_gsystem` is **field-by-field identical** on both — generators,
+`Klin`, state and spare inventory, u-weights — with only `q`, `ord_y Phi` and
+`W_step` differing. So the K-syzygy exists as an *algebraic* relation at `(50,75)`
+too; the carry on the published split `(5,12)` is `0` versus `1`. **At `(50,75)` the
+algebra permits the syzygy and the arithmetic forbids it, and exactly one integer
+moved.** Quantitatively, at the `(4,2,5)` shape shared by `(72,108)` and **eight of
+the nine** class rows, integrality requires `ord_y C = 7 mod 17`, whose minimal
+solution is `7` — precisely `(72,108)`'s value.
+
+**What the positive is, and what it is not.** `ceil(alpha*w/q_window)` *is* the
+`ENDPOINT_CONTRACT` depth-ledger floor. Its gain over the affine ray sums to
+exactly `(q_window-1)/2` per period, identically `0` **iff** `q_window = 1`. So
+`(72,108)`, where the entire toolkit was calibrated, has gain `0` everywhere, while
+the class of nine has the *maximal* gain: **the cone needs two slopes and dies; the
+floor needs one and is strengthened.** But that the raised floor actually *fires* a
+kill at `(8,32)`, `(9,36)`, `(10,40)` is **CLAIMED, NOT CHECKED** — it needs each
+corner's reduced gamma-chart caps, which are in-repo for `(50,75)` only.
+
+**Soft spot, flagged rather than buried.** The generality of `rho = q(b-a)+1` and
+`N = a*M - 2b` *off* the F2 family is **INFERRED**. They are confirmed at
+`(72,108)` (`q=7`, `b-a=1`) and across F2 rungs `a=2..8` (`q=1`, `b-a` varying) — a
+one-dimensional slice in each variable separately, with joint dependence untested.
+This is the one place the result could be wrong in a way that matters. The cheapest
+decisive test: derive `ord_y Phi` independently at `(8,28)/(3,4)/144`, where the
+identity predicts **205**.
+
+## Status of the main claim, stated precisely
+
+**(72,108) is closed**, the enumerated `f31` frontier is empty, and every kill in
+the chain is independently audited. `C0` itself is recorded at level **`claimed`**,
+and that is **correct by construction, not a backlog item**: exhaustiveness of the
+case partition rests on GGHV22 Prop 4.3 and the field-split framework — published
+mathematics that no finite bookkeeping checker can re-derive. `prop43_audit.py`
+discharges the *citation*, not the *partition*. The routes above `claimed` are a
+machine-checkable reformulation of the partition, or a formal proof; not a regrade.
+
+**Prior work.** M. Helali published an independent treatment of this case on
+**2026-07-21**, ahead of this work. Our adjudication of the two results is
+`SUBSUMES`.
+
+## Open problems
+
+1. **Settle the bridge identity's generality** — derive `ord_y Phi` independently at
+   `(8,28)/(3,4)/144`, where the identity predicts `205`. Cheapest high-value item
+   left; it turns the identity from INFERRED to checked in two directions.
+2. **Cash the eight-row G-system coincidence.** Any *weight-free algebraic*
+   consequence of `(72,108)`'s ideal transfers verbatim to eight of the nine class
+   rows; only weight-normalised steps fail. This wasn't visible before and is the
+   strongest surviving lead. It calls for re-auditing the `(72,108)` closure to
+   separate its weight-free steps from its weight-normalised ones.
+3. **Test the floor-raising claim** by deriving the gamma-chart caps at `(8,32)` —
+   noting that `(8,32)`'s window arithmetic is *identical* to `(50,75)`'s, so the
+   window layer cannot be what distinguishes them, and whatever makes
+   `gamma_from_corner.py` find no branch at `(8,32)` must come from elsewhere.
+4. Exclude `gamma = 4` at `(5,20)` — class-wide over nine rows. Needs the reduction
+   layer; the corner layer is proven insufficient.
+5. Derive GGV3 section 5's conditions (a1)-(a6) from corner data — the gamma-window
+   compiler's next step. Must be built for `gamma` in `{2,3,4}` until (4) closes.
+6. What replaces the withdrawn closed form when `dg = 0`, for F2 and F3 alike.
+7. Repair the eight downstream modules that still transcribe `F3`'s superseded chart.
+
+---
+
 # v0.3.0 — the audit wave: a clean trust graph, a new kill mechanism, two errata
 
 **Headline:** the machine-honesty layer that shipped "working but finding

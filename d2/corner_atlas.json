@@ -1,0 +1,3678 @@
+{
+ "schema": "corner_atlas/1",
+ "source": {
+  "tex": "paper_src/1708.07936_GGV5.tex",
+  "section": "Possible counterexamples with max(deg P,deg Q) <= 150",
+  "section_line": 1792,
+  "family_table": "paper_src/1708.07936_GGV5.tex:1802-1814",
+  "chain_table_len1": "paper_src/1708.07936_GGV5.tex:1678-1694",
+  "chain_table_len2": "paper_src/1708.07936_GGV5.tex:1709-1715",
+  "sporadic_len1": "paper_src/1708.07936_GGV5.tex:1828-1836",
+  "sporadic_len2": "paper_src/1708.07936_GGV5.tex:1848-1858",
+  "sporadic_len3": "paper_src/1708.07936_GGV5.tex:1869"
+ },
+ "gate_status": {
+  "G1": "INFERRED (chart_exponent rule is not published; the retraction shape and its two published counterexamples are CHECKED)",
+  "G2": "PROVED (toric_general.py B4, 38/38)",
+  "G3": "PROVED (contact_lemma.py, 64/64) -- but lam requires the corner's Phi, which is published nowhere",
+  "G4": "PROVED gate + CHECKED reduction engine (passport_75_125.py 81/81, engine reproduces 5 published GGHV22 reductions)",
+  "G5": "PROVED criterion (MINIMAL_CORE.md, exhaustive over 1.5M splits) -- but w(e) requires the corner's split enumeration"
+ },
+ "n_rows": 34,
+ "clusters": {
+  "FAIL|FAIL|FAIL|FAIL|UNKNOWN": [
+   "(11,33)/(2,3)/132",
+   "(12,30)/(3,2)/126",
+   "(12,36)/(2,3)/144",
+   "(12,36)/(2,3)/144",
+   "(12,36)/(2,3)/144",
+   "(12,36)/(2,3)/144",
+   "(12,36)/(3,2)/144",
+   "(7,35)/(2,3)/126",
+   "(7,42)/(2,3)/147",
+   "(7,42)/(3,2)/147",
+   "(8,40)/(3,2)/144",
+   "(9,27)/(2,3)/108",
+   "F_1(3,4)/64",
+   "F_1(5,7)/112",
+   "F_11(2,5)/140",
+   "F_22(2,3)/96",
+   "F_24(3,4)/128",
+   "F_9(2,3)/84",
+   "F_9(3,5)/140"
+  ],
+  "FAIL|PASS|FAIL|FAIL|UNKNOWN": [
+   "(10,40)/(3,2)/150",
+   "(10,40)/(3,2)/150",
+   "(8,32)/(3,2)/120",
+   "(9,36)/(2,3)/135",
+   "(9,36)/(2,3)/135",
+   "(9,36)/(3,2)/135",
+   "F_2(2,3)/75",
+   "F_2(3,5)/125",
+   "F_3(3,2)/75"
+  ],
+  "PASS|FAIL|UNKNOWN|FAIL|UNKNOWN": [
+   "F_7(2,7)/147",
+   "F_8(3,7)/147"
+  ],
+  "PASS|FAIL|UNKNOWN|FAIL|PASS": [
+   "(12,33)/(2,3)/135",
+   "F_17(2,3)/99"
+  ],
+  "PASS|PASS|UNKNOWN|FAIL|UNKNOWN": [
+   "(8,28)/(3,4)/144"
+  ],
+  "PASS|PASS|PASS|PASS|PASS": [
+   "(8,28)/(3,2)/108"
+  ]
+ },
+ "unknown_counts": {
+  "G1": 0,
+  "G2": 0,
+  "G3": 5,
+  "G4": 0,
+  "G5": 31
+ },
+ "ggv5_self_discarded": [
+  "F_22(2,3)"
+ ],
+ "closed_by_this_campaign": [
+  "(8,28)/(3,2)/108"
+ ],
+ "rows": [
+  {
+   "id": "F_1(3,4)/64",
+   "kind": "FAMILY",
+   "family": "F_1",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    4,
+    12
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 7,
+    "l_final": 4,
+    "b_final": 3
+   },
+   "k": 1,
+   "m": 3,
+   "n": 4,
+   "max_deg": 64,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1802",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1678",
+    "red_in_paper": true
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 4,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 12 != 3*3 = 9, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 4 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 3 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 14,
+       "D_P": 3,
+       "D_Q": 4,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 13,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 13 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 19,
+     "M": 19,
+     "H": 6,
+     "gcd": 1,
+     "q_window_unguarded": 5,
+     "M_unguarded": 25,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 19 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 19; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_1(5,7)/112",
+   "kind": "FAMILY",
+   "family": "F_1",
+   "j": 1,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    4,
+    12
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 7,
+    "l_final": 4,
+    "b_final": 3
+   },
+   "k": 1,
+   "m": 5,
+   "n": 7,
+   "max_deg": 112,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1803",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1678",
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 4,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 12 != 3*3 = 9, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 4 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 5 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 23,
+       "D_P": 5,
+       "D_Q": 7,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 23,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 23 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 34,
+     "M": 34,
+     "H": 11,
+     "gcd": 1,
+     "q_window_unguarded": 9,
+     "M_unguarded": 45,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 34 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 34; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_2(2,3)/75",
+   "kind": "FAMILY",
+   "family": "F_2",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    5,
+    20
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 7,
+    "l_final": 5,
+    "b_final": 2
+   },
+   "k": 1,
+   "m": 2,
+   "n": 3,
+   "max_deg": 75,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1804",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1679",
+    "red_in_paper": true
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 5,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 20 != 4*4 = 16, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 5 is NOT equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 17,
+     "M": 17,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 7,
+     "M_unguarded": 21,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 17 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 17; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_2(3,5)/125",
+   "kind": "FAMILY",
+   "family": "F_2",
+   "j": 1,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    5,
+    20
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 7,
+    "l_final": 5,
+    "b_final": 2
+   },
+   "k": 1,
+   "m": 3,
+   "n": 5,
+   "max_deg": 125,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1805",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1679",
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 5,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 20 != 4*4 = 16, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 5 is NOT equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 3 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 23,
+       "D_P": 3,
+       "D_Q": 5,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 15,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 15 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 29,
+     "M": 29,
+     "H": 7,
+     "gcd": 1,
+     "q_window_unguarded": 12,
+     "M_unguarded": 36,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 29 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 29; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_3(3,2)/75",
+   "kind": "FAMILY",
+   "family": "F_3",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    5,
+    20
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 8,
+    "l_final": 5,
+    "b_final": 3
+   },
+   "k": 1,
+   "m": 3,
+   "n": 2,
+   "max_deg": 75,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1806",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1680",
+    "red_in_paper": true
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 5,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 20 != 4*4 = 16, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 5 is NOT equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 17,
+     "M": 17,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 3,
+     "M_unguarded": 21,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 17 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 17; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_7(2,7)/147",
+   "kind": "FAMILY",
+   "family": "F_7",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    6,
+    15
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 7,
+    "l_final": 3,
+    "b_final": 4
+   },
+   "k": 1,
+   "m": 2,
+   "n": 7,
+   "max_deg": 147,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1807",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1684",
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "PASS",
+     "t": 3,
+     "kappa": 1,
+     "retraction": true,
+     "l_final": 3,
+     "l_final_eq_t": true,
+     "deg_C": 6,
+     "ord_C": 4,
+     "C_is_monomial": false,
+     "dictionary_trust": "TRUSTED",
+     "detail": "retraction shape b0 == t*(a0-1) holds (15 == 3*5) and GGV5's l_final = 3 agrees with t = ceil(b0/a0) = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "UNKNOWN",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "UNKNOWN",
+       "lam": null,
+       "missing": "ord_y(Phi), deg_y(Phi), M at this corner -- the corner retracts so C is NOT a monomial and lam is not forced to 0, but Phi has never been derived here"
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 23,
+       "D_P": 2,
+       "D_Q": 7,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 40,
+     "branches_legal": 40,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 17,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 17 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 5,
+     "M": 25,
+     "H": 35,
+     "gcd": 5,
+     "q_window_unguarded": 5,
+     "M_unguarded": 25,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 5 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 5; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "PASS|FAIL|UNKNOWN|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_8(3,7)/147",
+   "kind": "FAMILY",
+   "family": "F_8",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    6,
+    15
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 8,
+    "l_final": 3,
+    "b_final": 5
+   },
+   "k": 1,
+   "m": 3,
+   "n": 7,
+   "max_deg": 147,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1808",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1685",
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "PASS",
+     "t": 3,
+     "kappa": 1,
+     "retraction": true,
+     "l_final": 3,
+     "l_final_eq_t": true,
+     "deg_C": 6,
+     "ord_C": 5,
+     "C_is_monomial": false,
+     "dictionary_trust": "TRUSTED",
+     "detail": "retraction shape b0 == t*(a0-1) holds (15 == 3*5) and GGV5's l_final = 3 agrees with t = ceil(b0/a0) = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "UNKNOWN",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "UNKNOWN",
+       "lam": null,
+       "missing": "ord_y(Phi), deg_y(Phi), M at this corner -- the corner retracts so C is NOT a monomial and lam is not forced to 0, but Phi has never been derived here"
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 23,
+       "D_P": 3,
+       "D_Q": 7,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 40,
+     "branches_legal": 40,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 19,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 19 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 4,
+     "M": 28,
+     "H": 49,
+     "gcd": 7,
+     "q_window_unguarded": 4,
+     "M_unguarded": 28,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 4 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 4; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "PASS|FAIL|UNKNOWN|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_9(2,3)/84",
+   "kind": "FAMILY",
+   "family": "F_9",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    7,
+    21
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 11,
+    "l_final": 7,
+    "b_final": 2
+   },
+   "k": 1,
+   "m": 2,
+   "n": 3,
+   "max_deg": 84,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1809",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1686",
+    "red_in_paper": true
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 7,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 21 != 3*6 = 18, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 7 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 29,
+     "M_unguarded": 29,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_9(3,5)/140",
+   "kind": "FAMILY",
+   "family": "F_9",
+   "j": 1,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    7,
+    21
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 11,
+    "l_final": 7,
+    "b_final": 2
+   },
+   "k": 1,
+   "m": 3,
+   "n": 5,
+   "max_deg": 140,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1810",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1686",
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 7,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 21 != 3*6 = 18, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 7 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 3 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 17,
+       "D_P": 3,
+       "D_Q": 5,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 15,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 15 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 22,
+     "M": 22,
+     "H": 7,
+     "gcd": 1,
+     "q_window_unguarded": 10,
+     "M_unguarded": 50,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 22 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 22; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_11(2,5)/140",
+   "kind": "FAMILY",
+   "family": "F_11",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    7,
+    21
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 13,
+    "l_final": 7,
+    "b_final": 3
+   },
+   "k": 2,
+   "m": 2,
+   "n": 5,
+   "max_deg": 140,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1811",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1688",
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 7,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 21 != 3*6 = 18, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 7 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 17,
+       "D_P": 2,
+       "D_Q": 5,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 13,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 13 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 19,
+     "M": 19,
+     "H": 6,
+     "gcd": 1,
+     "q_window_unguarded": 43,
+     "M_unguarded": 43,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 19 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 19; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_17(2,3)/99",
+   "kind": "FAMILY",
+   "family": "F_17",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    9,
+    24
+   ],
+   "A0prime": [
+    1,
+    0
+   ],
+   "intermediate": [],
+   "final_corner": {
+    "p": 11,
+    "l_final": 3,
+    "b_final": 8
+   },
+   "k": 1,
+   "m": 2,
+   "n": 3,
+   "max_deg": 99,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1812",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1694",
+    "red_in_paper": true
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "PASS",
+     "t": 3,
+     "kappa": 1,
+     "retraction": true,
+     "l_final": 3,
+     "l_final_eq_t": true,
+     "deg_C": 9,
+     "ord_C": 8,
+     "C_is_monomial": false,
+     "dictionary_trust": "TRUSTED",
+     "detail": "retraction shape b0 == t*(a0-1) holds (24 == 3*8) and GGV5's l_final = 3 agrees with t = ceil(b0/a0) = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "UNKNOWN",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "UNKNOWN",
+       "lam": null,
+       "missing": "ord_y(Phi), deg_y(Phi), M at this corner -- the corner retracts so C is NOT a monomial and lam is not forced to 0, but Phi has never been derived here"
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 40,
+     "branches_legal": 40,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "PASS",
+     "q_window": 1,
+     "M": 13,
+     "H": 39,
+     "gcd": 13,
+     "q_window_unguarded": 1,
+     "M_unguarded": 13,
+     "missing": null,
+     "detail": "q_window = 1 divides every w(e), so the syzygy's carry obstruction vanishes on EVERY split at this corner"
+    }
+   },
+   "signature": "PASS|FAIL|UNKNOWN|FAIL|PASS"
+  },
+  {
+   "id": "F_22(2,3)/96",
+   "kind": "FAMILY",
+   "family": "F_22",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    8,
+    24
+   ],
+   "A0prime": [
+    2,
+    0
+   ],
+   "intermediate": [
+    "(14\\4,6)"
+   ],
+   "final_corner": {
+    "p": 5,
+    "l_final": 4,
+    "b_final": 2
+   },
+   "k": 1,
+   "m": 2,
+   "n": 3,
+   "max_deg": 96,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1813",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1713",
+    "red_in_paper": true
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 4,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 24 != 3*7 = 21, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 4 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 17,
+     "M_unguarded": 17,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "F_24(3,4)/128",
+   "kind": "FAMILY",
+   "family": "F_24",
+   "j": 0,
+   "mn_swapped_vs_family_law": false,
+   "A0": [
+    8,
+    24
+   ],
+   "A0prime": [
+    2,
+    0
+   ],
+   "intermediate": [
+    "(14\\4,6)"
+   ],
+   "final_corner": {
+    "p": 19,
+    "l_final": 8,
+    "b_final": 3
+   },
+   "k": 1,
+   "m": 3,
+   "n": 4,
+   "max_deg": 128,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1814",
+    "chain_row": "paper_src/1708.07936_GGV5.tex:1715",
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 8,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 24 != 3*7 = 21, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 8 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 3 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 14,
+       "D_P": 3,
+       "D_Q": 4,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 13,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 13 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 19,
+     "M": 19,
+     "H": 6,
+     "gcd": 1,
+     "q_window_unguarded": 49,
+     "M_unguarded": 49,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 19 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 19; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(7,35)/(2,3)/126",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    7,
+    35
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 19,
+    "l_final": 7,
+    "b_final": 5
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 126,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1828",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 5,
+     "kappa": 3,
+     "retraction": false,
+     "l_final": 7,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 35 != 5*6 = 30, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 7 is NOT equal to t = 5"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 5,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 5 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 19,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 5
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 3,
+     "branches_tried": 36,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 3,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 3"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 21,
+     "M": 21,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 29,
+     "M_unguarded": 29,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 21 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 21; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(7,42)/(3,2)/147",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    7,
+    42
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 13,
+    "l_final": 7,
+    "b_final": 6
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 147,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1829",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 6,
+     "kappa": 4,
+     "retraction": false,
+     "l_final": 7,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 42 != 6*6 = 36, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 7 is NOT equal to t = 6"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 6,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 6 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 23,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 6
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 4,
+     "branches_tried": 44,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 4,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 4"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 25,
+     "M": 25,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 1,
+     "M_unguarded": 29,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 25 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 25; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(7,42)/(2,3)/147",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    7,
+    42
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 13,
+    "l_final": 7,
+    "b_final": 6
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 147,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1830",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 6,
+     "kappa": 4,
+     "retraction": false,
+     "l_final": 7,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 42 != 6*6 = 36, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 7 is NOT equal to t = 6"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 6,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 6 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 23,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 6
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 4,
+     "branches_tried": 44,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 4,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 4"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 25,
+     "M": 25,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 1,
+     "M_unguarded": 29,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 25 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 25; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(8,28)/(3,4)/144",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    8,
+    28
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 7,
+    "l_final": 4,
+    "b_final": 3
+   },
+   "k": null,
+   "m": 3,
+   "n": 4,
+   "max_deg": 144,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1831",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "PASS",
+     "t": 4,
+     "kappa": 2,
+     "retraction": true,
+     "l_final": 4,
+     "l_final_eq_t": true,
+     "deg_C": 8,
+     "ord_C": 3,
+     "C_is_monomial": false,
+     "dictionary_trust": "TRUSTED",
+     "detail": "retraction shape b0 == t*(a0-1) holds (28 == 4*7) and GGV5's l_final = 4 agrees with t = ceil(b0/a0) = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "UNKNOWN",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "UNKNOWN",
+       "lam": null,
+       "missing": "ord_y(Phi), deg_y(Phi), M at this corner -- the corner retracts so C is NOT a monomial and lam is not forced to 0, but Phi has never been derived here"
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 19,
+       "D_P": 3,
+       "D_Q": 4,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 56,
+     "branches_legal": 56,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 13,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 13 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 5,
+     "M": 25,
+     "H": 20,
+     "gcd": 5,
+     "q_window_unguarded": 5,
+     "M_unguarded": 25,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 5 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 5; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "PASS|PASS|UNKNOWN|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(8,28)/(3,2)/108",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    8,
+    28
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 11,
+    "l_final": 4,
+    "b_final": 7
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 108,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1832",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "PASS",
+     "t": 4,
+     "kappa": 2,
+     "retraction": true,
+     "l_final": 4,
+     "l_final_eq_t": true,
+     "deg_C": 8,
+     "ord_C": 7,
+     "C_is_monomial": false,
+     "dictionary_trust": "TRUSTED",
+     "detail": "retraction shape b0 == t*(a0-1) holds (28 == 4*7) and GGV5's l_final = 4 agrees with t = ceil(b0/a0) = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "PASS",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "PASS",
+       "lam": "2",
+       "source": "published/derived Phi signature (ord=204, M=17, deg=238)"
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "PASS",
+     "kappa": 2,
+     "branches_tried": 56,
+     "branches_legal": 56,
+     "n_admissible_faces": 4,
+     "n_valid_mechanisms": 4,
+     "hits": [
+      {
+       "mn": [
+        2,
+        3
+       ],
+       "s": 3,
+       "split_e": null,
+       "en": {
+        "en_k": 1,
+        "en_swap": false
+       },
+       "n_faces": 1,
+       "n_valid": 1
+      },
+      {
+       "mn": [
+        2,
+        3
+       ],
+       "s": 3,
+       "split_e": 4,
+       "en": {
+        "en_k": 1,
+        "en_swap": false
+       },
+       "n_faces": 1,
+       "n_valid": 1
+      },
+      {
+       "mn": [
+        2,
+        3
+       ],
+       "s": 2,
+       "split_e": null,
+       "en": {
+        "en_k": 1,
+        "en_swap": false
+       },
+       "n_faces": 1,
+       "n_valid": 1
+      },
+      {
+       "mn": [
+        2,
+        3
+       ],
+       "s": 2,
+       "split_e": 4,
+       "en": {
+        "en_k": 1,
+        "en_swap": false
+       },
+       "n_faces": 1,
+       "n_valid": 1
+      }
+     ],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "PASS",
+     "q_window": 1,
+     "M": 17,
+     "H": 34,
+     "gcd": 17,
+     "q_window_unguarded": 1,
+     "M_unguarded": 17,
+     "missing": null,
+     "detail": "q_window = 1 divides every w(e), so the syzygy's carry obstruction vanishes on EVERY split at this corner"
+    }
+   },
+   "signature": "PASS|PASS|PASS|PASS|PASS"
+  },
+  {
+   "id": "(9,36)/(3,2)/135",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    9,
+    36
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 17,
+    "l_final": 9,
+    "b_final": 4
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 135,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1833",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 9,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 36 != 4*8 = 32, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 9 is NOT equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 17,
+     "M": 17,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 37,
+     "M_unguarded": 37,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 17 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 17; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(9,36)/(2,3)/135",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    9,
+    36
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 17,
+    "l_final": 9,
+    "b_final": 4
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 135,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1834",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 9,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 36 != 4*8 = 32, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 9 is NOT equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 17,
+     "M": 17,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 37,
+     "M_unguarded": 37,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 17 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 17; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(11,33)/(2,3)/132",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    11,
+    33
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 19,
+    "l_final": 4,
+    "b_final": 8
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 132,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1835",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 4,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 33 != 3*10 = 30, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 4 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 17,
+     "M_unguarded": 17,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(12,33)/(2,3)/135",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    12,
+    33
+   ],
+   "A0prime": null,
+   "intermediate": [],
+   "final_corner": {
+    "p": 11,
+    "l_final": 3,
+    "b_final": 8
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 135,
+   "chain_length": 1,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1836",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "PASS",
+     "t": 3,
+     "kappa": 1,
+     "retraction": true,
+     "l_final": 3,
+     "l_final_eq_t": true,
+     "deg_C": 12,
+     "ord_C": 8,
+     "C_is_monomial": false,
+     "dictionary_trust": "TRUSTED",
+     "detail": "retraction shape b0 == t*(a0-1) holds (33 == 3*11) and GGV5's l_final = 3 agrees with t = ceil(b0/a0) = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "UNKNOWN",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "UNKNOWN",
+       "lam": null,
+       "missing": "ord_y(Phi), deg_y(Phi), M at this corner -- the corner retracts so C is NOT a monomial and lam is not forced to 0, but Phi has never been derived here"
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 40,
+     "branches_legal": 40,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "PASS",
+     "q_window": 1,
+     "M": 13,
+     "H": 39,
+     "gcd": 13,
+     "q_window_unguarded": 1,
+     "M_unguarded": 13,
+     "missing": null,
+     "detail": "q_window = 1 divides every w(e), so the syzygy's carry obstruction vanishes on EVERY split at this corner"
+    }
+   },
+   "signature": "PASS|FAIL|UNKNOWN|FAIL|PASS"
+  },
+  {
+   "id": "(8,32)/(3,2)/120",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    8,
+    32
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(8,28)"
+   ],
+   "final_corner": {
+    "p": 11,
+    "l_final": 4,
+    "b_final": 7
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 120,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1848",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 4,
+     "l_final_eq_t": true,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 32 != 4*7 = 28, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 4 is equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 17,
+     "M": 17,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 1,
+     "M_unguarded": 17,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 17 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 17; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(8,40)/(3,2)/144",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    8,
+    40
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(8,28)"
+   ],
+   "final_corner": {
+    "p": 11,
+    "l_final": 4,
+    "b_final": 7
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 144,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1849",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 5,
+     "kappa": 3,
+     "retraction": false,
+     "l_final": 4,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 40 != 5*7 = 35, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 4 is NOT equal to t = 5"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 5,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 5 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 19,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 5
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 3,
+     "branches_tried": 36,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 3,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 3"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 21,
+     "M": 21,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 1,
+     "M_unguarded": 17,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 21 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 21; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(9,27)/(2,3)/108",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    9,
+    27
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(9,24)"
+   ],
+   "final_corner": {
+    "p": 11,
+    "l_final": 3,
+    "b_final": 8
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 108,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1850",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 3,
+     "l_final_eq_t": true,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 27 != 3*8 = 24, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 3 is equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 1,
+     "M_unguarded": 13,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(9,36)/(2,3)/135",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    9,
+    36
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(9,24)"
+   ],
+   "final_corner": {
+    "p": 11,
+    "l_final": 3,
+    "b_final": 8
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 135,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1851",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 3,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 36 != 4*8 = 32, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 3 is NOT equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 17,
+     "M": 17,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 1,
+     "M_unguarded": 13,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 17 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 17; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(10,40)/(3,2)/150",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    10,
+    40
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(16\\5,6)"
+   ],
+   "final_corner": {
+    "p": 23,
+    "l_final": 10,
+    "b_final": 3
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 150,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1852",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 10,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 40 != 4*9 = 36, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 10 is NOT equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 17,
+     "M": 17,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 41,
+     "M_unguarded": 41,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 17 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 17; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(10,40)/(3,2)/150",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    10,
+    40
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(18\\5,8)"
+   ],
+   "final_corner": {
+    "p": 8,
+    "l_final": 5,
+    "b_final": 3
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 150,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1853",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 4,
+     "kappa": 2,
+     "retraction": false,
+     "l_final": 5,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 40 != 4*9 = 36, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 5 is NOT equal to t = 4"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "PASS",
+     "t": 4,
+     "exponent": 5,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 4 IS the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 15,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 4
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 2,
+     "branches_tried": 28,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 2,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 2"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 17,
+     "M": 17,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 3,
+     "M_unguarded": 21,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 17 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 17; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|PASS|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(12,30)/(3,2)/126",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    12,
+    30
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(16\\3,10)"
+   ],
+   "final_corner": {
+    "p": 11,
+    "l_final": 6,
+    "b_final": 3
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 126,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1854",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 6,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 30 != 3*11 = 33, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 6 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 40,
+     "branches_legal": 8,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 25,
+     "M_unguarded": 25,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(12,36)/(2,3)/144",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    12,
+    36
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(12,33)"
+   ],
+   "final_corner": {
+    "p": 11,
+    "l_final": 3,
+    "b_final": 8
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 144,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1855",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 3,
+     "l_final_eq_t": true,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 36 != 3*11 = 33, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 3 is equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 1,
+     "M_unguarded": 13,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(12,36)/(2,3)/144",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    12,
+    36
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(9,24)"
+   ],
+   "final_corner": {
+    "p": 11,
+    "l_final": 3,
+    "b_final": 8
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 144,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1856",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 3,
+     "l_final_eq_t": true,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 36 != 3*11 = 33, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 3 is equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 1,
+     "M_unguarded": 13,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(12,36)/(2,3)/144",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    12,
+    36
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(21\\4,9)"
+   ],
+   "final_corner": {
+    "p": 19,
+    "l_final": 4,
+    "b_final": 8
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 144,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1857",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 4,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 36 != 3*11 = 33, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 4 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 17,
+     "M_unguarded": 17,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(12,36)/(2,3)/144",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    12,
+    36
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(21\\4,9)"
+   ],
+   "final_corner": {
+    "p": 12,
+    "l_final": 4,
+    "b_final": 5
+   },
+   "k": null,
+   "m": 2,
+   "n": 3,
+   "max_deg": 144,
+   "chain_length": 2,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1858",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 4,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 36 != 3*11 = 33, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 4 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 17,
+     "M_unguarded": 17,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  },
+  {
+   "id": "(12,36)/(3,2)/144",
+   "kind": "SPORADIC",
+   "family": null,
+   "j": null,
+   "mn_swapped_vs_family_law": null,
+   "A0": [
+    12,
+    36
+   ],
+   "A0prime": null,
+   "intermediate": [
+    "(12,30)",
+    "(16\\3,10)"
+   ],
+   "final_corner": {
+    "p": 11,
+    "l_final": 6,
+    "b_final": 3
+   },
+   "k": null,
+   "m": 3,
+   "n": 2,
+   "max_deg": 144,
+   "chain_length": 3,
+   "provenance": {
+    "counterexample_row": "paper_src/1708.07936_GGV5.tex:1869",
+    "chain_row": null,
+    "red_in_paper": false
+   },
+   "gates": {
+    "G1": {
+     "gate": "G1_chart_dictionary",
+     "verdict": "FAIL",
+     "t": 3,
+     "kappa": 1,
+     "retraction": false,
+     "l_final": 6,
+     "l_final_eq_t": false,
+     "deg_C": 1,
+     "ord_C": 1,
+     "C_is_monomial": true,
+     "dictionary_trust": "SUSPECT",
+     "detail": "retraction shape FAILS: 36 != 3*11 = 33, so GGV5's final-corner dictionary is REFUSED here; C is a monomial (deg C = ord C = 1) and l_final = 6 is NOT equal to t = 3"
+    },
+    "G2": {
+     "gate": "G2_toric_admissible",
+     "verdict": "FAIL",
+     "t": 3,
+     "exponent": null,
+     "detail": "4t+9 = 4(t+1)+5 so (t+1)|5; t = 3 is NOT the unique solution t = 4"
+    },
+    "G3": {
+     "gate": "G3_slice_cascade",
+     "verdict": "FAIL",
+     "sub": {
+      "gcd": {
+       "verdict": "PASS",
+       "value": 1
+      },
+      "lam": {
+       "verdict": "FAIL",
+       "lam": "0",
+       "source": "C is a MONOMIAL at this corner (retraction fails), so deg_y(Phi) - ord_y(Phi) = N*(deg C - ord C) = 0 identically and lam = 0 < 2 = min(m,n).  Same argument as toric_general E3 at (75,125)."
+      },
+      "N_Q": {
+       "verdict": "PASS",
+       "N_Q": 11,
+       "D_P": 2,
+       "D_Q": 3,
+       "ell": 3
+      }
+     }
+    },
+    "G4": {
+     "gate": "G4_belyi_passport",
+     "verdict": "FAIL",
+     "kappa": 1,
+     "branches_tried": 20,
+     "branches_legal": 4,
+     "n_admissible_faces": 0,
+     "n_valid_mechanisms": 0,
+     "hits": [],
+     "proportional_class": {
+      "verdict": "FAIL",
+      "kappa": 1,
+      "required_kappa_at_least": 9,
+      "detail": "the proportional branch needs kappa >= 2(m+n)-1 = 9 (passport_75_125 U2); kappa = 1"
+     }
+    },
+    "G5": {
+     "gate": "G5_divisor_syzygy",
+     "verdict": "UNKNOWN",
+     "q_window": 13,
+     "M": 13,
+     "H": 4,
+     "gcd": 1,
+     "q_window_unguarded": 25,
+     "M_unguarded": 25,
+     "missing": "w(e) -- the split-weight enumeration at this corner; q_window = 13 != 1 so the criterion is w(e)-dependent and only decidable per split",
+     "detail": "q_window = 13; the criterion holds exactly on the splits with q_window | w(e)"
+    }
+   },
+   "signature": "FAIL|FAIL|FAIL|FAIL|UNKNOWN"
+  }
+ ]
+}

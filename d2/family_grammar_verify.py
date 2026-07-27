@@ -68,13 +68,19 @@ FAM = [
 ]
 
 LANDED = {
-    ("F2", 0): (36, (189, 75, 38, 76)),
-    ("F2", 1): (98, (504, 201, 101, 202)),
+    # REPAIRED 2026-07-26 (2adb92a chart repair); were 36/(189,75,38,76)
+    # and 98/(504,201,101,202) off the superseded (5,20) chart.
+    ("F2", 0): (28, (30, 30, 0, 0)),
+    ("F2", 1): (77, (80, 80, 0, 0)),
     ("F9", 0): (52, (377, 107, 54, 216)),
     ("F14", 0): (36, (375, 165, 42, 168)),
     ("F1", 0): (67, (275, 205, 69, 1)),
     ("F7", 0): (36, (250, 165, 83, 2)),
-    ("F3", 0): (36, (189, 112, 75, 2)),
+    # F3 j=0 REPAIRED 2026-07-26 (second (5,20) repair); was 36/(189,112,75,2).
+    # (75,50) is the (m,n)-swap of F2 j=0's (50,75) at the SAME corner (5,20), so
+    # the reduced pair {min,max} = {2,3} and the chart (4,2,1,1) coincide and the
+    # two rows MUST agree.  Independently derived in A10a-A10c below.
+    ("F3", 0): (28, (30, 30, 0, 0)),
     ("F10", 0): (270, (1917, 820, 1093, 4)),
     ("F16", 0): (56, (528, 407, 117, 4)),
 }
@@ -82,11 +88,18 @@ LANDED = {
 # explicit PHI_F7 ramified f-polynomials (for direct full-ODE substitution)
 LANDED_F = {
     "F7":  sp.Rational(1, 10)   * y**21 * (y + 1)**11 * (9*y**2 + 3*y - 1),
-    "F3":  sp.Rational(1, 42)   * y**4  * (y + 1)**3  * (25*y**2 + 15*y - 3),
     "F10": sp.Rational(1, 3740) * y**10 * (y + 1)**13 *
            (2401*y**4 + 5831*y**3 + 4165*y**2 + 595*y - 85),
     "F16": sp.Rational(1, 330)  * y**15 * (y + 1)**5  *
            (243*y**4 + 81*y**3 - 27*y**2 + 15*y - 10),
+}
+
+# F3's PHI_F7 polynomial, moved out of LANDED_F on 2026-07-26.  It is a correct
+# solution of the ODE of the corner data (t,kappa,q,dg) = (5,3,3,2) -- the
+# computation was never wrong -- but (5,20) does not HAVE that corner data, so it
+# is not a fact about F3.  A10d checks both halves of that sentence.
+SUPERSEDED_F = {
+    "F3":  sp.Rational(1, 42)   * y**4  * (y + 1)**3  * (25*y**2 + 15*y - 3),
 }
 
 # published mu-rung signatures (ZETA_TAIL F12 eta=0; MU_RUNGS_F10)
@@ -99,18 +112,55 @@ MU_RUNGS = {
 }
 
 
-def data(name, t, a0, q, ac, bc, A0p, k):
+# PER-FAMILY CHART REPAIRS (2026-07-26), derived INDEPENDENTLY of
+# family_grammar.py's own REPAIRS table -- check A9 below asserts the two agree.
+# A family whose corner fails the retraction shape b0 = t(a0-1) has
+# deg_y(C)/ord_y(C) different from (a0,q), because GGV5's final-corner dictionary
+# is what made them equal and it is invalid off that shape.  F2's corner (5,20)
+# fails it (20 != 4*4), so t = 4 and C = y is a MONOMIAL: deg C = ord C = 1.
+#
+# F3 added 2026-07-26.  It sits at the SAME corner (5,20) with the SAME
+# A_0' = (1,0) and the same chain length 1.  chart_exponent, kappa = l-2 and the
+# vertical-top-face test are functions of A_0 ALONE, so the chart data is a
+# CORNER property: F3 gets the identical (4,2,1,1).  The old table's disagreement
+# -- ord C = 2 for F2 but ord C = 3 for F3 at one corner -- was itself proof the
+# per-row datum b_final was being misread as chart data.  See A10a-A10f.
+REPAIRS = {
+    "F2": dict(t=4, degC=1, ordC=1, gap0=0),
+    "F3": dict(t=4, degC=1, ordC=1, gap0=0),
+}
+
+
+def data(name, t, a0, q, ac, bc, A0p, k, degC=None, ordC=None, gap0=None):
     kappa = t - 2
-    dg = a0 - q
-    r = a0 - q - 1
-    gap = Fraction(q - 1) - Fraction(a0, t)
+    degC = a0 if degC is None else degC
+    ordC = q if ordC is None else ordC
+    # dg is the RESIDUAL's degree (g = y^dg+1), i.e. deg C - ord C.  That equals
+    # a0 - q only when the dictionary holds; dg = 0 means g is constant, so there
+    # is NO residual -- the repaired (5,20) case.
+    dg = degC - ordC
+    r = dg - 1
+    gap = (Fraction(q - 1) - Fraction(a0, t)) if gap0 is None else Fraction(gap0)
+    # Does GGV5's final-corner dictionary hold here?  It does iff we did not have
+    # to override the C-series data, i.e. iff the corner retracts.  Three of the
+    # structural identities below are CONSEQUENCES of that dictionary and are
+    # asserted only where it is valid.
+    dict_valid = (degC == a0 and ordC == q and gap0 is None)
     a = ac[0] + ac[1] * j
     b = bc[0] + bc[1] * j
     e = b - a + 1
     coef = t * (b - a) + kappa + 1
-    rho = sp.expand((e - 1) * q + 1)
+    rho = sp.expand((e - 1) * ordC + 1)
     N = sp.expand(a * (t * (a + b - 1) + 1) - 2 * b)
-    if gap == 0:
+    if dg == 0:
+        # C is a MONOMIAL: g = y^0+1 is constant, so the pure ansatz
+        # f = -1/(a*dg) y^rho (y^dg+1)^e is UNDEFINED -- its normalising constant
+        # is -1/(a*0) -- and the collapse identity y g' - dg g = -dg degenerates
+        # to 0 = 0, pinning nothing.  The landed signatures still reproduce (see
+        # section E), but the MECHANISM the grammar credits them to does not
+        # exist.  This class records exactly that, and no more.
+        cls = "CHART-DEGENERATE"
+    elif gap == 0:
         cls = "PURE"
     elif r == 0:
         cls = "COFACTOR"
@@ -119,19 +169,33 @@ def data(name, t, a0, q, ac, bc, A0p, k):
     else:
         cls = "IRREGULAR"
     return dict(name=name, t=t, kappa=kappa, a0=a0, q=q, dg=dg, r=r, gap=gap, k=k,
-                a=a, b=b, e=e, coef=coef, rho=rho, N=N, cls=cls, A0p=A0p)
+                a=a, b=b, e=e, coef=coef, rho=rho, N=N, cls=cls, A0p=A0p,
+                degC=degC, ordC=ordC, dict_valid=dict_valid)
 
 
 def full_ode_residual(D, jv, f, g=None):
     """exact residual of a(t c f' - coef c' f) - c^e at integer j=jv (all
     exponents integers -> exact, no symbolic-power ambiguity).  c = y^q g with
-    the BRANCH residual g: g = y^dg+1 (pure/cofactor) or g = (y+1)^dg (ramified)."""
+    the BRANCH residual g: g = y^dg+1 (pure/cofactor) or g = (y+1)^dg (ramified).
+
+    2026-07-26: c = y^(ord C) * g, so the monomial exponent is ord_y(C), NOT the
+    chain datum q.  A no-op on every family where the final-corner dictionary
+    holds (there ord C == q); on the repaired (5,20) rows it is the difference
+    between c = y (right) and c = y^2 or y^3 (the superseded reading).
+    """
     s = {j: jv}
     a = int(D["a"].subs(s)); b = int(D["b"].subs(s))
     e = b - a + 1
-    q = D["q"]; dg = D["dg"]; t = D["t"]; coef = int(D["coef"].subs(s))
+    q = D["ordC"]; dg = D["dg"]; t = D["t"]; coef = int(D["coef"].subs(s))
     if g is None:
-        g = y**dg + 1
+        # dg == 0 forces g = 1, the MONIC CONSTANT -- NOT y^0+1 = 2.  The formula
+        # y^dg+1 is the monic degree-dg residual with the (y+1) common root placed,
+        # and it is only defined for dg >= 1; at dg = 0 there is no residual and no
+        # root to place, so the monic constant is 1 (polygon_reduction
+        # _f2_forcing_divisor's dg==0 regime says exactly this).  Evaluating the
+        # formula anyway would put a stray factor 2 into c and make the repaired
+        # (5,20) ODE unsolvable -- a latent bug until F3 first reached this line.
+        g = sp.Integer(1) if dg == 0 else y**dg + 1
     c = y**q * g
     resid = a * (t * c * sp.diff(f, y) - coef * sp.diff(c, y) * f) - c**e
     return sp.expand(resid)
@@ -139,16 +203,29 @@ def full_ode_residual(D, jv, f, g=None):
 
 def sig(D, N, mu):
     e, a0, q, rho, gap, r = D["e"], D["a0"], D["q"], D["rho"], D["gap"], D["r"]
-    pure = e * a0 - q + 1
+    degC, ordC = D.get("degC", a0), D.get("ordC", q)
+    pure = e * degC - ordC + 1
     res = pure + gap
-    deg = sp.expand(res + N * a0)
-    ordy = sp.expand(rho + N * q)
+    deg = sp.expand(res + N * degC)
+    ordy = sp.expand(rho + N * ordC)
+    if D["dg"] == 0:
+        # C monomial => no residual => no multiplicity and no cofactor.  This is
+        # why the repaired (5,20) signatures end in two zeros.
+        return deg, ordy, sp.Integer(0), sp.Integer(0)
     mult = sp.expand(mu * (e + N) - (mu - 1))
     cof = sp.expand(gap + r * (e + N) - (mu - 1) * (e + N - 1))
     return deg, ordy, mult, cof
 
 
-DAT = {row[0]: data(*row) for row in FAM}
+def _mk(row):
+    rep = dict(REPAIRS.get(row[0], {}))
+    t = rep.pop("t", None)
+    if t is not None:
+        row = (row[0], t) + tuple(row[2:])
+    return data(*row, **rep)
+
+
+DAT = {row[0]: _mk(row) for row in FAM}
 
 # ===========================================================================
 # A. corner-data identities + collapse
@@ -159,35 +236,262 @@ for dg in range(1, 8):
 
 for nm, D in DAT.items():
     ok("%s kappa=t-2" % nm, D["kappa"] == D["t"] - 2)
-    ok("%s dg=a0-q, r=dg-1" % nm, D["dg"] == D["a0"] - D["q"] and D["r"] == D["dg"] - 1)
-    ok("%s gap=(q-1)-a0/t" % nm,
-       D["gap"] == Fraction(D["q"] - 1) - Fraction(D["a0"], D["t"]))
+    ok("%s dg=degC-ordC, r=dg-1  (dg=a0-q holds only where the corner RETRACTS; F2 (5,20) does not, so deg C=ord C=1 and dg=0)" % nm,
+       D["dg"] == D["degC"] - D["ordC"] and D["r"] == D["dg"] - 1)
+    if D["dict_valid"]:
+        ok("%s gap=(q-1)-a0/t" % nm,
+           D["gap"] == Fraction(D["q"] - 1) - Fraction(D["a0"], D["t"]))
+    else:
+        ok("%s gap formula VOID (corner does not retract, so the final-corner "
+           "dictionary that derives gap=(q-1)-a0/t does not hold); gap supplied "
+           "directly as %s" % (nm, D["gap"]), True)
     # te - coef = t - kappa - 1 = 1, identically in j
     ok("%s te-coef=1 (identically in j)" % nm,
        sp.expand(D["t"] * D["e"] - D["coef"]) == 1)
     # t*rho - coef*q = t-(kappa+1)q, constant in j
-    trc = sp.expand(D["t"] * D["rho"] - D["coef"] * D["q"])
-    ok("%s t*rho-coef*q = t-(kappa+1)q (const in j)" % nm,
-       trc == D["t"] - (D["kappa"] + 1) * D["q"])
+    if D["dict_valid"]:
+        trc = sp.expand(D["t"] * D["rho"] - D["coef"] * D["q"])
+        ok("%s t*rho-coef*q = t-(kappa+1)q (const in j)" % nm,
+           trc == D["t"] - (D["kappa"] + 1) * D["q"])
+    else:
+        ok("%s t*rho-coef*q identity VOID (it is a consequence of the same "
+           "dictionary; rho is built from ord C = %s, not from q = %s)"
+           % (nm, D["ordC"], D["q"]), True)
 
 # census
-census = {"PURE": [], "COFACTOR": [], "RUNG": [], "IRREGULAR": []}
+census = {"PURE": [], "COFACTOR": [], "RUNG": [], "IRREGULAR": [],
+          "CHART-DEGENERATE": []}
 for nm, D in DAT.items():
     census[D["cls"]].append(nm)
-ok("census PURE = {F2,F9,F14}", set(census["PURE"]) == {"F2", "F9", "F14"})
+census.setdefault("CHART-DEGENERATE", [])
+ok("census PURE = {F9,F14} -- F2 LEFT this class on 2026-07-26",
+   set(census["PURE"]) == {"F9", "F14"})
+ok("census CHART-DEGENERATE = {F2,F3}: BOTH sit at (5,20), which does not retract, "
+   "so C = y is a monomial, dg = deg C - ord C = 0, and the pure closed form "
+   "f = -1/(a*dg) y^rho (y^dg+1)^e is UNDEFINED there (A = -1/(a*0)).  The landed "
+   "signatures still reproduce -- section E -- but the closed-form MECHANISM does "
+   "not exist and is no longer claimed.  Deriving what replaces it is open work. "
+   "The class is exactly the set of corners in this table off the retraction shape.",
+   set(census["CHART-DEGENERATE"]) == {"F2", "F3"})
 ok("census COFACTOR = {F1,F5,F6,F8,F17}",
    set(census["COFACTOR"]) == {"F1", "F5", "F6", "F8", "F17"})
-ok("census RUNG (9 families)",
-   set(census["RUNG"]) == {"F3", "F4", "F7", "F10", "F11", "F12", "F13", "F15", "F16"})
+ok("census RUNG (8 families) -- F3 LEFT this class on 2026-07-26; its 'ramified "
+   "rung' presupposed dg = 2, i.e. deg C = 5 and ord C = 3, which (5,20) does not "
+   "have",
+   set(census["RUNG"]) == {"F4", "F7", "F10", "F11", "F12", "F13", "F15", "F16"})
 ok("census: no length-1 IRREGULAR", census["IRREGULAR"] == [])
+
+# ---------------------------------------------------------------------------
+# A10. F3 IS NOW REPAIRED (2026-07-26, second (5,20) repair).
+#
+# This block used to be a TRIPWIRE asserting F3 was still unrepaired, with the
+# recorded reason "no repaired landed target exists, so no verifiable fix is
+# possible yet".  That reason was TOO CONSERVATIVE and is now retracted.  It is
+# replaced, in the same spirit, by checks that assert the NEW state together with
+# the target that was verified -- from both sides wherever two things can be made
+# to agree instead of one thing asserted twice.
+#
+# WHAT WAS ESTABLISHED
+#
+#   1. Chart data is a property of the CORNER, not of the family.  l =
+#      chart_exponent(a0,b0) = ceil(b0/a0), kappa = l-2, and the vertical-top-face
+#      test has_retraction(a0,b0,l) -- which is what decides whether C is a
+#      monomial -- are functions of A_0 alone.  A family row contributes only
+#      (m,n), which enters the corner law solely through the UNORDERED reduced
+#      pair {min(m,n), max(m,n)}.  A10a checks the first half by calling
+#      polygon_reduction.corner_chart_data on BOTH GGV5 rows and requiring
+#      bit-identical output; A10b checks the second half.
+#
+#   2. q = 3 was never chart data for F3.  The old table asserted ord C = 2 (F2)
+#      and ord C = 3 (F3) AT ONE AND THE SAME CORNER (5,20).  ord_y(C) is a corner
+#      invariant, so two values at one corner is a contradiction, visible without
+#      consulting any paper -- and it is exactly the fingerprint of reading q off
+#      GGV5's per-row final chain corner b_final (2 in F2's (7\5,2), 3 in F3's
+#      (8\5,3)).  A10c makes that contradiction an explicit check.
+#
+# THE VERIFIED TARGET:  F3 j=0 = (75,50):  N = 28,  signature (30,30,0,0).
+#
+#   (i)  polygon_reduction._f2_forcing_divisor(2, 3, 4, 2, 1, 1) -- the corner's
+#        own forcing ODE, solved there with an INDEPENDENT general-polynomial
+#        uniqueness check -- returns c = y, g = 1, f = y^2/2, N = 28 and exactly
+#        (30,30,0,0).  Its arguments are (min, max, t, kappa, deg C, ord C): every
+#        one of them is fixed by the corner plus {2,3}, none by "F2" or "F3".
+#   (ii) window_functions_75_125.family(2) -- a third module, own transcription --
+#        gives N = 28 and ord_y(Phi) = deg_y(Phi) = 30 for the same rung.
+#  (iii) PUBLISHED anchor.  GGV3 sec.5 (paper_src/1406.0886_GGV3.tex:1723-1727)
+#        assumes a counterexample of degrees (50,75), derives A_0 = (5,20), and
+#        obtains a pair with
+#              [P_1,Q_1] = x^2,   deg(P_1) = 10,   deg(Q_1) = 15.
+#        Two things make this an anchor for F3 and not only for F2:
+#          * it PRECEDES the paper's branch.  GGV3 says gamma = 3 or gamma = 2 and
+#            treats both (tex:1727 vs tex:1777), and BOTH branches start from this
+#            same (P_1,Q_1).  So these three integers are not the property of one
+#            GGV5 row's b_final -- they hold whichever value gamma takes, which is
+#            precisely the freedom that separates GGV5's F2 row from its F3 row.
+#          * F3(3,2)/75 IS that case with P and Q exchanged (corner_atlas.json's
+#            F_3(3,2)/75 has the identical A_0 = (5,20), A_0' = (1,0), k = 1 and
+#            max_deg 75, with (m,n) = (3,2) instead of (2,3)).  Exchanging gives
+#            [Q_1,P_1] = -x^2 and degrees (15,10): kappa = 2 up to the sign the
+#            bracket is antisymmetric in, hence l = 4, either way.
+#        l = 5 predicts [P,Q] = x^3 and reduced degrees (20,30)/(30,20) and
+#        contradicts all three integers under either reading.
+#
+# WHAT IS STILL OPEN, recorded here so it stays visible: the modules DOWNSTREAM of
+# family_grammar have NOT been repaired for F3 (they were repaired for F2 only):
+# phi_f7.py / phi_f7_verify.py, phi_corner4.py / phi_corner4_verify.py,
+# phi_f14.py / phi_f14_verify.py, case_compiler.py, ml_restriction_check.py all
+# still transcribe F3 as (5,20) with l_final = 5, b_final = 3 used AS chart data.
+# Each is internally consistent and each is now known-suspect.  A10f asserts the
+# scope of THIS repair honestly rather than implying the front is closed.
+# ---------------------------------------------------------------------------
+import polygon_reduction as _pr                                      # noqa: E402
+
+_cd_f2 = _pr.corner_chart_data(5, 20, l_final=5, b_final=2, who="F2 (5,20)")
+_cd_f3 = _pr.corner_chart_data(5, 20, l_final=5, b_final=3, who="F3 (5,20)")
+ok("A10a chart data is a CORNER property: corner_chart_data(5,20,.) returns "
+   "bit-identical (t,kappa,deg C,ord C) = (4,2,1,1), C monomial, no retraction, "
+   "for BOTH GGV5 rows at (5,20) -- F2's b_final=2 and F3's b_final=3 -- so the "
+   "per-row final-corner datum cannot be, and is not, an input to the chart",
+   _cd_f2 == _cd_f3
+   and (_cd_f3["t"], _cd_f3["kappa"], _cd_f3["deg_C"], _cd_f3["ord_C"]) == (4, 2, 1, 1)
+   and _cd_f3["monomial"] and not _cd_f3["retraction"]
+   and (DAT["F3"]["t"], DAT["F3"]["kappa"], DAT["F3"]["degC"], DAT["F3"]["ordC"])
+       == (4, 2, 1, 1))
+
+_raised_f3 = False
+try:
+    _pr.final_corner_dictionary(5, 20, 5, 3, who="F3 (5,20)")
+except _pr.FinalCornerDictionaryError:
+    _raised_f3 = True
+ok("A10c the guard RAISES for F3's own chain row (5,20)/(8\\5,3) exactly as it "
+   "does for F2's (7\\5,2) -- and the superseded table's ord C = 2 (F2) vs "
+   "ord C = 3 (F3) at ONE corner was already a contradiction, since ord_y(C) is "
+   "a corner invariant: 2 != 3.  q = 3 was never chart data for F3",
+   _raised_f3 and 2 != 3
+   and DAT["F2"]["ordC"] == DAT["F3"]["ordC"] == 1)
+
+# A10b.  The two-sided cross-check: (75,50) is (50,75) with P and Q exchanged, so
+# F2 j=0 and F3 j=0 are the SAME reduction and MUST produce identical corner-law
+# output -- N and the full signature -- even though the two family rows have
+# different (m,n) laws and different N-polynomials in j.  They coincide at j=0
+# only, which is what makes this a real check and not an identity.
+_D2, _D3 = DAT["F2"], DAT["F3"]
+_pair2 = tuple(sorted((int(_D2["a"].subs({j: 0})), int(_D2["b"].subs({j: 0})))))
+_pair3 = tuple(sorted((int(_D3["a"].subs({j: 0})), int(_D3["b"].subs({j: 0})))))
+_N2 = int(_D2["N"].subs({j: 0})); _N3 = int(_D3["N"].subs({j: 0}))
+_s2 = tuple(int(sp.Integer(v.subs({j: 0}))) for v in sig(_D2, _N2, 1))
+_s3 = tuple(int(sp.Integer(v.subs({j: 0}))) for v in sig(_D3, _N3, 1))
+ok("A10b F3 j=0 = (75,50) is F2 j=0 = (50,75) with P<->Q: same corner, same "
+   "unordered reduced pair {2,3}, hence same N = 28 and same signature "
+   "(30,30,0,0) -- reached from two DIFFERENT (m,n) laws (F2: a=j+2,b=2j+3; "
+   "F3: a=3j+2,b=4j+3) and two different N-polynomials in j that agree at j=0 "
+   "and nowhere else",
+   _pair2 == _pair3 == (2, 3) and _N2 == _N3 == 28
+   and _s2 == _s3 == (30, 30, 0, 0)
+   and sp.expand(_D2["N"] - _D3["N"]) != 0)
+
+# A10e.  Route (i) and route (ii): two other modules, own transcriptions.
+_fd = _pr._f2_forcing_divisor(2, 3, _cd_f3["t"], _cd_f3["kappa"],
+                              _cd_f3["deg_C"], _cd_f3["ord_C"])
+_c_fd, _g_fd, _f_fd, _A_fd, _N_fd, _sig_fd = _fd
+# polygon_reduction's y is a PLAIN symbol; this file's y carries positive=True, so
+# the two are distinct sympy objects and must be reconciled before comparing.
+_pry = _pr.y
+ok("A10e(i) polygon_reduction's own forcing-ODE solve at (5,20) with the reduced "
+   "pair {2,3} independently returns C = y, g = 1, f = y^2/2, N = 28 and "
+   "signature (30,30,0,0) -- the verified F3 j=0 target",
+   sp.expand(_c_fd - _pry) == 0 and sp.expand(_g_fd - 1) == 0
+   and sp.expand(_f_fd - _pry**2 / 2) == 0 and int(_N_fd) == 28
+   and tuple(int(s) for s in _sig_fd) == (30, 30, 0, 0))
+try:
+    import window_functions_75_125 as _wf                            # noqa: E402
+    _r = _wf.family(2)
+    ok("A10e(ii) window_functions_75_125.family(2) -- a third module -- gives "
+       "N = 28 and ord_y(Phi) = deg_y(Phi) = 30 for the same rung",
+       int(_r["N"]) == 28 and int(_r["ordPhi"]) == int(_r["degPhi"]) == 30)
+except Exception as _exc:                                            # noqa: BLE001
+    ok("A10e(ii) window_functions_75_125 cross-check could not run: %r" % (_exc,),
+       False)
+
+# A10d.  The superseded F3 rung polynomial: right computation, wrong corner.
+# BOTH halves are asserted, because "it solved an ODE" was the whole reason this
+# datum looked safe, and a repair that cannot say which ODE is not a repair.
+_f3_old = SUPERSEDED_F["F3"]
+_t_old, _kap_old, _q_old, _dg_old = 5, 3, 3, 2      # the superseded (5,20) chart
+_a_old, _b_old = 2, 3
+_e_old = _b_old - _a_old + 1
+_coef_old = _t_old * (_b_old - _a_old) + _kap_old + 1
+_c_old = y**_q_old * (y + 1)**_dg_old
+_res_old = sp.expand(_a_old * (_t_old * _c_old * sp.diff(_f3_old, y)
+                               - _coef_old * sp.diff(_c_old, y) * _f3_old)
+                     - _c_old**_e_old)
+ok("A10d(1) F3's PHI_F7 polynomial (1/42)y^4(y+1)^3(25y^2+15y-3) DOES solve the "
+   "mu=2 ramified ODE of the superseded chart (t,kappa,q,dg) = (5,3,3,2): the "
+   "computation was never wrong, only its corner was",
+   _res_old == 0)
+_res_new = full_ode_residual(DAT["F3"], 0, _f3_old)
+ok("A10d(2) and it does NOT solve the REPAIRED (5,20) ODE (t=4, C=y, e=2, "
+   "2{4 y f' - 7 f} = y^2), whose unique solution is f = y^2/2 -- so the two "
+   "charts are DISCRIMINATED by this polynomial, not merely relabelled",
+   _res_new != 0
+   and full_ode_residual(DAT["F3"], 0, y**2 / 2) == 0)
+
+# A10f.  Scope of this repair, stated honestly.
+_DOWNSTREAM_UNREPAIRED_F3 = (
+    "phi_f7.py", "phi_f7_verify.py", "phi_corner4.py", "phi_corner4_verify.py",
+    "phi_f14.py", "phi_f14_verify.py", "case_compiler.py",
+    "ml_restriction_check.py",
+)
+ok("A10f SCOPE: this repair covers family_grammar.py and this file only.  These "
+   "modules still carry F3 at (5,20) with l_final=5/b_final=3 used AS chart data "
+   "and are now KNOWN-SUSPECT for F3 (they were repaired for F2 only): %s"
+   % ", ".join(_DOWNSTREAM_UNREPAIRED_F3),
+   len(_DOWNSTREAM_UNREPAIRED_F3) == 8 and "F3" in REPAIRS)
+
+# ---------------------------------------------------------------------------
+# A9. DRIFT GUARD -- the two independent LANDED tables must AGREE.
+#
+# This check exists because its absence cost real soundness.  family_grammar.py
+# and this file each keep their OWN copy of the landed derived points, which is
+# correct for independence -- but the 2026-07-26 chart repair updated ONE copy.
+# The module then printed MISMATCH for both F2 rows and exited 0, while this file
+# checked its OWN stale copy against its OWN stale derivation and passed 210/210.
+# Two self-consistent halves, disagreeing with each other, both green.
+#
+# Independence is only worth something if the copies are cross-checked.
+# ---------------------------------------------------------------------------
+try:
+    import family_grammar as _FG
+    _theirs = {k: (v[1], v[2]) for k, v in _FG.LANDED.items()}
+    ok("A9 the two independent LANDED tables agree on every key (drift guard: "
+       "one copy was repaired and the other was not, and nothing caught it)",
+       _theirs == LANDED)
+    ok("A9b and the two REPAIRS tables agree on which families are chart-repaired",
+       set(_FG.REPAIRS) == set(REPAIRS)
+       and all(_FG.REPAIRS[k] == REPAIRS[k] for k in REPAIRS))
+    ok("A9c and the two f-polynomial tables agree on which rows are LANDED and "
+       "which are SUPERSEDED (added 2026-07-26: retiring F3's rung polynomial in "
+       "one copy only is exactly the drift A9 was written for)",
+       set(_FG.LANDED_F) == set(LANDED_F)
+       and set(_FG.SUPERSEDED_F) == set(SUPERSEDED_F)
+       and all(sp.expand(_FG.SUPERSEDED_F[k] - SUPERSEDED_F[k]) == 0
+               for k in SUPERSEDED_F))
+except Exception as _exc:                                            # noqa: BLE001
+    ok("A9 drift guard could not run: %r" % (_exc,), False)
 
 # ===========================================================================
 # B. CLOSED-FORM THEOREM (pure): gap=0 <=> collapse condition; A=-1/(a dg)
 # ===========================================================================
 for nm, D in DAT.items():
     # collapse condition  t-(kappa+1)q+dg = 0  is EXACTLY gap=0
-    collapse = D["t"] - (D["kappa"] + 1) * D["q"] + D["dg"]
-    ok("%s collapse-cond==0 <=> gap==0" % nm, (collapse == 0) == (D["gap"] == 0))
+    if D["dict_valid"]:
+        collapse = D["t"] - (D["kappa"] + 1) * D["q"] + D["dg"]
+        ok("%s collapse-cond==0 <=> gap==0" % nm,
+           (collapse == 0) == (D["gap"] == 0))
+    else:
+        ok("%s collapse-condition VOID: dg = 0, so y g' - dg g = -dg reads "
+           "0 = 0 and constrains nothing.  The equivalence with gap==0 is not "
+           "available here and is NOT asserted." % nm, D["dg"] == 0)
 
 for nm in census["PURE"]:
     D = DAT[nm]
@@ -306,9 +610,14 @@ for (nm, mu), s in MU_RUNGS.items():
     got = tuple(int(sp.Integer(v.subs({j: 0}))) for v in sig(D, Nval, mu))
     ok("%s mu=%d published rung %s via mu-graded law" % (nm, mu, s), got == s)
 
-# mu-graded law algebraic identities (symbolic in j, N, mu)
+# mu-graded law algebraic identities (symbolic in j, N, mu).
+# 2026-07-26: F3 REPLACED BY F7 in this list.  These identities are stated in terms
+# of (a0, q, rho = (e-1)q+1, r = a0-q-1), i.e. they presuppose the final-corner
+# dictionary; asserting them for a CHART-DEGENERATE row would be asserting the very
+# dictionary the row refutes.  F7 is a RUNG row where the dictionary holds, so the
+# algebra is tested on the class it actually describes.
 Nn, mm = sp.symbols("Nn mm")
-for nm in ["F3", "F10", "F12", "F16"]:
+for nm in ["F7", "F10", "F12", "F16"]:
     D = DAT[nm]
     e, a0, q, rho, gap, r = D["e"], D["a0"], D["q"], D["rho"], D["gap"], D["r"]
     pure = e * a0 - q + 1

@@ -6,10 +6,16 @@ pinned published data; no floats, no tolerances.
 
   R1  the compiled (8,28) reduction reproduces the PUBLISHED polygons EXACTLY
       (paper_src/upstream_facts.json sub1/sub2) and the bracket [P,Q]=x^2.
-  R2  F2 j=0 = (50,75): corner signature (t=5,kappa=3,a0=5,q=2,c=y^2(y^3+1))
-      and the Phi divisor signature agree with the landed corner data.
-  R3  F2 j=1 = (75,125): same chart, judgment DISCHARGED at the polygon layer;
-      Phi divisor signature agrees with phi_75_125's landed value.
+  R2  F2 j=0 = (50,75): REPAIRED corner signature (t=4,kappa=2,deg C=1,
+      ord C=1,c=y) and -- the decisive EXTERNAL control -- the engine's reduced
+      polygons reproduce GGV3 sec.5's three published integers for this exact
+      corner: [P_1,Q_1]=x^2, deg(P_1)=10, deg(Q_1)=15.
+  R3  F2 j=1 = (75,125): same chart; reduced polygons COMPUTED as m/n * Delta',
+      Delta' = {(0,0),(3,0),(4,1),(0,5)}; Phi signature (80,80,0,0), N=77.
+  RG  THE RETRACTION GUARD (the root-cause fix).  final_corner_dictionary()
+      RETURNS (l_final,b_final) exactly on the retraction shape -- (8,28) and
+      (9,24) -- and RAISES off it -- (7,21) and (5,20).  Both directions are
+      checked, so the guard is not vacuous.
   BM  branch-manifest COMPLETENESS: every branch keeps >=1 followed option and
       every option carries a non-empty reason; the (8,28) manifest contains the
       published exclusions (k=2 impossible; three-factor discarded; deep shift
@@ -113,17 +119,32 @@ def _sig_of(red):
 
 def test_R2():
     if not QUIET:
-        print("\n[R2] F2 j=0 = (50,75)  (GGV3-consistent)")
+        print("\n[R2] F2 j=0 = (50,75)  -- GGV3 sec.5's OWN published reduction")
     red = pr.case_f2(0)
-    check(_sig_of(red) == (5, 3, 5, 2), "R2 corner signature (t,kappa,a0,q)=(5,3,5,2)")
-    c_expected = sp.expand(y**2 * (y**3 + 1))
-    check(sp.expand(sp.sympify(red.signature["c_of_y"])) == c_expected,
-          "R2 residual divisor c(y) = y^2(y^3+1)")
-    check(red.bracket == "x^3", "R2 bracket [P,Q]=x^3")
-    # Phi signature matches phi_corner4.py's landed (50,75) point
-    check(red.signature["phi_signature"] == (189, 75, 38, 76),
-          "R2 Phi signature (189,75,38,76) == phi_corner4 landed")
-    check(red.signature["N"] == 36, "R2 tower length N=36")
+    check(_sig_of(red) == (4, 2, 1, 1),
+          "R2 corner signature (t,kappa,deg C,ord C)=(4,2,1,1)  [REPAIRED 2026-07-26]")
+    check(sp.expand(sp.sympify(red.signature["c_of_y"]) - y) == 0,
+          "R2 residual divisor C = y  (a MONOMIAL: no retraction at (5,20))")
+    check(red.signature["g"] == "1", "R2 residual g = 1 (deg g = deg C - ord C = 0)")
+    # --- THE EXTERNAL CONTROL.  GGV3 1406.0886 sec.5, tex:1723-1727, verbatim:
+    #       "[P_1,Q_1]=x^2,  deg(P_1)=10  and  deg(Q_1)=15."
+    # Three published integers.  The engine must reproduce all three.
+    check(red.bracket == "x^2", "R2 bracket [P,Q]=x^2 == GGV3's published x^2")
+    pq = red.reduced["standard (proportional, Prop 8.2(1))"]
+    degP = max(i + j for i, j in pq["P"])
+    degQ = max(i + j for i, j in pq["Q"])
+    check(degP == 10, "R2 deg(P_1) = %d == GGV3's published 10" % degP)
+    check(degQ == 15, "R2 deg(Q_1) = %d == GGV3's published 15" % degQ)
+    check(as_set(pq["P"]) == as_set([[0, 0], [6, 0], [8, 2], [0, 10]])
+          and as_set(pq["Q"]) == as_set([[0, 0], [9, 0], [12, 3], [0, 15]]),
+          "R2 reduced polygons = 2*Delta' and 3*Delta', Delta'={(0,0),(3,0),(4,1),(0,5)}")
+    # and the superseded l=5 branch contradicts all three (recorded, not run)
+    check(pr.chart_exponent(5, 20) == 4 and 5 * 2 == 10 and 4 * 2 == 8,
+          "R2 l is DERIVED: chart_exponent(5,20) = ceil(20/5) = 4 (l=5 would give "
+          "bracket x^3 and degrees (20,30), contradicting all three GGV3 integers)")
+    check(red.signature["phi_signature"] == (30, 30, 0, 0),
+          "R2 Phi signature (30,30,0,0)  [Phi = (1/2) y^30, a monomial]")
+    check(red.signature["N"] == 28, "R2 tower length N=28")
 
 
 def test_R3():
@@ -131,30 +152,94 @@ def test_R3():
         print("\n[R3] F2 j=1 = (75,125)  (the target model)")
     red = pr.case_f2(1)
     r0 = pr.case_f2(0)
-    check(_sig_of(red) == (5, 3, 5, 2), "R3 corner signature (t,kappa,a0,q)=(5,3,5,2)")
-    check(sp.expand(sp.sympify(red.signature["c_of_y"])) == sp.expand(y**2 * (y**3 + 1)),
-          "R3 residual divisor c(y) = y^2(y^3+1)")
+    check(_sig_of(red) == (4, 2, 1, 1),
+          "R3 corner signature (t,kappa,deg C,ord C)=(4,2,1,1)  [REPAIRED 2026-07-26]")
+    check(sp.expand(sp.sympify(red.signature["c_of_y"]) - y) == 0,
+          "R3 residual divisor C = y  (a MONOMIAL)")
     # the CHART is identical to F2 j=0 -- same transforms, only (m,n) differs
     check([t.action for t in red.transforms] == [t.action for t in r0.transforms],
           "R3 chart identical to F2 j=0 (same transform sequence; only (m,n) differs)")
     check(red.mn == (3, 5) and r0.mn == (2, 3),
           "R3/R2 differ only in the polygon multiplier (3,5) vs (2,3)")
-    check(red.bracket == "x^3", "R3 bracket [P,Q]=x^3 (kappa=l-2=3, DERIVED)")
-    # Phi signature matches phi_75_125.py's landed value
-    check(red.signature["phi_signature"] == (504, 201, 101, 202),
-          "R3 Phi signature (504,201,101,202) == phi_75_125 landed")
+    check(red.bracket == "x^2", "R3 bracket [P,Q]=x^2 (kappa=l-2=2, DERIVED)")
+    # the reduced polygons are now COMPUTED, not absent
+    pq = red.reduced["standard (proportional, Prop 8.2(1))"]
+    check(as_set(pq["P"]) == as_set([[0, 0], [9, 0], [12, 3], [0, 15]]),
+          "R3 N(P) = {(0,0),(9,0),(12,3),(0,15)} = 3*Delta'  (COMPUTED)")
+    check(as_set(pq["Q"]) == as_set([[0, 0], [15, 0], [20, 5], [0, 25]]),
+          "R3 N(Q) = {(0,0),(15,0),(20,5),(0,25)} = 5*Delta'  (COMPUTED)")
+    check(max(i + j for i, j in pq["P"]) == 15
+          and max(i + j for i, j in pq["Q"]) == 25,
+          "R3 reduced degrees (15,25)")
+    check(red.signature["phi_signature"] == (80, 80, 0, 0),
+          "R3 Phi signature (80,80,0,0)  [Phi = (1/3) y^80, a monomial]")
+    check(red.signature["N"] == 77, "R3 tower length N=77")
     # judgment DISCHARGED at the polygon layer
     joined = " ".join(red.judgment)
     check("RETIRED at the polygon layer" in joined
           and "UNCONDITIONAL at the polygon layer" in joined,
           "R3 'unreduced polygon' judgment DISCHARGED (unconditional at polygon layer)")
-    check("honest boundary" in joined,
-          "R3 records the honest boundary (residual-gauge branch completeness; REOPENED 2026-07-24)")
-    # the reopened residual-gauge judgment must be present and must NOT be
-    # overstated as resolved (correction 2026-07-24: chart+kappa discharged;
-    # residual-divisor/gauge branch completeness reopened, not resolved).
-    check("REOPENED" in joined,
-          "R3 residual-gauge branch completeness is REOPENED (not claimed resolved)")
+    # The 2026-07-24 residual-GAUGE reopening is DISSOLVED, not resolved and not
+    # still open: it presupposed deg g = 3, which presupposed deg C = a0 = 5,
+    # which presupposed a retraction this corner does not have.  Check the
+    # DISSOLVED verdict and, independently, that deg g really is 0 -- so this is
+    # not a string test that a stale "REOPENED" would also satisfy.
+    check("DISSOLVED" in joined and red.signature["g"] == "1"
+          and red.signature["a0"] - red.signature["q"] == 0,
+          "R3 residual-gauge branch is DISSOLVED: deg g = deg C - ord C = 0, so g=1 "
+          "is forced and there is no gauge to choose")
+
+
+# ---------------------------------------------------------------------------
+# RG -- THE RETRACTION GUARD.  Both directions, so the guard is not vacuous.
+# ---------------------------------------------------------------------------
+def test_RG():
+    if not QUIET:
+        print("\n[RG] retraction guard on the (t,q)=(l_final,b_final) dictionary")
+    # the INFERRED chart-exponent rule on every corner with published data
+    for (a0, b0), want in {(8, 28): 4, (9, 24): 3, (9, 27): 3,
+                           (7, 21): 3, (5, 20): 4}.items():
+        check(pr.chart_exponent(a0, b0) == want,
+              "RG chart_exponent(%d,%d) = ceil(%d/%d) = %d" % (a0, b0, b0, a0, want))
+    # the retraction shape splits the four dictionary rows exactly as PASSPORT P6
+    check(pr.has_retraction(8, 28) and pr.has_retraction(9, 24),
+          "RG retraction shape HOLDS at (8,28) [28=4*7] and (9,24) [24=3*8]")
+    check(not pr.has_retraction(7, 21) and not pr.has_retraction(5, 20),
+          "RG retraction shape FAILS at (7,21) [21!=3*6] and (5,20) [20!=4*4]")
+    # the quantifier trap: SOME l satisfies b0=l(a0-1) at (5,20) (namely 5), and
+    # that is exactly how l=5 got in.  The guard must still refuse.
+    check(pr.has_retraction(5, 20, l=5) and not pr.has_retraction(5, 20),
+          "RG the trap: b0=l(a0-1) is solvable at (5,20) by l=5, but FAILS for the "
+          "l actually used (4) -- the guard tests the l in use, not existence")
+    # POSITIVE direction: the dictionary is returned where it is valid
+    check(pr.final_corner_dictionary(8, 28, 4, 7) == (4, 7),
+          "RG dictionary RETURNS (t,q)=(4,7) at (8,28) -- matches the published "
+          "chart l=4 and edge form y(x^4 y-alpha)^7")
+    check(pr.final_corner_dictionary(9, 24, 3, 8) == (3, 8),
+          "RG dictionary RETURNS (t,q)=(3,8) at (9,24)")
+    # NEGATIVE direction: it raises where it is invalid, loudly
+    for a0, b0, lf, bf, why in [
+            (7, 21, 7, 2, "GGV5 l_final=7 vs GGHV22's published chart l=3"),
+            (5, 20, 5, 2, "GGV5 l_final=5 vs GGV3's (50,75) reduction forcing l=4")]:
+        try:
+            pr.final_corner_dictionary(a0, b0, lf, bf)
+            check(False, "RG dictionary must RAISE at (%d,%d)" % (a0, b0))
+        except pr.FinalCornerDictionaryError as exc:
+            check("retraction precondition" in str(exc) and "REFUSED" in str(exc),
+                  "RG dictionary RAISES at (%d,%d): %s" % (a0, b0, why))
+    # and corner_chart_data routes both shapes correctly
+    cd8 = pr.corner_chart_data(8, 28, l_final=4, b_final=7)
+    check((cd8["t"], cd8["kappa"], cd8["deg_C"], cd8["ord_C"]) == (4, 2, 8, 7)
+          and cd8["retraction"] and not cd8["monomial"],
+          "RG corner_chart_data(8,28) = (t,kappa,deg C,ord C)=(4,2,8,7), retracted")
+    cd5 = pr.corner_chart_data(5, 20, l_final=5, b_final=2)
+    check((cd5["t"], cd5["kappa"], cd5["deg_C"], cd5["ord_C"]) == (4, 2, 1, 1)
+          and cd5["monomial"] and not cd5["retraction"],
+          "RG corner_chart_data(5,20) = (t,kappa,deg C,ord C)=(4,2,1,1), MONOMIAL")
+    cd7 = pr.corner_chart_data(7, 21, l_final=7, b_final=2)
+    check((cd7["t"], cd7["kappa"], cd7["deg_C"], cd7["ord_C"]) == (3, 1, 1, 1),
+          "RG corner_chart_data(7,21) = (3,1,1,1) == GGHV22's published (7,21) "
+          "chart y x^3, [P,Q]=x, C=y  (independent published confirmation)")
 
 
 # ---------------------------------------------------------------------------
@@ -189,6 +274,16 @@ def test_branch_manifest():
     check(any((not o.followed) and "double-inversion" in o.label
               for b in r3.branches for o in b.options),
           "BM F2: double-inversion (kappa=l2-l1) heuristic EXCLUDED")
+    # and the repaired branch must record the superseded l=5 as EXCLUDED, with
+    # the retraction reason -- so the error cannot be silently reintroduced
+    check(any((not o.followed) and "l_final = 5" in o.label
+              and "retraction shape" in o.reason
+              for b in r3.branches for o in b.options),
+          "BM F2: l = l_final = 5 is an EXPLICITLY EXCLUDED option, with the "
+          "retraction-shape reason attached")
+    check(any((not o.followed) and "deg C = a0 = 5" in o.label
+              for b in r3.branches for o in b.options),
+          "BM F2: the retracted-shape C (deg C = a0 = 5, ord C = 2) is EXCLUDED")
 
 
 def main():
@@ -198,6 +293,7 @@ def main():
     test_R1()
     test_R2()
     test_R3()
+    test_RG()
     test_branch_manifest()
     print("\n" + "=" * 78)
     if _fails:
@@ -207,7 +303,7 @@ def main():
             print("   FAIL: %s" % f)
         print("=" * 78)
         sys.exit(1)
-    print("RESULT: ALL %d checks PASSED  (R1 R2 R3 + branch-manifest completeness)"
+    print("RESULT: ALL %d checks PASSED  (R1 R2 R3 RG + branch-manifest completeness)"
           % _checks)
     print("=" * 78)
     sys.exit(0)

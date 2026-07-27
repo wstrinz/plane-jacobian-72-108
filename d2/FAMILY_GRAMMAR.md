@@ -7,7 +7,7 @@ attempt the F2 trick — the ansatz `f = A y^rho g^e` driven by the collapse
 identity — symbolically in the family parameter `j`, and classify the outcome.
 
 Derivation: `family_grammar.py`. Exact checker: `family_grammar_verify.py`
-(**210/210, --quiet, exit 0**); every closed form re-verified symbolically in
+(**212/212, --quiet, exit 0**); every closed form re-verified symbolically in
 `j` AND by direct full-ODE substitution at `j = 0,1,2,3`, every landed derived
 point reproduced exactly. Nothing existing edited; `run_tests.sh` untouched.
 
@@ -45,7 +45,7 @@ it — there is no marked quartic, and the row's `y^5+1`, `H = Phi10 (C4)` data
 describes the formal model, not the (56,84) reduction.
 
 **Scope of the damage — deliberately narrow.** `family_grammar_verify.py` still
-passes 210/210 and nothing is withdrawn: the checker proves the formal forcing
+passes (212/212 as of 2026-07-26) and nothing is withdrawn: the checker proves the formal forcing
 equation *once parameters are supplied*, and that proof is untouched. What fails
 is the mapping from the GGV chain to those parameters. The same caveat applies to
 **F10, F11, F12, F13**, which likewise fail the chart precondition
@@ -120,8 +120,9 @@ The trichotomy that follows (with `r = dg-1` always):
 | **IRREGULAR** | `gap < 0` | none (res < pure); only among the composite escapes (F22) |
 
 Both closed-form branches and the `mu=dg` ramified rung are **uniform in j** and
-were re-derived symbolically; the RUNG family's `mu=dg` rung reproduces all four
-PHI_F7 landed polynomials on the nose.
+were re-derived symbolically; the RUNG family's `mu=dg` rung reproduces the three
+surviving PHI_F7 landed polynomials on the nose (F3's left the class on
+2026-07-26 with the second `(5,20)` chart repair — see §2).
 
 ## 2. The grammar table
 
@@ -129,9 +130,135 @@ PHI_F7 landed polynomials on the nose.
 is the reduced denominator of `ord_y(Phi)/M`, `M = t(a+b)-(kappa+1)` (the F2 law
 `5a-3` is the `q_window` analogue).
 
+> ## ⚠ F2 IS REPAIRED AND RECLASSIFIED — 2026-07-26
+>
+> **The F2 row above changed, and its class changed with it.** Its corner `(5,20)`
+> does **not** satisfy the retraction shape `b0 = t(a0−1)` (`20 ≠ 4·4`), so GGV5's
+> final-corner dictionary — which is what let this table read `deg C` off `a0` and
+> `ord C` off `q` — is **invalid there**. Repaired: `t = 4` (whence `kappa = t−2 = 2`),
+> and `C = y` is a **monomial**, so `deg C = ord C = 1` while `a0` remains `5`.
+>
+> | quantity | was | is |
+> |---|---|---|
+> | `t` | 5 | **4** |
+> | `dg` (residual degree) | 3 | **0** |
+> | `N_j` | `(3j+4)(5j+9)` | **`(3j+4)(4j+7)`** |
+> | `W_step` denom | `5j+7` | **`12j+17`** |
+> | residual `g` | `y³+1`, `H = Φ₆` | **none** |
+> | class | `PURE` | **`CHART-DEGENERATE`** |
+>
+> **Why the class had to change, and what is NOT being claimed.** The pure closed
+> form is `f = −1/(a·dg)·y^ρ(y^dg+1)^e`. At `dg = 0` its normalising constant is
+> `−1/(a·0)` — **undefined** — and the collapse identity `y g′ − dg·g = −dg`
+> degenerates to `0 = 0`, constraining nothing. So F2 has **no closed form of this
+> shape**, and the "F2 family theorem" as a closed form is **withdrawn** for this
+> family pending a derivation of what replaces it. That derivation is open work.
+>
+> **What DOES survive, verified.** The landed derived points still reproduce
+> exactly and symbolically in `j`: `N = (3j+4)(4j+7)` and
+> `deg = ord = 2(2j+3)(3j+5) = 12j²+38j+30`, giving `(50,75) → N=28, (30,30,0,0)`
+> and `(75,125) → N=77, (80,80,0,0)`. The two trailing zeros are now *explained*
+> rather than fitted — no residual means no multiplicity and no cofactor. This
+> independently agrees with `window_functions_75_125.family()`'s
+> `ord_y(Φ) = 12a²−10a+2` at `a = j+2`.
+>
+> **How this survived a repair and a green suite** (the part worth remembering).
+> `2adb92a` updated `family_grammar.py`'s landed *targets* but not its
+> *derivation*; the module detected the contradiction, **printed `MISMATCH`, and
+> exited 0**. Meanwhile `family_grammar_verify.py` kept its **own** copy of the
+> landed table, still at the pre-repair values, so it checked a stale copy against
+> a stale derivation and passed 210/210. Two self-consistent halves, disagreeing
+> with each other, both green. Both holes are now closed: the module is **fatal on
+> mismatch**, and check `A9` **cross-checks the two independent tables against each
+> other**. Independence is only worth something if the copies are compared.
+>
+> ## ⚠ F3 IS ALSO REPAIRED — 2026-07-26 (later the same day)
+>
+> The paragraph that stood here said `F3` was equally suspect but that **"no
+> repaired landed target exists for it, so a fix cannot be verified."** That was
+> **too conservative and is retracted.** A verified target does exist.
+>
+> **The principle, now established rather than assumed: chart data is a property of
+> the CORNER, not of the family.** `l = ceil(b0/a0)`, `kappa = l−2`, and the
+> vertical-top-face test that decides whether `C` is a monomial are all functions of
+> `A_0` alone; a family row contributes only `(m,n)`, and `(m,n)` enters the corner
+> law *solely* through the **unordered** pair `{min, max}`. F2 and F3 both have
+> `A_0 = (5,20)`, `A_0' = (1,0)`, chain length 1 — so
+> `polygon_reduction.corner_chart_data` returns **bit-identical** `(4,2,1,1)` for
+> the two GGV5 rows (check `A10a`). Repaired F3: `t = 4`, `kappa = 2`,
+> `deg C = ord C = 1`, `dg = 0`, class **`CHART-DEGENERATE`**.
+>
+> **`q = 3` was never chart data for F3 — and the old table said so itself.** It
+> carried `ord C = 2` (F2) *and* `ord C = 3` (F3) **at one and the same corner**.
+> `ord_y(C)` is a corner invariant, so two values at one corner is a contradiction
+> visible without opening a paper; it is precisely the fingerprint of reading `q`
+> off GGV5's **per-row** final chain corner `b_final` (`2` in F2's `(7\5,2)`, `3` in
+> F3's `(8\5,3)`) instead of off the corner's own reduced polygon (check `A10c`).
+>
+> | quantity | was | is |
+> |---|---|---|
+> | `t` | 5 | **4** |
+> | `dg` | 2 | **0** |
+> | `N_j` | `105j²+125j+36` | **`84j²+99j+28`** |
+> | `deg = ord` | — | **`2(42j²+50j+15)`** |
+> | `W_step` denom | — | **`28j+17`** |
+> | class | RUNG (μ=dg ramified) | **`CHART-DEGENERATE`** |
+> | `j=0` → `(75,50)` | `N=36`, `(189,112,75,2)` | **`N=28`, `(30,30,0,0)`** |
+>
+> **The verified target, three independent routes** (`A10b`, `A10e`, and the
+> published anchor):
+>
+> 1. **A two-sided cross-check, the strongest of the three.** `(75,50)` is `(50,75)`
+>    with `P` and `Q` exchanged, at the same corner. So F3 `j=0` and F2 `j=0` are
+>    the *same reduction* and must produce identical `N` and identical signature —
+>    reached from **two different `(m,n)` laws** (F2 `a=j+2,b=2j+3`; F3
+>    `a=3j+2,b=4j+3`) whose `N`-polynomials in `j` are **different** and agree at
+>    `j=0` and nowhere else. They do: `N=28`, `(30,30,0,0)`.
+> 2. `polygon_reduction._f2_forcing_divisor(2,3,4,2,1,1)` — the corner's own forcing
+>    ODE, with an independent general-polynomial uniqueness check — returns `C=y`,
+>    `g=1`, `f=y²/2`, `N=28`, `(30,30,0,0)`. Its arguments are fixed by the corner
+>    and `{2,3}`, by nothing named "F2" or "F3". A third module,
+>    `window_functions_75_125.family(2)`, agrees: `N=28`, `ord=deg=30`.
+> 3. **PUBLISHED.** GGV3 §5 (`paper_src/1406.0886_GGV3.tex:1723‑1727`) assumes a
+>    counterexample of degrees `(50,75)`, derives `A_0 = (5,20)`, and obtains
+>    `[P₁,Q₁] = x²`, `deg P₁ = 10`, `deg Q₁ = 15`. Two things make this an anchor
+>    for **F3** and not only F2: **(a)** it *precedes* the paper's branch — GGV3
+>    says `γ = 3` **or** `γ = 2` and treats both, and **both start from this same
+>    `(P₁,Q₁)`**, so the three integers hold whichever value `γ` takes, which is
+>    exactly the freedom separating GGV5's F2 row (`b_final=2`) from its F3 row
+>    (`b_final=3`); **(b)** `F_3(3,2)/75` *is* that case with `P,Q` exchanged
+>    (`corner_atlas.json` gives it the identical `A_0=(5,20)`, `A_0'=(1,0)`, `k=1`,
+>    `max_deg 75`), so it reads `[Q₁,P₁] = −x²`, degrees `(15,10)`. Either reading
+>    forces `kappa = 2`, hence `l = 4`; `l = 5` predicts `[P,Q]=x³` and degrees
+>    `(20,30)`/`(30,20)` and contradicts all three integers under both.
+>
+> **What is NOT claimed.** As for F2, the closed form is **withdrawn**, not moved:
+> at `dg = 0` the pure constant `−1/(a·0)` is undefined and the ramified-rung
+> ansatz presupposed `dg = 2`. F3's PHI_F7 polynomial
+> `(1/42)y⁴(y+1)³(25y²+15y−3)` is **not** retired as a computation — it *does*
+> solve the ODE of `(t,kappa,q,dg) = (5,3,3,2)` (check `A10d(1)`) — it is retired as
+> a statement *about `(5,20)`*, whose ODE `2{4y f′ − 7f} = y²` it does **not** solve
+> (check `A10d(2)`, whose unique solution is `f = y²/2`). Both halves are asserted,
+> because "it solved an ODE" is what made this datum look safe.
+>
+> **Still open, and deliberately visible.** Only `family_grammar.py` and
+> `family_grammar_verify.py` are repaired for F3. `phi_f7.py`,
+> `phi_f7_verify.py`, `phi_corner4.py`, `phi_corner4_verify.py`, `phi_f14.py`,
+> `phi_f14_verify.py`, `case_compiler.py` and `ml_restriction_check.py` still
+> transcribe F3 as `(5,20)` with `l_final=5`/`b_final=3` used **as chart data**.
+> Each is internally consistent and each is now known-suspect for F3; check `A10f`
+> names them so the front cannot be mistaken for closed.
+>
+> **The A10 tripwire worked.** The check that used to assert "F3 is still
+> unrepaired" fired the moment F3 was repaired, which is what forced this section to
+> be written and the target to be named. It has been replaced by `A10a–A10f`, which
+> assert the **new** state and its evidence in the same spirit.
+
+
 | fam | t | a0 | q | dg | r | gap | class | N_j (factored) | W_step denom | residual / Galois |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **F2**  | 5 | 5 | 2 | 3 | 2 | 0 | PURE | `(3j+4)(5j+9)` | `5j+7` | `y^3+1`, H=Φ6 (C2, Q(√-3)) |
+| **F2**  | **4** | 5 | 2 | **0** | **−1** | 0 | **CHART-DEGENERATE** | **`(3j+4)(4j+7)`** | **`12j+17`** | **NONE — `C = y` is a monomial** |
+| **F3**  | **4** | 5 | 3 | **0** | **−1** | 0 | **CHART-DEGENERATE** | **`84j²+99j+28`** | **`28j+17`** | **NONE — same corner `(5,20)` as F2; `q=3` is a chain datum, not `ord C`** |
 | **F9**  | 7 | 7 | 2 | 5 | 4 | 0 | PURE | `(3j+4)(7j+13)` | `21j+29` | `y^5+1`, H=Φ10 (C4) |
 | **F14** | 3 | 9 | 4 | 5 | 4 | 0 | PURE | `(3j+4)(5j+9)` | `3j+5` | `y^5+1`, H=Φ10 (C4) |
 | **F1**  | 4 | 4 | 3 | 1 | 0 | 1 | COFACTOR | `40j²+104j+67` | `4j+5` | `y+1` (rational) |
@@ -139,7 +266,6 @@ is the reduced denominator of `ord_y(Phi)/M`, `M = t(a+b)-(kappa+1)` (the F2 law
 | **F6**  | 5 | 5 | 4 | 1 | 0 | 2 | COFACTOR *(k=2)* | `165j²+402j+244` | `5j+6` | `y+1` (rational) |
 | **F8**  | 3 | 6 | 5 | 1 | 0 | 2 | COFACTOR | `(6j+7)(7j+10)` | `3j+4` | `y+1` (rational) |
 | **F17** | 3 | 9 | 8 | 1 | 0 | 4 | COFACTOR | `(13j+5)(15j+4)` | `3j+1` | `y+1` (rational) |
-| **F3**  | 5 | 5 | 3 | 2 | 1 | 1 | RUNG (dg even) | `105j²+125j+36` | — | `(y+1)²` ramified; μ=1 real-empty |
 | **F4**  | 5 | 5 | 3 | 2 | 1 | 1 | RUNG *(k=2)* | `140j²+368j+241` | — | `(y+1)²` ramified |
 | **F7**  | 3 | 6 | 4 | 2 | 1 | 1 | RUNG (dg even) | `(3j+4)(5j+9)` | — | `(y+1)²` ramified; μ=1 real-empty |
 | **F10** | 7 | 7 | 3 | 4 | 3 | 1 | RUNG (dg even) | `168j²+427j+270` | — | `(y+1)⁴` ramified; real μ∈{2,4} |
@@ -184,7 +310,8 @@ degree **is** `gap`, the degree-`gap` analogue of the (72,108) quartic.
 - **F5** `u=(-25y²+5y-3)/(33(4j+5))`; **F8** `u=(-9y²+3y-2)/(14(2j+3))`;
   **F17** `deg u = 4` unit, all j-uniform (see `family_grammar.py`).
 
-### RUNG-STRUCTURED (r > 0, gap > 0): F3,F4,F7,F10,F11,F12,F13,F15,F16
+### RUNG-STRUCTURED (r > 0, gap > 0): F4,F7,F10,F11,F12,F13,F15,F16
+*(F3 **left** this class on 2026-07-26 — its rung presupposed `dg = 2`, i.e. `deg C = 5`, `ord C = 3`, which `(5,20)` does not have.)*
 The unramified ansatz fails: for **dg even** `y^dg+1` has no root at `-1` (the
 root-shift gauge needs `g(-1)=0`), forcing ramification; for **dg odd** (F12)
 the residual is a squarefree branch variety, not `y^dg+1`. But the **`mu=dg`
@@ -194,13 +321,16 @@ fully-ramified rung** gives a uniform closed form in j:
 f_j = y^rho (y+1)^(dg·e-(dg-1)) · u,     deg u = gap + r,   u coefficients rational in j.
 ```
 
-This reproduces **all four PHI_F7 landed polynomials** exactly (checked by direct
-ODE substitution):
+This reproduces the **three surviving PHI_F7 landed polynomials** exactly (checked
+by direct ODE substitution):
 
 - **F7** `j=0`: `(1/10) y^21 (y+1)^11 (9y²+3y-1)` → (42,147) `(250,165,83,2)`. ✔
-- **F3** `j=0`: `(1/42) y^4 (y+1)^3 (25y²+15y-3)` → (75,50) `(189,112,75,2)`. ✔
 - **F10** `j=0`: `(1/3740) y^10 (y+1)^13 (2401y⁴+5831y³+4165y²+595y-85)` → (196,112) `(1917,820,1093,4)`. ✔
 - **F16** `j=0`: `(1/330) y^15 (y+1)^5 (243y⁴+81y³-27y²+15y-10)` → (99,165) `(528,407,117,4)`. ✔
+- **F3** `j=0` **SUPERSEDED**: `(1/42) y^4 (y+1)^3 (25y²+15y-3)` solved the `(5,3,3,2)` ODE
+  exactly, but `(5,20)` does not have that chart. It is kept in `SUPERSEDED_F` (both
+  copies, cross-checked by `A9c`) precisely so `A10d` can discriminate the two charts
+  with it; deleting it would make the repair unfalsifiable.
 
 The full branch structure is the **μ-graded law** (ZETA_TAIL.md / MU_RUNGS_F10.md),
 which our checker confirms reproduces every published rung:
@@ -216,7 +346,7 @@ F12 (η=0) `mu∈{1,2,3}` `(814,506,·,·)`; F10 real `mu∈{2,4}` `(1917,820,·
 
 **Complex-scope discipline (MU_RUNGS correction, adopted).** Branch schemes are
 classified over Qbar. `dg` is **even** on every length-1 `k=1` `A0'=(1,0)` RUNG
-row (F3,F7,F10,F15,F16); there the `mu=1` **real** locus is empty (PHI_F7's
+row (F7,F10,F15,F16); there the `mu=1` **real** locus is empty (PHI_F7's
 complete factorization over C at `dg=2`; MU_RUNGS' real Sturm counts at `dg=4`),
 but complex `mu=1` branches are **not excluded** at `dg≥4`. This is
 branch-selection annotation — never a complex kill. The rational `mu=dg` rung is

@@ -1,0 +1,267 @@
+{
+ "stage": {
+  "id": "stage5_slice_obstruction",
+  "title": "Stacked P/Q positive-slice obstruction (a_t >= 9)",
+  "source": "SLICE_OBSTRUCTION.md; derived from upstream_facts.json corners + window_caps_verify.py W2/W3 + verify_derivation.py B (lambda/F isolation).  No G-system Groebner basis is used.",
+  "checker": "python slice_obstruction_basis.py --quiet --deep",
+  "note": "Window-INDEPENDENT and branch-independent: it uses only polynomiality of the P and Q slices, the 12k order floor, and the degree caps (which enter only through cap+1 >= 2n-2, true in both windows).  The kill criterion is a_t = v_t(e) >= 9.  Immune to the C08/C20 field-scope downgrade: every step is a t-adic valuation over Q.  Does NOT touch the alternate regime (a_t in {12,14}).",
+  "dead": {
+   "sub1": [
+    "a2_b1111_T1",
+    "a3_b1000_T1",
+    "a3_b1110_T1",
+    "a4_b0000_T1",
+    "a4_b1100_T1",
+    "a4_b1111_T1",
+    "a5_b1000_T1",
+    "a5_b1110_T1",
+    "a6_b0000_T1",
+    "a6_b1100_T1",
+    "a6_b1111_T1",
+    "a6_b1111_T2",
+    "a7_b1000_T1",
+    "a7_b1100_T1",
+    "a7_b1110_T1",
+    "a7_b1111_T1",
+    "a8_b0000_T1",
+    "a8_b0000_T2",
+    "a8_b1000_T1",
+    "a8_b1100_T1",
+    "a8_b1110_T1",
+    "a8_b1111_T1",
+    "a8_b1111_T2"
+   ],
+   "sub2": [
+    "a6_b1111_T1",
+    "a7_b1110_T1",
+    "a8_b1100_T1"
+   ]
+  },
+  "applies_after": "stage4_positive_slice"
+ },
+ "cokernel_generic": {
+  "sub1_n2": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 1
+  },
+  "sub1_n3": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 3
+  },
+  "sub1_n4": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 5
+  },
+  "sub1_n5": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 7
+  },
+  "sub1_n6": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 9
+  },
+  "sub1_n7": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 11
+  },
+  "sub1_n8": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 13
+  },
+  "sub2_n2": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 1
+  },
+  "sub2_n3": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 3
+  },
+  "sub2_n4": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 5
+  },
+  "sub2_n5": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 7
+  },
+  "sub2_n6": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 9
+  },
+  "sub2_n7": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 11
+  },
+  "sub2_n8": {
+   "p_only": 0,
+   "q_only": 0,
+   "stacked": 13
+  }
+ },
+ "cascade": [
+  {
+   "level": 2,
+   "jet": 0,
+   "deduction": "FORCED (g1_0) = 0"
+  },
+  {
+   "level": 3,
+   "jet": null,
+   "deduction": "all required jets vanish identically"
+  },
+  {
+   "level": 4,
+   "jet": 4,
+   "deduction": "FORCED (g1_1**2 - 2*g2_0) = 0"
+  },
+  {
+   "level": 5,
+   "jet": null,
+   "deduction": "all required jets vanish identically"
+  },
+  {
+   "level": 6,
+   "jet": 8,
+   "deduction": "FORCED (g1_1**2*g1_2 - g1_1*g2_1 + g3_0) = 0"
+  },
+  {
+   "level": 7,
+   "jet": null,
+   "deduction": "all required jets vanish identically"
+  },
+  {
+   "level": 8,
+   "jet": 12,
+   "deduction": "FORCED (2*g1_1**3*g1_3 + 4*g1_1**2*g1_2**2 - 2*g1_1**2*g2_2 - 4*g1_1*g1_2*g2_1 + 2*g1_1*g3_1 + g2_1**2 - 2*g4_0) = 0"
+  },
+  {
+   "level": 9,
+   "jet": null,
+   "deduction": "all required jets vanish identically"
+  },
+  {
+   "level": 10,
+   "jet": 16,
+   "deduction": "FORCED (g1_1**4*g1_4 + 6*g1_1**3*g1_2*g1_3 - g1_1**3*g2_3 + 4*g1_1**2*g1_2**3 - 4*g1_1**2*g1_2*g2_2 - 3*g1_1**2*g1_3*g2_1 + g1_1**2*g3_2 - 4*g1_1*g1_2**2*g2_1 + 2*g1_1*g1_2*g3_1 + 2*g1_1*g2_1*g2_2 - g1_1*g4_1 + g1_2*g2_1**2 - g2_1*g3_1 + g5_0) = 0"
+  }
+ ],
+ "forced_valuations": {
+  "h1": 1,
+  "h2": 3,
+  "h3": 5,
+  "h4": 7,
+  "h5": 9,
+  "h6": 10,
+  "h7": 11,
+  "h8": 12
+ },
+ "a_t_min": 9,
+ "census_delta": {
+  "sub1_rl": {
+   "before_cells": 34,
+   "after_cells": 11,
+   "killed_cells": [
+    "a2_b1111_T1",
+    "a3_b1000_T1",
+    "a3_b1110_T1",
+    "a4_b0000_T1",
+    "a4_b1100_T1",
+    "a4_b1111_T1",
+    "a5_b1000_T1",
+    "a5_b1110_T1",
+    "a6_b0000_T1",
+    "a6_b1100_T1",
+    "a6_b1111_T1",
+    "a6_b1111_T2",
+    "a7_b1000_T1",
+    "a7_b1100_T1",
+    "a7_b1110_T1",
+    "a7_b1111_T1",
+    "a8_b0000_T1",
+    "a8_b0000_T2",
+    "a8_b1000_T1",
+    "a8_b1100_T1",
+    "a8_b1110_T1",
+    "a8_b1111_T1",
+    "a8_b1111_T2"
+   ],
+   "before_fc": 314,
+   "after_fc": 134,
+   "before_st": 7275,
+   "after_st": 3657
+  },
+  "sub1_norl": {
+   "before_cells": 34,
+   "after_cells": 11,
+   "killed_cells": [
+    "a2_b1111_T1",
+    "a3_b1000_T1",
+    "a3_b1110_T1",
+    "a4_b0000_T1",
+    "a4_b1100_T1",
+    "a4_b1111_T1",
+    "a5_b1000_T1",
+    "a5_b1110_T1",
+    "a6_b0000_T1",
+    "a6_b1100_T1",
+    "a6_b1111_T1",
+    "a6_b1111_T2",
+    "a7_b1000_T1",
+    "a7_b1100_T1",
+    "a7_b1110_T1",
+    "a7_b1111_T1",
+    "a8_b0000_T1",
+    "a8_b0000_T2",
+    "a8_b1000_T1",
+    "a8_b1100_T1",
+    "a8_b1110_T1",
+    "a8_b1111_T1",
+    "a8_b1111_T2"
+   ],
+   "before_fc": 322,
+   "after_fc": 142,
+   "before_st": 8889,
+   "after_st": 4696
+  },
+  "sub2_rl": {
+   "before_cells": 5,
+   "after_cells": 2,
+   "killed_cells": [
+    "a6_b1111_T1",
+    "a7_b1110_T1",
+    "a8_b1100_T1"
+   ],
+   "before_fc": 70,
+   "after_fc": 34,
+   "before_st": 2947,
+   "after_st": 1520
+  },
+  "sub2_norl": {
+   "before_cells": 5,
+   "after_cells": 2,
+   "killed_cells": [
+    "a6_b1111_T1",
+    "a7_b1110_T1",
+    "a8_b1100_T1"
+   ],
+   "before_fc": 73,
+   "after_fc": 37,
+   "before_st": 3018,
+   "after_st": 1559
+  }
+ },
+ "schema": "frontier_rebuild.STAGES entry (drop-in); this lane does NOT modify frontier_rebuild.py"
+}

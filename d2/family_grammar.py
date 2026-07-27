@@ -39,6 +39,8 @@ Sources (transcribed, not re-derived): GGV5 v11<=35 tables via phi_corner4.py;
 F2 template f2_family_verify.py; ramified law PHI_F7.md; mu-ladder ZETA_TAIL.md
 / MU_RUNGS_F10.md; escapes composite_charts.py.  Exact sympy throughout.
 """
+import sys
+
 import sympy as sp
 from fractions import Fraction
 
@@ -84,15 +86,23 @@ ESCAPES = [
 # landed / published derived points to reproduce (case, family, j, signature)
 LANDED = {
     # PURE (gap=0)
-    ("F2", 0): ("(50,75)",  36, (189, 75, 38, 76)),
-    ("F2", 1): ("(75,125)", 98, (504, 201, 101, 202)),
+    # 2026-07-26 REPAIR (PASSPORT_75_125_REPAIR.md): the (5,20) corner has t=4, kappa=2, C=y (deg C=ord C=1), NOT t=5, kappa=3, C=y^2(y^3+1).  GGV5's final chain corner (7\\5,2) is chart data only on the retraction shape b0=l(a0-1), which (5,20) fails; l = ceil(20/5) = 4.  Both F2 rows below move: (75,125) N 98->77, sig (504,201,101,202)->(80,80,0,0), lc -1/9->1/3; (50,75) N 36->28, sig (189,75,38,76)->(30,30,0,0), lc -1/6->1/2.  The guard lives in polygon_reduction.py sec.0b.
+    ("F2", 0): ("(50,75)",  28, (30, 30, 0, 0)),      # REPAIRED 2026-07-26
+    ("F2", 1): ("(75,125)", 77, (80, 80, 0, 0)),      # REPAIRED 2026-07-26
     ("F9", 0): ("(56,84)",  52, (377, 107, 54, 216)),
     ("F14", 0): ("(66,231)", 36, (375, 165, 42, 168)),
+    # CHART-DEGENERATE (dg=0), same corner (5,20) as F2 -- see REPAIRS["F3"]
+    # 2026-07-26 (second repair): F3 j=0 is (75,50), the (m,n)-SWAP of F2 j=0's
+    # (50,75) at the SAME corner, with the SAME unordered reduced pair {2,3}.
+    # The corner law depends on (t,kappa,deg C,ord C) and on {min(m,n),max(m,n)}
+    # only, so F3 j=0 MUST land on F2 j=0's numbers exactly: N 36 -> 28,
+    # sig (189,112,75,2) -> (30,30,0,0).  Verified three independent ways in
+    # family_grammar_verify.py A10.
+    ("F3", 0): ("(75,50)",  28, (30, 30, 0, 0)),      # REPAIRED 2026-07-26
     # COFACTOR (r=0)
     ("F1", 0): ("(48,64)",  67, (275, 205, 69, 1)),
     # RUNG mu=dg ramified (PHI_F7)
     ("F7", 0): ("(42,147)", 36, (250, 165, 83, 2)),
-    ("F3", 0): ("(75,50)",  36, (189, 112, 75, 2)),
     ("F10", 0): ("(196,112)", 270, (1917, 820, 1093, 4)),
     ("F16", 0): ("(99,165)", 56, (528, 407, 117, 4)),
 }
@@ -100,11 +110,21 @@ LANDED = {
 # explicit landed f-polynomials (PHI_F7 / MU_RUNGS) for direct ODE re-check
 LANDED_F = {
     "F7":  sp.Rational(1, 10)   * y**21 * (y + 1)**11 * (9*y**2 + 3*y - 1),
-    "F3":  sp.Rational(1, 42)   * y**4  * (y + 1)**3  * (25*y**2 + 15*y - 3),
     "F10": sp.Rational(1, 3740) * y**10 * (y + 1)**13 *
            (2401*y**4 + 5831*y**3 + 4165*y**2 + 595*y - 85),
     "F16": sp.Rational(1, 330)  * y**15 * (y + 1)**5  *
            (243*y**4 + 81*y**3 - 27*y**2 + 15*y - 10),
+}
+
+# 2026-07-26.  F3's PHI_F7 rung polynomial (phi_f7.py:32) is NOT retired as a
+# computation -- it exactly solves the mu=2 ramified ODE of the corner data
+# (t,kappa,q,dg) = (5,3,3,2).  It is retired as a statement ABOUT (5,20):
+# that corner's chart is (t,kappa,deg C,ord C) = (4,2,1,1), and this polynomial
+# does not solve the resulting ODE.  Kept here, labelled, so the discriminating
+# check in family_grammar_verify.py A10d has something to run against; deleting
+# it would make the repair unfalsifiable.
+SUPERSEDED_F = {
+    "F3":  sp.Rational(1, 42)   * y**4  * (y + 1)**3  * (25*y**2 + 15*y - 3),
 }
 
 # F12 mu-rungs at eta=0 (ZETA_TAIL) and F10 all real rungs (MU_RUNGS)
@@ -121,22 +141,104 @@ MU_RUNGS = {
 # ---------------------------------------------------------------------------
 # derived per-family quantities
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# PER-FAMILY CHART REPAIRS (2026-07-26).
+#
+# A family whose corner does NOT satisfy the retraction shape b0 = t(a0-1) has
+# deg_y(C)/ord_y(C) DIFFERENT from (a0, q): GGV5's final-corner dictionary, which
+# is what made them equal, is invalid off that shape.  Only rows listed here are
+# affected; every other family keeps the historical defaults exactly.
+#
+# F2 -- corner (5,20).  20 != 4*4, so it does not retract.  Repaired chart:
+# t = 4 (was 5, whence kappa = t-2 = 2, matching PASSPORT_75_125_REPAIR.md), and
+# C = y a MONOMIAL so deg C = ord C = 1 (was 5 and 2).  gap stays 0 -- the family
+# is still PURE -- but it can no longer be computed as (q-1) - a0/t, because that
+# formula also assumed the dictionary.  Verified: this reproduces BOTH landed
+# points exactly and symbolically in j, N_j = (3j+4)(4j+7) and
+# deg = ord = 2(2j+3)(3j+5) = 12j^2+38j+30, which independently agrees with
+# window_functions_75_125.family()'s ord_y(Phi) = 12a^2-10a+2 at a = j+2.
+# Populated by the landed-point cross-check; a non-empty list is FATAL (see the
+# end of main).  Until 2026-07-26 a MISMATCH was printed and swallowed, which is
+# how both F2 rows stayed contradictory through a chart repair AND a green suite.
+#
+# F3 -- SAME corner (5,20), repaired the same way later on 2026-07-26.  The
+# operative principle, now established rather than assumed:
+#
+#     CHART DATA IS A PROPERTY OF THE CORNER (A_0, A_0'), NOT OF THE FAMILY.
+#
+# l = chart_exponent(a0,b0) = ceil(b0/a0), kappa = l-2, and "is the top face
+# vertical" (which decides whether C is a monomial) are all functions of A_0
+# alone; the family row contributes only (m,n).  F2 and F3 both have
+# A_0 = (5,20), A_0' = (1,0) and chain length 1, so they MUST share
+# (t,kappa,deg C,ord C) = (4,2,1,1) -- and polygon_reduction.corner_chart_data
+# returns bit-identical dicts for the two rows (checked, A10 below).
+#
+# That is also why the OLD data was self-refuting before any paper was consulted:
+# it gave ord C = q = 2 for F2 and ord C = q = 3 for F3 AT ONE AND THE SAME
+# CORNER.  Two different values of a corner invariant at one corner is a
+# contradiction, and it is the fingerprint of reading q off GGV5's per-row final
+# chain corner b_final (2 for F2's (7\5,2), 3 for F3's (8\5,3)) instead of off
+# the corner's own reduced polygon.  So q = 3 was never chart data for F3.
+#
+# Verified target for F3 (three routes, family_grammar_verify.py A10a-A10f):
+#   (i)   polygon_reduction._f2_forcing_divisor(2,3,4,2,1,1) -> N=28, (30,30,0,0);
+#   (ii)  window_functions_75_125.family(2)   -> N=28, ord=deg=30;
+#   (iii) GGV3 sec.5 (1406.0886_GGV3.tex:1723-1727) publishes, for A_0=(5,20),
+#         [P_1,Q_1] = x^2, deg P_1 = 10, deg Q_1 = 15.  Those three integers are
+#         obtained BEFORE the paper's gamma in {2,3} branch (both branches start
+#         from the same (P_1,Q_1)), so they are not specific to one GGV5 row, and
+#         F3(3,2)/75 is that same case with P and Q exchanged: [Q_1,P_1] = -x^2,
+#         degrees (15,10).  Either reading forces kappa = 2, hence l = 4.
+MISMATCHES = []
+
+REPAIRS = {
+    "F2": dict(t=4, degC=1, ordC=1, gap0=0),
+    "F3": dict(t=4, degC=1, ordC=1, gap0=0),
+}
+
+
 def lin(coef, jj):
     return coef[0] + coef[1] * jj
 
 
-def family_data(name, t, a0, q, ac, bc, A0p, k):
+def family_data(name, t, a0, q, ac, bc, A0p, k, degC=None, ordC=None, gap0=None):
+    """degC/ordC/gap0 REPAIR HOOK, added 2026-07-26.
+
+    This function used `a0` for TWO different things -- the corner's first
+    coordinate AND deg_y(C) -- and `q` for both a chart datum and ord_y(C).
+    Those coincide only under GGV5's final-corner dictionary, which is valid
+    ONLY on the retraction shape b0 = t(a0-1).  Off that shape they diverge:
+    at (5,20), deg C = ord C = 1 (C is the MONOMIAL y) while a0 = 5.
+
+    The three optional arguments default to the historical behaviour
+    (degC = a0, ordC = q, gap computed), so EVERY family row not passing them
+    is bit-for-bit unchanged.  F2 passes them because its corner does not
+    retract.  See PASSPORT_75_125_REPAIR.md and polygon_reduction.py sec.0b.
+    """
     kappa = t - 2
-    dg = a0 - q
-    r = a0 - q - 1
-    gap = Fraction(q - 1) - Fraction(a0, t)
+    degC0 = a0 if degC is None else degC
+    ordC0 = q if ordC is None else ordC
+    # dg is the RESIDUAL's degree (g = y^dg + 1), i.e. deg C - ord C.  That equals
+    # a0 - q only when the final-corner dictionary holds.  dg = 0 means g is a
+    # constant: there is NO residual, which is the repaired (5,20) case (C = y).
+    dg = degC0 - ordC0
+    r = dg - 1
+    gap = Fraction(q - 1) - Fraction(a0, t) if gap0 is None else Fraction(gap0)
+    degC = a0 if degC is None else degC
+    ordC = q if ordC is None else ordC
     a = lin(ac, j)
     b = lin(bc, j)
     e = b - a + 1
     coef = t * (b - a) + kappa + 1
-    rho = (e - 1) * q + 1
+    rho = (e - 1) * ordC + 1
     N = a * (t * (a + b - 1) + 1) - 2 * b
-    if gap == 0:
+    if dg == 0:
+        # C is a MONOMIAL: g = y^0+1 is constant, so the pure closed form
+        # f = -1/(a*dg) y^rho (y^dg+1)^e is UNDEFINED (A = -1/(a*0)) and the
+        # collapse identity y g' - dg g = -dg reads 0 = 0, pinning nothing.  The
+        # landed signatures still reproduce; the MECHANISM does not exist.
+        cls = "CHART-DEGENERATE"
+    elif gap == 0:
         cls = "CLOSED-FORM (pure)"
     elif r == 0:
         cls = "CLOSED-FORM (cofactor)"
@@ -146,7 +248,7 @@ def family_data(name, t, a0, q, ac, bc, A0p, k):
         cls = "IRREGULAR"
     return dict(name=name, t=t, kappa=kappa, a0=a0, q=q, dg=dg, r=r, gap=gap,
                 a=a, b=b, e=e, coef=coef, rho=rho, N=sp.expand(N), k=k,
-                A0p=A0p, cls=cls, ac=ac, bc=bc)
+                A0p=A0p, cls=cls, ac=ac, bc=bc, degC=degC, ordC=ordC)
 
 
 # ---------------------------------------------------------------------------
@@ -212,18 +314,35 @@ def ramified_solve(D, mu=None):
 def signature(D, N, mu):
     """mu-graded corner law signature (deg, ord, mult, cof)."""
     e, a0, q, rho, gap, r, dg = D["e"], D["a0"], D["q"], D["rho"], D["gap"], D["r"], D["dg"]
-    pure = e * a0 - q + 1
+    # deg_y/ord_y of Phi are driven by deg_y(C)/ord_y(C), NOT by the corner
+    # coordinates.  They default to (a0, q) so every retracting family is
+    # unchanged; see family_data's repair hook.
+    degC, ordC = D.get("degC", a0), D.get("ordC", q)
+    pure = e * degC - ordC + 1
     res = pure + gap
-    deg = sp.expand(res + N * a0)
-    ordy = sp.expand(rho + N * q)
+    deg = sp.expand(res + N * degC)
+    ordy = sp.expand(rho + N * ordC)
+    if dg == 0:
+        # C is a MONOMIAL: g = y^0 + 1 is a constant, so there is no residual to
+        # carry a multiplicity or a cofactor.  Both are identically 0 -- which is
+        # exactly the shape of the repaired (5,20) signatures (30,30,0,0) and
+        # (80,80,0,0), and is why they have two trailing zeros at all.
+        return deg, ordy, sp.Integer(0), sp.Integer(0)
     mult = sp.expand(mu * (e + N) - (mu - 1))
     cof = sp.expand(gap + r * (e + N) - (mu - 1) * (e + N - 1))
     return deg, ordy, mult, cof
 
 
 def wstep_denom(D, N):
-    """W_step = ord_y(Phi)/M, M = t(a+b)-(kappa+1); reduced denominator in j."""
-    ordy = D["rho"] + N * D["q"]
+    """W_step = ord_y(Phi)/M, M = t(a+b)-(kappa+1); reduced denominator in j.
+
+    2026-07-26: ord_y(Phi) = rho + N*ord_y(C), so the multiplier is ord C, not
+    the chain datum q.  Identical for every family where the final-corner
+    dictionary holds (there ord C == q); it differs exactly on the repaired
+    corners, where it now agrees with f2_family_verify.py check E
+    (a=2: 30/17, a=3: 80/29).
+    """
+    ordy = D["rho"] + N * D["ordC"]
     M = D["t"] * (D["a"] + D["b"]) - (D["kappa"] + 1)
     W = sp.cancel(ordy / M)
     return sp.denom(W)
@@ -246,7 +365,11 @@ if __name__ == "__main__":
 
     data = {}
     for row in FAMILIES:
-        D = family_data(*row)
+        name = row[0]
+        rep = REPAIRS.get(name, {})
+        if "t" in rep:
+            row = (row[0], rep["t"]) + tuple(row[2:])
+        D = family_data(*row, **{k: v for k, v in rep.items() if k != "t"})
         data[D["name"]] = D
 
     # ---- census + grammar table ----
@@ -263,7 +386,7 @@ if __name__ == "__main__":
               f"{D['cls']:22} {str(sp.factor(D['N'])):>26}")
 
     census = {"CLOSED-FORM (pure)": [], "CLOSED-FORM (cofactor)": [],
-              "RUNG-STRUCTURED": [], "IRREGULAR": []}
+              "RUNG-STRUCTURED": [], "IRREGULAR": [], "CHART-DEGENERATE": []}
     for nm in [r[0] for r in FAMILIES]:
         census[data[nm]["cls"]].append(nm)
     print("\nCENSUS (length-1):")
@@ -282,7 +405,21 @@ if __name__ == "__main__":
         print(f"   N_j = {sp.factor(D['N'])}   (block step Delta N = "
               f"{sp.expand(D['N'].subs(j, j+1) - D['N'])}, block size t = {D['t']})")
         Nsym = D["N"]
-        if D["cls"] == "CLOSED-FORM (pure)":
+        if D["cls"] == "CHART-DEGENERATE":
+            # Printing NOTHING here is what let F2 sit silently in the report
+            # after 86d8fb0.  State the withdrawal explicitly instead.
+            deg, ordy, mult, cof = signature(D, Nsym, 1)
+            print(f"   corner does NOT retract: deg C = ord C = {D['degC']}, so "
+                  f"C is a MONOMIAL and dg = 0 (a0 = {D['a0']} is the corner's "
+                  f"first coordinate, NOT deg C).")
+            print("   NO closed form is claimed: f = -1/(a*dg) y^rho (y^dg+1)^e "
+                  "has constant -1/(a*0) and the")
+            print("   collapse identity y g' - dg g = -dg degenerates to 0 = 0, "
+                  "so it pins nothing.")
+            print(f"   Phi_j is a MONOMIAL: deg = ord = {sp.factor(ordy)}, "
+                  f"mult = cof = 0.")
+            print(f"   W_step denominator: {sp.factor(wstep_denom(D, Nsym))}")
+        elif D["cls"] == "CLOSED-FORM (pure)":
             res = pure_residual(D)
             print(f"   f_j = -1/(({D['a']})*{D['dg']}) y^rho (y^{D['dg']}+1)^e   "
                   f"[A = -1/(a*dg) = {sp.simplify(-sp.Rational(1,1)/(D['a']*D['dg']))}]")
@@ -338,6 +475,8 @@ if __name__ == "__main__":
         mu = D["dg"] if D["cls"] == "RUNG-STRUCTURED" else 1
         got = tuple(int(sp.Integer(v.subs(j, jj))) for v in signature(D, Nval, mu))
         ok = (Nval == Nl and got == sig)
+        if not ok:
+            MISMATCHES.append((nm, jj, label, Nval, got, Nl, sig))
         print(f"   {nm} j={jj} {label:11} N={Nval:4} sig={got}  "
               f"{'OK' if ok else 'MISMATCH vs %s' % (sig,)}")
 
@@ -366,3 +505,18 @@ if __name__ == "__main__":
     print("NOT a generic member of these 17 families; reproduced by no family formula")
     print("(handled honestly: it is its own corner, cof=gap=4 in the r=0-amended law).")
     print("\nDERIVATION COMPLETE -- see FAMILY_GRAMMAR.md; checker family_grammar_verify.py")
+
+
+    # A landed point the family formulas do NOT reproduce means the grammar and the
+    # landed data disagree, and that must be FATAL.  Before 2026-07-26 the mismatch
+    # was printed and the module exited 0, so both F2 rows contradicted their own
+    # targets through a chart repair AND a green full-tier suite.
+    if MISMATCHES:
+        print(chr(10) + BAR)
+        print("FATAL: %d landed point(s) NOT reproduced by the family formulas"
+              % len(MISMATCHES))
+        for nm, jj, label, Nval, got, Nl, sig in MISMATCHES:
+            print("   %s j=%d %s: derived N=%s sig=%s  vs landed N=%s sig=%s"
+                  % (nm, jj, label, Nval, got, Nl, sig))
+        print(BAR)
+        sys.exit(1)

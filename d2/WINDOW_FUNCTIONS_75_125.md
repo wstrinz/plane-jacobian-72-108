@@ -1,3 +1,74 @@
+> ## !! SUPERSEDED IN PART -- 2026-07-26 REPAIR !!
+>
+> The `(5,20)` corner data this document consumes is **wrong**, and every number
+> derived from it below has moved.  The chart exponent is `l = ceil(b0/a0) = 4`,
+> **not** the denominator `5` of GGV5's final chain corner `(7\5,2)`: the
+> dictionary `(t, q) = (l_final, b_final)` is valid only on the **retraction
+> shape** `b0 = l*(a0-1)`, and `(5,20)` fails it (`20 != 4*4 = 16`).
+>
+> | quantity | this document | CORRECT |
+> |---|---|---|
+> | `l` = `t` | 5 | **4** |
+> | `kappa` | 3 | **2** |
+> | `C` | `y^2(y^3+1)`, `deg C = 5` | **`y`**, a monomial, `deg C = 1` |
+> | `q = ord_y C` | 2 | **1** |
+> | `N` (75,125) | 98 | **77** |
+> | `Phi` (75,125) | `-(1/9) y^201 (y^3+1)^101` | **`(1/3) y^80`** |
+> | signature | `(504,201,101,202)` | **`(80,80,0,0)`** |
+> | `N` (50,75) | 36 | **28** |
+> | signature (50,75) | `(189,75,38,76)` | **`(30,30,0,0)`** |
+> | `q_window` | `5a-3` (7, 12) | **`12a-7`** (17, 29) |
+>
+> Decisive external evidence: GGV3 `1406.0886` sec.5 (`paper_src/
+> 1406.0886_GGV3.tex:1723-1727`) performs this very reduction on the sibling
+> `(50,75)` and publishes `[P_1,Q_1] = x^2`, `deg(P_1) = 10`, `deg(Q_1) = 15`.
+> `l = 4` reproduces all three; `l = 5` contradicts all three.
+>
+> The root cause is now **guarded**: `polygon_reduction.final_corner_dictionary()`
+> raises off the retraction shape.  Read **`PASSPORT_75_125_REPAIR.md`** for what
+> survived, what changed, and what is undetermined, and treat the corresponding
+> `*.py` (which has been repaired) as authoritative over this prose.
+
+
+## 2026-07-26: THE PERIOD-12 WINDOW FUNCTIONS ARE **REFUTED**
+
+Three named results replace this document's content.  All three are machine-checked
+in `window_functions_75_125_verify.py` (`--quiet`, 46/46).
+
+**(R1) The period is 29, not 12.**  `q_window(a) = 12a-7` (17 at `a=2`, 29 at
+`a=3`), not `5a-3` (7, 12).  There is no period-7 -> period-12 structure.  **Both
+periods are PRIME**, so the "fractional-denominator classes `{2,3,4,6,12}`" /
+"divisor lattice of the period" reading has no counterpart: the forcing-slice
+denominator sets are just `{1,17}` and `{1,29}`.  They are still coprime, so the
+*qualitative* incommensurability conclusion of `F2_TOWER.md` survives.
+
+**(R2) There is no affine y-degree cap.**  `deg_slope = deg_y(Phi)/M = 80/29` is
+not an integer.  `CAPS_AUDIT.md` sec.5's `deg_slope = deg_y(Phi)/M = 504/36 = 14`
+is **false**, not merely tautological.  `U(w)` now raises rather than returning a
+bogus cap; it still returns at `(72,108)`, where `deg_slope = 14`.
+
+**(R3) The two-slope window cone COLLAPSES to a ray.**  Because `C = y` is a
+monomial, `Phi = (1/3) y^80` is a monomial, so `ord_y(Phi) = deg_y(Phi)` and the
+ord-slope and deg-slope are the **same** number `80/29`; the stripped slope
+`lambda = deg_slope - W_step = 0`.  `(72,108)`'s picture -- an ord-lower ray of
+slope 12, a deg-upper ray of slope 14, and a 2-unit strip -- has **no** `(75,125)`
+counterpart.  Under the extreme-ray premise the caps *pinch*
+(`L(w) > U_ray(w)` unless `29 | w`), which is a demonstration that the premise does
+not transfer, not a window system.
+
+**What survives:** the general `window_law` arithmetic (`W_step` in lowest terms,
+`q = denom`, `beta_m = (-alpha m) mod q`, `floor((alpha w + beta_m)/q) =
+ceil(alpha w/q)`); the class-interaction / 1-cocycle structure; and the `(72,108)`
+integral limit `q_window = 1`, `ord >= 12w`, `deg <= 14w`.
+
+**Consequence for the weight lemma, in the strengthening direction.**
+`q_window = 29 = M` exactly, so **no** split `0 < w_e < M` has carry 0 -- the
+superseded model still left the escapes `w_e in {12,24}`.  The ord-side
+obstruction in `weight_lemma_75_125.py` sec.C is now **total**, and
+`weight_lemma_75_125.py`'s verdict (the Phi-divisor mechanism does **not** transfer
+to `(75,125)`) **stands**, re-run from scratch on the rebuilt G-system.
+
+
 # The period-12 window functions for (75,125), derived exactly
 
 ## Verdict
