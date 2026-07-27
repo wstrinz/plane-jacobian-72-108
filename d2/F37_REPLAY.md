@@ -149,7 +149,7 @@ is check (3).
 From a WSL shell, after installing Macaulay2:
 
 ```bash
-cd /mnt/c/Users/wstri/dev/math-stuff/d2_plane_72_108
+cd "$(git rev-parse --show-toplevel)"/d2
 M2 --script f37_replay_m2.m2
 ```
 
@@ -183,7 +183,7 @@ The available Windows Python/SymPy environment can test generator construction,
 but it is not presented as the external CAS replay:
 
 ```powershell
-cd C:\Users\wstri\dev\math-stuff\d2_plane_72_108
+cd (git rev-parse --show-toplevel)\d2
 python .\f37_replay_selftest.py
 ```
 

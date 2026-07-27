@@ -48,7 +48,7 @@
     "unit": null,
     "dim": null,
     "wall": 281.28,
-    "stderr": "<3>WSL (253857 - Relay) ERROR: CreateProcessCommon:810: chdir(/mnt/c/Users/wstri/dev/math-stuff/d2_plane_72_108) failed 5",
+    "stderr": "<3>WSL (253857 - Relay) ERROR: CreateProcessCommon:810: chdir(<repo>/d2_plane_72_108) failed 5",
     "engine": "singular-minpoly"
    },
    "verdict": "COST",
