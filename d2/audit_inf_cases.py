@@ -16,6 +16,7 @@ confirm one by using stronger cancellation semantics.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import itertools
 import json
 import re
@@ -28,6 +29,15 @@ import sympy as sp
 HERE = Path(__file__).resolve().parent
 NEG_INF = None
 TERMINAL = {"T1": 7, "T2": 6}
+
+# Documented expectation for the --emit-artifact join (C43 / PROOF_INVENTORY.md:
+# "sub1 ... 108 NEW branch kills", plus the four sub2 T2 column cells).  These
+# are the branches whose emptiness is established AT the infinity layer and
+# nowhere earlier -- i.e. exactly the branches the emitted artifact is able to
+# support.  Pinned so that an artifact which supports NOTHING (or a different
+# set) cannot be emitted silently and read as a successful join.  Only checked
+# under --emit-artifact; the audit itself is unaffected.
+EXPECTED_INF_ONLY_KILLS = {"sub2": 4, "sub1": 108}
 
 
 @dataclass(frozen=True)
@@ -710,21 +720,130 @@ def validate_metadata(window: Window, artifact: dict, finite: dict) -> list[str]
     return errors
 
 
+def branch_record(window: Window, key, row: dict, n_inf: int, n_qt: int,
+                  removed_here: int, branch_clean: bool) -> dict:
+    """One joinable per-branch verdict for the infinity layer.
+
+    The ONLY verdict this auditor is entitled to assert about a branch is what
+    happens at the infinity layer, on top of the q+t_rl survivor set it reads as
+    given.  So:
+
+      n_inf > 0                     -> 'survives'      (branch is still open at inf)
+      n_inf == 0 and n_qt > 0       -> 'killed'        (kill_layer='inf': every one
+                                       of the branch's q+t survivor cases was
+                                       removed at infinity, and this auditor
+                                       re-derived every one of those removals)
+      n_inf == 0 and n_qt == 0      -> 'not_covered'   (kill_layer='pre_inf': the
+                                       branch was already empty BEFORE the
+                                       infinity layer.  This auditor re-derives
+                                       NOTHING about such a branch and must not
+                                       claim to -- it is the q- and t-layer
+                                       auditors' business.)
+
+    A branch that produced any disagreement is 'disagreement', never 'killed'.
+    `agreement` is None for 'not_covered' so a consumer cannot read the absence
+    of a disagreement as a confirmation.
+    """
+    claim = row.get("status")
+    if n_inf:
+        audit, layer = "survives", None
+        agreement = (claim == "survives")
+    elif not branch_clean:
+        audit, layer, agreement = "disagreement", "inf", False
+    elif n_qt:
+        audit, layer = "killed", "inf"
+        agreement = (claim != "survives")
+    else:
+        audit, layer, agreement = "not_covered", "pre_inf", None
+    return {
+        "window": window.name,
+        "a_t": key[0], "b": list(key[1]), "branch": key[2],
+        "claim": claim, "audit": audit, "agreement": agreement,
+        "kill_layer": layer,
+        "inf_survivor_cases": n_inf,
+        "qt_survivor_cases": n_qt,
+        "removed_cases_confirmed": removed_here if branch_clean else 0,
+    }
+
+
+def emit_artifact(path: str, records: list, stats: list) -> None:
+    """Write the per-branch infinity-layer audit verdicts so the coverage
+    proof-DAG can machine-join this independent audit, exactly as
+    audit_cascade_kills{,_sub1}.json are joined.  Deterministic (sorted keys, no
+    timestamps).  Both windows go in ONE file; each record names its window.
+
+    Only records with audit=='killed' and kill_layer=='inf' support anything on
+    the consumer side: those are the branches the q-cascade auditor verdicts
+    'survives' (it sees no q-level kill) and which this auditor re-derives empty
+    at the infinity layer.
+    """
+    recs = sorted(records, key=lambda r: (r["window"], r["a_t"], r["b"], r["branch"]))
+    summary, shortfalls = {}, []
+    for item in stats:
+        if item.get("skipped"):
+            continue
+        name = item["window"]
+        rows = [r for r in recs if r["window"] == name]
+        killed = sum(1 for r in rows if r["audit"] == "killed")
+        summary[name] = {
+            "total": len(rows),
+            "audit_survives": sum(1 for r in rows if r["audit"] == "survives"),
+            "audit_killed_at_inf": killed,
+            "not_covered_killed_before_inf":
+                sum(1 for r in rows if r["audit"] == "not_covered"),
+            "disagreements": sum(1 for r in rows if r["audit"] == "disagreement"),
+            "removed_cases_confirmed":
+                sum(r["removed_cases_confirmed"] for r in rows),
+            "inf_survivor_cases": item["survivors"],
+            "removed_cases_seen": item["removed"],
+        }
+        want = EXPECTED_INF_ONLY_KILLS.get(name)
+        if want is not None and killed != want:
+            shortfalls.append(f"{name}: {killed} inf-only branch kills, "
+                              f"expected {want}")
+        if killed and summary[name]["removed_cases_confirmed"] <= 0:
+            shortfalls.append(f"{name}: {killed} branches marked killed at "
+                              "infinity but ZERO removed cases were confirmed")
+    if shortfalls:
+        raise RuntimeError(
+            "refusing to emit a join artifact that does not match the pinned "
+            "expectation (EXPECTED_INF_ONLY_KILLS): " + "; ".join(shortfalls))
+    out = {
+        "schema": 1,
+        "generator": Path(__file__).name,
+        "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "audits": "cascade_cones_qt_inf_rl.json / "
+                  "cascade_cones_sub1_qt_inf_rl.json (the infinity layer, on top "
+                  "of the q+t_rl survivor sets it reads as given)",
+        "windows": sorted(summary),
+        "summary": summary,
+        "branches": recs,
+    }
+    target = path if Path(path).is_absolute() else str(HERE / path)
+    with open(target, "w") as handle:
+        json.dump(out, handle, indent=1, sort_keys=True)
+    print(f"emitted inf-audit artifact: {target} ({len(recs)} branches; "
+          + ", ".join(f"{w}={summary[w]['audit_killed_at_inf']} inf-only kills"
+                      for w in sorted(summary)) + ")")
+
+
 def audit_window(window: Window, monomials, quiet: bool):
     started = time.perf_counter()
     path = HERE / window.artifact
     if not path.exists():
-        return [], {"window": window.name, "skipped": True, "seconds": 0.0}
+        return [], {"window": window.name, "skipped": True, "seconds": 0.0}, []
     artifact = json.loads(path.read_text(encoding="utf-8"))
     finite = json.loads((HERE / window.finite_artifact).read_text(encoding="utf-8"))
     errors = validate_metadata(window, artifact, finite)
     finite_rows = {branch_key(row): row for row in finite["branches"]}
     squeeze = squeeze_enabled(artifact)
     survivors = removed = cited = 0
+    records = []
     for number, row in enumerate(artifact["branches"], 1):
         key = branch_key(row)
         if key not in finite_rows:
             continue
+        before = len(errors)
         target_cases = {case_flags(case): case
                         for case in row.get("survivor_cases", [])}
         finite_cases = {case_flags(case): case
@@ -735,8 +854,10 @@ def audit_window(window: Window, monomials, quiet: bool):
         for case in target_cases.values():
             survivors += 1
             errors.extend(validate_survivor(window, row, case, monomials, squeeze))
+        removed_here = 0
         for flags in set(finite_cases) - set(target_cases):
             removed += 1
+            removed_here += 1
             if relaxed_survives(window, key, flags, monomials, squeeze):
                 resources = finite_frontier(window, key, flags, monomials)
                 if resources and relaxed_survives(
@@ -746,6 +867,9 @@ def audit_window(window: Window, monomials, quiet: bool):
         terminal = TERMINAL[key[2]]
         legal_count = 2 * (2 if key[2] == "T1" else 1) * (1 << (terminal - 4))
         cited += legal_count - len(finite_cases)
+        records.append(branch_record(window, key, row, len(target_cases),
+                                     len(finite_cases), removed_here,
+                                     len(errors) == before))
         if not quiet:
             print(f"{window.name} {number:04d} {branch_label(key):<38} "
                   f"survivor_cases={len(target_cases)}")
@@ -755,22 +879,29 @@ def audit_window(window: Window, monomials, quiet: bool):
         "branches": len(artifact["branches"]), "survivors": survivors,
         "removed": removed, "cited": cited,
         "partial": bool(artifact.get("partial_checkpoint")), "seconds": elapsed,
-    }
+    }, records
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--quiet", action="store_true",
                         help="omit the per-branch progress table")
+    parser.add_argument("--emit-artifact", nargs="?", const="audit_inf_kills.json",
+                        default=None, metavar="PATH",
+                        help="write per-branch infinity-layer audit verdicts as "
+                             "JSON (for the proof-DAG join); not written if the "
+                             "audit itself disagrees")
     args = parser.parse_args()
     started = time.perf_counter()
     try:
         monomials = load_h_monomials()
-        errors, stats = [], []
+        errors, stats, records = [], [], []
         for window in WINDOWS:
-            window_errors, window_stats = audit_window(window, monomials, args.quiet)
+            window_errors, window_stats, window_records = audit_window(
+                window, monomials, args.quiet)
             errors.extend(window_errors)
             stats.append(window_stats)
+            records.extend(window_records)
             if window_stats["skipped"] and not args.quiet:
                 print(f"{window.name}: SKIP ({window.artifact} absent)")
         elapsed = time.perf_counter() - started
@@ -782,6 +913,10 @@ def main() -> int:
             print("DISAGREEMENT", error)
         print(f"audit_inf_cases: FAIL; disagreements={len(errors)}; "
               f"runtime_seconds={elapsed:.3f}")
+        if args.emit_artifact:
+            # A failing audit emits NOTHING.  Anything else would leave a
+            # joinable artifact on disk that the DAG would read as support.
+            print("NOT emitting a join artifact: the audit disagreed")
         return 1
     details = []
     for item in stats:
@@ -795,6 +930,8 @@ def main() -> int:
                            f"{item['seconds']:.3f}s)")
     print("audit_inf_cases: PASS; weighted_homogeneity=PASS; " +
           "; ".join(details) + f"; runtime_seconds={elapsed:.3f}")
+    if args.emit_artifact:
+        emit_artifact(args.emit_artifact, records, stats)
     return 0
 
 

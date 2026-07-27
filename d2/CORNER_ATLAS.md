@@ -86,10 +86,42 @@ This **hardens**, rather than softens, the "individual endgames" reading.
 **No row in this atlas is eliminated as a counterexample by this atlas.** These
 are gates on **mechanisms**, not on cases. `G1 = FAIL` means *our chart
 dictionary is not usable at that corner*; `G3 = FAIL` means *the slice-cascade
-argument is void there*, not that the case is safe. GGV5's 34 remain 34 open
-cases minus the one GGV5 itself discards (`F_22(2,3)/96`, tex:1818 +
-Prop. "caso antisimetrico") and the one this campaign closed
-(`(8,28)/(3,2)/108`).
+argument is void there*, not that the case is safe. GGV5's 34 are **not** 34 open cases.
+
+> ### CORRECTED 2026-07-27 -- the open frontier is **27**, not 32
+>
+> This paragraph used to read "34 open cases minus the one GGV5 itself discards
+> and the one this campaign closed", i.e. 32. **Five more were already ruled out
+> before GGV5 was written.** GGV5 tex:1794: *"In [M] there are listed four cases
+> (which correspond to six cases in our terminology) of possible counterexamples
+> with `max(deg P, deg Q) <= 100`. **They are discarded by hand.**"* -- and the
+> red pairs in its table are exactly those `<= 100` rows. tex:1818 then accounts
+> for all six red rows: **five are Moh's**, and the sixth (starred) is `F_22`,
+> which GGV5 discards itself. Moh's own sixth case never entered the 34 -- the
+> algorithm filtered it on `(2,1)` not in `PLLC`.
+>
+> | | |
+> |---|---|
+> | already settled in the literature | **6** -- `F_1(3,4)/64`, `F_2(2,3)/75`, `F_3(3,2)/75`, `F_9(2,3)/84`, `F_17(2,3)/99` (Moh), `F_22(2,3)/96` (GGV5) |
+> | closed by this campaign | 1 -- `(8,28)/(3,2)/108` |
+> | **open** | **27** |
+>
+> Corroborated independently: `max_deg <= 100` partitions the 34 as exactly 6 / 28,
+> matching the red count without reference to the colouring.
+>
+> **Evidence boundary.** The red partition is EXACT-CHECKED (`moh_discards.py`,
+> 21/21). That Moh's five are *ruled out* is **CITATION-LEVEL** -- [M] has not
+> been read here, and this rests on GGV5's characterisation of it, exactly as
+> `prop43_audit.py` discharges the GGHV22 Prop 4.3 citation without re-deriving
+> the mathematics.
+>
+> **Direction.** The error made the atlas claim *more* is open than is, so no
+> case-level assertion was wrong -- but it mis-priced work. In particular the two
+> rows whose `G3` flipped `FAIL -> PASS` in v0.4.1, `F_2(2,3)/75` and
+> `F_3(3,2)/75`, are **both** Moh discards. They are not new open ground. What
+> they are is the project's **first external control in the monomial regime** --
+> two settled cases where the slice cascade is now known available, at a corner
+> unlike `(8,28)`, where every mechanism here was calibrated.
 
 The value of the atlas is the *converse* reading: it says which of the 34 could
 possibly be attacked by which of our five tools, and it says that the answer is

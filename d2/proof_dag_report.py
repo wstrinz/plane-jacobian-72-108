@@ -20,6 +20,15 @@ from collections import defaultdict, Counter
 HERE = os.path.dirname(os.path.abspath(__file__))
 QUIET = "--quiet" in sys.argv
 
+# --- optional inputs (defaults unchanged: the committed DAG + FRONTIER_V2) ---
+def _argval(flag, default):
+    if flag in sys.argv:
+        return sys.argv[sys.argv.index(flag) + 1]
+    return default
+
+DAG_FILE = _argval("--dag", "proof_dag.json")
+FRONTIER_FILE = _argval("--frontier", "FRONTIER_V2.md")
+
 def load_json(fn):
     with open(os.path.join(HERE, fn)) as f:
         return json.load(f)
@@ -31,7 +40,7 @@ def load_text(fn):
     with open(p, encoding="utf-8") as f:
         return f.read()
 
-DAG = load_json("proof_dag.json")
+DAG = load_json(DAG_FILE)
 NODES = {n["id"]: n for n in DAG["nodes"]}
 LEVELS = DAG["levels"]
 LRANK = {l: i for i, l in enumerate(LEVELS)}
@@ -92,11 +101,17 @@ for t in sorted(DAG["closure_census"]):
     out("  %-12s %s" % (t, parts))
 
 c0 = NODES["C0"]
+# C0's children are the leaves of the case partition (JUDGMENT_EDGES.md sec.3);
+# read them off the graph rather than hardcoding, so a repair to the child list
+# cannot leave this report quietly stale.
+C0_CHILDREN = sorted(set(e["child"] for e in DAG["edges"] if e["parent"] == "C0"))
 out("")
-out("  TARGET C0: closed=%s level=%s (subcases closed %d/4)" % (
-    c0["closed"], c0["level"], c0.get("subcases_closed", 0)))
-for sid in ("subcase:sub2", "subcase:sub1", "subcase:sub1_alt_defect0", "subcase:f37"):
-    s = NODES[sid]
+out("  TARGET C0: closed=%s level=%s (subcases closed %d/%d)" % (
+    c0["closed"], c0["level"], c0.get("subcases_closed", 0), len(C0_CHILDREN)))
+for sid in C0_CHILDREN + ["subcase:sub1_alt_defect0"]:
+    s = NODES.get(sid)
+    if s is None:
+        continue
     out("    %-26s closed=%s level=%-14s %s" % (
         sid.split(":")[1], s["closed"], s["level"],
         ("branches_closed %d/%d" % (s.get("branches_closed", 0), s.get("n_branches", 0))
@@ -146,9 +161,12 @@ for n in DAG["nodes"]:
 prio = []
 if ek:
     prio.append((sum(ek.values()),
-        "engine-killed branches STILL @ claimed (sub2 %d, sub1 %d): killed only by "
-        "the t/inf layer, outside the depth-4 q-cascade auditor's scope -> join "
-        "audit_inf_cases.py (C43) to reach independently-audited" %
+        "engine-killed branches BELOW independently-audited (sub2 %d, sub1 %d): "
+        "killed only by the t/inf layer, outside the depth-4 q-cascade auditor's "
+        "scope.  The audit_inf_kills.json join (C43) already carries them to "
+        "exact-checked; independently-audited additionally needs the q+t_rl "
+        "narrowing audited -- audit_tplace_cases.py reads the kills-OFF q+t "
+        "artifact, not the _rl one" %
         (ek.get("sub2", 0), ek.get("sub1", 0))))
 # group 2: exact-checked states (ledger 'AUDITED' = same-author) -> independent audit
 ec = Counter()
@@ -186,7 +204,7 @@ def inconsistency(code, msg): FINDINGS.append(("INCONSISTENCY", code, msg))
 def gap(code, msg):          FINDINGS.append(("COVERAGE-GAP", code, msg))
 def ok(code, msg):           FINDINGS.append(("OK", code, msg))
 
-FR = load_text("FRONTIER_V2.md")
+FR = load_text(FRONTIER_FILE)
 CS = load_text("CURRENT_STATUS.md")
 
 # DAG-supported counts
@@ -259,29 +277,71 @@ else:
     ok("CASCADE-BRANCH-AUDIT",
        "cascade branch kills machine-joined from audit_cascade_kills{,_sub1}.py: "
        "DAG independently-audits sub2=%d (C18 claims %d), sub1=%d (C29 claims %d); "
-       "%d engine-killed branches remain 'claimed' (t/inf-layer-only kills, "
-       "audit_inf_cases.py/C43 scope)."
+       "%d engine-killed branches are t/inf-layer-only kills: exact-checked via "
+       "the audit_inf_kills.json join (C43), not independently-audited."
        % (dag_ek_ia_sub2, doc_sub2, dag_ek_ia_sub1, doc_sub1,
           sum(ek.values())))
 
-# --- I3: surviving-branch counts (should MATCH: consistency check) ----------
+# --- I3: surviving-branch counts --------------------------------------------
+# THIS FILE'S CONTRACT (see the module docstring) is one-directional: it fails on
+# a doc claim that is STRONGER than the DAG supports.  A DAG that is stronger than
+# the doc is a STALE DOC, not an inconsistency, and must not fail the build --
+# otherwise closing a branch breaks the suite, which is exactly backwards.
+# Before 2026-07-26 this check demanded equality with CURRENT_STATUS's 26/171 and
+# would have hard-failed the moment the frontier closed.
 open_sub2 = NODES["subcase:sub2"].get("branches_open")
 open_sub1 = NODES["subcase:sub1"].get("branches_open")
-cs26 = re.search(r"\*\*26\*\*", CS) or re.search(r"\bsub2 cells.*?\*\*26\*\*", CS)
-if open_sub2 == 26 and open_sub1 == 171:
+DOC_OPEN_SUB2, DOC_OPEN_SUB1 = 26, 171
+if open_sub2 == DOC_OPEN_SUB2 and open_sub1 == DOC_OPEN_SUB1:
     ok("SURVIVING-BRANCHES",
-       "surviving branches match: sub2=26, sub1=171 (DAG == CURRENT_STATUS)")
+       "surviving branches match: sub2=%d, sub1=%d (DAG == CURRENT_STATUS)"
+       % (DOC_OPEN_SUB2, DOC_OPEN_SUB1))
+elif open_sub2 <= DOC_OPEN_SUB2 and open_sub1 <= DOC_OPEN_SUB1:
+    # the DAG closed MORE than the docs record: report loudly, do not fail
+    gap("SURVIVING-BRANCHES",
+        "the DAG is STRONGER than the docs here, which is not an inconsistency "
+        "but IS staleness: DAG open branches sub2=%s sub1=%s vs CURRENT_STATUS "
+        "%d/%d.%s Update CURRENT_STATUS.md / FRONTIER_V2.md; nothing in the DAG "
+        "needs changing."
+        % (open_sub2, open_sub1, DOC_OPEN_SUB2, DOC_OPEN_SUB1,
+           "  Both f31 windows are now CLOSED (0 open branches) -- see the "
+           "column_lemmas block in proof_dag.json counts."
+           if open_sub2 == 0 and open_sub1 == 0 else ""))
 else:
     inconsistency("SURVIVING-BRANCHES",
-        "surviving-branch mismatch: DAG sub2=%s sub1=%s vs CURRENT_STATUS 26/171"
-        % (open_sub2, open_sub1))
+        "surviving-branch mismatch in the DANGEROUS direction: the DAG has MORE "
+        "open branches than CURRENT_STATUS records -- DAG sub2=%s sub1=%s vs "
+        "CURRENT_STATUS %d/%d. The doc claims more closure than the DAG supports."
+        % (open_sub2, open_sub1, DOC_OPEN_SUB2, DOC_OPEN_SUB1))
 # note the alt-regime 27 that the DAG models as 15 defect-0 families
 if re.search(r"\b27\b", FR) or re.search(r"alt.*?27", CS):
-    gap("ALT-REGIME-27",
-        "CURRENT_STATUS/FRONTIER track a 27-branch alternate-regime (a11-15, v<0) "
-        "sweep; the DAG models the alt layer as the 15 entirely-defect-0 families "
-        "(phase_f2_scale), 3 CLOSED / 12 open. The 27-branch alt_combined sweep is "
-        "an overlay not per-state joined here -- scope gap, not a contradiction.")
+    _alt = NODES.get("subcase:sub1_alt", {})
+    if _alt.get("branches_open") == 0 and _alt.get("closed"):
+        gap("ALT-REGIME-27",
+            "CURRENT_STATUS/FRONTIER track a 27-branch alternate-regime (a11-15, "
+            "v<0) sweep as OPEN. It is CLOSED: the DAG registers all %s L_alt "
+            "branch keys and closes %s of them by %s. The 27 is the post-C33/C34 "
+            "residual, a historical figure -- the docs are STALE, not wrong, and "
+            "the direction is safe (the DAG is stronger). GAP-ALT-STATES (39 "
+            "modelled states vs %s surviving) is RETIRED: those states all sit at "
+            "a_t >= 11 and the bound empties every such branch, so they never "
+            "needed modelling. Pinned in c0_partition.py under RETIRED."
+            % (_alt.get("n_branches"), _alt.get("branches_closed"),
+               _alt.get("closure_mechanism"), _alt.get("states_surviving")))
+    else:
+        gap("ALT-REGIME-27",
+            "CURRENT_STATUS/FRONTIER track a 27-branch alternate-regime (a11-15, "
+            "v<0) sweep. The DAG REGISTERS all %s L_alt branch keys (%s closed "
+            "whole by C33+C34, %s open), but it COVERS far less: %s of the open "
+            "branches carry only a forced-defect-0 state overlay and %s carry no "
+            "state model at all, %s modelled states against %s surviving. "
+            "Registration is not coverage -- scope gap, not a contradiction. "
+            "Pinned by exact key in c0_partition.py (GAP-ALT-STATES)."
+            % (_alt.get("n_branches"), _alt.get("branches_killed_whole"),
+               _alt.get("branches_open"),
+               _alt.get("surviving_C33_C34_with_state_overlay"),
+               _alt.get("surviving_C33_C34_unmodelled"),
+               _alt.get("states_modelled"), _alt.get("states_surviving")))
 
 # --- I4: FRONTIER CLOSED defect-0 families vs DAG ---------------------------
 dag_closed_fam = sorted(n["family"] for n in DAG["nodes"]

@@ -1,13 +1,19 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite it as below."
-title: "The plane (72,108) Jacobian case — verified reduction"
+message: "If you use this repository, please cite it as below. For the (72,108) exclusion itself, please cite Helali (2026) — see `references` — who published it first."
+title: "The plane (72,108) Jacobian case — an independent structural proof"
 abstract: >-
-  A verified reduction program for the last open plane Jacobian-Conjecture case
-  below degree 125 (the GGV-Horruitiner (8,28)/(72,108) case, arXiv:2204.14178,
-  Prop 4.3), together with an independent exact re-verification of the
-  dimension-3 Jacobian counterexample. Includes the f37-branch resultant-artifact
-  closure (ideal-membership certificate) and a machine-generated live frontier,
-  every claim catalogued with its checker and trust tier.
+  An independent structural proof that both Newton-polygon configurations of the
+  GGV-Horruitiner (8,28)/(72,108) case (arXiv:2204.14178, Prop 4.3) are empty,
+  so that — conditional on that proposition being exhaustive and on the
+  alpha-strip WLOG — any plane Jacobian-Conjecture counterexample has
+  max(deg P, deg Q) >= 125. Priority for the exclusion belongs to B. Helali,
+  who published an independent treatment on 2026-07-21; this work is a second,
+  structurally different route whose intermediate content is finer than a
+  yes/no answer, including the exact valuation pin a_t = 9 and a five-case
+  classification of admissible germs. Also includes an independent exact
+  re-verification of the dimension-3 Jacobian counterexample. Every claim is
+  catalogued with its checker and a trust tier, and none of the proof's eleven
+  machine steps is irreducibly machine work.
 type: software
 authors:
   - family-names: "Strinz"
@@ -16,12 +22,21 @@ keywords:
   - "Jacobian Conjecture"
   - "polynomial automorphisms"
   - "computer-assisted proof"
-  - "Groebner bases"
+  - "Newton polygon"
+  - "valuation"
 license: MIT
 doi: 10.5281/zenodo.21534896
-version: v0.2.0
-date-released: "2026-07-24"
+version: v1.0.0
+date-released: "2026-07-27"
 references:
+  - type: article
+    title: "Exact Computer-Assisted Exclusion of the (72,108) Frontier in the Two-Dimensional Jacobian Problem"
+    authors:
+      - family-names: Helali
+        given-names: Billel
+    doi: "10.5281/zenodo.21479814"
+    date-released: "2026-07-21"
+    notes: "The first published exclusion of the (72,108) case. Priority for the result is his; this repository is an independent second route."
   - type: article
     title: "On the Jacobian Conjecture in two variables (case (8,28))"
     authors:
@@ -30,3 +45,4 @@ references:
       - family-names: Horruitiner
       - family-names: Valqui
     url: "https://arxiv.org/abs/2204.14178"
+    notes: "Proposition 4.3 is the reduction imported here; its exhaustiveness is one of the two standing conditions."

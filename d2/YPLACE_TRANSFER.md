@@ -307,7 +307,7 @@ and at cap `7` [G3b].
 **25** of the `(deg A, z)` pairs — every `deg A ≤ 3` (and `A = 0`) against every
 `z ∈ [2,6]` — pass outright [G4]. The failure is located at one integer:
 `deg(π³Q_Π) = 3 + deg q`, the kill needs `> 6`, i.e. `deg q ≥ 4`; `(72,108)` has
-exactly 4 (zero margin, as §0.4 says) and a class row has 0 [G4b].
+exactly 4 (zero margin, as §1.4 says) and a class row has 0 [G4b].
 
 And it is not merely that the *argument* fails — the *system* is satisfiable.
 For `(A,z,ζ,γ) = (y,2,1,1)`, `(y,3,1,1)`, `(y²,4,1/3,1)` and `(0,5,2,1)` the full

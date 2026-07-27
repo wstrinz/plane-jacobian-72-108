@@ -715,6 +715,18 @@ def main():
         unknown_counts=per_gate_unknown,
         ggv5_self_discarded=["%s(%d,%d)" % (f, m, n)
                              for (f, (m, n)) in sorted(GGV5_SELF_DISCARDED)],
+        # ADDED 2026-07-27 (moh_discards.py, 21/21).  Five MORE of the 34 were
+        # already ruled out before GGV5 was written.  GGV5 tex:1794: "In [M] there
+        # are listed four cases (which correspond to six cases in our terminology)
+        # ... They are discarded by hand", and tex:1818 accounts for the six red
+        # rows as FIVE Moh + ONE starred (F_22).  So the settled set is SIX, and
+        # the open frontier is 34 - 6 - 1 = 27, not 32.
+        # EVIDENCE BOUNDARY: the red partition is exact-checked; that Moh's five
+        # are RULED OUT is CITATION-LEVEL -- [M] has not been read here.
+        moh_discarded=["F_1(3,4)/64", "F_2(2,3)/75", "F_3(3,2)/75",
+                       "F_9(2,3)/84", "F_17(2,3)/99"],
+        settled_before_this_campaign=6,
+        open_frontier=27,
         closed_by_this_campaign=["(8,28)/(3,2)/108"],
         rows=rows,
     )

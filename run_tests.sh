@@ -78,10 +78,59 @@ echo "### D2 — exact field-split proof checks"
   python3 polygon_reduction_verify.py --quiet &&
   python3 minimal_core.py --quiet &&
   python3 support_certificates.py --quiet &&
+  python3 verify_derivation.py &&
   python3 contact_lemma.py --quiet &&
   python3 toric_syzygy.py --quiet &&
   python3 toric_general.py --quiet &&
   python3 corner_atlas.py --quiet &&
+  python3 moh_discards.py --quiet &&
+  python3 moh_control_50_75.py --quiet &&
+  python3 front_door_consistency.py --quiet &&
+  # --- the proof spine, published 2026-07-27 (v1.0.0) ---------------------
+  # 33 checkers gated in the private manifest were absent from this tree
+  # entirely, so the repository shipped PROOF_72_108.md's provenance table
+  # while withholding most of the checkers it cites.  These 32 are the ones
+  # that run green in a clean public clone.  NOT here, and why:
+  #   frontier_rebuild.py           re-runs cascade_engine.py regeneration
+  #   helali_adjudication_check.py  reads GGHV22's non-redistributed .tex
+  #   prior_art_fingerprint.py      needs files not published here
+  #   generic_fiber_verify.py       V6/V7 fail on absent inputs
+  #   field_scope_audit.py          needs artifacts not published here
+  # All five pass privately; their absence is a packaging gap, not a
+  # mathematical one.  Do not read absence as "never written".
+  python3 alt_level12.py --quiet &&
+  python3 alt_rebuild.py --quiet &&
+  python3 at_le9_audit.py --quiet &&
+  python3 bigrade_annotator_verify.py --quiet &&
+  python3 c0_partition.py --quiet &&
+  python3 caps_audit.py --quiet &&
+  python3 cone_completeness.py --quiet &&
+  python3 divisor_consequences.py --quiet &&
+  python3 divisor_filter.py --quiet &&
+  python3 divisor_syzygy.py --quiet &&
+  python3 dm1_branch_verify.py --quiet &&
+  python3 emptiness_triage.py --quiet &&
+  python3 f2_branch_manifest.py --quiet &&
+  python3 g4_row.py --quiet &&
+  python3 gauge_leak.py --quiet &&
+  python3 i3_audit.py --quiet &&
+  python3 passport_75_125.py --quiet &&
+  python3 pole_theorem_sweep_verify.py --quiet &&
+  python3 positive_slice.py --quiet &&
+  python3 positive_slice_verify.py --quiet &&
+  python3 prop43_audit.py --quiet &&
+  python3 slice_obstruction_basis.py --quiet --deep &&
+  python3 slice_obstruction_audit.py --quiet &&
+  python3 slice_phi_yplace.py --quiet &&
+  python3 spine.py --quiet &&
+  python3 spine9_audit.py --quiet &&
+  python3 spine_verify.py --quiet &&
+  python3 sub1_spine9.py --quiet &&
+  python3 syzygy_collision.py --quiet &&
+  python3 syzygy_sweep.py --quiet &&
+  python3 t1_branch.py --quiet &&
+  python3 weight_lemma_75_125.py --quiet &&
+  # --- end proof spine ----------------------------------------------------
   python3 corner_atlas_toric_34.py --quiet &&
   python3 gamma_from_corner_verify.py --quiet &&
   python3 monomial_window_law.py --quiet &&

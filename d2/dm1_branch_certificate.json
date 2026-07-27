@@ -1,0 +1,24 @@
+{
+ "claim": "C10 / subcase:dm1 -- the d_{-1} == 0 branch of the (72,108) case tree is EMPTY",
+ "shape": "2*Phi = 2*d0*G1 + 2*d1*G2 + 2*d2*G3 + 2*(G5body + Phi) + dm1*(d2*dm1^2 + 3*dm1*dm3 + 3*dm2^2)",
+ "ring": "Z[d2,d1,d0,dm1,dm2,dm3,dm4,Phi]",
+ "multiplier": 2,
+ "field_scope": "char != 2 (the only denominator in the certificate is 2; the linear phase A3/A4 also pivots on 2)",
+ "cofactors": {
+  "G1": "2*d0",
+  "G2": "2*d1",
+  "G3": "2*d2",
+  "G5body+Phi": "2"
+ },
+ "residual": "dm1*(d2*dm1^2 + 3*dm1*dm3 + 3*dm2^2)",
+ "consequence": "at dm1 = 0 the residual vanishes, so 2*Phi lies in <G1,G2,G3,G5body+Phi>; hence Phi = 0, contradicting Phi = f1*C4^28 != 0 (deg 238, ord 204).",
+ "generators": {
+  "G1": "3*d1*dm1**2/2 + 3*d2*dm1*dm2 + 3*dm1*dm4 + 3*dm2*dm3",
+  "G2": "-3*d0*dm1**2/2 + 3*d2*dm2**2/2 + 3*dm2*dm4 + 3*dm3**2/2",
+  "G3": "-3*d0*dm1*dm2 - 3*d1*dm2**2/2 - dm1**3/2 + 3*dm3*dm4",
+  "G5body": "-3*d0*dm1*dm4 - 3*d0*dm2*dm3 - 3*d1*dm2*dm4 - 3*d1*dm3**2/2 - 3*d2*dm3*dm4 - 3*dm1**2*dm3/2 - 3*dm1*dm2**2/2"
+ },
+ "generator_provenance": "regenerated from scratch in section A (formal series in u, linear phase with unit pivot 2); cross-checked identical to generators.json (A7)",
+ "supersedes": "AUDIT.md sec.A.3 / STATE.md item 5 two-leg case split (also reproduced verbatim, section D)",
+ "checks": 28
+}

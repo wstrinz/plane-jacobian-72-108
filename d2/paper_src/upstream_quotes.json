@@ -1,0 +1,138 @@
+{
+ "_about": "Literal source strings that moh_discards.py and moh_control_50_75.py assert are present in the upstream arXiv sources, transcribed ONCE so each checker is self-contained and a clean public clone (which does not ship the copyrighted .tex) can run them. Each entry records the arXiv id, the 1-based line number in the source .tex, and the sha256 of that .tex. When the .tex IS present locally the checkers re-verify every probe against it as an OPTIONAL provenance step, and a mismatch is a FAILURE.",
+ "sources": {
+  "GGV5": {
+   "arxiv_id": "1708.07936",
+   "local_tex": "paper_src/1708.07936_GGV5.tex",
+   "local_tex_sha256": "8f5571e527c4e579b185f7e75dcf48cd6c92fa88c82c46c33019d38ab89d78f5",
+   "line_numbers_are_1_based": true
+  },
+  "GGV3": {
+   "arxiv_id": "1406.0886",
+   "local_tex": "paper_src/1406.0886_GGV3.tex",
+   "local_tex_sha256": "f3347a148a6f84dcf547fcbc3e0ef16884327347254ea426b4775d7cd019629d",
+   "line_numbers_are_1_based": true
+  }
+ },
+ "probes": {
+  "moh.red_pairs_meaning": {
+   "source": "GGV5",
+   "probe": "red pairs correspond to possible counterexamples",
+   "normalisation": "raw",
+   "tex_line": 1794,
+   "occurrences": 1
+  },
+  "moh.discarded_by_hand": {
+   "source": "GGV5",
+   "probe": "They are discarded by hand",
+   "normalisation": "raw",
+   "tex_line": 1794,
+   "occurrences": 1
+  },
+  "moh.five_of_them": {
+   "source": "GGV5",
+   "probe": "Five of them correspond to the six cases found by Moh",
+   "normalisation": "raw",
+   "tex_line": 1818,
+   "occurrences": 1
+  },
+  "moh.sixth_starred": {
+   "source": "GGV5",
+   "probe": "The sixth red case, marked with a star",
+   "normalisation": "raw",
+   "tex_line": 1818,
+   "occurrences": 1
+  },
+  "moh.pllc": {
+   "source": "GGV5",
+   "probe": "PLLC",
+   "normalisation": "raw",
+   "tex_line": 174,
+   "occurrences": 21
+  },
+  "ctl.deg_P0_50": {
+   "source": "GGV3",
+   "probe": "\\deg(P_0)=50",
+   "normalisation": "raw",
+   "tex_line": 1720,
+   "occurrences": 1
+  },
+  "ctl.deg_Q0_75": {
+   "source": "GGV3",
+   "probe": "\\deg(Q_0)=75",
+   "normalisation": "raw",
+   "tex_line": 1720,
+   "occurrences": 1
+  },
+  "ctl.A0_5_20": {
+   "source": "GGV3",
+   "probe": "we know that $A_0=(5,20)$",
+   "normalisation": "raw",
+   "tex_line": 1721,
+   "occurrences": 1
+  },
+  "ctl.bracket_P1Q1": {
+   "source": "GGV3",
+   "probe": "[P_1,Q_1]=x^2",
+   "normalisation": "raw",
+   "tex_line": 1726,
+   "occurrences": 1
+  },
+  "ctl.deg_P1_10": {
+   "source": "GGV3",
+   "probe": "\\deg(P_1)=10",
+   "normalisation": "raw",
+   "tex_line": 1726,
+   "occurrences": 1
+  },
+  "ctl.deg_Q1_15": {
+   "source": "GGV3",
+   "probe": "\\deg(Q_1)=15",
+   "normalisation": "raw",
+   "tex_line": 1726,
+   "occurrences": 1
+  },
+  "ctl.F_minus1_y7": {
+   "source": "GGV3",
+   "probe": "F_{-1}:=y^7",
+   "normalisation": "nospace",
+   "tex_line": 1762,
+   "occurrences": 1
+  },
+  "ctl.deg_y_C_cap": {
+   "source": "GGV3",
+   "probe": "\\deg_y(C_{-k})\\le k+2",
+   "normalisation": "raw",
+   "tex_line": 1770,
+   "occurrences": 1
+  },
+  "ctl.c0_minus10_ne0": {
+   "source": "GGV3",
+   "probe": "c_{0,-10}\\ne 0",
+   "normalisation": "raw",
+   "tex_line": 1774,
+   "occurrences": 2
+  },
+  "ctl.e_minus10_ne0": {
+   "source": "GGV3",
+   "probe": "e_{-10}\\ne 0",
+   "normalisation": "raw",
+   "tex_line": 1818,
+   "occurrences": 1
+  },
+  "ctl.c_minus1_1_ne0": {
+   "source": "GGV3",
+   "probe": "c_{-1,1}\\ne 0",
+   "normalisation": "raw",
+   "tex_line": 1813,
+   "occurrences": 1
+  }
+ },
+ "counts": {
+  "ggv5_color_red_pairs": {
+   "source": "GGV5",
+   "expression": "tex.count('{\\\\color{red}')",
+   "value": 6
+  }
+ }
+}

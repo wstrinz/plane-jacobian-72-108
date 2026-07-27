@@ -1,3 +1,166 @@
+# v1.0.0 — the proof becomes the front door, and the release gate catches up to it
+
+The mathematics in this release is the mathematics of v0.4.1. What changes is
+that the repository now *says* so, *routes* a reader to it, and *gates* it.
+Every defect below was found while preparing this release, all in our own
+packaging, and none of them moves a mathematical claim.
+
+**Priority is unchanged and restated at the top of everything:** B. Helali
+published an independent exclusion of (72,108) on 2026-07-21
+([doi:10.5281/zenodo.21479814](https://doi.org/10.5281/zenodo.21479814)) and
+**his work is the public record for the exclusion.** We adjudicate it
+**SUBSUMES** ours (`d2/HELALI_ADJUDICATION.md`, now published). We make no
+priority claim of any kind. What is here is a second, structurally different
+route.
+
+## 1. The front door said the opposite of the result — and nothing caught it
+
+`README.md` still read *"The (72,108) case is **not closed** ... the target
+theorem `C0` remains **open**"* while `proof_dag.json` in the same tree recorded
+`C0: closed=true, subcases_closed=5` and `PROOF_72_108.md` sat in `d2/`
+unreferenced by anything. `docs/README.md` routed readers to
+`F37_SATURATION_REPORT.md` as "the headline theorem" and to `FRONTIER.md` as
+"what is left open". A mathematician landing here learned the **opposite** of the
+result. The private tree's root README said the same thing.
+
+114 checkers gated the mathematics and **zero** gated the front door.
+
+Fixed, and made structural: **`front_door_consistency.py`** (11 checks, new)
+cross-checks front-door prose against the registry **in both directions** — a
+README claiming closure over a reopened `C0` fails exactly as loudly as today's
+defect did. Gated in both trees. Detection is by proximity to a sentence naming
+the target case, not a blocklist of phrasings, because a blocklist only ever
+catches the sentence you already fixed.
+
+Two defects **in that checker** are worth recording, because both are house
+traps:
+
+* `CLOSED_MARKER` matched `\bclosed\b` *inside* "is **not closed**", so the
+  openness assertion suppressed its own violation.
+* The sentence splitter excluded newlines — but these documents are hard-wrapped
+  at 79 columns, so nearly every real sentence spanned a line break and was
+  never examined. It reported **green** over a README that literally said "The
+  (72,108) case is **not closed**". *A detector that cannot see the defect it was
+  written for is worse than no detector, because it reads as evidence of
+  absence.*
+
+## 2. The public registry recorded `C0` as OPEN
+
+The flagship auditability artifact contradicted the published proof. Public
+`proof_dag.json` had `C0: closed=false, level=open, subcases_closed=1` over 4456
+nodes, against the private 4510. `proof_dag.py` did not even run here — it exited
+`FATAL: missing state_kill_ledger.json` — and, being ungated publicly, nothing
+noticed.
+
+Diagnosis: **every JSON input was byte-identical.** Only the generator code was
+stale (`proof_dag.py`, `c0_partition.py`, `audit_inf_cases.py`, the last of which
+predated the `--emit-artifact` contract the newer generator drives it with).
+Synced, plus `state_kill_ledger.json` and `frontier_rebuild.json`. The public
+tree now **regenerates** `C0: True claimed | subcases closed 5/5` from public
+data — it reproduces the conclusion rather than being told it.
+
+## 3. Three load-bearing checkers were outside the release gate
+
+The standing trap fired a third time, and this time on the checkers the *paper*
+leans on hardest.
+
+| checker | backs | was |
+|---|---|---|
+| `support_certificates.py` (55/55) | §1 and §8.5 — *"none of the eleven machine steps is irreducibly machine work"* | public runner only |
+| `toric_syzygy.py` (67/67) | Thm 3.5, Cor 3.6, Prop 4.4, Cor 4.5, §14.11 "SETTLED — NO" | public runner only |
+| `verify_derivation.py` (48) | §2.4, the G-system the whole spine stands on | **neither tree** |
+
+`RELEASE_GATE=1` reads `tools/suite_manifest.py`, so the first two were verified
+by the public runner and **not** by our own release gate. All three were green;
+they are now gated. `EXPECTED_TOTAL` 111 → 115.
+
+## 4. The public tree shipped the paper without most of its evidence
+
+**33 of the 114 gated checkers were absent here entirely** — essentially the whole
+proof spine: `sub1_spine9`, `at_le9_audit`, `caps_audit`, `dm1_branch_verify`,
+`prop43_audit`, `slice_obstruction_basis`/`_audit`, `syzygy_collision`, `spine`,
+`spine_verify`, `divisor_consequences`, `t1_branch` and more. A further 33 were
+present but **absent from `run_tests.sh`**, so the public suite ran 81 of them.
+For a repository whose stated purpose is that a skeptical mathematician can
+verify the load-bearing claims, publishing §13.3's provenance table while
+withholding the checkers it cites is the wrong half.
+
+Every one was published, run in a clean public tree, and gated only if green:
+
+| | before | after |
+|---|---|---|
+| privately gated d2 checkers | 114 | 114 |
+| ... present in the public tree | 81 | **110** |
+| ... and gated in `run_tests.sh` | 81 | **109** |
+
+Five are **not** published, each for a stated reason rather than by omission:
+`helali_adjudication_check.py` and `field_scope_audit.py` (read non-redistributed
+or unpublished inputs), `prior_art_fingerprint.py` and `generic_fiber_verify.py`
+(fail in a clean clone on absent files), and `frontier_rebuild.py` (present, but
+ungated because it re-runs the `cascade_engine.py` regeneration). **All five pass
+privately.** Their absence is a packaging gap, not a mathematical one, and it is
+recorded in `run_tests.sh` itself so absence cannot be read as "never written".
+
+## 5. Two checkers could not run in any public clone
+
+`moh_discards.py` and `moh_control_50_75.py` read the GGV5/GGV3 arXiv `.tex`
+directly. Those are other authors' copyrighted sources and are deliberately not
+redistributed, so the first failed its own `B2`–`B6` and the second died with
+`FileNotFoundError`.
+
+Repaired using this repository's existing convention (`upstream_facts.json`):
+**`paper_src/upstream_quotes.json`** records each probe once — the literal
+string, its arXiv id, the 1-based line number, and the **sha256 of the `.tex` it
+was transcribed from** — and `upstream_quotes.py` re-derives every probe from the
+source whenever the `.tex` is present. A drifted transcription is a **failure**,
+not a skip (verified by mutation: altering one probe turns `B7`/`Z1` red). In a
+public clone those checks report that they did **not** re-derive, rather than
+passing silently.
+
+The extracted line numbers independently confirmed the citations already written
+in the checkers' own comments (`tex:1794`, `tex:1818`).
+
+## 6. The proof leads with the theorem
+
+`PROOF_72_108.md` opened with 68 lines of conditionality before Theorem A. It now
+opens with priority (§0.1), states **Theorem A at line 36**, and follows with the
+same conditionality as §§1.2–1.5.
+
+**Nothing was softened.** The move was verified paragraph-by-paragraph: 360 of
+362 paragraphs are byte-identical, the two exceptions being the §0 title and lead
+that were deliberately rewritten. The single-legged upper bound (§1.3), the
+zero-margin table (§1.4) and the registry-level accounting (§1.5) survive word
+for word. Cross-references were renumbered across the proof and four sibling
+documents; the six checkers that read the proof all still pass.
+
+## 7. Smaller items
+
+* `CITATION.cff` was stranded at `v0.2.0` describing a "machine-generated live
+  frontier". Rewritten, with Helali added as the first reference.
+* The corrected atlas landed: the open frontier is **27**, not 32 — five of
+  GGV5's 34 were discarded by Moh before GGV5 was written (`moh_discards.py`).
+  That Moh's five are ruled out remains **citation-level**; [M] has not been read
+  here.
+* `FRONTIER.md` and `CURRENT_STATUS.md` are now **named as stale** in
+  `docs/README.md` rather than left for a reader to discover. `FRONTIER.md`
+  describes the enumerative route's intermediate state and is not regenerated for
+  this release.
+
+## Still open, and deliberately so
+
+* **`helali_adjudication_check.py` is not published** — it reads GGHV22's
+  copyrighted `.tex`. The fix is the §5 transcription pattern; it was not applied
+  in this release.
+* **`prior_art_fingerprint.py` and `generic_fiber_verify.py` are not published** —
+  they fail in a public clone on files absent here. They pass privately; this is
+  a packaging gap, not a mathematical one.
+* **The `subcase → C0` edge remains judgment-referenced**, so `C0` stays at
+  `claimed`. That cap is correct by construction and is not a backlog item.
+* **The wider 27-case frontier is untouched**, as is the (75,125) research
+  program.
+
+---
+
 # v0.4.1 — three corrections, all in the conservative direction; and the v0.4.0 atlas headline shrinks
 
 A correctness release, shipped the day after v0.4.0. Every defect below was found

@@ -143,7 +143,7 @@ Named explicitly in §11.3's three closing notes and in §14 item 12:
 | Theorem 11.6 (place trichotomy) | yes — it is proved *from* Lemma 11.5. Now a by-product itself. |
 | §7.4(b), the alternate-regime corroboration (`alt_level12.py` L6.1, `alt_rebuild.py` `B4_trichotomy`) | yes, through horn 1. Corroboration only; Theorem 7.2 gives `{a >= 11}` empty uniformly without it. |
 | §9 route (c) (`spine.py` **S19**/**S20**, the spare collapse `S = e*Sbar`) | yes. Routes (a) and (b) do not, and route (b) is machine-checked, so config (2) does not rest on it. |
-| the older enumerative registry route (`g4_row.py`, `divisor_consequences.py`) | yes, but not on this spine (§0.5). |
+| the older enumerative registry route (`g4_row.py`, `divisor_consequences.py`) | yes, but not on this spine (§1.5). |
 | §10's quartic cover, *curve* form `v = S/e - u^2` | yes. The *polynomial* form `W^2 = R^4 + ...` with `W := eS - R^2` does not, and that is the form §10 states. |
 | **Lemma 3.3 (the `e = 0` branch)** | **NO.** |
 
@@ -261,7 +261,7 @@ regime, `F1–F8`, `G1–G3`, `H1–H4`, `I1–I3`, `J1–J6`, `K0–K5`.
 
 ### Constraints honoured
 
-* `a_t <= 9` is still presented as **single-legged** (§0.3 unchanged). `slice_phi_yplace`
+* `a_t <= 9` is still presented as **single-legged** (§1.3 unchanged). `slice_phi_yplace`
   is still not cited as corroboration. `AT_LE9_AUDIT`'s `C-1`/`C-2` are still flagged as
   narrative labels with machine correlates `E2` and `F11`/`F12`.
 * Still conditional on GGHV22 Prop 4.3 exhaustiveness and on `[QQ1]` — now
@@ -332,7 +332,7 @@ the setup got two proofs longer.**
   folklore-adjacent.** It stays because it repairs the `|Aut| = 1` gap that the Hurwitz
   count depended on, but a referee may reasonably ask for it to be an appendix or a
   separate note.
-* **§0.4's zero-margin table shrank by two rows' worth of hedging** (the two caps are now
+* **§1.4's zero-margin table shrank by two rows' worth of hedging** (the two caps are now
   theorems) but the other three margins are irreducible facts about the arithmetic and
   cannot be compressed away.
 * **The transfer Theorem 4.3's proof is a paragraph of pointers, not a self-contained

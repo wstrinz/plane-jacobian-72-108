@@ -1,0 +1,51 @@
+{
+ "stage": {
+  "id": "stage4_positive_slice",
+  "title": "Positive-slice obstruction (inverse d3-shift polynomiality), n = 0",
+  "source": "POSITIVE_SLICE.md sec.5-6; derived from generators.json + window_caps_verify.py W2/W3 + upstream_facts.json corners",
+  "checker": "python positive_slice.py --quiet && python positive_slice_verify.py --quiet",
+  "note": "sub2 ONLY, and n = 0 ONLY -- it is the cell SPINE leaves open. Branch-independent (d1 is never set to 0), so it re-kills a10_b0000_T2 as well. No Groebner over the G-system, no field-scope caveat: the final step is a resultant over Q.",
+  "dead": {
+   "sub2": [
+    "a10_b0000_T1",
+    "a10_b0000_T2"
+   ],
+   "sub1": []
+  },
+  "applies_after": "stage3_spine"
+ },
+ "census": {
+  "rl": {
+   "flagcases": 19,
+   "states": 828,
+   "alive_cells": [
+    "a10_b0000_T1",
+    "a6_b1111_T1",
+    "a7_b1110_T1",
+    "a7_b1110_T2",
+    "a8_b1100_T1",
+    "a8_b1100_T2",
+    "a9_b1000_T1",
+    "a9_b1000_T2"
+   ],
+   "n_alive": 8
+  },
+  "norl": {
+   "flagcases": 21,
+   "states": 850,
+   "alive_cells": [
+    "a10_b0000_T1",
+    "a6_b1111_T1",
+    "a7_b1110_T1",
+    "a7_b1110_T2",
+    "a8_b1100_T1",
+    "a8_b1100_T2",
+    "a9_b1000_T1",
+    "a9_b1000_T2"
+   ],
+   "n_alive": 8
+  }
+ },
+ "schema": "frontier_rebuild.STAGES entry (drop-in); this lane does not modify frontier_rebuild.py -- see POSITIVE_SLICE.md sec.8",
+ "verdict_sub2_standard": "EMPTY"
+}
