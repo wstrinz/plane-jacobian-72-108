@@ -94,6 +94,7 @@ echo "### D2 — exact field-split proof checks"
   python3 mlt_second_row.py --quiet &&
   python3 delta_provenance.py --quiet &&
   python3 multiplicity_partition.py --quiet &&
+  python3 cap_law.py --quiet &&
   python3 moh_control_50_75.py --quiet &&
   python3 front_door_consistency.py --quiet &&
   # --- the proof spine, published 2026-07-27 (v1.0.0) ---------------------
