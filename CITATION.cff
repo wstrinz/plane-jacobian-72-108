@@ -25,7 +25,16 @@ keywords:
   - "Newton polygon"
   - "valuation"
 license: MIT
-doi: 10.5281/zenodo.21534896
+# The v1.0.0 VERSION DOI, matching `version:` below. Update both together on
+# every release; they are one fact in two places and drift silently otherwise.
+doi: 10.5281/zenodo.21633408
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21534895
+    description: "Concept DOI — always resolves to the latest version. Cite this if you want 'the repository' rather than a fixed snapshot."
+  - type: doi
+    value: 10.5281/zenodo.21633408
+    description: "Version DOI for v1.0.0 specifically."
 version: v1.0.0
 date-released: "2026-07-27"
 references:
