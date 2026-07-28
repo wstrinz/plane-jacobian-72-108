@@ -89,6 +89,7 @@ echo "### D2 — exact field-split proof checks"
   python3 makar_limanov_filter.py --quiet &&
   python3 second_corner_probe.py --quiet &&
   python3 r1_vertex_reading.py --quiet &&
+  python3 leading_x_power.py --quiet &&
   python3 moh_control_50_75.py --quiet &&
   python3 front_door_consistency.py --quiet &&
   # --- the proof spine, published 2026-07-27 (v1.0.0) ---------------------

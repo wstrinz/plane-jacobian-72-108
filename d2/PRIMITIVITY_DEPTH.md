@@ -137,7 +137,7 @@ nothing else in sight.
 * **The depth law has one test.** `(b5)` and `(b6)` constrain `C₋₁` and `C₁`, not
   `C₀`; γ=2's `C₀` carries no published condition. They test the **step**, not
   the **depth**. So: step law — two charts; depth law — one instance.
-* **The leading x-power is unreconciled.** `(a4)` has `C = x² + ⋯`, `(b4)` has
+* ~~**The leading x-power is unreconciled.**~~ **RESOLVED 2026-07-28, as a NEGATIVE** (`leading_x_power.py`, 15/15). Our `C` and GGV3's `C` are *provably different objects*: GGV3's substitution preserves x-exponents (its first coordinate is the identity), our x-degree is the corner invariant `l = 4`, and GGV3's required x-degree is the chart's leading power, which varies with gamma (2 vs 3) **at the same corner**. A gamma-dependent quantity cannot equal a gamma-independent one, so no `N(C)` maps to GGV3's `C`, and no rescaling repairs it. **The depth law is unaffected** -- it uses only the x-zero column, which the substitution maps to the x-zero column and which is pinned by the reduction's y-axis vertex, not by the chart normalisation. That is why `j* = a_0` came out chart-robust while the rest of the polygon did not. **What it costs:** the hoped-for coefficient-level bridge does not exist in this form, so "witness violates (a6)" stays INFERRED. Original text follows. `(a4)` has `C = x² + ⋯`, `(b4)` has
   `C = x³ + ⋯`, and `N(C)` above has x-degree 4. The depth argument uses only the
   x⁰ row, where these do not interfere, but a full **coefficient-level** bridge
   must resolve which x-graded piece of `C` becomes which `C_{-k}`. Until it does,
