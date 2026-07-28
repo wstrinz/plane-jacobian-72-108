@@ -286,6 +286,29 @@ branch fails, because the corner's first link is a different kind of step.
 
 ### 5.2 `(10,40)` — one undetermined polygon vertex
 
+> **RESOLVED 2026-07-28, same day — and the question was a false dichotomy.**
+> `r1_vertex_reading.py` (12/12) scores the two readings below against all four
+> printed polygons: **A scores 3/4 and B scores 3/4, both failing at the same
+> corner, `(9,27)`.** Its printed set has FIVE vertices,
+> `{(0,0),(1,0),(9,24),(9,27),(0,9)}`, containing `(1,0)` **and** `A_0' = (9,24)`
+> at once — A cannot produce `(9,24)`, B cannot produce `(1,0)`. The **union**
+> `Δ = hull{(0,0), (1,0), A_0', A_0, (0,c)}` scores **4/4** and is the only one of
+> the three consistent with print.
+>
+> So the fifth published `Δ` this section asks for is **not needed**: the fourth
+> already discriminates, against both stated readings. Where `A_0'` lies on the
+> x-axis — exactly the blocked `(2,0)` case — `(1,0)` is absorbed into the segment
+> to `(2,0)`, so U and B coincide and only A differs; that is why the ambiguity
+> looked undecidable from the three on-axis corners alone.
+>
+> At `(10,40)`, U predicts `hull{(0,0),(2,0),(10,40),(0,10)}`, consuming no
+> unpublished datum since `c = 10` is pinned independently (below).
+> **Scope:** one discriminating instance; U is the unique survivor of the three
+> readings tested, not proved to be the unique rule fitting four points. The other
+> five blocked corners still need `c` there. The text below is retained as the
+> statement of the blocker as it stood.
+
+
 `A_0' = (2,0)` **is** recovered, and anchored **twice**: both printed final
 corners `(16\5,6)` and `(18\5,8)` are reproduced by the same `A_0'` with `γ = 6`
 and `8` (`F2`). So the datum the sporadic table omits is available.

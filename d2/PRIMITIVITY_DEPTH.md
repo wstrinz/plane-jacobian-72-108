@@ -1,5 +1,25 @@
 # Where GGV3's `−10` comes from: the primitivity depth is a Newton-polygon vertex
 
+> ### SUPERSEDED IN PART, 2026-07-28 (later the same day) — read this first
+>
+> **§1's "one maximally degenerate corner" and §6's "`N(P₁)` is known at only two
+> corners" are RETIRED.** `N(P₁)` is known at **five**, one of them in print:
+> `passport_75_125.PUB["7_21"]` already held GGHV22's own published reduced
+> polygon (`2204.14178.tex:1313-1320`) and was unnoticed, and `(9,36)` and the
+> off-class `(7,42)` were derived by an `A_0'`-recovery lemma. See
+> `SECOND_CORNER.md` and `second_corner_probe.py` (67/67).
+>
+> **The eight candidate formulas collapse to one.** With `j* = a₀`, the depth must
+> be divisible by `a₀`; `(7,21)` alone kills four, and the three formal survivors
+> are *provably identical* wherever the law is non-vacuous. So the derivation
+> below stands, and its entire remaining content is the single γ-dependent
+> integer **δ**.
+>
+> **δ is still not determined, and is deliberately not fitted.** The two published
+> charts (`γ=3, δ=2` and `γ=2, δ=3`) both sit at `(5,20)`, where
+> `a₀ = l+1 = ρ = 5` makes four candidate rules coincide; and the recovered γ at
+> the new corners is **4** and **6**, so neither has a published δ to borrow.
+
 **Status: 2026-07-28. Partial result — the mechanism is derived and controlled;
 the depth law has one test, and the loose end is named in §5.**
 
