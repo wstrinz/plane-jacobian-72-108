@@ -44,12 +44,15 @@ here can diverge from the originals.
    `d2/f37_sat_verify.py` (~2 min, exact). This was the headline before the proof
    existed; it is now one component of the enumerative route.
 
-6. **The wider frontier — 27 cases still open**
+6. **The wider frontier — 24 cases still open**
    [`d2/CORNER_ATLAS.md`](../d2/CORNER_ATLAS.md) — our machinery mapped across
-   GGV5's 34 candidate degree pairs: 6 settled in the literature, 1 closed here,
-   **27 open**. Checker: `d2/moh_discards.py`. **The atlas eliminates no case** —
-   a `FAIL` there means our dictionary is unusable at that row, not that the row
-   is safe.
+   GGV5's 34 candidate degree pairs. **Ten** sit below the 125 bound and all ten
+   are settled (nine discarded upstream in GGHV22's own table, the tenth being
+   our `(8,28)`), leaving **24 open**, every one at `max_deg >= 125`. The figure
+   is computed, not asserted: `d2/gghv_sub125.py` (14/14) joins the atlas to
+   GGHV22's table. `F_2(3,5)/125` sits exactly *at* the bound and is the unique
+   row there. **The atlas eliminates no case** — a `FAIL` there means our
+   dictionary is unusable at that row, not that the row is safe.
 
 7. **The full derivation log**
    [`d2/STATE.md`](../d2/STATE.md) — the chronological record behind every claim.

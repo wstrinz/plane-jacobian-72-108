@@ -34,11 +34,26 @@ Moh's own sixth case never entered the 34 -- GGV5's algorithm filtered it on
 `(2,1) not in PLLC`.  "Discarded" is GGV5's own word for "ruled out": it uses it
 of `F_22` in the same breath, where it demonstrably means eliminated.
 
-Therefore the settled set is SIX, not one, and the open frontier is
+Therefore the settled set from the RED partition is SIX, not one, and
 
-    34 - 6 (already settled in the literature) - 1 (closed here) = **27**
+    34 - 6 (red, already settled in the literature) - 1 (closed here) = **27**
 
-not 32.
+rows survive that partition, not 32.
+
+SCOPE, CORRECTED 2026-07-28 -- 27 IS NOT THE OPEN FRONTIER.
+-----------------------------------------------------------
+The arithmetic above is about the RED partition, which is GGV5's
+`max(deg P, deg Q) <= 100` marking.  It never intersects GGHV22 Theorem 2.1,
+which settles EVERYTHING with `max < 125`.  TEN of the 34 rows are sub-125;
+GGHV22 tabulates all ten with a "Discarded?" column, nine discarded upstream and
+the tenth `(8,28)` left open there and closed here.  The six red rows are a
+strict SUBSET of those ten, and `- 1` double-counts our own row, which the
+sub-125 partition already contains.  The open frontier is
+
+    34 - 10 = **24**
+
+See `gghv_sub125.py` (14/14), which COMPUTES it rather than asserting it.  This
+file's D3 remains true of what it measures; D3b records what it does not.
 
 THE EVIDENCE BOUNDARY -- read this before citing the result
 -----------------------------------------------------------
@@ -182,12 +197,24 @@ def main():
     ok("D2  none of the six is the case this campaign closed, so the counts do "
        "not overlap", not (settled & closed_here))
     open_now = len(rows) - len(settled) - len(closed_here)
-    ok("D3  so the open frontier is 34 - 6 - 1 = 27, not 32", open_now == 27)
+    ok("D3  so 34 - 6 - 1 = 27 rows survive the RED partition, up from the 32 "
+       "this file corrected", open_now == 27)
+    # SUPERSEDED-IN-SCOPE 2026-07-28 by gghv_sub125.py (14/14).  D3 is arithmetic
+    # about the RED partition and remains true as such.  It is NOT the open
+    # frontier: red is GGV5's `max <= 100` marking, while GGHV22 Thm 2.1 settles
+    # everything with `max < 125`.  TEN of the 34 rows are sub-125 and all ten
+    # are settled, so the frontier is 34 - 10 = 24.  Kept here rather than
+    # deleted because the red partition is still the thing this file checks --
+    # what changed is which QUESTION the number answers.
+    ok("D3b  and that 27 is NOT the open frontier -- the six red rows are a "
+       "strict subset of the ten rows GGHV22 Thm 2.1 settles below 125, so the "
+       "frontier is 34 - 10 = 24 (gghv_sub125.py)",
+       len(settled) < 10 and len(rows) - 10 == 24)
 
     # ---- E. the direction, and the two flipped rows ------------------------
     ok("E1  DIRECTION: the error makes the atlas claim MORE is open than is, so "
        "no case-level assertion of ours is thereby wrong -- it mis-prices work "
-       "rather than mis-stating a result", 32 > 27)
+       "rather than mis-stating a result", 32 > 27 > 24)
     flipped = {"F_2(2,3)/75", "F_3(3,2)/75"}
     ok("E2  and BOTH rows whose G3 flipped FAIL -> PASS in v0.4.1 are among the "
        "five Moh discards -- they are settled cases, not new open ground",

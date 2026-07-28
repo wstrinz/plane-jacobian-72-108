@@ -1,3 +1,116 @@
+# v1.0.1 — the open frontier is 24, not 27; and where GGV3's `-10` comes from
+
+A correction release, one day after v1.0.0. **No mathematical claim is
+withdrawn** — the correction says *more* is settled than v1.0.0 stated. Per this
+project's versioning policy (major is reserved for retractions, not for new
+results), that makes it a patch.
+
+## 1. The open frontier is 24 — v1.0.0's §7 said 27, and that was wrong
+
+v1.0.0 reported the frontier as `34 - 6 - 1 = 27`, backed by `moh_discards.py`
+(23/23). **That checker is correct about what it checks.** The defect is that the
+label "open frontier" named a question it never computed:
+
+* the six "red" rows are GGV5's `max(deg P, deg Q) <= 100` marking, whereas
+* **GGHV22 Theorem 2.1 settles everything with `max < 125`.**
+
+Those two never intersect. **Ten** of the 34 rows are sub-125, and GGHV22
+tabulates all ten with its own "Discarded?" column: nine discarded upstream, and
+the tenth is `(8,28)` — left open there, closed by this campaign. The six red
+rows are a strict **subset** of those ten, and the `- 1` double-counted our own
+row, which the sub-125 partition already contains.
+
+**Three rows were being reported open while already dead upstream:**
+
+```
+(9,27)/(2,3)/108   discarded in GGHV22 §4
+F_1(5,7)/112       settled in GGV4 §3.5
+(8,32)/(3,2)/120   discarded in GGHV22 §2 -- by name, figure caption
+                   "Discarding (8,32): (8,4) is not a last possible corner"
+```
+
+**Correct frontier: 34 - 10 = 24**, every survivor at `max_deg >= 125`.
+
+The fix is not a prose edit. `gghv_sub125.py` (14/14, new, gated in both trees)
+**computes** the figure by joining the atlas to GGHV22's table on
+`(A_0, (m,n), max_deg)` — published fields, not our row ids — so the number
+cannot drift from its own definition again. Theorem 2.1 is strict (`max >= 125`),
+so `F_2(3,5)/125` sits *at* the bound and correctly stays open; a mutation
+control confirms that a non-strict reading would wrongly close exactly that row.
+`moh_discards.py` keeps its D3 (true of the red partition) and gains a D3b
+recording what D3 does **not** mean.
+
+**Direction is safe.** The old figure over-stated how much is open: it mis-priced
+work and invalidated no case-level claim. This is the same class of error as
+v1.0.0's own 32 → 27 correction, one notch further — and the data to catch it
+(`NEXT_CASES.md`'s GGHV22 status column) was already in the repo, unused.
+
+> **The standing trap, in its purest form:** *a checker that exits 0 has not
+> necessarily proved its claim — verify the numbers describe the case the LABEL
+> names.*
+
+**`F_2(3,5)/125` is now visibly the unique row standing at the bound.** The next
+increment of the lower bound depends on that row alone.
+
+## 2. Where GGV3's required-nonzero depth comes from
+
+New: `PRIMITIVITY_DEPTH.md` + `primitivity_depth.py` (17/17, four mutation
+controls).
+
+The 125 programme is blocked on **one integer** — GGV3's `(a6)` corner-primitivity
+slot `c_{0,-10} != 0`. Two of the three required-nonzeros at `(50,75)` are already
+derived in-repo; only that one has no derivation, and the kill predicate that
+consumes it already exists and is identical on both sides.
+
+**It cannot be fitted.** At `(5,20)` eight distinct corner-data formulas all give
+`-10` (`a0 = degC = 5`, `b0/2 = 2a0 = 2t+2 = t*kappa+2 = 10`), and that is the
+only corner where GGV3 publishes primitivity.
+
+**It can be derived.** GGV3 states the chart chain explicitly (tex:1739-1742):
+`x -> x*y^3, y -> y^-2`, then a shear. Under `x^i y^j -> x^i y^(3i-2j)`, the
+**x⁰ row of C** — the segment to the Newton vertex `(0,5)` of
+`N(C) = (1/2)N(P1)`, cross-checked by `3*N(C) == N(Q1)` — maps to
+`[0,-2,-4,-6,-8,-10]`, which is **exactly** `(a6)`'s printed support.
+
+> The primitivity depth is `-delta * deg_y(C|x=0)`, and `c_{0,-10} != 0` says the
+> polygon vertex `(0,5)` is **attained**. That is what corner primitivity means.
+
+The control: a fit reproduces one integer; this reproduces the whole support
+*including its spacing*, and the step must equal `delta` in every series —
+`(a6)` step 2 (`delta=2`), `(b5)` and `(b6)` step 3 (`delta=3`). Three series,
+two charts, two deltas, all correct.
+
+**Scope, stated in the file:** the depth law has ONE instance ((b5)/(b6)
+constrain `C_-1` and `C_1`, not `C_0`); the leading x-power is unreconciled, so
+this gives the *slot*, not yet a coefficient-level map; `(a1)`-`(a6)` remain
+GGV3's, asserted without proof; and since `delta` depends on `gamma`, which the
+corner does **not** pin, the depth is gamma-dependent.
+
+**What it changes:** the compiler step is now mechanical wherever a reduced
+polygon exists — halve `N(P1)`, read the y-axis vertex, multiply by `-delta`. The
+bottleneck is therefore not the chart bridge but that `N(P1)` is known at only
+**two** corners.
+
+## 3. Smaller
+
+* `CITATION.cff` now points at the v1.0.0 version DOI Zenodo actually minted
+  (`10.5281/zenodo.21633408`), with the concept DOI listed and labelled
+  alongside. It had been left on a stale 0.x version DOI.
+* `front_door_consistency.py` gained an attributive-phrasing rule: "left open
+  *there*, closed here" names the target case and contains an openness marker
+  while asserting the opposite. It flagged exactly such a sentence in our own
+  corrected README.
+* `(8,32)` is **not** an anomaly. `gamma_from_corner` reads only `A_0`, and
+  `(50,75)` sits on corner `(5,20)` — a different point. On the shared branch
+  `f=(4,16)` an `A_0'` exists iff `[u/5, u/4)` contains an integer, which fails
+  at `u=8`. The strict `s' < r' < u` is verbatim GGV1 and load-bearing: relaxing
+  it breaks calibration (Table 1 → 10/13, Table 2 → 8/12). The "puzzle" framing
+  in the handoff was wrong and is corrected.
+
+Private full gate: 117/117 checkers `rc=0`, FULL tier, clean-clone guard OK.
+
+---
+
 # v1.0.0 — the proof becomes the front door, and the release gate catches up to it
 
 The mathematics in this release is the mathematics of v0.4.1. What changes is

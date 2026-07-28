@@ -25,18 +25,21 @@ keywords:
   - "Newton polygon"
   - "valuation"
 license: MIT
-# The v1.0.0 VERSION DOI, matching `version:` below. Update both together on
-# every release; they are one fact in two places and drift silently otherwise.
-doi: 10.5281/zenodo.21633408
+# The CONCEPT DOI, deliberately. A version DOI here would be stale the moment
+# `version:` below is bumped, because Zenodo does not mint the new one until the
+# release is published -- exactly the drift that left this file on a 0.x DOI
+# while claiming v1.0.0. The concept DOI always resolves to the latest version,
+# so these two lines cannot disagree.
+doi: 10.5281/zenodo.21534895
 identifiers:
   - type: doi
     value: 10.5281/zenodo.21534895
-    description: "Concept DOI — always resolves to the latest version. Cite this if you want 'the repository' rather than a fixed snapshot."
+    description: "Concept DOI — always resolves to the latest version. Cite this for 'the repository' rather than a fixed snapshot."
   - type: doi
     value: 10.5281/zenodo.21633408
-    description: "Version DOI for v1.0.0 specifically."
-version: v1.0.0
-date-released: "2026-07-27"
+    description: "Version DOI for v1.0.0 specifically. Each release mints its own; see the Zenodo version history for later ones."
+version: v1.0.1
+date-released: "2026-07-28"
 references:
   - type: article
     title: "Exact Computer-Assisted Exclusion of the (72,108) Frontier in the Two-Dimensional Jacobian Problem"

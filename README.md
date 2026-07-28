@@ -36,9 +36,28 @@ in the sense our own ledger needs. We enumerated five candidate leak types
 case split, component loss under saturation, incomplete first block) and each is
 closed by an explicit check. See `d2/HELALI_ADJUDICATION.md`.
 
-Three further independent claims to the same exclusion appeared within five days
-of Helali's (two MathOverflow answers on 07-23, one pull request on 07-25).
-**We make no priority claim of any kind.**
+Further independent claims appeared on MathOverflow within days of Helali's: an
+**answer** by `ratto3423` (2026-07-23, MO question 513413, "Write-up in
+preparation" — none has appeared as of 2026-07-28), and a **comment** on it by
+`Leox` (2026-07-23) reporting an independent elimination of the same two supports
+by a different method (weighted transport equations and finite-field Macaulay
+rank computations). Both describe the Prop 4.3 geometry as we do — GGHV22
+excludes the `(9,27)` corner itself, two supports remain at `(8,28)` — which
+independently corroborates our transcription.
+
+**We make no priority claim of any kind.** On the public record we are at best
+the fourth to state this exclusion, and the second to publish an artifact and a
+write-up for it.
+
+> **Correction (2026-07-28).** This paragraph previously read "two MathOverflow
+> answers on 07-23, one pull request on 07-25". Both halves were wrong. The
+> MathOverflow material is one answer and one comment. And the pull request —
+> `XioAISolutions/gaugegap-foundry` #101, opened and merged 2026-07-23 — is **not**
+> a claim to this exclusion: it establishes exact degree-1 and degree-2 left-null
+> certificates and says explicitly that they *"do not ... eliminate `(72,108)`;
+> raise the global degree bound; or solve the two-variable Jacobian conjecture."*
+> Counting it as a rival claim misrepresented a carefully scoped partial result.
+> The error was ours.
 
 What this repository contributes is therefore **not** the exclusion. It is an
 independent structural proof of the same exclusion by a different mechanism,
@@ -168,13 +187,20 @@ GGV5 lists **34** candidate counterexample degree pairs with
 
 | | |
 |---|---|
-| settled in the literature before this campaign | **6** |
-| closed by this campaign | **1** — `(8,28)/(3,2)/108` |
-| **open** | **27** |
+| settled below the 125 bound (GGHV22 Thm 2.1 — nine upstream, plus ours) | **10** |
+| **open** (every one at `max_deg >= 125`) | **24** |
 
-The six are `F_1(3,4)/64`, `F_2(2,3)/75`, `F_3(3,2)/75`, `F_9(2,3)/84`,
-`F_17(2,3)/99` (Moh, "discarded by hand", GGV5 tex:1794) and `F_22(2,3)/96`
-(GGV5's own Proposition). Checker: `d2/moh_discards.py`.
+GGHV22 tabulates all ten sub-125 rows with its own "Discarded?" column: nine are
+discarded upstream, and the tenth is `(8,28)/(3,2)/108` — left open there, closed
+here. Among the nine are the six GGV5 marks red (`max <= 100`): `F_1(3,4)/64`,
+`F_2(2,3)/75`, `F_3(3,2)/75`, `F_9(2,3)/84`, `F_17(2,3)/99` (Moh, "discarded by
+hand", GGV5 tex:1794) and `F_22(2,3)/96` (GGV5's own Proposition).
+
+The figure is **computed, not asserted**: `d2/gghv_sub125.py` (14/14) joins the
+atlas to GGHV22's table on `(A_0, (m,n), max_deg)` and derives `34 − 10`.
+Theorem 2.1 is strict (`max >= 125`), so `F_2(3,5)/125` sits *at* the bound and
+correctly stays open — it is the unique row there, and the next increment of the
+bound depends on it alone. Checker for the red partition: `d2/moh_discards.py`.
 
 **Evidence boundary:** that exactly six rows are red in GGV5's table is
 exact-checked; that Moh's five are *ruled out* is **citation-level** — Moh's 1983

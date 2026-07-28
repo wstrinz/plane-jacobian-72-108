@@ -88,7 +88,35 @@ are gates on **mechanisms**, not on cases. `G1 = FAIL` means *our chart
 dictionary is not usable at that corner*; `G3 = FAIL` means *the slice-cascade
 argument is void there*, not that the case is safe. GGV5's 34 are **not** 34 open cases.
 
-> ### CORRECTED 2026-07-27 -- the open frontier is **27**, not 32
+> ### CORRECTED 2026-07-28 -- the open frontier is **24**
+>
+> **Read this before the 2026-07-27 block below, which it supersedes.** That
+> block moved the count 32 -> 27 by subtracting GGV5's six RED rows. Red is
+> GGV5's `max(deg P, deg Q) <= 100` marking, and it **never intersects GGHV22
+> Theorem 2.1**, which settles *everything* with `max < 125`. **TEN** of the 34
+> rows are sub-125, and GGHV22 tabulates all ten with its own "Discarded?"
+> column: nine discarded upstream, and the tenth is `(8,28)` -- left open there,
+> closed here. The six red rows are a strict **subset** of those ten, and the
+> `- 1` double-counted our own row, which the sub-125 partition already contains.
+>
+> | | |
+> |---|---|
+> | settled below the 125 bound (GGHV22 Thm 2.1, nine upstream + ours) | **10** |
+> | **open** (all with `max_deg >= 125`) | **24** |
+>
+> Three rows were counted open while already dead upstream:
+> `(9,27)/(2,3)/108` and `(8,32)/(3,2)/120` (GGHV22 secs. 4 and 2 -- the latter by
+> name, figure caption `2204.14178.tex:370`), and `F_1(5,7)/112` (GGV4 sec. 3.5).
+>
+> **The number is now COMPUTED, not asserted** -- `gghv_sub125.py` (14/14) joins
+> the atlas to GGHV22's table on `(A_0, (m,n), max_deg)` and derives 34 - 10.
+> Thm 2.1 is strict (`max >= 125`), so `F_2(3,5)/125` sits AT the bound and
+> correctly stays open; a mutation control confirms a non-strict reading would
+> wrongly close exactly that row.
+>
+> Direction is safe: the old figure **over**-stated how much is open.
+
+> ### SUPERSEDED 2026-07-27 -- the open frontier is **27**, not 32
 >
 > This paragraph used to read "34 open cases minus the one GGV5 itself discards
 > and the one this campaign closed", i.e. 32. **Five more were already ruled out
@@ -104,7 +132,7 @@ argument is void there*, not that the case is safe. GGV5's 34 are **not** 34 ope
 > |---|---|
 > | already settled in the literature | **6** -- `F_1(3,4)/64`, `F_2(2,3)/75`, `F_3(3,2)/75`, `F_9(2,3)/84`, `F_17(2,3)/99` (Moh), `F_22(2,3)/96` (GGV5) |
 > | closed by this campaign | 1 -- `(8,28)/(3,2)/108` |
-> | **open** | **27** |
+> | **open** (superseded -- see the 2026-07-28 block above) | **27** |
 >
 > Corroborated independently: `max_deg <= 100` partitions the 34 as exactly 6 / 28,
 > matching the red count without reference to the colouring.

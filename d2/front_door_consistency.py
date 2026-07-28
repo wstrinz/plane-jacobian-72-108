@@ -135,7 +135,13 @@ NOT_A_PRESENT_CLAIM = re.compile(
     r"before\s+the\s+proof|at\s+one\s+time|earlier\s+draft|formerly|"
     r"prior\s+to|it\s+is\s+left\s+open|"
     r"do\s+not\s+read|should\s+not\s+be\s+read|do\s+not\s+treat|"
-    r"is\s+not\s+a\s+claim|rather\s+than\s+left\s+to\s+be\s+discovered", re.I)
+    r"is\s+not\s+a\s+claim|rather\s+than\s+left\s+to\s+be\s+discovered|"
+    # ATTRIBUTIVE: "left open THERE, closed here" -- the openness is predicated
+    # of another source, and the same sentence states our own verdict. Added
+    # 2026-07-28 when this checker flagged exactly such a sentence in our own
+    # README while that sentence in fact asserted closure.
+    r"left\s+open\s+(?:there|upstream|in\s+GGHV|by\s+GGHV)|"
+    r"open\s+there\b|open\s+upstream\b", re.I)
 
 SENT = re.compile(r"[^.!?]*[.!?]")
 

@@ -84,6 +84,8 @@ echo "### D2 — exact field-split proof checks"
   python3 toric_general.py --quiet &&
   python3 corner_atlas.py --quiet &&
   python3 moh_discards.py --quiet &&
+  python3 gghv_sub125.py --quiet &&
+  python3 primitivity_depth.py --quiet &&
   python3 moh_control_50_75.py --quiet &&
   python3 front_door_consistency.py --quiet &&
   # --- the proof spine, published 2026-07-27 (v1.0.0) ---------------------

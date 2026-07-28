@@ -719,15 +719,28 @@ def main():
         # already ruled out before GGV5 was written.  GGV5 tex:1794: "In [M] there
         # are listed four cases (which correspond to six cases in our terminology)
         # ... They are discarded by hand", and tex:1818 accounts for the six red
-        # rows as FIVE Moh + ONE starred (F_22).  So the settled set is SIX, and
-        # the open frontier is 34 - 6 - 1 = 27, not 32.
+        # rows as FIVE Moh + ONE starred (F_22).
         # EVIDENCE BOUNDARY: the red partition is exact-checked; that Moh's five
         # are RULED OUT is CITATION-LEVEL -- [M] has not been read here.
         moh_discarded=["F_1(3,4)/64", "F_2(2,3)/75", "F_3(3,2)/75",
                        "F_9(2,3)/84", "F_17(2,3)/99"],
         settled_before_this_campaign=6,
-        open_frontier=27,
+        # CORRECTED 2026-07-28 (gghv_sub125.py, 14/14): 24, NOT 27.
+        # The old value came from `34 - 6 - 1`, which is arithmetic about the RED
+        # partition -- GGV5's `max <= 100` marking.  That never intersects GGHV22
+        # Theorem 2.1, which settles EVERYTHING with `max < 125`.  TEN of the 34
+        # rows are sub-125 and GGHV22 tabulates all ten with a "Discarded?"
+        # column: nine discarded upstream, and the tenth is `(8,28)`, left open
+        # there and closed here.  So the settled set below the bound is TEN, the
+        # six red rows are a strict SUBSET of it, and `- 1` double-counted our
+        # own row, which the sub-125 partition already contains.
+        # Three rows were counted OPEN while dead upstream: (9,27)/108 and
+        # (8,32)/120 (GGHV22 secs.4 and 2) and F_1(5,7)/112 (GGV4 sec.3.5).
+        # Direction is safe -- it OVER-stated how much is open.
+        # Computed, not asserted: see gghv_sub125.GGHV_SUB125.
+        open_frontier=34 - 10,
         closed_by_this_campaign=["(8,28)/(3,2)/108"],
+        settled_below_125=10,
         rows=rows,
     )
     if not args.no_write:

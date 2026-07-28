@@ -89,10 +89,11 @@
   "F_17(2,3)/99"
  ],
  "settled_before_this_campaign": 6,
- "open_frontier": 27,
+ "open_frontier": 24,
  "closed_by_this_campaign": [
   "(8,28)/(3,2)/108"
  ],
+ "settled_below_125": 10,
  "rows": [
   {
    "id": "F_1(3,4)/64",
