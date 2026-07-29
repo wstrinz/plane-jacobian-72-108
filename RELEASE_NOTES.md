@@ -677,11 +677,15 @@ machine-checkable reformulation of the partition, or a formal proof; not a regra
 **2026-07-21**, ahead of this work. Our adjudication of the two results is
 `SUBSUMES`.
 
-## Open problems
+## Research status and open problems
 
-1. **Settle the bridge identity's generality** — derive `ord_y Phi` independently at
-   `(8,28)/(3,4)/144`, where the identity predicts `205`. Cheapest high-value item
-   left; it turns the identity from INFERRED to checked in two directions.
+1. **Bridge identity generality — CLOSED.** `BRIDGE_GENERALITY.md` independently
+   derives `ord_y Phi = 205` at `(8,28)/(3,4)/144` (59/59 checks), and
+   `lean/Cert/BridgeOrder.lean` kernel-checks the denominator-cleared forcing ODE
+   plus the independently constructed cleared-slice candidate's order `205`. The
+   remaining geometric identification of that candidate with global `Phi` stays
+   explicitly CLAIMED; this item is retained here as a status correction, not an
+   open problem.
 2. **Cash the eight-row G-system coincidence.** Any *weight-free algebraic*
    consequence of `(72,108)`'s ideal transfers verbatim to eight of the nine class
    rows; only weight-normalised steps fail. This wasn't visible before and is the
